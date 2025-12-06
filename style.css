@@ -1,40 +1,28 @@
+/* ------------------------------
+   ベーススタイル
+------------------------------ */
 :root {
-  --bg-body: #f5f5f7;
-  --bg-card: #ffffff;
-  --border-card: #e5e7eb;
-  --text-main: #111827;
-  --text-sub: #4b5563;
+  --bg: #f7f7f9;
+  --text: #222;
+  --text-light: #555;
+  --border: #e5e7eb;
   --accent: #2563eb;
-  --accent-soft: #eff6ff;
-  --radius-card: 16px;
-  --shadow-card: 0 8px 20px rgba(15, 23, 42, 0.04);
-  --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --radius: 12px;
+  --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
 
-/* ベース */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
+  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
 }
 
-body {
-  font-family: var(--font-base);
-  background: var(--bg-body);
-  color: var(--text-main);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* アクセシビリティ用 h1 非表示 */
-
+/* ------------------------------
+   アクセシビリティ
+------------------------------ */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -42,282 +30,175 @@ body {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip: rect(0,0,0,0);
   border: 0;
 }
 
-/* ヘッダー */
-
+/* ------------------------------
+   ヘッダー
+------------------------------ */
 .site-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 20px 16px;
+  text-align: center;
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: #ffffffcc;
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.site-header-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 10px 16px 8px;
+  z-index: 10;
 }
 
 .site-title {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  color: var(--accent);
+  font-size: 20px; /* 18px → 20px に拡大 */
+  font-weight: 600;
+  margin: 0;
 }
 
 .site-tagline {
   margin: 4px 0 0;
-  font-size: 12px;
-  color: var(--text-sub);
+  font-size: 13px;
+  opacity: 0.9;
 }
 
-/* メイン */
-
+/* ------------------------------
+   メイン
+------------------------------ */
 .site-main {
-  max-width: 960px;
+  max-width: 720px;
+  padding: 20px 16px;
   margin: 0 auto;
-  padding: 16px 16px 32px;
 }
 
-/* カード */
+.section-title {
+  font-size: 20px;
+  margin: 32px 0 12px;
+  font-weight: 600;
+}
 
+/* ------------------------------
+   カード
+------------------------------ */
 .card {
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  border: 1px solid var(--border-card);
-  box-shadow: var(--shadow-card);
-  padding: 16px 16px 18px;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
   margin-bottom: 16px;
 }
 
-.card h2,
-.card h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.card p {
-  margin: 0 0 10px;
-  font-size: 14px;
-  color: var(--text-sub);
-}
-
-/* アクセント付きカード（寒色系の左フチ） */
-
 .card--accent {
-  border-left: 4px solid var(--accent);
-  padding-left: 14px;
+  border-left: 6px solid var(--accent);
 }
 
-/* カテゴリカード */
-
-.card--category {
-  margin-top: 24px;
+/* カテゴリ見出しカード */
+.card--category h3 {
+  font-size: 18px; /* 16 → 18 */
+  margin: 0 0 6px;
+  font-weight: 600;
 }
 
 .category-desc {
-  font-size: 13px;
-  color: var(--text-sub);
-}
-
-/* 見出し */
-
-.section-title {
-  margin: 24px 0 4px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* リスト・注記 */
-
-.list {
-  padding-left: 20px;
-  margin: 4px 0 10px;
-}
-
-.list li {
+  margin: 0;
   font-size: 14px;
-  color: var(--text-sub);
-  margin-bottom: 4px;
+  color: var(--text-light);
 }
 
-.list--number {
-  list-style-type: decimal;
+/* ------------------------------
+   ノート・強調
+------------------------------ */
+.lead {
+  font-size: 15px;
 }
 
 .note {
-  font-size: 12px;
-  color: #6b7280;
-  margin-top: 4px;
-}
-
-.lead {
   font-size: 14px;
-  color: var(--text-main);
+  color: var(--text-light);
 }
 
-/* ツールカードグリッド */
-
+/* ------------------------------
+   ツール一覧グリッド
+------------------------------ */
 .tool-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  margin-top: 8px;
+  margin-bottom: 24px;
 }
 
 .tool-card {
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
-  gap: 8px;
-  background: var(--bg-card);
-  border-radius: var(--radius-card);
-  border: 1px solid var(--border-card);
-  box-shadow: var(--shadow-card);
-  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
   text-decoration: none;
-  color: inherit;
-  transition:
-    transform 0.08s ease-out,
-    box-shadow 0.08s ease-out,
-    border-color 0.08s ease-out,
-    background-color 0.08s ease-out;
+  color: var(--text);
+  box-shadow: var(--card-shadow);
+  transition: background 0.2s;
 }
 
 .tool-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
-  border-color: #d1d5db;
-  background-color: #f9fafb;
+  background: #f0f4ff;
 }
 
 .tool-card-body {
-  flex: 1 1 auto;
-  min-width: 0;
+  width: calc(100% - 48px);
 }
 
 .tool-title {
-  margin: 0 0 4px;
-  font-size: 14px;
+  margin: 0 0 6px;
+  font-size: 15px; /* 14 → 15 */
   font-weight: 600;
-  color: var(--text-main);
 }
 
 .tool-desc {
   margin: 0;
-  font-size: 12px;
-  color: var(--text-sub);
+  font-size: 13px;
+  color: var(--text-light);
 }
 
+/* PC 専用カードの見た目強調（任意で追加） */
+.tool-card--pc {
+  border-left: 6px solid #ff6b6b;
+}
+
+/* 「開く」ラベル */
 .tool-link-label {
-  flex: 0 0 auto;
   align-self: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--accent);
-  padding-left: 8px;
 }
 
-/* PC専用ツールの軽い強調（ピコたん） */
-
-.tool-card--pc {
-  border-left: 4px solid #f97316; /* 控えめな暖色アクセント */
-}
-
-/* ボタン */
-
+/* ------------------------------
+   ボタン
+------------------------------ */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 14px;
-  border-radius: 999px;
+  display: inline-block;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: var(--radius);
   background: var(--accent);
-  color: #ffffff;
-  font-size: 13px;
+  color: #fff;
   text-decoration: none;
-  border: none;
-  cursor: pointer;
+  font-weight: 600;
 }
 
-.btn:hover {
-  opacity: 0.95;
+/* ------------------------------
+   プライバシーセクション調整
+------------------------------ */
+#section-privacy {
+  margin-top: 40px; /* カード間隔を広げる改善 */
 }
 
-.btn:focus-visible {
-  outline: 2px solid #1d4ed8;
-  outline-offset: 2px;
-}
-
-/* フッター */
-
+/* ------------------------------
+   フッター
+------------------------------ */
 .site-footer {
-  margin-top: 24px;
-  font-size: 11px;
-  color: #9ca3af;
+  margin-top: 40px;
   text-align: center;
-}
-
-.site-footer a {
-  color: #6b7280;
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
-}
-
-/* リンク */
-
-a {
-  color: var(--accent);
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* レスポンシブ（タブレット以上） */
-
-@media (min-width: 640px) {
-  .site-main {
-    padding: 20px 20px 40px;
-  }
-
-  .card {
-    padding: 18px 20px 20px;
-    margin-bottom: 18px;
-  }
-
-  .tool-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .tool-card {
-    padding: 14px 16px;
-  }
-
-  .tool-title {
-    font-size: 14px;
-  }
-
-  .tool-desc {
-    font-size: 12px;
-  }
-}
-
-/* PC幅での中央寄せ */
-
-@media (min-width: 1024px) {
-  .site-header-inner,
-  .site-main {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
+  font-size: 12px;
+  color: var(--text-light);
+  padding-bottom: 24px;
 }
