@@ -1,0 +1,340 @@
+:root {
+  --bg-body: #f5f5f7;
+  --bg-card: #ffffff;
+  --border-card: #e5e7eb;
+  --text-main: #111827;
+  --text-sub: #4b5563;
+  --accent: #2563eb;
+  --accent-soft: #eff6ff;
+  --radius-card: 16px;
+  --shadow-card: 0 8px 20px rgba(15, 23, 42, 0.04);
+  --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+/* ベース */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* アクセシビリティ用 h1 非表示 */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ヘッダー */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.site-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 16px 8px;
+}
+
+.site-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+}
+
+.site-tagline {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+/* メイン */
+
+.site-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 16px 32px;
+}
+
+/* カード */
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  padding: 16px 16px 18px;
+  margin-bottom: 16px;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+/* リスト・注記 */
+
+.list {
+  padding-left: 20px;
+  margin: 4px 0 10px;
+}
+
+.list li {
+  font-size: 14px;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.note {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ツール一覧セクション */
+
+.section-header {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* フィルター */
+
+.tool-filters {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.filter-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 4px 10px;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.filter-btn.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: #bfdbfe;
+}
+
+.filter-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ツールカードグリッド */
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.tool-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 8px;
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  padding: 12px 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, border-color 0.08s ease-out;
+}
+
+.tool-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  border-color: #d1d5db;
+}
+
+.tool-card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tool-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.tool-desc {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tool-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.tool-link-label {
+  flex: 0 0 auto;
+  align-self: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  padding-left: 8px;
+}
+
+/* 非表示（フィルタ用） */
+
+.is-hidden {
+  display: none !important;
+}
+
+/* ボタン */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 13px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.92;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+/* フッター */
+
+.site-footer {
+  margin-top: 24px;
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.site-footer a {
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* リンク */
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* レスポンシブ（タブレット以上） */
+
+@media (min-width: 640px) {
+  .site-main {
+    padding: 20px 20px 40px;
+  }
+
+  .card {
+    padding: 18px 20px 20px;
+    margin-bottom: 18px;
+  }
+
+  .tool-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-card {
+    padding: 14px 16px;
+  }
+
+  .tool-title {
+    font-size: 14px;
+  }
+
+  .tool-desc {
+    font-size: 12px;
+  }
+}
+
+/* PC幅での中央寄せ */
+
+@media (min-width: 1024px) {
+  .site-header-inner,
+  .site-main {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
