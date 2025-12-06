@@ -2,132 +2,379 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>便利ツール集｜年齢・干支・和暦・学年計算などの無料Webアプリ</title>
+  <title>cleverkitjp｜日常の「ちょっと計算」に便利な無料Webツール集</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="日常や仕事で役立つ、年齢計算・学年計算・干支早見表・和暦変換・料理分量計算などの無料ツールをまとめたWebサイトです。スマホで見やすく、広告は最小限に抑えたシンプル設計。">
+  <meta name="description" content="年齢・干支・学年・教育費・家計・勤務時間・割り勘・カロリー換算など、日常と仕事で使える無料ミニWebツールをまとめたサイトです。スマホで見やすく、広告は最小限のシンプル設計。">
   <link rel="canonical" href="https://cleverkitjp.github.io/">
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-      background: #f7f7f9;
-      margin: 0;
-      color: #222;
-      line-height: 1.6;
-    }
-    header {
-      background: #2563eb;
-      color: #fff;
-      padding: 20px 16px;
-      text-align: center;
-    }
-    h1 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 600;
-    }
-    main {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 20px 16px;
-    }
-    .section-title {
-      font-size: 18px;
-      margin-top: 24px;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #111;
-    }
-    .card {
-      background: #fff;
-      padding: 16px;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-    }
-    .card h2 {
-      margin: 0 0 8px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .card p {
-      margin: 0 0 12px;
-      font-size: 14px;
-      color: #555;
-    }
-    .btn {
-      display: inline-block;
-      padding: 8px 12px;
-      background: #2563eb;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    footer {
-      margin-top: 32px;
-      font-size: 12px;
-      color: #666;
-      text-align: center;
-      padding-bottom: 24px;
-    }
-  </style>
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="cleverkitjp">
+  <meta property="og:title" content="cleverkitjp｜日常の「ちょっと計算」に便利な無料Webツール集">
+  <meta property="og:description" content="年齢・干支・学年・教育費・家計・勤務時間・割り勘・カロリー換算など、日常と仕事で使える無料ミニWebツールをまとめたサイトです。スマホで見やすく、広告は最小限のシンプル設計。">
+  <meta property="og:url" content="https://cleverkitjp.github.io/">
+  <meta property="og:image" content="https://cleverkitjp.github.io/ogp.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="cleverkitjp｜日常の「ちょっと計算」に便利な無料Webツール集">
+  <meta name="twitter:description" content="年齢・干支・学年・教育費・家計・勤務時間・割り勘・カロリー換算など、日常と仕事で使える無料ミニWebツールをまとめたサイトです。">
+  <meta name="twitter:image" content="https://cleverkitjp.github.io/ogp.png">
+
+  <!-- schema.org WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://cleverkitjp.github.io/#website",
+    "name": "cleverkitjp",
+    "url": "https://cleverkitjp.github.io/",
+    "description": "年齢・干支・学年・教育費・家計・勤務時間・割り勘・カロリー換算など、日常と仕事で使える無料ミニWebツールをまとめたサイトです。スマホで見やすく、広告は最小限のシンプル設計。",
+    "inLanguage": "ja"
+  }
+  </script>
+
+  <!-- schema.org WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "cleverkitjp 便利ツール集",
+    "url": "https://cleverkitjp.github.io/",
+    "description": "日常生活と仕事で役立つ計算・変換・早見表ツールをまとめた無料Webアプリ集です。",
+    "isPartOf": {
+      "@id": "https://cleverkitjp.github.io/#website"
+    },
+    "inLanguage": "ja"
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
-<header>
-  <h1>便利ツール集（cleverkitjp）</h1>
-</header>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-title">cleverkitjp</div>
+      <p class="site-tagline">日常の「ちょっと計算」をスマホでサッとこなす無料ミニWebツール集</p>
+    </div>
+  </header>
 
-<main>
-  <p>
-    このサイトは、日常生活でよく使う計算・変換・早見表を、スマホで見やすい形にまとめた無料Webアプリ集です。広告は最小限にし、すべてのページを高速で軽量に設計しています。今後も便利ツールを継続的に追加していきます。
-  </p>
+  <main class="site-main">
+    <!-- アクセシビリティ＆SEO用のh1（視覚的には非表示） -->
+    <h1 class="visually-hidden">
+      cleverkitjp｜日常の「ちょっと計算」に便利な無料Webツール集
+    </h1>
 
-  <!-- ツール一覧 -->
-  <div class="section-title">公開中のツール</div>
+    <!-- サイト紹介 -->
+    <section aria-labelledby="section-about">
+      <article class="card">
+        <h2 id="section-about">このサイトについて</h2>
+        <p>
+          cleverkitjp は、日常生活や仕事でよく出てくる「ちょっとした計算・確認」を、
+          スマホからすぐに使える小さなWebツールとしてまとめたサイトです。
+        </p>
+        <p>
+          年齢・干支・学年・教育費・家計・勤務時間・割り勘・カロリー換算など、
+          何度も開きたくなるツールを広告最小・軽量表示で提供します。
+        </p>
+      </article>
+    </section>
 
-  <div class="card">
-    <h2>年齢・干支・和暦・学年 一括計算ツール</h2>
-    <p>生年月日を1回入力するだけで、年齢・数え年・干支・和暦・学年・節目年齢をまとめて表示します。スマホ最適化された軽量ツールです。</p>
-    <a class="btn" href="https://cleverkitjp.github.io/age-eto-tool/">開く</a>
-  </div>
+    <!-- 使い方 -->
+    <section aria-labelledby="section-howto">
+      <article class="card">
+        <h2 id="section-howto">使い方</h2>
+        <p>基本的な使い方はどのツールも共通です。</p>
+        <ul class="list">
+          <li>一覧から目的に合ったツールを選んでタップします。</li>
+          <li>必要な項目を入力し、「計算する」「生成する」などのボタンを押します。</li>
+          <li>結果が同じ画面内にシンプルに表示されます。</li>
+        </ul>
+        <p class="note">
+          よく使うツールは、ブラウザのブックマークやスマホのホーム画面に追加しておくと便利です。
+          計算結果はあくまで目安であり、最終的な判断はご自身の責任で行ってください。
+        </p>
+      </article>
+    </section>
 
-  <div class="card">
-    <h2>料理分量計算ツール</h2>
-    <p>人数に合わせて材料の分量を自動計算するツールです。スマホでも使いやすいよう、カード型UIで設計されています。</p>
-    <a class="btn" href="https://cleverkitjp.github.io/recipe-scaler/" target="_blank">開く</a>
-  </div>
+    <!-- ツール一覧 -->
+    <section aria-labelledby="section-tools">
+      <div class="section-header">
+        <h2 id="section-tools">公開中のツール</h2>
+        <div class="tool-filters" aria-label="カテゴリで絞り込み">
+          <button type="button" class="filter-btn is-active" data-filter="all">すべて</button>
+          <button type="button" class="filter-btn" data-filter="life">くらし・家計</button>
+          <button type="button" class="filter-btn" data-filter="work">仕事</button>
+          <button type="button" class="filter-btn" data-filter="study">学習</button>
+        </div>
+      </div>
 
-  <div class="section-title">今後追加予定のツール</div>
-  <div class="card">
-    <p>・入学年度シミュレーター<br>
-       ・カレンダー（六曜・干支・祝日）早見表<br>
-       ・各種金融シミュレーション<br>
-       ・子育て・教育計算ツール</p>
-  </div>
+      <div class="tool-grid">
+        <!-- age-eto-tool -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/age-eto-tool/" data-category="life work">
+          <div class="tool-card-body">
+            <h3 class="tool-title">年齢・干支・和暦・学年 一括計算ツール</h3>
+            <p class="tool-desc">
+              生年月日を1回入力するだけで、年齢・数え年・干支・和暦・学年・節目年齢をまとめて表示します。
+              家族の年齢確認や進学の確認に。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">年齢・学年</span>
+              <span class="tool-tag">早見表</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
 
-  <!-- プライバシーポリシー（AdSense必須）-->
-  <div class="section-title">プライバシーポリシー</div>
-  <div class="card">
-    <p>
-      当サイトでは、Google AdSense による広告配信を行うため、Cookie を使用してユーザーの興味に応じた広告を表示します。<br><br>
-      Google は広告 Cookie を使用することで、ユーザーが本サイトや他のサイトにアクセスした際の情報を取得することがあります。<br><br>
-      ユーザーは、<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank">Google 広告設定</a> からパーソナライズド広告を無効にできます。
-    </p>
-  </div>
+        <!-- recipe-scaler -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/recipe-scaler/" data-category="life">
+          <div class="tool-card-body">
+            <h3 class="tool-title">料理分量計算ツール</h3>
+            <p class="tool-desc">
+              レシピの人数を変更すると、材料の分量を自動で再計算します。
+              作り置きや家族分へのアレンジに便利です。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">料理</span>
+              <span class="tool-tag">分量計算</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
 
-  <div class="section-title">お問い合わせ</div>
-  <div class="card">
-    <p>不具合報告や改善要望は、GitHub Issues にて受け付けています。</p>
-    <a class="btn" href="https://github.com/cleverkitjp/age-eto-tool/issues" target="_blank">GitHub Issues を開く</a>
-  </div>
+        <!-- pikotan-typing -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/pikotan-typing/" data-category="study">
+          <div class="tool-card-body">
+            <h3 class="tool-title">えいたんごタイピング（pikotan-typing）</h3>
+            <p class="tool-desc">
+              小学生〜中学生レベルの英単語を、ローマ字入力で楽しくタイピング練習できます。
+              学校や家庭学習のサポートに。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">英語学習</span>
+              <span class="tool-tag">タイピング</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
 
-  <footer>
-    © cleverkitjp.github.io
-     <a href="privacy.html">プライバシーポリシー</a>
-  </footer>
-</main>
+        <!-- warikan -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/warikan/" data-category="life">
+          <div class="tool-card-body">
+            <h3 class="tool-title">割り勘・会費計算ツール</h3>
+            <p class="tool-desc">
+              飲み会やイベントの会費を、100円/1000円単位など実務的な単位で割り勘します。
+              一部の人だけ多めに払うケースにも対応。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">割り勘</span>
+              <span class="tool-tag">会費計算</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- qr-generator -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/qr-generator/" data-category="life work">
+          <div class="tool-card-body">
+            <h3 class="tool-title">QRコード作成ツール</h3>
+            <p class="tool-desc">
+              URLやテキストを入力すると、その場でQRコード画像を生成します。
+              店舗ポップや配布資料にそのまま貼り付け可能です。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">QRコード</span>
+              <span class="tool-tag">生成</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- traffic-accident-damages -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/traffic-accident-damages/" data-category="work life">
+          <div class="tool-card-body">
+            <h3 class="tool-title">交通事故 損害賠償 計算ツール（概算）</h3>
+            <p class="tool-desc">
+              交通事故の損害賠償額を、いくつかの前提条件から目安として試算するツールです。
+              実務・相談前のイメージ把握用の参考値としてご利用ください。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">損害賠償</span>
+              <span class="tool-tag">概算シミュレーション</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- price-calc -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/price-calc/" data-category="life">
+          <div class="tool-card-body">
+            <h3 class="tool-title">税込・税抜・割引（%OFF）計算ツール</h3>
+            <p class="tool-desc">
+              税込価格・税抜価格・割引後価格をまとめて計算します。
+              セール価格の確認や家計管理、フリマの出品価格検討に。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">家計</span>
+              <span class="tool-tag">価格計算</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- time-calculator -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/time-calculator/" data-category="work life">
+          <div class="tool-card-body">
+            <h3 class="tool-title">時間計算ツール</h3>
+            <p class="tool-desc">
+              勤務時間の差分・合計時間・休憩時間の控除など、
+              「何時間？」「合計で何分？」を一瞬で計算します。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">勤務時間</span>
+              <span class="tool-tag">時間計算</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- calorie-to-exercise -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/calorie-to-exercise/" data-category="life">
+          <div class="tool-card-body">
+            <h3 class="tool-title">カロリー → 運動時間換算ツール</h3>
+            <p class="tool-desc">
+              食品や飲み物のカロリーから、「歩く・走る・自転車」など、
+              どれくらい運動すればよいかの目安時間を計算します。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">ダイエット</span>
+              <span class="tool-tag">運動換算</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- taishokukin-souba-tool -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/taishokukin-souba-tool/" data-category="work life">
+          <div class="tool-card-body">
+            <h3 class="tool-title">退職金相場チェックツール</h3>
+            <p class="tool-desc">
+              勤続年数や学歴区分などを入力して、厚労省調査ベースの退職金相場（目安）を確認できます。
+              キャリアやライフプラン検討の参考に。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">退職金</span>
+              <span class="tool-tag">相場</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- countdown-tool -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/countdown-tool/" data-category="life study work">
+          <div class="tool-card-body">
+            <h3 class="tool-title">カウントダウン・カウントアップ日数ツール</h3>
+            <p class="tool-desc">
+              記念日・受験日・大会・締切日などまでの残り日数や、
+              そこから何日経ったかをシンプルなカードで表示します。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">記念日</span>
+              <span class="tool-tag">日数計算</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- calendar-generator -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/calendar-generator/" data-category="life work">
+          <div class="tool-card-body">
+            <h3 class="tool-title">カレンダー画像ジェネレーター</h3>
+            <p class="tool-desc">
+              練習日・営業日・イベント日などをマークした
+              シンプルなカレンダー画像を生成します。配布や印刷にそのまま利用可能です。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">カレンダー</span>
+              <span class="tool-tag">画像生成</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- eigo-pocket -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/eigo-pocket/" data-category="study">
+          <div class="tool-card-body">
+            <h3 class="tool-title">英語ポケット学習ツール（eigo-pocket）</h3>
+            <p class="tool-desc">
+              スキマ時間にサッと復習できる、英単語・フレーズ学習用のミニツールです。
+              通学・通勤中の復習にも。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">英語学習</span>
+              <span class="tool-tag">暗記</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+
+        <!-- education-cost-simulator -->
+        <a class="tool-card" href="https://cleverkitjp.github.io/education-cost-simulator/" data-category="life study">
+          <div class="tool-card-body">
+            <h3 class="tool-title">教育費シミュレーター</h3>
+            <p class="tool-desc">
+              子どもの学年や進路パターンを入力すると、将来の教育費のイメージを
+              家族単位でシミュレーションできます。
+            </p>
+            <div class="tool-tags">
+              <span class="tool-tag">教育費</span>
+              <span class="tool-tag">ライフプラン</span>
+            </div>
+          </div>
+          <span class="tool-link-label">開く</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- プライバシー・広告 -->
+    <section aria-labelledby="section-privacy">
+      <article class="card">
+        <h2 id="section-privacy">プライバシーと広告について</h2>
+        <p>
+          当サイトでは、一部ページで Google AdSense による広告配信を予定しています。
+          広告配信事業者は Cookie を使用して、ユーザーの興味・関心に応じた広告を表示することがあります。
+        </p>
+        <p>
+          詳細は、別ページの
+          <a href="privacy.html">プライバシーポリシー</a>
+          をご確認ください。
+        </p>
+      </article>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section aria-labelledby="section-contact">
+      <article class="card">
+        <h2 id="section-contact">お問い合わせ・不具合報告</h2>
+        <p>
+          不具合の報告や改善要望、アイデアのご提案は、
+          GitHub Issues で受け付けています。
+        </p>
+        <a class="btn" href="https://github.com/cleverkitjp/age-eto-tool/issues" target="_blank" rel="noopener noreferrer">
+          GitHub Issues を開く
+        </a>
+      </article>
+    </section>
+
+    <footer class="site-footer">
+      <p>
+        © <span id="js-year"></span> cleverkitjp.github.io
+        &nbsp;|&nbsp;
+        <a href="privacy.html">プライバシーポリシー</a>
+      </p>
+    </footer>
+  </main>
 </body>
 </html>
