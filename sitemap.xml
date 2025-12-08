@@ -8,60 +8,68 @@
     <changefreq>daily</changefreq>
   </url>
 
-  <!-- 主要ツール一覧 -->
+  <!-- 暮らし・家計 -->
   <url>
     <loc>https://cleverkitjp.github.io/age-eto-tool/</loc>
     <priority>0.9</priority>
   </url>
-
-  <url>
-    <loc>https://cleverkitjp.github.io/calendar-generator/</loc>
-    <priority>0.9</priority>
-  </url>
-
   <url>
     <loc>https://cleverkitjp.github.io/recipe-scaler/</loc>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://cleverkitjp.github.io/date-diff-tool/</loc>
+    <loc>https://cleverkitjp.github.io/warikan/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cleverkitjp.github.io/price-calc/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cleverkitjp.github.io/calorie-to-exercise/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cleverkitjp.github.io/education-cost-simulator/</loc>
     <priority>0.8</priority>
   </url>
 
+  <!-- 仕事 -->
   <url>
-    <loc>https://cleverkitjp.github.io/bmi-tool/</loc>
-    <priority>0.7</priority>
+    <loc>https://cleverkitjp.github.io/time-calculator/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cleverkitjp.github.io/taishokukin-souba-tool/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cleverkitjp.github.io/traffic-accident-damages/</loc>
+    <priority>0.8</priority>
   </url>
 
+  <!-- 学習・トレーニング -->
   <url>
-    <loc>https://cleverkitjp.github.io/qr/</loc>
-    <priority>0.7</priority>
+    <loc>https://cleverkitjp.github.io/eigo-pocket/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cleverkitjp.github.io/pikotan-typing/</loc>
+    <priority>0.8</priority>
   </url>
 
+  <!-- 作成ツール -->
   <url>
-    <loc>https://cleverkitjp.github.io/split-bill/</loc>
-    <priority>0.7</priority>
+    <loc>https://cleverkitjp.github.io/calendar-generator/</loc>
+    <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://cleverkitjp.github.io/countdown/</loc>
-    <priority>0.7</priority>
+    <loc>https://cleverkitjp.github.io/countdown-tool/</loc>
+    <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://cleverkitjp.github.io/typing-app/</loc>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://cleverkitjp.github.io/education-simulator/</loc>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://cleverkitjp.github.io/retirement-lump-sum/</loc>
-    <priority>0.6</priority>
+    <loc>https://cleverkitjp.github.io/qr-generator/</loc>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
