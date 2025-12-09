@@ -1,0 +1,21 @@
+/* cleverkitjp 共通フッター用スタイル */
+
+.ck-footer {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 40px;
+  padding: 24px 0;
+  border-top: 1px solid #ddd;
+  background: transparent; /* 各ツールの背景になじませる */
+}
+
+.ck-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.ck-ad {
+  text-align: center;
+  margin: 16px 0 40px;
+}
