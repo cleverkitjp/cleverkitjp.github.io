@@ -2,7 +2,7 @@
   <div>
     <a href="https://cleverkitjp.github.io/">他の便利なツールを見てみる</a>
   </div>
-  <div>© 2025 cleverkitjp</div>
+  <div>© <span id="ck-year"></span> cleverkitjp</div>
 </footer>
 
 <div class="ck-ad">
@@ -13,3 +13,10 @@
        data-ad-format="auto"
        data-full-width-responsive="true"></ins>
 </div>
+
+<script>
+  (function () {
+    var y = document.getElementById('ck-year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+</script>
