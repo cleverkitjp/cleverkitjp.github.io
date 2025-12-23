@@ -53,6 +53,7 @@
   }
   </script>
 
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -341,13 +342,25 @@
       </article>
     </section>
 
-    <footer class="site-footer">
-      <p>
-        © <span id="js-year"></span> cleverkitjp.github.io |
-        <a href="privacy.html">プライバシーポリシー</a>
-      </p>
-    </footer>
+    <p class="privacy-link">
+      <a href="privacy.html">プライバシーポリシー</a>
+    </p>
 
   </main>
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        })
+        .catch(function(e) {});
+    })();
+  </script>
 </body>
 </html>
