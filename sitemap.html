@@ -2,85 +2,85 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>サイトマップ｜cleverkitjp</title>
+  <title>ツール一覧｜cleverkitjp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="cleverkitjpで公開している全ツールの一覧ページです。計算・変換、日付・カレンダー、生活・学習向けの無料Webツールをまとめています。">
-
-  <!-- Google Analytics GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F6517NYNFF');
-  </script>
-
-  <!-- AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
-     crossorigin="anonymous"></script>
+  <meta name="description" content="cleverkitjpで公開している無料Webツール一覧。割り勘、時間計算、カレンダー、学年・年齢早見など、スマホですぐ使えるツールをまとめています。">
 
   <!-- common.css -->
   <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+
+  <style>
+    /* sitemap.html 専用の最小スタイル */
+    .tool-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      font-size:0.9rem;
+    }
+    .tool-list a{
+      text-decoration:underline;
+      white-space:nowrap;
+    }
+    .category{
+      margin-top:1.5em;
+    }
+  </style>
 </head>
 
 <body>
   <main class="container">
     <section class="card">
-      <h1>サイトマップ</h1>
-      <p>
-        cleverkitjp で公開している、すべてのWebツール一覧です。<br>
-        各ページはスマホ対応・無料・登録不要で利用できます。
+      <h1>ツール一覧</h1>
+      <p style="font-size:0.9rem;color:#666;">
+        cleverkitjpで公開しているツールの一覧です。
       </p>
     </section>
 
-    <section class="card">
-      <h2>計算・変換ツール</h2>
-      <ul>
-        <li><a href="/warikan/">割り勘計算ツール</a></li>
-        <li><a href="/price-calc/">価格・単価計算ツール</a></li>
-        <li><a href="/decimal-time-converter/">小数時間↔時分変換ツール</a></li>
-        <li><a href="/time-calculator/">時間計算ツール</a></li>
-        <li><a href="/taishokukin-souba-tool/">退職金相場チェック</a></li>
-        <li><a href="/life-balance-checker/">ライフバランスチェック</a></li>
-      </ul>
+    <section class="card category">
+      <h2>計算・変換</h2>
+      <div class="tool-list">
+        <a href="/warikan/">割り勘</a>
+        <a href="/price-calc/">価格・単価</a>
+        <a href="/decimal-time-converter/">小数↔時分</a>
+        <a href="/time-calculator/">時間計算</a>
+        <a href="/taishokukin-souba-tool/">退職金相場</a>
+        <a href="/life-balance-checker/">ライフバランス</a>
+      </div>
     </section>
 
-    <section class="card">
+    <section class="card category">
       <h2>日付・カレンダー</h2>
-      <ul>
-        <li><a href="/calendar-generator/">カレンダー生成ツール</a></li>
-        <li><a href="/weekday-holiday-checker/">曜日・祝日・営業日チェック</a></li>
-        <li><a href="/countdown-tool/">カウントダウンツール</a></li>
-      </ul>
+      <div class="tool-list">
+        <a href="/calendar-generator/">カレンダー生成</a>
+        <a href="/weekday-holiday-checker/">曜日・祝日</a>
+        <a href="/countdown-tool/">カウントダウン</a>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>生活・実用ツール</h2>
-      <ul>
-        <li><a href="/daily-shopping-memo/">毎日のお買い物メモ</a></li>
-        <li><a href="/recipe-scaler/">料理分量計算ツール</a></li>
-        <li><a href="/traffic-accident-damages/">交通事故の損害額計算</a></li>
-        <li><a href="/qr-generator/">QRコード生成ツール</a></li>
-        <li><a href="/calorie-to-exercise/">カロリー消費運動換算</a></li>
-      </ul>
+    <section class="card category">
+      <h2>生活・実用</h2>
+      <div class="tool-list">
+        <a href="/daily-shopping-memo/">買い物メモ</a>
+        <a href="/recipe-scaler/">分量計算</a>
+        <a href="/traffic-accident-damages/">事故損害額</a>
+        <a href="/qr-generator/">QR生成</a>
+        <a href="/calorie-to-exercise/">消費カロリー</a>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>学習・教育向け</h2>
-      <ul>
-        <li><a href="/eigo-pocket/">えいごポケット（小学生向け英単語）</a></li>
-        <li><a href="/pikotan-typing/">ぴこたんタイピング</a></li>
-        <li><a href="/education-cost-simulator/">教育費シミュレーター</a></li>
-        <li><a href="/age-eto-tool/">年齢・干支・学年早見ツール</a></li>
-        <ul>
-          <li><a href="/age-eto-tool/age-table.html">年齢早見表</a></li>
-          <li><a href="/age-eto-tool/gakunen-table.html">学年早見表</a></li>
-          <li><a href="/age-eto-tool/calendar-table.html">年齢カレンダー表</a></li>
-        </ul>
-      </ul>
+    <section class="card category">
+      <h2>学習・教育</h2>
+      <div class="tool-list">
+        <a href="/eigo-pocket/">英単語</a>
+        <a href="/pikotan-typing/">タイピング</a>
+        <a href="/education-cost-simulator/">教育費</a>
+        <a href="/age-eto-tool/">年齢・学年</a>
+        <a href="/age-eto-tool/age-table.html">年齢早見</a>
+        <a href="/age-eto-tool/gakunen-table.html">学年早見</a>
+        <a href="/age-eto-tool/calendar-table.html">年齢カレンダー</a>
+      </div>
     </section>
-
   </main>
 
   <!-- 共通フッター -->
@@ -94,11 +94,6 @@
         .then(function(response) { return response.text(); })
         .then(function(html) {
           container.innerHTML = html;
-          try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          } catch (e) {
-            console.warn('adsbygoogle error', e);
-          }
         })
         .catch(function(e) {
           console.warn('footer load error', e);
