@@ -1,75 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- トップページ -->
+  <!-- Top -->
   <url>
     <loc>https://cleverkitjp.github.io/</loc>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <changefreq>daily</changefreq>
   </url>
 
-  <!-- 暮らし・家計 -->
+  <!-- Tools -->
   <url>
     <loc>https://cleverkitjp.github.io/age-eto-tool/</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/recipe-scaler/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/warikan/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/price-calc/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/calorie-to-exercise/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/education-cost-simulator/</loc>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
-  <!-- 仕事 -->
   <url>
-    <loc>https://cleverkitjp.github.io/time-calculator/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/taishokukin-souba-tool/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/traffic-accident-damages/</loc>
-    <priority>0.8</priority>
+    <loc>https://cleverkitjp.github.io/decimal-time-converter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
-  <!-- 学習・トレーニング -->
   <url>
     <loc>https://cleverkitjp.github.io/eigo-pocket/</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://cleverkitjp.github.io/pikotan-typing/</loc>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
-  <!-- 作成ツール -->
+  <url>
+    <loc>https://cleverkitjp.github.io/warikan/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://cleverkitjp.github.io/calendar-generator/</loc>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+
   <url>
-    <loc>https://cleverkitjp.github.io/countdown-tool/</loc>
-    <priority>0.8</priority>
+    <loc>https://cleverkitjp.github.io/weekday-holiday-checker/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/time-calculator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/traffic-accident-damages/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/taishokukin-souba-tool/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <url>
     <loc>https://cleverkitjp.github.io/qr-generator/</loc>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/price-calc/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/recipe-scaler/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/pikotan-typing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/life-balance-checker/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/education-cost-simulator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/daily-shopping-memo/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/countdown-tool/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkitjp.github.io/calorie-to-exercise/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
