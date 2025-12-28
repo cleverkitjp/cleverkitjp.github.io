@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>サイトマップ｜cleverkitjp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="cleverkitjpで公開している全ツールの一覧ページです。計算・変換、日付・カレンダー、生活・学習向けの無料Webツールをまとめています。">
+
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
+     crossorigin="anonymous"></script>
+
+  <!-- common.css -->
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+</head>
+
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>サイトマップ</h1>
+      <p>
+        cleverkitjp で公開している、すべてのWebツール一覧です。<br>
+        各ページはスマホ対応・無料・登録不要で利用できます。
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>計算・変換ツール</h2>
+      <ul>
+        <li><a href="/warikan/">割り勘計算ツール</a></li>
+        <li><a href="/price-calc/">価格・単価計算ツール</a></li>
+        <li><a href="/decimal-time-converter/">小数時間↔時分変換ツール</a></li>
+        <li><a href="/time-calculator/">時間計算ツール</a></li>
+        <li><a href="/taishokukin-souba-tool/">退職金相場チェック</a></li>
+        <li><a href="/life-balance-checker/">ライフバランスチェック</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>日付・カレンダー</h2>
+      <ul>
+        <li><a href="/calendar-generator/">カレンダー生成ツール</a></li>
+        <li><a href="/weekday-holiday-checker/">曜日・祝日・営業日チェック</a></li>
+        <li><a href="/countdown-tool/">カウントダウンツール</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>生活・実用ツール</h2>
+      <ul>
+        <li><a href="/daily-shopping-memo/">毎日のお買い物メモ</a></li>
+        <li><a href="/recipe-scaler/">料理分量計算ツール</a></li>
+        <li><a href="/traffic-accident-damages/">交通事故の損害額計算</a></li>
+        <li><a href="/qr-generator/">QRコード生成ツール</a></li>
+        <li><a href="/calorie-to-exercise/">カロリー消費運動換算</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>学習・教育向け</h2>
+      <ul>
+        <li><a href="/eigo-pocket/">えいごポケット（小学生向け英単語）</a></li>
+        <li><a href="/pikotan-typing/">ぴこたんタイピング</a></li>
+        <li><a href="/education-cost-simulator/">教育費シミュレーター</a></li>
+        <li><a href="/age-eto-tool/">年齢・干支・学年早見ツール</a></li>
+        <ul>
+          <li><a href="/age-eto-tool/age-table.html">年齢早見表</a></li>
+          <li><a href="/age-eto-tool/gakunen-table.html">学年早見表</a></li>
+          <li><a href="/age-eto-tool/calendar-table.html">年齢カレンダー表</a></li>
+        </ul>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- 共通フッター -->
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(response) { return response.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (e) {
+            console.warn('adsbygoogle error', e);
+          }
+        })
+        .catch(function(e) {
+          console.warn('footer load error', e);
+        });
+    })();
+  </script>
+</body>
+</html>
