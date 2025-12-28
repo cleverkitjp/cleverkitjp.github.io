@@ -116,5 +116,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+<!-- age-eto-tool sub pages -->
+<url>
+  <loc>https://cleverkitjp.github.io/age-eto-tool/age-table.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
 
+<url>
+  <loc>https://cleverkitjp.github.io/age-eto-tool/gakunen-table.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://cleverkitjp.github.io/age-eto-tool/calendar-table.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
 </urlset>
