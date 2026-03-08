@@ -3,134 +3,134 @@
 
   <!-- Top -->
   <url>
-    <loc>https://cleverkitjp.github.io/</loc>
+    <loc>https://cleverkit.jp/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Tools -->
   <url>
-    <loc>https://cleverkitjp.github.io/age-eto-tool/</loc>
+    <loc>https://cleverkit.jp/age-eto-tool/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/decimal-time-converter/</loc>
+    <loc>https://cleverkit.jp/decimal-time-converter/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/eigo-pocket/</loc>
+    <loc>https://cleverkit.jp/eigo-pocket/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/warikan/</loc>
+    <loc>https://cleverkit.jp/warikan/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/calendar-generator/</loc>
+    <loc>https://cleverkit.jp/calendar-generator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/weekday-holiday-checker/</loc>
+    <loc>https://cleverkit.jp/weekday-holiday-checker/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/time-calculator/</loc>
+    <loc>https://cleverkit.jp/time-calculator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/traffic-accident-damages/</loc>
+    <loc>https://cleverkit.jp/traffic-accident-damages/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/taishokukin-souba-tool/</loc>
+    <loc>https://cleverkit.jp/taishokukin-souba-tool/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/qr-generator/</loc>
+    <loc>https://cleverkit.jp/qr-generator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/price-calc/</loc>
+    <loc>https://cleverkit.jp/price-calc/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/recipe-scaler/</loc>
+    <loc>https://cleverkit.jp/recipe-scaler/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/pikotan-typing/</loc>
+    <loc>https://cleverkit.jp/pikotan-typing/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/life-balance-checker/</loc>
+    <loc>https://cleverkit.jp/life-balance-checker/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/education-cost-simulator/</loc>
+    <loc>https://cleverkit.jp/education-cost-simulator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/daily-shopping-memo/</loc>
+    <loc>https://cleverkit.jp/daily-shopping-memo/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/countdown-tool/</loc>
+    <loc>https://cleverkit.jp/countdown-tool/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://cleverkitjp.github.io/calorie-to-exercise/</loc>
+    <loc>https://cleverkit.jp/calorie-to-exercise/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 <!-- age-eto-tool sub pages -->
 <url>
-  <loc>https://cleverkitjp.github.io/age-eto-tool/age-table.html</loc>
+  <loc>https://cleverkit.jp/age-eto-tool/age-table.html</loc>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://cleverkitjp.github.io/age-eto-tool/gakunen-table.html</loc>
+  <loc>https://cleverkit.jp/age-eto-tool/gakunen-table.html</loc>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
 
 <url>
-  <loc>https://cleverkitjp.github.io/age-eto-tool/calendar-table.html</loc>
+  <loc>https://cleverkit.jp/age-eto-tool/calendar-table.html</loc>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
