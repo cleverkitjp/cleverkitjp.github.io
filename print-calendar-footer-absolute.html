@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プリント用カレンダー生成｜印刷できるシンプル月間カレンダー</title>
+<meta name="description" content="印刷用のシンプルな月間カレンダーを無料で作成。年・月を選ぶだけで祝日入りカレンダーを生成し、そのまま印刷やPDF保存ができます。">
+<link rel="canonical" href="https://cleverkit.jp/print-calendar/">
+
+<meta property="og:title" content="プリント用カレンダー生成｜印刷できるシンプル月間カレンダー">
+<meta property="og:description" content="印刷用のシンプルな月間カレンダーを無料で作成。年・月を選ぶだけで祝日入りカレンダーを生成し、そのまま印刷やPDF保存ができます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cleverkit.jp/print-calendar/">
+<meta property="og:site_name" content="CleverKit">
+
+<link rel="stylesheet" href="/common.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F6517NYNFF');
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: #f5f5f3 !important;
+  color: #222 !important;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: #f5f5f3 !important;
+  color: #222 !important;
+  min-height: 100vh;
+}
+
+body, .page-wrap, .control-card, .calendar-card, .notes, .related-links {
+  background-color: initial;
+  color: initial;
+}
+
+.page-wrap {
+  background: #f5f5f3 !important;
+  color: #222 !important;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.control-card, .calendar-card, .notes {
+  background: #fff !important;
+  color: #222 !important;
+}
+
+a { color: #2c5f8a; }
+select, button { color: inherit; }
+
+.tool-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.tool-header .icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tool-header h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.tool-header p {
+  font-size: 0.82rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.control-card {
+  border-radius: 14px;
+  padding: 20px 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 20px;
+}
+
+.select-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.select-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.select-group label {
+  font-size: 0.72rem;
+  color: #888;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.select-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: #fafafa;
+  color: #1a1a1a;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.select-group select:focus {
+  outline: none;
+  border-color: #4a7fa5;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: #2c5f8a;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+.btn-print {
+  background: #444;
+  color: #fff;
+}
+
+.btn-print:hover {
+  opacity: 0.85;
+}
+
+.calendar-card {
+  border-radius: 14px;
+  padding: 20px 14px 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 20px;
+}
+
+.calendar-title {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+}
+
+.cal-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.cal-table thead th {
+  padding: 6px 2px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #e0e0e0;
+  color: #555 !important;
+  background: #fff !important;
+}
+
+.cal-table thead th.sun { color: #c0392b; }
+.cal-table thead th.sat { color: #2471a3; }
+.cal-table thead th.weekday { color: #555; }
+
+.cal-table tbody td {
+  border: 1px solid #e8e8e8;
+  vertical-align: top;
+  height: 72px;
+  padding: 5px 5px 4px;
+  position: relative;
+  background: #fff !important;
+  color: #222 !important;
+}
+
+.date-num {
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: block;
+  line-height: 1.1;
+}
+
+.holiday-name {
+  font-size: 0.6rem;
+  display: block;
+  line-height: 1.3;
+  margin-top: 2px;
+  word-break: break-all;
+}
+
+.cal-table tbody td.sun .date-num { color: #c0392b; }
+.cal-table tbody td.sun { background: #fdf5f5; }
+
+.cal-table tbody td.sat .date-num { color: #1a5276; }
+.cal-table tbody td.sat { background: #f4f8fc; }
+
+.cal-table tbody td.holiday .date-num { color: #c0392b; }
+.cal-table tbody td.holiday .holiday-name { color: #c0392b; }
+
+.cal-table tbody td.empty {
+  background: #fafafa;
+}
+
+.cal-table tbody td.today {
+  background: #fffbe6;
+}
+.cal-table tbody td.today .date-num {
+  background: #f0b429;
+  color: #fff;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.notes {
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+}
+
+.notes p {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+.notes .note-icon {
+  margin-right: 4px;
+}
+
+.related-links {
+  margin-bottom: 32px;
+}
+
+.related-links h2 {
+  font-size: 0.78rem;
+  color: #999;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.related-links ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.related-links ul li a {
+  display: inline-block;
+  padding: 7px 14px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: #2c5f8a;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.related-links ul li a:hover {
+  background: #eef4fa;
+}
+
+.loading-msg {
+  text-align: center;
+  padding: 30px;
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 12mm 15mm 12mm;
+  }
+
+  body {
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .no-print,
+  .control-card,
+  .notes,
+  .related-links,
+  #ck-footer-container,
+  .tool-header {
+    display: none !important;
+  }
+
+  .page-wrap {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .calendar-card {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .calendar-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .cal-table tbody td {
+    height: 90px;
+    border: 1px solid #bbb;
+  }
+
+  .cal-table thead th {
+    border-bottom: 2px solid #888;
+    font-size: 0.8rem;
+    padding: 6px 2px;
+  }
+
+  .date-num {
+    font-size: 1.05rem;
+  }
+
+  .holiday-name {
+    font-size: 0.55rem;
+  }
+
+  .cal-table tbody td.sun { background: #f9f9f9; }
+  .cal-table tbody td.sat { background: #f4f4f4; }
+  .cal-table tbody td.today { background: #ffffee; }
+  .cal-table tbody td.today .date-num {
+    background: none;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .select-row,
+  .btn-row {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+  <header class="tool-header no-print">
+    <span class="icon">📅</span>
+    <h1>プリント用カレンダー生成</h1>
+    <p>年・月を選ぶだけで祝日入りカレンダーを生成。<br>そのまま印刷・PDF保存できます。</p>
+  </header>
+
+  <div class="control-card no-print">
+    <div class="select-row">
+      <div class="select-group">
+        <label for="sel-year">年</label>
+        <select id="sel-year"></select>
+      </div>
+      <div class="select-group">
+        <label for="sel-month">月</label>
+        <select id="sel-month"></select>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="btn-generate" onclick="generateCalendar()">
+        <span>📋</span> カレンダーを生成
+      </button>
+      <button class="btn btn-print" onclick="window.print()">
+        <span>🖨️</span> 印刷する
+      </button>
+    </div>
+  </div>
+
+  <div class="calendar-card" id="calendar-area">
+    <div class="loading-msg">カレンダーを読み込み中…</div>
+  </div>
+
+  <div class="notes no-print">
+    <p><span class="note-icon">💡</span>「印刷する」ボタンを押すと、ブラウザの印刷機能が開きます。</p>
+    <p><span class="note-icon">📄</span>「PDFに保存」を選ぶと PDF ファイルとして保存できます。</p>
+    <p><span class="note-icon">📐</span>印刷設定は「A4縦・余白：標準」を推奨します。</p>
+  </div>
+
+  <div class="related-links no-print">
+    <h2>関連リンク</h2>
+    <ul>
+      <li><a href="https://cleverkit.jp/">CleverKit トップ</a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="ck-footer-container"></div>
+
+<script>
+const holidayCache = {};
+
+async function fetchHolidays(year) {
+  if (holidayCache[year]) return holidayCache[year];
+
+  try {
+    const res = await fetch('https://holidays-jp.github.io/api/v1/date.json');
+    if (!res.ok) throw new Error('fetch failed');
+
+    const all = await res.json();
+
+    Object.keys(all).forEach((dateStr) => {
+      const y = parseInt(dateStr.split('-')[0], 10);
+      if (!holidayCache[y]) holidayCache[y] = {};
+      holidayCache[y][dateStr] = all[dateStr];
+    });
+
+    return holidayCache[year] || {};
+  } catch (e) {
+    console.warn('祝日API取得失敗:', e);
+    return {};
+  }
+}
+
+function initSelects() {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+
+  const selYear = document.getElementById('sel-year');
+  const selMonth = document.getElementById('sel-month');
+
+  for (let y = 2020; y <= 2035; y++) {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y + '年';
+    if (y === currentYear) opt.selected = true;
+    selYear.appendChild(opt);
+  }
+
+  for (let m = 1; m <= 12; m++) {
+    const opt = document.createElement('option');
+    opt.value = m;
+    opt.textContent = m + '月';
+    if (m === currentMonth) opt.selected = true;
+    selMonth.appendChild(opt);
+  }
+}
+
+async function generateCalendar() {
+  const year = parseInt(document.getElementById('sel-year').value, 10);
+  const month = parseInt(document.getElementById('sel-month').value, 10);
+  const area = document.getElementById('calendar-area');
+
+  area.innerHTML = '<div class="loading-msg">祝日データを取得中…</div>';
+
+  const holidays = await fetchHolidays(year);
+
+  const today = new Date();
+  const todayStr = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, '0'),
+    String(today.getDate()).padStart(2, '0')
+  ].join('-');
+
+  const firstDay = new Date(year, month - 1, 1);
+  const lastDay = new Date(year, month, 0);
+  const totalDays = lastDay.getDate();
+  const startWday = firstDay.getDay();
+
+  const wdayLabels = ['日', '月', '火', '水', '木', '金', '土'];
+  const wdayClasses = ['sun', 'weekday', 'weekday', 'weekday', 'weekday', 'weekday', 'sat'];
+
+  let html = `<div class="calendar-title">${year}年${month}月 カレンダー</div>`;
+  html += '<table class="cal-table"><thead><tr>';
+
+  wdayLabels.forEach((label, i) => {
+    html += `<th class="${wdayClasses[i]}">${label}</th>`;
+  });
+
+  html += '</tr></thead><tbody>';
+
+  let dayCount = 1;
+  let started = false;
+
+  for (let row = 0; row < 6; row++) {
+    if (dayCount > totalDays) break;
+
+    html += '<tr>';
+
+    for (let col = 0; col < 7; col++) {
+      if (!started && col < startWday) {
+        html += '<td class="empty"></td>';
+      } else if (dayCount > totalDays) {
+        html += '<td class="empty"></td>';
+      } else {
+        started = true;
+
+        const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(dayCount).padStart(2, '0')}`;
+        const isHoliday = !!holidays[dateStr];
+        const holidayName = holidays[dateStr] || '';
+        const isToday = dateStr === todayStr;
+
+        let cellClass = wdayClasses[col];
+        if (isHoliday) cellClass += ' holiday';
+        if (isToday) cellClass += ' today';
+
+        html += `<td class="${cellClass}">`;
+        html += `<span class="date-num">${dayCount}</span>`;
+        if (isHoliday) {
+          html += `<span class="holiday-name">${holidayName}</span>`;
+        }
+        html += '</td>';
+
+        dayCount++;
+      }
+    }
+
+    html += '</tr>';
+  }
+
+  html += '</tbody></table>';
+  area.innerHTML = html;
+}
+
+fetch('https://cleverkit.jp/footer.html', { cache: 'no-store' })
+  .then((res) => {
+    if (!res.ok) throw new Error('footer fetch failed');
+    return res.text();
+  })
+  .then((html) => {
+    const footerContainer = document.getElementById('ck-footer-container');
+    if (footerContainer) {
+      footerContainer.innerHTML = html;
+    }
+  })
+  .catch((err) => {
+    console.error('Footer load error:', err);
+  });
+
+initSelects();
+generateCalendar();
+</script>
+
+</body>
+</html>
