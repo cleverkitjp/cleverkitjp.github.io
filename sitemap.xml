@@ -112,6 +112,12 @@
   </url>
 
   <url>
+    <loc>https://cleverkit.jp/day-counter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://cleverkit.jp/calorie-to-exercise/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
