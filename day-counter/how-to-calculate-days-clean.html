@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2つの日付の間の日数を計算する方法｜営業日・土日祝除外にも対応 | CleverKit</title>
+  <meta name="description" content="2つの日付の間の日数を計算する方法をわかりやすく解説。暦日と営業日の違い、土日祝を除いた数え方、開始日と終了日を含む考え方までまとめました。日数計算ツールへのリンク付き。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://cleverkit.jp/day-counter/how-to-calculate-days.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="2つの日付の間の日数を計算する方法｜営業日・土日祝除外にも対応 | CleverKit">
+  <meta property="og:description" content="2つの日付の間の日数を計算する方法をわかりやすく解説。暦日と営業日の違い、土日祝を除いた数え方、開始日と終了日を含む考え方までまとめました。">
+  <meta property="og:url" content="https://cleverkit.jp/day-counter/how-to-calculate-days.html">
+  <meta property="og:site_name" content="CleverKit">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="stylesheet" href="/common.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"2つの日付の間の日数を計算する方法｜営業日・土日祝除外にも対応",
+    "description":"2つの日付の間の日数を計算する方法をわかりやすく解説。暦日と営業日の違い、土日祝を除いた数え方、開始日と終了日を含む考え方までまとめました。",
+    "inLanguage":"ja",
+    "mainEntityOfPage":"https://cleverkit.jp/day-counter/how-to-calculate-days.html",
+    "author":{
+      "@type":"Organization",
+      "name":"CleverKit"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"CleverKit"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"開始日と終了日は含まれますか？",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"CleverKitの日数計算ツールでは、開始日と終了日の両方を含めて計算します。たとえば4月1日から4月3日までは3日です。"
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"営業日は何を除外して計算しますか？",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"営業日では、土曜日、日曜日、日本の祝日を除外して計算できます。さらに独自休日を追加して、会社独自の休業日も反映できます。"
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"土日祝を除いた日数も計算できますか？",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"できます。日数計算ツールで営業日を選ぶと、土日祝を除いた日数を自動で計算できます。"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --green-900:#1a2f4e;
+      --green-800:#1e3a5f;
+      --green-700:#2563a8;
+      --green-600:#3b7dd8;
+      --green-050:#f4f7fc;
+      --line:#d0dae8;
+      --text:#1a1f2e;
+      --muted:#5a6478;
+      --white:#ffffff;
+      --shadow:0 8px 24px rgba(26,47,78,0.10);
+      --radius:16px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans","Yu Gothic",sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f4f7fc 0%,#e8eef7 100%);
+      line-height:1.8;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,var(--green-900),var(--green-700));
+      color:#fff;
+      padding:30px 16px 36px;
+    }
+
+    .hero-inner,.container{
+      width:100%;
+      max-width:760px;
+      margin:0 auto;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:1.9rem;
+      line-height:1.35;
+    }
+
+    .hero p{
+      margin:0;
+      opacity:.95;
+      font-size:1rem;
+    }
+
+    .container{
+      padding:20px 16px 40px;
+    }
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:20px;
+      margin-bottom:16px;
+    }
+
+    .lead{
+      font-size:1.02rem;
+    }
+
+    .section-title,.toc-title{
+      margin:0 0 12px;
+      color:var(--green-900);
+      font-weight:800;
+    }
+
+    .section-title{
+      font-size:1.25rem;
+    }
+
+    .sub-title{
+      margin:20px 0 8px;
+      color:var(--green-900);
+      font-size:1.02rem;
+      font-weight:800;
+    }
+
+    .toc{
+      margin:0;
+      padding-left:20px;
+    }
+
+    .toc li+li{
+      margin-top:6px;
+    }
+
+    .toc a,.cta a,.related a{
+      color:var(--green-800);
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .cta,.note-box,.example{
+      border-radius:14px;
+      padding:16px;
+    }
+
+    .cta,.note-box{
+      background:var(--green-050);
+      border:1px solid #d7e3f2;
+    }
+
+    .example{
+      background:#fafcff;
+      border:1px solid #e3eaf5;
+      margin:12px 0;
+    }
+
+    .example p{
+      margin:0;
+    }
+
+    .example p+p{
+      margin-top:6px;
+    }
+
+    .cta{
+      margin:18px 0;
+    }
+
+    .cta strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--green-900);
+    }
+
+    .faq-item+.faq-item{
+      margin-top:18px;
+      padding-top:18px;
+      border-top:1px solid #e5ebf4;
+    }
+
+    .related{
+      display:grid;
+      gap:10px;
+    }
+
+    .related a{
+      display:block;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px 14px;
+    }
+
+    .meta{
+      color:var(--muted);
+      font-size:.92rem;
+      margin-top:8px;
+    }
+
+    @media (max-width:560px){
+      .hero h1{
+        font-size:1.65rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>2つの日付の間の日数を計算する方法</h1>
+      <p>暦日と営業日の違い、土日祝を除く数え方、迷いやすいポイントをまとめて解説します。</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="card">
+      <p class="lead">
+        2つの日付の間の日数を知りたい場面は意外と多くあります。たとえば、納期まであと何日あるかを確認したいとき、契約期間が何日かを把握したいとき、イベントまでの残り日数を数えたいときです。
+      </p>
+      <p>
+        ただし、単純な「日数」と「営業日」は意味が異なります。土日や祝日を除くかどうかで結果が変わるため、目的に合った数え方を選ぶことが大切です。このページでは、2つの日付の間の日数を計算する考え方と、営業日を数えるときのポイントをわかりやすく整理します。
+      </p>
+
+      <div class="cta">
+        <strong>すぐに日数を計算したい方へ</strong>
+        <a href="/day-counter/">日数計算ツールを開く</a>
+      </div>
+</article>
+
+    <section class="card">
+      <h2 class="toc-title">目次</h2>
+      <ol class="toc">
+        <li><a href="#difference">日数計算でよくある違い</a></li>
+        <li><a href="#calendar">暦日を計算する方法</a></li>
+        <li><a href="#business">営業日を計算する方法</a></li>
+        <li><a href="#tool">日数計算ツールの使い方</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+      </ol>
+    </section>
+
+    <section class="card" id="difference">
+      <h2 class="section-title">日数計算でよくある違い</h2>
+      <p>
+        日数計算で最初に整理しておきたいのは、「暦日」と「営業日」の違いです。同じ開始日と終了日でも、どちらで数えるかによって結果が変わります。
+      </p>
+
+      <h3 class="sub-title">暦日とは</h3>
+      <p>
+        暦日は、カレンダーどおりの日数です。土曜日、日曜日、祝日も含めて数えます。契約期間、旅行日数、イベントまでの日数など、期間そのものの長さを確認したいときに向いています。
+      </p>
+
+      <h3 class="sub-title">営業日とは</h3>
+      <p>
+        営業日は、一般的に土曜日・日曜日・祝日を除いた日数です。納期、申請期限、社内作業日数、工期など、実務で使う日数を知りたいときはこちらを使います。
+      </p>
+
+      <div class="note-box">
+        <strong>ポイント</strong>
+        <p>
+          日数をざっくり把握したいなら暦日、仕事や手続きの期限確認なら営業日を選ぶのが基本です。
+        </p>
+      </div>
+    </section>
+
+    <section class="card" id="calendar">
+      <h2 class="section-title">暦日を計算する方法</h2>
+      <p>
+        暦日は、開始日と終了日を含めて数えると理解しやすくなります。CleverKitの日数計算ツールも、この考え方で計算します。
+      </p>
+
+      <div class="example">
+        <p><strong>例：</strong>2026/03/11〜2026/03/15</p>
+        <p>3/11、3/12、3/13、3/14、3/15 を数えるので <strong>5日</strong> です。</p>
+      </div>
+
+      <p>
+        期間が短ければ手計算でも可能ですが、月またぎや年またぎになると数え間違いが起こりやすくなります。2つの日付を入力するだけで結果が出るツールを使う方が早く、ミスも防ぎやすくなります。
+      </p>
+    </section>
+
+    <section class="card" id="business">
+      <h2 class="section-title">営業日を計算する方法</h2>
+      <p>
+        営業日を数えるときは、暦日から土曜日・日曜日・祝日を除外します。ここで気をつけたいのは、祝日を見落としやすいことです。
+      </p>
+
+      <div class="example">
+        <p><strong>例：</strong>2026/04/27〜2026/05/08</p>
+        <p>この期間には土日や祝日が含まれるため、暦日より営業日の方が少なくなります。</p>
+      </div>
+
+      <p>
+        さらに、会社独自の休業日、学校の休校日、年末年始や夏季休業などを反映したい場合は、一般的な祝日対応だけでは足りません。独自休日を追加できるツールを使うと、実際の運用に近い日数を確認できます。
+      </p>
+    </section>
+
+    <section class="card" id="tool">
+      <h2 class="section-title">日数計算ツールの使い方</h2>
+      <p>
+        CleverKit の日数計算ツールでは、暦日と営業日の両方に対応しています。使い方はシンプルです。
+      </p>
+
+      <ol class="toc">
+        <li>開始日を入力する</li>
+        <li>終了日を入力する</li>
+        <li>「暦日」または「営業日」を選ぶ</li>
+        <li>必要なら独自休日を追加する</li>
+        <li>計算ボタンを押す</li>
+      </ol>
+
+      <p>
+        営業日を選ぶと、日本の祝日を除いた結果が表示されます。期間内に含まれる祝日一覧も表示されるため、どの日が除外されているのかを確認しやすいのが特徴です。
+      </p>
+
+      <div class="cta">
+        <strong>ツールはこちら</strong>
+        <a href="/day-counter/">日数計算ツールで今すぐ計算する</a>
+      </div>
+    </section>
+
+    <section class="card" id="faq">
+      <h2 class="section-title">よくある質問</h2>
+
+      <div class="faq-item">
+        <h3 class="sub-title">開始日と終了日は含まれますか？</h3>
+        <p>
+          はい。CleverKitの日数計算ツールでは、開始日と終了日を含めて計算します。たとえば4月1日から4月3日までは3日です。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="sub-title">土日祝を除いた日数も計算できますか？</h3>
+        <p>
+          できます。営業日を選ぶと、土曜日・日曜日・日本の祝日を除いた日数を自動で計算できます。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="sub-title">会社独自の休日も反映できますか？</h3>
+        <p>
+          できます。独自休日を追加すれば、会社独自の休業日や学校行事なども反映した営業日計算が可能です。
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">まとめ</h2>
+      <p>
+        2つの日付の間の日数を計算するときは、まず「暦日」で数えるのか、「営業日」で数えるのかを決めることが重要です。暦日はカレンダーどおり、営業日は土日祝を除いた日数として考えると整理しやすくなります。
+      </p>
+      <p>
+        手計算もできますが、祝日や独自休日まで考慮するならツールを使う方が早くて正確です。納期や申請期限の確認、契約期間の把握などにも使いやすいため、必要なときにすぐ使えるようにしておくと便利です。
+      </p>
+
+      <div class="cta">
+        <strong>関連ページ</strong>
+        <a href="/day-counter/">日数計算ツールを使う</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">関連ツール</h2>
+      <div class="related">
+        <a href="/day-counter/">日数計算ツール</a>
+        <a href="/print-calendar/">カレンダー印刷・作成ツール</a>
+        <a href="/calendar-generator/">カレンダージェネレーター</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="ck-footer-container"></div>
+
+  <script>
+    fetch('/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('ck-footer-container').innerHTML = data;
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
