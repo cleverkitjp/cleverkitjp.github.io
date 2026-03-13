@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>干支・十二支早見表｜生まれ年・年齢・西暦・和暦を確認できる無料ツール</title>
+<meta name="description" content="生まれ年を入力するだけで干支・十二支・年齢・和暦を即確認。家族みんなの干支をまとめてチェック。1950〜2040年の干支早見表付き。">
+<link rel="stylesheet" href="/common.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F6517NYNFF');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --accent: #c0392b;
+    --accent-light: #e74c3c;
+    --accent-bg: #fff5f5;
+    --gold: #b8860b;
+    --gold-light: #f0c040;
+    --text: #1a1a1a;
+    --text-sub: #555;
+    --border: #e0e0e0;
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ヘッダー */
+  .site-header {
+    background: #fff;
+    border-bottom: 2px solid var(--accent);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .site-logo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  /* メインコンテンツ */
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+  }
+
+  /* ページタイトル */
+  .page-hero {
+    padding: 24px 0 8px;
+    text-align: center;
+  }
+  .page-hero h1 {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+  .page-hero .subtitle {
+    font-size: 13px;
+    color: var(--text-sub);
+    margin-top: 6px;
+  }
+
+  /* セクション共通 */
+  .section {
+    margin-top: 24px;
+  }
+  .section h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    padding: 0 0 10px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section h2 .icon {
+    font-size: 18px;
+  }
+
+  /* カード */
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 16px;
+    border: 1px solid var(--border);
+  }
+
+  /* 入力 */
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin-bottom: 6px;
+  }
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--text);
+    background: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.2s;
+  }
+  input[type="number"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: end;
+  }
+
+  /* ボタン */
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active { background: #a93226; }
+
+  .btn-sm {
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-sm:active { background: #a93226; }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 8px 14px;
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 結果表示 */
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .result-item {
+    background: var(--accent-bg);
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+    border: 1px solid #fac8c8;
+  }
+  .result-item.big {
+    grid-column: 1 / -1;
+  }
+  .result-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .result-value {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .result-value.eto-large {
+    font-size: 32px;
+  }
+  .result-sub {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-top: 2px;
+  }
+
+  /* 家族テーブル */
+  .family-row {
+    display: grid;
+    grid-template-columns: 1fr 90px auto;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+  .remove-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .remove-btn:active { color: var(--accent); }
+
+  .add-row-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1.5px dashed var(--border);
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px 14px;
+    color: var(--text-sub);
+    font-size: 14px;
+    cursor: pointer;
+    margin: 8px 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .add-row-btn:active { border-color: var(--accent); color: var(--accent); }
+
+  /* 家族結果テーブル */
+  .family-result {
+    margin-top: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .family-result table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .family-result th {
+    background: var(--accent);
+    color: #fff;
+    padding: 9px 8px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 12px;
+  }
+  .family-result td {
+    padding: 9px 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .family-result tr:nth-child(even) td { background: #fafafa; }
+  .family-result .eto-cell { font-size: 18px; font-weight: 900; }
+  .family-result .name-cell { font-weight: 700; text-align: left; }
+
+  /* 早見表 */
+  .hayami-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .hayami-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 300px;
+  }
+  .hayami-table th {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 8px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .hayami-table td {
+    padding: 8px 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hayami-table tr:nth-child(even) td { background: #f9f9f9; }
+  .hayami-table .current-year td {
+    background: #fff5e6 !important;
+    font-weight: 700;
+  }
+  .hayami-table .eto-col { font-size: 16px; font-weight: 900; }
+  .hayami-table .nendo-label {
+    font-size: 10px;
+    color: var(--text-sub);
+    display: block;
+  }
+
+  /* フィルター */
+  .filter-wrap {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 6px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-sub);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* 解説 */
+  .description-section {
+    margin-top: 24px;
+  }
+  .description-section h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    padding: 0 0 10px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 14px;
+  }
+  .desc-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .desc-card h3 {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .desc-card p {
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.8;
+  }
+
+  /* 十干十二支グリッド */
+  .eto-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .eto-chip {
+    background: var(--accent-bg);
+    border: 1px solid #fac8c8;
+    border-radius: 8px;
+    padding: 8px 4px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .eto-chip .animal { font-size: 20px; line-height: 1; }
+  .eto-chip .name { font-weight: 700; font-size: 12px; margin-top: 2px; }
+  .eto-chip .yomi { font-size: 10px; color: var(--text-sub); }
+
+  /* hidden */
+  .hidden { display: none !important; }
+
+  /* 年齢基準年 */
+  .kijun-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-sub);
+  }
+  .kijun-row input[type="number"] {
+    width: 90px;
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  @media (max-width: 360px) {
+    .result-value { font-size: 18px; }
+    .result-value.eto-large { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="site-logo">CleverKit</a>
+</header>
+
+<div class="container">
+
+  <!-- ページタイトル -->
+  <div class="page-hero">
+    <h1>干支・十二支早見表</h1>
+    <p id="this-year-eto" style="font-size:14px;font-weight:700;color:var(--accent);margin-top:8px;"></p>
+    <p class="subtitle">生まれ年から干支（十二支）・年齢・西暦・和暦をすぐ確認</p>
+  </div>
+
+  <!-- ① 個別確認 -->
+  <section class="section" id="kojin">
+    <h2><span class="icon">🔍</span>生まれ年から干支を調べる</h2>
+    <div class="card">
+      <label for="birthYear">生まれ年（西暦）</label>
+      <input type="number" id="birthYear" placeholder="例：1985" min="1900" max="2099" inputmode="numeric">
+      <div class="kijun-row">
+        <span>年齢の基準年：</span>
+        <input type="number" id="kijunYear" min="1900" max="2099" inputmode="numeric">
+        <span>年</span>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px;">
+        <button class="btn" onclick="calcIndividual()" style="flex:1">調べる</button>
+        <button class="btn-outline" onclick="resetForm()" style="white-space:nowrap">リセット</button>
+      </div>
+      <div id="individualResult" class="hidden">
+        <div class="result-grid">
+          <div class="result-item big">
+            <div class="result-label">干支（十干十二支）</div>
+            <div class="result-value eto-large" id="res-eto"></div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">十二支</div>
+            <div class="result-value" id="res-junishi"></div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">十干</div>
+            <div class="result-value" id="res-jikkan"></div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">西暦</div>
+            <div class="result-value" id="res-seireki"></div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">和暦</div>
+            <div class="result-value" id="res-wareki"></div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">年齢</div>
+            <div class="result-value" id="res-age"></div>
+            <div class="result-sub" id="res-age-note"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ② 家族まとめ確認 -->
+  <section class="section" id="family">
+    <h2><span class="icon">👨‍👩‍👧‍👦</span>家族の干支をまとめて確認</h2>
+    <div class="card">
+      <div style="font-size:12px;color:var(--text-sub);margin-bottom:12px;">名前と生まれ年を入力してください</div>
+      <div id="familyRows"></div>
+      <button class="add-row-btn" onclick="addFamilyRow()">＋ 人を追加</button>
+      <button class="btn" onclick="calcFamily()">まとめて確認</button>
+      <div id="familyResult" class="hidden family-result">
+        <p style="font-size:11px;color:var(--text-sub);margin-bottom:8px;">年齢は基準年との差分による目安表示です。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>生まれ年</th>
+              <th>干支</th>
+              <th>和暦</th>
+              <th>年齢</th>
+            </tr>
+          </thead>
+          <tbody id="familyResultBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 干支早見表 -->
+  <section class="section" id="hayami">
+    <h2><span class="icon">📋</span>干支早見表</h2>
+    <p style="font-size:12px;color:var(--text-sub);margin-bottom:10px;">年齢は今年基準で表示しています。</p>
+    <div class="filter-wrap">
+      <button class="filter-btn active" onclick="filterHayami('all',this)">全期間</button>
+      <button class="filter-btn" onclick="filterHayami('showa',this)">昭和</button>
+      <button class="filter-btn" onclick="filterHayami('heisei',this)">平成</button>
+      <button class="filter-btn" onclick="filterHayami('reiwa',this)">令和</button>
+    </div>
+    <div class="hayami-wrap">
+      <table class="hayami-table" id="hayamiTable">
+        <thead>
+          <tr>
+            <th>西暦</th>
+            <th>和暦</th>
+            <th>干支</th>
+            <th>年齢</th>
+          </tr>
+        </thead>
+        <tbody id="hayamiBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 解説 -->
+  <section class="description-section" id="kaisetsu">
+    <h2>干支・十二支とは</h2>
+
+    <div class="desc-card">
+      <h3>十二支（じゅうにし）</h3>
+      <p>十二支は、子・丑・寅・卯・辰・巳・午・未・申・酉・戌・亥の12種類。12年で一巡します。年・月・時刻・方角などを表すために古来より使われてきました。</p>
+      <div class="eto-grid" id="junishiGrid"></div>
+    </div>
+
+    <div class="desc-card">
+      <h3>十干（じっかん）</h3>
+      <p>十干は、甲・乙・丙・丁・戊・己・庚・辛・壬・癸の10種類。陰陽五行説に基づき、10年で一巡します。</p>
+    </div>
+
+    <div class="desc-card">
+      <h3>干支（えと・かんし）</h3>
+      <p>十干と十二支を組み合わせたものが「干支（かんし）」です。最小公倍数で60年に一巡し、これを「還暦」と呼びます。一般的に干支といえば十二支の動物を指すことが多いです。</p>
+    </div>
+
+    <div class="desc-card">
+      <h3>和暦の計算方法</h3>
+      <p>本ツールでは昭和（1926年〜1989年）・平成（1989年〜2019年）・令和（2019年〜）に対応しています。改元年（昭和64年＝平成元年など）は両方の表記で確認できます。</p>
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<div id="ck-footer-container"></div>
+
+<script>
+// ====== データ定義 ======
+const JIKKAN = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const JUNISHI = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const JUNISHI_ANIMAL = ['🐭','🐮','🐯','🐰','🐲','🐍','🐴','🐑','🐵','🐓','🐶','🐗'];
+const JUNISHI_NAME = ['ね（ねずみ）','うし','とら','う（うさぎ）','たつ','み（へび）','うま','ひつじ','さる','とり','いぬ','い（いのしし）'];
+const JUNISHI_YOMI = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+
+// 1984年 = 甲子（基準）
+// 1984: 甲(0) 子(0)
+// 西暦 - 1984 で offset計算
+function getJikkan(year) {
+  return JIKKAN[((year - 1984) % 10 + 10) % 10];
+}
+function getJunishi(year) {
+  return JUNISHI[((year - 1984) % 12 + 12) % 12];
+}
+function getJunishiAnimal(year) {
+  return JUNISHI_ANIMAL[((year - 1984) % 12 + 12) % 12];
+}
+function getEto(year) {
+  return getJikkan(year) + getJunishi(year);
+}
+
+function getEtoReading(eto) {
+  const readings = {"子":"ね","丑":"うし","寅":"とら","卯":"う","辰":"たつ","巳":"み","午":"うま","未":"ひつじ","申":"さる","酉":"とり","戌":"いぬ","亥":"い"};
+  return readings[eto] || "";
+}
+
+// 和暦
+function getWareki(year) {
+  if (year >= 2019) return '令和' + (year === 2019 ? '元' : (year - 2018)) + '年';
+  if (year >= 1989) return '平成' + (year === 1989 ? '元' : (year - 1988)) + '年';
+  if (year >= 1926) return '昭和' + (year === 1926 ? '元' : (year - 1925)) + '年';
+  if (year >= 1912) return '大正' + (year === 1912 ? '元' : (year - 1911)) + '年';
+  if (year >= 1868) return '明治' + (year === 1868 ? '元' : (year - 1867)) + '年';
+  return '（対応外）';
+}
+
+// 改元年の複合表示
+function getWareikiMulti(year) {
+  const results = [];
+  if (year === 2019) results.push('平成31年 / 令和元年');
+  else if (year === 1989) results.push('昭和64年 / 平成元年');
+  else if (year === 1926) results.push('大正15年 / 昭和元年');
+  else results.push(getWareki(year));
+  return results[0];
+}
+
+// ====== ① 個別確認 ======
+const currentYear = new Date().getFullYear();
+document.getElementById('kijunYear').value = currentYear;
+
+// 今年の干支表示
+(function() {
+  const zodiac = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+  const stems  = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+  const year = currentYear;
+  const eto  = zodiac[((year - 4) % 12 + 12) % 12];
+  const stem = stems[((year - 4) % 10 + 10) % 10];
+  document.getElementById("this-year-eto").textContent =
+    year + "年の干支は「" + eto + "（" + getEtoReading(eto) + "）」です";
+})();
+
+function calcIndividual() {
+  const y = parseInt(document.getElementById('birthYear').value);
+  const ky = parseInt(document.getElementById('kijunYear').value) || currentYear;
+  if (!y || y < 1 || y > 9999) {
+    alert('生まれ年を正しく入力してください');
+    return;
+  }
+  const jikkan = getJikkan(y);
+  const junishi = getJunishi(y);
+  const animal = getJunishiAnimal(y);
+  const eto = getEto(y);
+  const wareki = getWareikiMulti(y);
+  const age = ky - y;
+
+  document.getElementById('res-eto').textContent = animal + ' ' + eto;
+  document.getElementById('res-junishi').textContent = animal + ' ' + junishi;
+  document.getElementById('res-jikkan').textContent = jikkan;
+  document.getElementById('res-seireki').textContent = y + '年';
+  document.getElementById('res-wareki').textContent = wareki;
+  document.getElementById('res-age').textContent = age + '歳';
+  document.getElementById('res-age-note').textContent = ky + '年基準（誕生日前後は目安）';
+
+  document.getElementById('individualResult').classList.remove('hidden');
+}
+
+function resetForm() {
+  document.getElementById('birthYear').value = '';
+  document.getElementById('kijunYear').value = new Date().getFullYear();
+  document.getElementById('individualResult').classList.add('hidden');
+}
+
+document.getElementById('birthYear').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') calcIndividual();
+});
+
+// ====== ② 家族 ======
+let familyRowCount = 0;
+
+function addFamilyRow(name='', year='') {
+  familyRowCount++;
+  const id = 'frow-' + familyRowCount;
+  const div = document.createElement('div');
+  div.className = 'family-row';
+  div.id = id;
+  div.innerHTML = `
+    <input type="text" placeholder="名前" value="${name}" class="frow-name">
+    <input type="number" placeholder="生まれ年" value="${year}" class="frow-year" inputmode="numeric" min="1900" max="2099">
+    <button class="remove-btn" onclick="removeFamilyRow('${id}')" title="削除">✕</button>
+  `;
+  document.getElementById('familyRows').appendChild(div);
+}
+
+function removeFamilyRow(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+// 初期3行
+addFamilyRow('', '');
+addFamilyRow('', '');
+addFamilyRow('', '');
+
+function calcFamily() {
+  const rows = document.querySelectorAll('#familyRows .family-row');
+  const ky = parseInt(document.getElementById('kijunYear').value) || currentYear;
+  const data = [];
+  rows.forEach(row => {
+    const name = row.querySelector('.frow-name').value.trim();
+    const year = parseInt(row.querySelector('.frow-year').value);
+    if (name && year && year > 0) {
+      data.push({ name, year });
+    }
+  });
+  if (data.length === 0) {
+    alert('名前と生まれ年を入力してください');
+    return;
+  }
+  const tbody = document.getElementById('familyResultBody');
+  tbody.innerHTML = '';
+  data.forEach(d => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="name-cell">${escHtml(d.name)}</td>
+      <td>${d.year}年</td>
+      <td class="eto-cell">${getJunishiAnimal(d.year)}<br><span style="font-size:12px;font-weight:900">${getEto(d.year)}</span></td>
+      <td style="font-size:12px">${getWareikiMulti(d.year)}</td>
+      <td><strong>${ky - d.year}</strong>歳</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  document.getElementById('familyResult').classList.remove('hidden');
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ====== ③ 早見表 ======
+let hayamiFilter = 'all';
+
+function buildHayami() {
+  const tbody = document.getElementById('hayamiBody');
+  tbody.innerHTML = '';
+  const ky = currentYear;
+  for (let y = 1950; y <= 2040; y++) {
+    // フィルター判定
+    if (hayamiFilter === 'showa' && (y < 1926 || y > 1989)) continue;
+    if (hayamiFilter === 'heisei' && (y < 1989 || y > 2019)) continue;
+    if (hayamiFilter === 'reiwa' && y < 2019) continue;
+
+    const tr = document.createElement('tr');
+    if (y === ky) tr.className = 'current-year';
+    const age = ky - y;
+    tr.innerHTML = `
+      <td><strong>${y}</strong>${y === ky ? ' <span style="font-size:10px;color:var(--accent)">今年</span>' : ''}</td>
+      <td><span class="nendo-label">${getWareikiMulti(y)}</span></td>
+      <td class="eto-col">${getJunishiAnimal(y)} ${getEto(y)}</td>
+      <td>${age}歳</td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+
+function filterHayami(type, btn) {
+  hayamiFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildHayami();
+}
+
+// ====== 十二支グリッド ======
+function buildJunishiGrid() {
+  const grid = document.getElementById('junishiGrid');
+  JUNISHI.forEach((j, i) => {
+    const div = document.createElement('div');
+    div.className = 'eto-chip';
+    div.innerHTML = `<div class="animal">${JUNISHI_ANIMAL[i]}</div><div class="name">${j}</div>`;
+    grid.appendChild(div);
+  });
+}
+
+// ====== footer ======
+fetch('https://cleverkitjp.github.io/footer.html')
+  .then(r => r.text())
+  .then(html => { document.getElementById('ck-footer-container').innerHTML = html; })
+  .catch(() => {});
+
+// ====== 初期化 ======
+buildHayami();
+buildJunishiGrid();
+</script>
+</body>
+</html>
