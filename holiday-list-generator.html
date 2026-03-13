@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>祝日・連休カレンダー｜日本の祝日を年別に表示・コピーできる無料ツール</title>
+  <meta name="description" content="日本の祝日一覧を年別に表示。日付・曜日・祝日名をまとめて確認でき、コピーやCSV形式にも対応。営業日確認や予定作成に便利な無料ツールです。">
+  <link rel="canonical" href="https://cleverkit.jp/holiday-list-generator/">
+  <meta property="og:title" content="祝日・連休カレンダー｜日本の祝日を年別に表示・コピーできる無料ツール">
+  <meta property="og:description" content="日本の祝日一覧を年別に表示。日付・曜日・祝日名をまとめて確認でき、コピーやCSV形式にも対応。営業日確認や予定作成に便利な無料ツールです。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cleverkit.jp/holiday-list-generator/">
+  <meta property="og:site_name" content="CleverKit">
+  <link rel="stylesheet" href="/common.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif !important;
+      background: #f5f6f8 !important;
+      color: #1a1a2e !important;
+      line-height: 1.6 !important;
+      min-height: 100vh !important;
+    }
+
+    .hlg-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* Header */
+    .hlg-header {
+      background: #fff !important;
+      border-bottom: 3px solid #e63946 !important;
+      padding: 14px 16px !important;
+      margin-bottom: 0 !important;
+    }
+    .hlg-header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hlg-site-name {
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #e63946 !important;
+      letter-spacing: 0.04em !important;
+      text-decoration: none !important;
+    }
+    .hlg-header-sep {
+      color: #ccc !important;
+      font-size: 13px !important;
+    }
+    .hlg-tool-name-small {
+      font-size: 13px !important;
+      color: #555 !important;
+    }
+
+    /* Hero */
+    .hlg-hero {
+      background: #fff !important;
+      border-bottom: 1px solid #eee !important;
+      padding: 24px 16px 20px !important;
+      margin-bottom: 20px !important;
+    }
+    .hlg-hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hlg-title {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: #1a1a2e !important;
+      letter-spacing: -0.02em !important;
+      margin-bottom: 8px !important;
+    }
+    .hlg-desc {
+      font-size: 14px !important;
+      color: #666 !important;
+      line-height: 1.7 !important;
+    }
+
+    /* Card */
+    .hlg-card {
+      background: #fff !important;
+      border-radius: 10px !important;
+      border: 1px solid #e8e8e8 !important;
+      padding: 20px !important;
+      margin-bottom: 16px !important;
+    }
+
+    /* Year selector */
+    .hlg-year-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hlg-year-label {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #333 !important;
+      white-space: nowrap !important;
+    }
+    .hlg-year-input {
+      width: 90px !important;
+      padding: 9px 12px !important;
+      font-size: 16px !important;
+      border: 2px solid #ddd !important;
+      border-radius: 7px !important;
+      text-align: center !important;
+      color: #1a1a2e !important;
+      background: #fafafa !important;
+      outline: none !important;
+      transition: border-color 0.2s !important;
+      font-family: inherit !important;
+    }
+    .hlg-year-input:focus {
+      border-color: #e63946 !important;
+      background: #fff !important;
+    }
+    .hlg-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 9px 18px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      border: none !important;
+      border-radius: 7px !important;
+      cursor: pointer !important;
+      transition: opacity 0.15s, transform 0.1s !important;
+      font-family: inherit !important;
+      white-space: nowrap !important;
+    }
+    .hlg-btn:active { transform: scale(0.97) !important; }
+    .hlg-btn-primary {
+      background: #e63946 !important;
+      color: #fff !important;
+    }
+    .hlg-btn-primary:hover { opacity: 0.88 !important; }
+    .hlg-btn-secondary {
+      background: #f0f0f0 !important;
+      color: #333 !important;
+      padding: 9px 14px !important;
+    }
+    .hlg-btn-secondary:hover { background: #e4e4e4 !important; }
+    .hlg-btn-copy {
+      background: #1a1a2e !important;
+      color: #fff !important;
+    }
+    .hlg-btn-copy:hover { opacity: 0.85 !important; }
+
+    /* Copy area */
+    .hlg-copy-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hlg-copy-label {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #333 !important;
+      white-space: nowrap !important;
+    }
+    .hlg-copy-select {
+      padding: 9px 12px !important;
+      font-size: 14px !important;
+      border: 2px solid #ddd !important;
+      border-radius: 7px !important;
+      color: #1a1a2e !important;
+      background: #fafafa !important;
+      outline: none !important;
+      cursor: pointer !important;
+      font-family: inherit !important;
+      flex: 1 !important;
+      min-width: 140px !important;
+      max-width: 220px !important;
+    }
+    .hlg-copy-select:focus { border-color: #e63946 !important; }
+    .hlg-copy-msg {
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      padding: 4px 10px !important;
+      border-radius: 5px !important;
+      display: none !important;
+    }
+    .hlg-copy-msg.success {
+      display: inline-block !important;
+      background: #d4edda !important;
+      color: #155724 !important;
+    }
+    .hlg-copy-msg.error {
+      display: inline-block !important;
+      background: #f8d7da !important;
+      color: #721c24 !important;
+    }
+
+    /* Status / error */
+    .hlg-status {
+      font-size: 14px !important;
+      color: #888 !important;
+      text-align: center !important;
+      padding: 32px 0 !important;
+      display: none !important;
+    }
+    .hlg-status.visible { display: block !important; }
+    .hlg-error-msg {
+      font-size: 14px !important;
+      color: #c0392b !important;
+      background: #fdf0f0 !important;
+      border: 1px solid #f5c6cb !important;
+      border-radius: 7px !important;
+      padding: 12px 16px !important;
+      display: none !important;
+    }
+    .hlg-error-msg.visible { display: block !important; }
+
+    /* Table section */
+    .hlg-table-section { display: none !important; }
+    .hlg-table-section.visible { display: block !important; }
+    .hlg-table-heading {
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      color: #1a1a2e !important;
+      margin-bottom: 6px !important;
+    }
+    .hlg-holiday-count {
+      font-size: 13px !important;
+      color: #777 !important;
+      margin-bottom: 14px !important;
+    }
+    .hlg-table-wrap {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    .hlg-table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      font-size: 14px !important;
+    }
+    .hlg-table thead tr {
+      background: #1a1a2e !important;
+      color: #fff !important;
+    }
+    .hlg-table th {
+      padding: 10px 12px !important;
+      text-align: left !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.03em !important;
+      white-space: nowrap !important;
+    }
+    .hlg-table td {
+      padding: 10px 12px !important;
+      border-bottom: 1px solid #f0f0f0 !important;
+      white-space: nowrap !important;
+    }
+    .hlg-table tbody tr:last-child td { border-bottom: none !important; }
+    .hlg-table tbody tr:hover { background: #fafafa !important; }
+
+    /* Day color */
+    .hlg-day-sun { color: #e63946 !important; font-weight: 700 !important; }
+    .hlg-day-sat { color: #1a73e8 !important; font-weight: 700 !important; }
+
+    /* Consecutive holiday badge */
+    .hlg-consec-badge {
+      display: inline-block !important;
+      background: #fff3cd !important;
+      color: #856404 !important;
+      border: 1px solid #ffc107 !important;
+      border-radius: 4px !important;
+      padding: 1px 7px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+    }
+
+    /* Related tools */
+    .hlg-related-heading {
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      color: #1a1a2e !important;
+      margin-bottom: 12px !important;
+    }
+    .hlg-related-list {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 10px !important;
+    }
+    .hlg-related-card {
+      display: block !important;
+      background: #f8f9fa !important;
+      border: 1px solid #e8e8e8 !important;
+      border-radius: 8px !important;
+      padding: 14px !important;
+      text-decoration: none !important;
+      transition: border-color 0.2s, background 0.2s !important;
+    }
+    .hlg-related-card:hover {
+      border-color: #e63946 !important;
+      background: #fff !important;
+    }
+    .hlg-related-card-title {
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #1a1a2e !important;
+      margin-bottom: 4px !important;
+    }
+    .hlg-related-card-note {
+      font-size: 12px !important;
+      color: #888 !important;
+    }
+
+    @media (max-width: 480px) {
+      .hlg-title { font-size: 18px !important; }
+      .hlg-related-list { grid-template-columns: 1fr !important; }
+      .hlg-table { font-size: 13px !important; }
+      .hlg-table th, .hlg-table td { padding: 8px 10px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hlg-header">
+  <div class="hlg-header-inner">
+    <a href="https://cleverkit.jp/" class="hlg-site-name">CleverKit</a>
+    <span class="hlg-header-sep">›</span>
+    <span class="hlg-tool-name-small">祝日・連休カレンダー</span>
+  </div>
+</header>
+
+<div class="hlg-hero">
+  <div class="hlg-hero-inner">
+    <h1 class="hlg-title">祝日・連休カレンダー</h1>
+    <p class="hlg-desc">年を選ぶだけで日本の祝日一覧を表示できます。営業日確認や予定作成に便利です。</p>
+  </div>
+</div>
+
+<div class="hlg-wrap">
+
+  <!-- Year input -->
+  <div class="hlg-card">
+    <div class="hlg-year-row">
+      <label for="hlg-year-input" class="hlg-year-label">年を選択</label>
+      <input
+        type="number"
+        id="hlg-year-input"
+        class="hlg-year-input"
+        min="1900"
+        max="2100"
+        aria-label="西暦年を入力"
+      >
+      <button class="hlg-btn hlg-btn-secondary" id="hlg-btn-prev" aria-label="前年">◀ 前年</button>
+      <button class="hlg-btn hlg-btn-secondary" id="hlg-btn-next" aria-label="翌年">翌年 ▶</button>
+      <button class="hlg-btn hlg-btn-primary" id="hlg-btn-show">表示</button>
+    </div>
+  </div>
+
+  <!-- Copy area -->
+  <div class="hlg-card">
+    <div class="hlg-copy-row">
+      <label for="hlg-copy-format" class="hlg-copy-label">コピー形式</label>
+      <select id="hlg-copy-format" class="hlg-copy-select" aria-label="コピー形式を選択">
+        <option value="normal">通常（日付・曜日・祝日名）</option>
+        <option value="csv">CSV形式</option>
+        <option value="tsv">タブ区切り</option>
+      </select>
+      <button class="hlg-btn hlg-btn-copy" id="hlg-btn-copy">コピー</button>
+      <span class="hlg-copy-msg" id="hlg-copy-msg" aria-live="polite"></span>
+    </div>
+  </div>
+
+  <!-- Error message -->
+  <div class="hlg-error-msg" id="hlg-error-msg" role="alert"></div>
+
+  <!-- Loading status -->
+  <div class="hlg-status" id="hlg-status">読み込み中...</div>
+
+  <!-- Table -->
+  <div class="hlg-card hlg-table-section" id="hlg-table-section">
+    <h2 class="hlg-table-heading" id="hlg-table-heading"></h2>
+    <p class="hlg-holiday-count" id="hlg-holiday-count"></p>
+    <div class="hlg-table-wrap">
+      <table class="hlg-table" id="hlg-table">
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>曜日</th>
+            <th>祝日名</th>
+            <th>連休</th>
+          </tr>
+        </thead>
+        <tbody id="hlg-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Related tools -->
+  <div class="hlg-card">
+    <p class="hlg-related-heading">関連ツール</p>
+    <div class="hlg-related-list">
+      <a href="https://cleverkit.jp/print-calendar-generator/" class="hlg-related-card">
+        <div class="hlg-related-card-title">印刷用カレンダー生成ツール</div>
+        <div class="hlg-related-card-note">月別カレンダーを印刷用に生成</div>
+      </a>
+      <a href="https://cleverkit.jp/day-counter/" class="hlg-related-card">
+        <div class="hlg-related-card-title">日数計算ツール</div>
+        <div class="hlg-related-card-note">2つの日付間の日数を計算</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div id="ck-footer-container"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  const API_URL = 'https://holidays-jp.github.io/api/v1/date.json';
+  const DAY_NAMES = ['日', '月', '火', '水', '木', '金', '土'];
+
+  let allHolidays = null; // { "YYYY-MM-DD": "name", ... }
+  let currentYear = new Date().getFullYear();
+
+  const elYear = document.getElementById('hlg-year-input');
+  const elBtnPrev = document.getElementById('hlg-btn-prev');
+  const elBtnNext = document.getElementById('hlg-btn-next');
+  const elBtnShow = document.getElementById('hlg-btn-show');
+  const elBtnCopy = document.getElementById('hlg-btn-copy');
+  const elCopyFormat = document.getElementById('hlg-copy-format');
+  const elCopyMsg = document.getElementById('hlg-copy-msg');
+  const elErrorMsg = document.getElementById('hlg-error-msg');
+  const elStatus = document.getElementById('hlg-status');
+  const elTableSection = document.getElementById('hlg-table-section');
+  const elTableHeading = document.getElementById('hlg-table-heading');
+  const elHolidayCount = document.getElementById('hlg-holiday-count');
+  const elTableBody = document.getElementById('hlg-table-body');
+
+  elYear.value = currentYear;
+
+  function showError(msg) {
+    elErrorMsg.textContent = msg;
+    elErrorMsg.classList.add('visible');
+    elTableSection.classList.remove('visible');
+    elStatus.classList.remove('visible');
+  }
+
+  function hideError() {
+    elErrorMsg.classList.remove('visible');
+  }
+
+  function showStatus(msg) {
+    elStatus.textContent = msg;
+    elStatus.classList.add('visible');
+    elTableSection.classList.remove('visible');
+  }
+
+  function hideStatus() {
+    elStatus.classList.remove('visible');
+  }
+
+  function parseYear() {
+    const val = elYear.value.trim();
+    const num = parseInt(val, 10);
+    if (!/^\d{4}$/.test(val) || isNaN(num)) return null;
+    return num;
+  }
+
+  function isHoliday(dateStr) {
+    return allHolidays && Object.prototype.hasOwnProperty.call(allHolidays, dateStr);
+  }
+
+  function isRestDay(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    const dow = d.getDay();
+    return dow === 0 || dow === 6 || isHoliday(dateStr);
+  }
+
+  function addDays(dateStr, n) {
+    const d = new Date(dateStr + 'T00:00:00');
+    d.setDate(d.getDate() + n);
+    return d.toISOString().slice(0, 10);
+  }
+
+  // 連休日数を計算。走査は最大14日に制限して無限ループを防ぐ
+  function calcConsecutive(dateStr) {
+    let start = dateStr;
+    for (let i = 0; i < 14; i++) {
+      const prev = addDays(start, -1);
+      if (isRestDay(prev)) { start = prev; } else { break; }
+    }
+    let end = dateStr;
+    for (let i = 0; i < 14; i++) {
+      const next = addDays(end, 1);
+      if (isRestDay(next)) { end = next; } else { break; }
+    }
+    const ms = new Date(end + 'T00:00:00') - new Date(start + 'T00:00:00');
+    return Math.round(ms / 86400000) + 1;
+  }
+
+  function renderTable(year) {
+    const entries = Object.entries(allHolidays)
+      .filter(([d]) => d.startsWith(String(year) + '-'))
+      .sort(([a], [b]) => a.localeCompare(b));
+
+    elTableHeading.textContent = year + '年の祝日一覧';
+
+    if (entries.length === 0) {
+      elHolidayCount.textContent = '';
+      elTableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:24px;color:#888;">該当年の祝日データがありません</td></tr>';
+      elTableSection.classList.add('visible');
+      return;
+    }
+
+    elHolidayCount.textContent = '年間祝日数：' + entries.length + '日';
+
+    const rows = entries.map(([dateStr, name]) => {
+      const d = new Date(dateStr + 'T00:00:00');
+      const dow = d.getDay();
+      const dayName = DAY_NAMES[dow];
+      const displayDate = dateStr.replace(/-/g, '/');
+      let dayClass = '';
+      if (dow === 0) dayClass = 'hlg-day-sun';
+      else if (dow === 6) dayClass = 'hlg-day-sat';
+
+      const consec = calcConsecutive(dateStr);
+      const consecCell = consec >= 3
+        ? '<span class="hlg-consec-badge">' + consec + '連休</span>'
+        : '-';
+
+      return '<tr>'
+        + '<td>' + displayDate + '</td>'
+        + '<td class="' + dayClass + '">' + dayName + '</td>'
+        + '<td>' + name + '</td>'
+        + '<td>' + consecCell + '</td>'
+        + '</tr>';
+    });
+
+    elTableBody.innerHTML = rows.join('');
+    elTableSection.classList.add('visible');
+  }
+
+  async function fetchAndRender(year) {
+    hideError();
+    showStatus('読み込み中...');
+
+    try {
+      if (!allHolidays) {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error('fetch error');
+        allHolidays = await res.json();
+      }
+      hideStatus();
+      renderTable(year);
+    } catch (e) {
+      hideStatus();
+      showError('祝日データを取得できませんでした');
+    }
+  }
+
+  function onShow() {
+    const year = parseYear();
+    if (!year) {
+      showError('西暦4桁で入力してください');
+      return;
+    }
+    currentYear = year;
+    fetchAndRender(year);
+  }
+
+  elBtnShow.addEventListener('click', onShow);
+
+  elYear.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') onShow();
+  });
+
+  // 入力欄変更時に300ms待ってから自動表示
+  let hlgInputTimer = null;
+  elYear.addEventListener('input', function () {
+    clearTimeout(hlgInputTimer);
+    hlgInputTimer = setTimeout(onShow, 300);
+  });
+
+  elBtnPrev.addEventListener('click', function () {
+    const year = parseYear() || currentYear;
+    elYear.value = year - 1;
+    currentYear = year - 1;
+    fetchAndRender(year - 1);
+  });
+
+  elBtnNext.addEventListener('click', function () {
+    const year = parseYear() || currentYear;
+    elYear.value = year + 1;
+    currentYear = year + 1;
+    fetchAndRender(year + 1);
+  });
+
+  elBtnCopy.addEventListener('click', async function () {
+    if (!allHolidays) return;
+    const year = parseYear() || currentYear;
+    const format = elCopyFormat.value;
+
+    const entries = Object.entries(allHolidays)
+      .filter(([d]) => d.startsWith(String(year) + '-'))
+      .sort(([a], [b]) => a.localeCompare(b));
+
+    if (entries.length === 0) return;
+
+    const lines = entries.map(([dateStr, name]) => {
+      const d = new Date(dateStr + 'T00:00:00');
+      const dayName = DAY_NAMES[d.getDay()];
+      const displayDate = dateStr.replace(/-/g, '/');
+      if (format === 'csv') return displayDate + ',' + dayName + ',' + name;
+      if (format === 'tsv') return displayDate + '\t' + dayName + '\t' + name;
+      return displayDate + '（' + dayName + '） ' + name;
+    });
+
+    const text = lines.join('\n');
+
+    function showCopyMsg(success) {
+      elCopyMsg.textContent = success ? 'コピーしました' : 'コピーに失敗しました';
+      elCopyMsg.className = 'hlg-copy-msg ' + (success ? 'success' : 'error');
+      setTimeout(function () { elCopyMsg.className = 'hlg-copy-msg'; }, 2500);
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      showCopyMsg(true);
+    } catch (e) {
+      showCopyMsg(false);
+    }
+  });
+
+  // Footer
+  fetch('https://cleverkitjp.github.io/footer.html')
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      document.getElementById('ck-footer-container').innerHTML = html;
+    })
+    .catch(function () {});
+
+  // Initial load
+  fetchAndRender(currentYear);
+}());
+</script>
+</body>
+</html>
