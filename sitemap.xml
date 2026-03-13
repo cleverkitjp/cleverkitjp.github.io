@@ -28,6 +28,12 @@
   </url>
 
   <url>
+    <loc>https://cleverkit.jp/eto/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://cleverkit.jp/warikan/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -125,6 +131,12 @@
 
   <url>
     <loc>https://cleverkit.jp/day-counter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cleverkit.jp/holiday/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
