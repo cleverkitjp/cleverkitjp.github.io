@@ -35,6 +35,10 @@
   </url>
 
   <url>
+    <loc>https://cleverkit.jp/eto/year/</loc>
+  </url>
+
+  <url>
     <loc>https://cleverkit.jp/warikan/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
