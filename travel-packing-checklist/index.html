@@ -946,7 +946,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(response) { return response.text(); })
         .then(function(html) {
           container.innerHTML = html;

@@ -18,6 +18,7 @@
      crossorigin="anonymous"></script>
 
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="canonical" href="https://cleverkit.jp/weekday-holiday-checker/" />
   <title>曜日・祝日・営業日 判定ツール</title>
   <meta name="description" content="日付を入れるだけで「曜日」「暦日（土日/平日）」「祝日」「営業日」「今日からの差」「年初/年度の週番号」を即判定（日本時間）。" />
 
@@ -115,7 +116,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

@@ -13,6 +13,7 @@
   gtag('config', 'G-F6517NYNFF');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://cleverkit.jp/countdown-tool/" />
 
   <!-- 簡易説明 -->
   <meta name="description" content="記念日・イベントまでの「あと何日？」をスマホだけでサクッと表示できる日数カウントツールです。運動会・誕生日・受験・ライブ・推し活・家族旅行などにどうぞ。">
@@ -157,7 +158,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

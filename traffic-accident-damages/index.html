@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="canonical" href="https://cleverkit.jp/traffic-accident-damages/" />
   <title>交通事故損害賠償オールインワン電卓</title>
   <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
   <!-- Google tag (gtag.js) -->
@@ -231,7 +232,7 @@
     var container = document.getElementById('ck-footer-container');
     if (!container) return;
 
-    fetch('https://cleverkitjp.github.io/footer.html')
+    fetch('/footer.html')
       .then(function(r) { return r.text(); })
       .then(function(html) {
         container.innerHTML = html;

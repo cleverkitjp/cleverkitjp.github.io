@@ -13,6 +13,7 @@
   gtag('config', 'G-F6517NYNFF');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://cleverkit.jp/price-calc/" />
   <meta name="description" content="税込価格・税抜価格・割引後価格を素早く計算。セール価格の確認や家計簿入力に。スマホ対応・登録不要の無料計算ツールです。">
   <!-- 簡易OGP（必要に応じて画像パスを変更） -->
   <meta property="og:title" content="ショッピング中に“税込いくら？税抜いくら？何％OFF？”が一瞬で分かるシンプル計算ツール">
@@ -182,7 +183,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

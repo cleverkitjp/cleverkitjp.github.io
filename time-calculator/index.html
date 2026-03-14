@@ -13,6 +13,7 @@
   gtag('config', 'G-F6517NYNFF');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://cleverkit.jp/time-calculator/" />
   <meta name="description" content="勤務時間・勉強時間・習い事などの時間を、スマホからサッと計算できる軽量な時間計算ツールです。">
   <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
   <link rel="stylesheet" href="style.css">
@@ -148,7 +149,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

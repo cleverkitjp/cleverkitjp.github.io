@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="canonical" href="https://cleverkit.jp/warikan/" />
   <title>割り勘計算｜100円・500円・1000円単位で割り勘できる</title>
   <meta name="description" content="飲み会や忘年会・グループ旅行の割り勘を、合計金額と人数を入れるだけで自動計算。100円・500円・1000円単位で丸め、差分（多めに払う／お釣り）も自動表示。スマホ対応・登録不要。">
   <meta property="og:title" content="割り勘計算｜100円・500円・1000円単位で割り勘できる">
@@ -425,7 +426,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

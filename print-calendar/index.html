@@ -495,7 +495,7 @@ document.getElementById('btn-rokuyou-off').addEventListener('click', function() 
   generateCalendar();
 });
 
-fetch('https://cleverkit.jp/footer.html')
+fetch('/footer.html')
   .then(function(res) {
     if (!res.ok) throw new Error();
     return res.text();

@@ -14,6 +14,8 @@
 </script>
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="小学生向け英単語も学べる無料タイピング練習ゲーム。レベル別で楽しく続けられます。">
+  <link rel="canonical" href="https://cleverkit.jp/pikotan-typing/" />
 <meta property="og:title" content="ピコたん｜英単語｜タイピング｜小学生向け無料タイピングゲーム">
 <meta property="og:description" content="英単語365語入りのタイピング練習アプリ。小学生向け・無料・学校や家庭で使える安心設計。">
 <meta property="og:type" content="website">
@@ -1173,7 +1175,7 @@ function copyResult() {
     var container = document.getElementById('ck-footer-container');
     if (!container) return;
 
-    fetch('https://cleverkitjp.github.io/footer.html')
+    fetch('/footer.html')
       .then(function(r) { return r.text(); })
       .then(function(html) {
         container.innerHTML = html;

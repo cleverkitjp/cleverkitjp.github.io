@@ -14,6 +14,7 @@
   gtag('config', 'G-F6517NYNFF');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://cleverkit.jp/qr-generator/" />
 
   <meta property="og:title" content="QRコード作成ツール">
   <meta property="og:description" content="URLやテキストからQRコードを作成して保存できます。">
@@ -401,7 +402,7 @@
     var container = document.getElementById('ck-footer-container');
     if (!container) return;
 
-    fetch('https://cleverkitjp.github.io/footer.html')
+    fetch('/footer.html')
       .then(function(r) { return r.text(); })
       .then(function(html) {
         container.innerHTML = html;

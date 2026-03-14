@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>毎日のお買い物メモ｜スマホ用買い物チェックリスト</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="canonical" href="https://cleverkit.jp/daily-shopping-memo/" />
   <meta name="description" content="牛乳や卵、ティッシュなど、よく買うものをプリセットしたスマホ専用の買い物メモです。在庫チェックと買い物中のチェックを1画面で簡単に管理できます。">
   <meta property="og:title" content="毎日のお買い物メモ｜スマホ用買い物チェックリスト">
   <meta property="og:description" content="よく買うものをプリセットした、スマホ専用の買い物用チェックリスト。家で在庫チェック、お店ではカゴに入れたらタップでチェック済みにできます。">
@@ -131,7 +132,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;
