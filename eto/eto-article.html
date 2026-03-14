@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>西暦から干支を確認｜生まれ年の十二支早見表【無料ツール】</title>
+  <meta name="description" content="西暦から生まれ年の干支（十二支）を確認できる早見表です。子・丑・寅など十二支の一覧と、生まれ年から干支を調べる無料ツールを掲載しています。">
+  <link rel="canonical" href="https://cleverkit.jp/eto/year/">
+  <link rel="stylesheet" href="/common.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: #f8f7f4 !important;
+      color: #1a1a1a !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1.7 !important;
+      font-size: 15px !important;
+    }
+
+    .ck-article-wrap {
+      max-width: 720px !important;
+      margin: 0 auto !important;
+      padding: 24px 16px 64px !important;
+    }
+
+    .ck-article-wrap h1 {
+      font-size: clamp(20px, 5vw, 26px) !important;
+      font-weight: 700 !important;
+      color: #1a1a1a !important;
+      line-height: 1.4 !important;
+      margin: 0 0 20px !important;
+      padding: 0 !important;
+      border: none !important;
+    }
+
+    .ck-article-wrap h2 {
+      font-size: clamp(17px, 4vw, 20px) !important;
+      font-weight: 700 !important;
+      color: #1a1a1a !important;
+      margin: 40px 0 14px !important;
+      padding: 0 0 8px !important;
+      border-bottom: 2px solid #e0e0e0 !important;
+    }
+
+    .ck-article-wrap p {
+      margin: 0 0 14px !important;
+      color: #333 !important;
+    }
+
+    /* ツールCTA */
+    .ck-tool-card {
+      display: block !important;
+      background: #fff !important;
+      border: 2px solid #4a7c59 !important;
+      border-radius: 12px !important;
+      padding: 20px !important;
+      text-decoration: none !important;
+      color: inherit !important;
+      margin: 20px 0 !important;
+      transition: box-shadow 0.2s !important;
+    }
+
+    .ck-tool-card:hover {
+      box-shadow: 0 4px 16px rgba(74,124,89,0.15) !important;
+    }
+
+    .ck-tool-card-label {
+      font-size: 11px !important;
+      color: #4a7c59 !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+      margin-bottom: 4px !important;
+    }
+
+    .ck-tool-card-title {
+      font-size: 17px !important;
+      font-weight: 700 !important;
+      color: #1a1a1a !important;
+      margin-bottom: 6px !important;
+    }
+
+    .ck-tool-card-desc {
+      font-size: 13px !important;
+      color: #666 !important;
+      margin: 0 !important;
+    }
+
+    .ck-tool-card-arrow {
+      display: inline-block !important;
+      margin-top: 12px !important;
+      background: #4a7c59 !important;
+      color: #fff !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      padding: 8px 20px !important;
+      border-radius: 6px !important;
+      text-decoration: none !important;
+    }
+
+    /* FAQ */
+    .ck-faq-item {
+      background: #fff !important;
+      border: 1px solid #e8e8e8 !important;
+      border-radius: 10px !important;
+      padding: 18px !important;
+      margin-bottom: 12px !important;
+    }
+
+    .ck-faq-q {
+      font-weight: 700 !important;
+      font-size: 15px !important;
+      color: #1a1a1a !important;
+      margin-bottom: 8px !important;
+    }
+
+    .ck-faq-q::before {
+      content: 'Q. ' !important;
+      color: #4a7c59 !important;
+    }
+
+    .ck-faq-a {
+      font-size: 14px !important;
+      color: #444 !important;
+      margin: 0 !important;
+      line-height: 1.6 !important;
+    }
+
+    /* 十二支グリッド */
+    .ck-eto-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 8px !important;
+      margin: 16px 0 !important;
+    }
+
+    @media (max-width: 400px) {
+      .ck-eto-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+
+    .ck-eto-item {
+      background: #fff !important;
+      border: 1px solid #e8e8e8 !important;
+      border-radius: 8px !important;
+      padding: 10px 6px !important;
+      text-align: center !important;
+    }
+
+    .ck-eto-kanji {
+      font-size: 20px !important;
+      font-weight: 700 !important;
+      display: block !important;
+      color: #1a1a1a !important;
+    }
+
+    .ck-eto-yomi {
+      font-size: 11px !important;
+      color: #888 !important;
+      display: block !important;
+      margin-top: 2px !important;
+    }
+
+    /* 関連ツールリスト */
+    .ck-related-list {
+      list-style: none !important;
+      margin: 16px 0 0 !important;
+      padding: 0 !important;
+    }
+
+    .ck-related-list li {
+      border-bottom: 1px solid #e8e8e8 !important;
+    }
+
+    .ck-related-list li:last-child {
+      border-bottom: none !important;
+    }
+
+    .ck-related-list a {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 14px 4px !important;
+      text-decoration: none !important;
+      color: #1a1a1a !important;
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      gap: 8px !important;
+    }
+
+    .ck-related-list a:hover {
+      color: #4a7c59 !important;
+    }
+
+    .ck-related-list a::after {
+      content: '→' !important;
+      color: #4a7c59 !important;
+      font-size: 14px !important;
+      flex-shrink: 0 !important;
+    }
+
+    .ck-tip-q {
+      font-weight: 700 !important;
+      font-size: 14px !important;
+      color: #1a1a1a !important;
+      margin-bottom: 8px !important;
+    }
+
+    /* ちょっとした強調 */
+    .ck-note {
+      background: #f0f5f1 !important;
+      border-left: 3px solid #4a7c59 !important;
+      padding: 12px 16px !important;
+      border-radius: 0 8px 8px 0 !important;
+      font-size: 14px !important;
+      color: #333 !important;
+      margin: 16px 0 !important;
+    }
+  </style>
+  <style>
+.tool-button{
+display:inline-block;
+padding:12px 20px;
+background:#2c7be5;
+color:#ffffff;
+border-radius:6px;
+text-decoration:none;
+font-weight:600;
+}
+  </style>
+</head>
+<body>
+
+<div class="ck-article-wrap">
+
+  <h1>西暦から干支を確認｜生まれ年の十二支早見表</h1>
+
+  <p style="font-size: 13px !important; color: #888 !important; margin-bottom: 16px !important;">西暦から生まれ年の干支（十二支）を確認できる早見表ページです。</p>
+
+  <p>
+    「自分の干支って何だっけ？」「西暦から干支をすぐ確認したい」という方向けのページです。
+    十二支の一覧と、西暦から干支を調べられる無料ツールを掲載しています。
+  </p>
+
+  <!-- ファーストCTA -->
+  <p>生まれ年から干支をすぐ確認したい場合は、以下のツールをご利用ください。</p>
+  <a href="/eto/" class="tool-button">干支・十二支早見表ツールを開く</a>
+
+  <!-- H2: 生まれ年から干支を調べる -->
+  <h2>生まれ年から干支を調べる</h2>
+
+  <p>
+    生まれ年から干支を調べるには、以下のツールが最も手早い方法です。
+    西暦を入力するだけで対応する干支を表示します。自分の干支はもちろん、
+    家族や友人の生まれ年も確認できます。
+  </p>
+
+  <a class="ck-tool-card" href="https://cleverkit.jp/eto/">
+    <div class="ck-tool-card-label">CleverKit 無料ツール</div>
+    <div class="ck-tool-card-title">西暦から干支を調べる</div>
+    <p class="ck-tool-card-desc">生まれ年の西暦を入力するだけで干支をすぐ確認できます。早見表としても利用可。</p>
+    <span class="ck-tool-card-arrow">ツールを開く →</span>
+  </a>
+
+  <!-- H2: 十二支一覧 -->
+  <h2>十二支一覧</h2>
+
+  <p>十二支は以下の12種類です。この順番で1年ずつ繰り返されます。</p>
+
+  <div class="ck-eto-grid">
+    <div class="ck-eto-item"><span class="ck-eto-kanji">子</span><span class="ck-eto-yomi">ね</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">丑</span><span class="ck-eto-yomi">うし</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">寅</span><span class="ck-eto-yomi">とら</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">卯</span><span class="ck-eto-yomi">う</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">辰</span><span class="ck-eto-yomi">たつ</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">巳</span><span class="ck-eto-yomi">へび</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">午</span><span class="ck-eto-yomi">うま</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">未</span><span class="ck-eto-yomi">ひつじ</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">申</span><span class="ck-eto-yomi">さる</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">酉</span><span class="ck-eto-yomi">とり</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">戌</span><span class="ck-eto-yomi">いぬ</span></div>
+    <div class="ck-eto-item"><span class="ck-eto-kanji">亥</span><span class="ck-eto-yomi">い</span></div>
+  </div>
+
+  <!-- H2: 西暦と干支の関係 -->
+  <h2>西暦と干支の関係</h2>
+
+  <p>
+    干支は12年で一巡します。同じ干支は12年ごとに繰り返されます。
+  </p>
+
+  <div class="ck-note">
+    例：2024年（辰年）→ 次の辰年は2036年、前は2012年
+  </div>
+
+  <p>
+    西暦の下1桁だけでは干支を判断できません。
+    特定の年の干支を正確に調べるには、以下のツールをご利用ください。
+  </p>
+
+  <a class="ck-tool-card" href="https://cleverkit.jp/eto/">
+    <div class="ck-tool-card-label">CleverKit 無料ツール</div>
+    <div class="ck-tool-card-title">干支・十二支早見表ツール</div>
+    <p class="ck-tool-card-desc">西暦を入力するだけで干支を即確認。早見表付きで一覧表示にも対応。</p>
+    <span class="ck-tool-card-arrow">ツールを使う →</span>
+  </a>
+
+  <!-- H2: 豆知識 -->
+  <h2>干支に関する豆知識</h2>
+
+  <div class="ck-faq-item">
+    <div class="ck-tip-q">干支は本来「十二支」だけではない</div>
+    <p class="ck-faq-a">「干支」とは本来、「十干（じっかん）」と「十二支」を組み合わせた60通りの呼び方のことです。「甲子（きのえね）」「丙午（ひのえうま）」などはその代表例。60年で一巡するため、60歳を「還暦」と呼ぶのもこれに由来します。</p>
+  </div>
+
+  <div class="ck-faq-item">
+    <div class="ck-tip-q">十二支はもともと時間や方角を表していた</div>
+    <p class="ck-faq-a">十二支はもともと動物の話ではなく、時刻や方角を表すための区分でした。「子（ね）」は午後11時〜午前1時、「丑（うし）」は午前1時〜3時に対応します。「丑三つ時」という言葉もここから来ています。</p>
+  </div>
+
+  <div class="ck-faq-item">
+    <div class="ck-tip-q">猫が干支に入っていない理由</div>
+    <p class="ck-faq-a">ねずみが猫にわざと集合日を間違えて伝えたため、猫は遅刻して干支に入れなかったと言われています。あくまで伝承ですが、ねずみと猫が仲が悪い理由を説明するエピソードとして広く語り継がれています。</p>
+  </div>
+
+  <div class="ck-faq-item">
+    <div class="ck-tip-q">同じ干支の人は12歳差になる</div>
+    <p class="ck-faq-a">十二支は12年で一巡するため、同じ干支の人は12歳・24歳・36歳差になります。年齢がわからない相手と「同じ干支ですね」となれば、12の倍数の年齢差だとわかります。意外と日常会話で使えます。</p>
+  </div>
+
+  <p style="margin-top: 24px !important;">
+    自分や家族の干支を調べたい場合は、<a href="https://cleverkit.jp/eto/" style="color:#4a7c59;font-weight:700;">干支・十二支早見表ツール</a>をご利用ください。
+  </p>
+
+  <!-- H2: 干支を調べるツール -->
+  <h2>干支を調べるツール</h2>
+
+  <p>
+    生まれ年の干支をすぐ確認したい場合は、以下のツールをご利用ください。
+  </p>
+
+  <p>
+    <a href="/eto/" class="tool-button">干支・十二支早見表ツールを開く</a>
+  </p>
+
+  <!-- H2: 関連ツール -->
+  <h2>関連ツール</h2>
+
+  <ul class="ck-related-list">
+    <li><a href="https://cleverkit.jp/eto/">干支・十二支早見表</a></li>
+    <li><a href="https://cleverkit.jp/nenrei/">年齢計算ツール</a></li>
+    <li><a href="https://cleverkit.jp/calendar/">カレンダー印刷ツール</a></li>
+  </ul>
+
+</div><!-- /.ck-article-wrap -->
+
+<script src="/footer.js"></script>
+<div id="ck-footer-container"></div>
+
+</body>
+</html>
