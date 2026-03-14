@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>レシピ分量計算ツール｜人数に合わせて自動換算</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6517NYNFF');
+</script>
+  <meta name="description" content="レシピの材料を、元の人数から希望人数に合わせて自動換算できるツールです。小さじ・大さじ・カップ・mlを相互変換し、ml併記で分かりやすく表示します。スマホ最適化。">
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <link rel="stylesheet" href="style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>レシピ分量計算ツール</h1>
+      <p>元レシピの人数と希望人数を入れると、材料の分量を自動換算します。</p>
+    </header>
+
+    <!-- レシピ情報カード -->
+    <section class="card">
+      <h2 class="card-title">レシピ情報</h2>
+      <div class="card-body recipe-info">
+        <div class="field">
+          <label for="recipeName">レシピ名</label>
+          <input id="recipeName" type="text" placeholder="例：豚の角煮" />
+        </div>
+        <div class="field inline-fields">
+          <div>
+            <label for="originalServings">元の人数</label>
+            <div class="with-unit">
+              <input id="originalServings" type="number" min="1" value="4" />
+              <span class="unit-label">人分</span>
+            </div>
+          </div>
+          <div>
+            <label for="targetServings">希望人数</label>
+            <div class="with-unit">
+              <input id="targetServings" type="number" min="1" value="6" />
+              <span class="unit-label">人分</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 材料入力カード -->
+    <section class="card">
+      <h2 class="card-title">材料（元レシピの分量）</h2>
+      <div class="card-body">
+        <div id="ingredientsContainer" class="ingredients-container">
+          <!-- JSでカードを生成 -->
+        </div>
+        <button type="button" class="btn-secondary full" id="addIngredientBtn">
+          ＋ 材料を追加
+        </button>
+      </div>
+    </section>
+
+    <!-- 計算ボタン -->
+    <section class="card">
+      <div class="card-body actions">
+        <button type="button" class="btn-primary full" id="calcBtn">
+          分量を計算する
+        </button>
+      </div>
+    </section>
+
+    <!-- 結果表示カード -->
+    <section class="card" id="resultCard" style="display:none;">
+      <h2 class="card-title">計算結果</h2>
+      <div class="card-body">
+        <div class="result-header">
+          <div class="result-title" id="resultRecipeTitle"></div>
+          <div class="result-servings" id="resultServings"></div>
+        </div>
+        <div class="result-table-wrapper">
+          <table class="result-table" id="resultTable">
+            <thead>
+              <tr>
+                <th>食材名</th>
+                <th>分量（自然な表現）</th>
+                <th>目安（ml換算）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JSで行を生成 -->
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="btn-outline full" id="copyBtn">
+          結果をコピー
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- コピー完了トースト -->
+  <div id="toast" class="toast">コピーしました</div>
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        })
+        .catch(function(e) {});
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
