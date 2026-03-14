@@ -624,7 +624,7 @@ function buildScheduleRow(day,row,rowIdx,dayIdx){
 
     (function() {
       var c = document.getElementById('ck-footer-container'); if (!c) return;
-      fetch('https://cleverkitjp.github.io/footer.html').then(function(r){return r.text();}).then(function(h){ c.innerHTML=h; try{ (adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){ console.warn('adsbygoogle error', e); } }).catch(function(e){ console.warn('footer load error', e); });
+      fetch('/footer.html').then(function(r){return r.text();}).then(function(h){ c.innerHTML=h; try{ (adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){ console.warn('adsbygoogle error', e); } }).catch(function(e){ console.warn('footer load error', e); });
     })();
   </script>
 </body>

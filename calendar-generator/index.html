@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://cleverkit.jp/calendar-generator/" />
   <meta name="description" content="このカレンダージェネレーターは、営業日、定休日、イベント日、習い事や部活のスケジュールなどを自由に記号入りで作れる無料のカレンダー画像生成ツールです。スマホ対応・登録不要でそのままシェアできます。">
   <meta property="og:type" content="website">
   <meta property="og:title" content="カレンダージェネレーター｜営業日・予定カレンダーをかんたん作成＆SNSシェア">
@@ -186,7 +187,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

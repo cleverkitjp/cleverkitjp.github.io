@@ -12,6 +12,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://cleverkit.jp/portfolio-check/" />
 
   <title>ポートフォリオ定期チェック｜標準モデルとのズレを60秒で可視化</title>
   <meta name="description" content="年齢とリスク許容度、資産配分（%）を入れるだけ。標準モデルとの差を横棒グラフで可視化し、年1回の見直しを促す無料ツール（投資助言ではありません）。スマホ対応・登録不要。" />
@@ -371,7 +372,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(response) { return response.text(); })
         .then(function(html) {
           container.innerHTML = html;

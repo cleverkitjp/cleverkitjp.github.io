@@ -14,6 +14,7 @@
 </script>
   <meta name="description" content="勤続年数・退職理由・学歴・企業規模を入力するだけで退職金の相場（目安）を計算。厚労省統計ベースの無料シミュレーターです。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://cleverkit.jp/taishokukin-souba-tool/" />
   <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
   <link rel="stylesheet" href="style.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
@@ -123,7 +124,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

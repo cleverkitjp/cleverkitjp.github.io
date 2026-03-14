@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="canonical" href="https://cleverkit.jp/decimal-time-converter/" />
 
   <title>6.3時間は何時間何分？｜小数時間↔時間・分 変換ツール</title>
   <meta name="description" content="6.3時間は何時間何分？小数時間（6.3・6.25など）を時間・分に即変換。逆に時間・分から小数時間にも対応。スマホ対応・登録不要の無料ツール。" />
@@ -386,7 +387,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(response) { return response.text(); })
         .then(function(html) {
           container.innerHTML = html;

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>ツール一覧｜cleverkitjp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://cleverkit.jp/sitemap.html" />
 
   <meta name="description" content="cleverkitjpで公開している無料Webツール一覧。割り勘、時間計算、カレンダー、学年・年齢早見など、スマホですぐ使えるツールをまとめています。">
 
@@ -94,7 +95,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(response) { return response.text(); })
         .then(function(html) {
           container.innerHTML = html;

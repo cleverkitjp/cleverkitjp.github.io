@@ -13,6 +13,8 @@
   gtag('config', 'G-F6517NYNFF');
 </script>
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="description" content="食べたカロリーを、歩く・走る・自転車・階段などの運動時間に換算できる無料ツールです。">
+  <link rel="canonical" href="https://cleverkit.jp/calorie-to-exercise/" />
   <link rel="stylesheet" href="style.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
@@ -125,7 +127,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

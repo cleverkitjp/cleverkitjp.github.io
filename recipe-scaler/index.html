@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://cleverkit.jp/recipe-scaler/" />
   <title>レシピ分量計算ツール｜人数に合わせて自動換算</title>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
@@ -111,7 +112,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

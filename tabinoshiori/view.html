@@ -11,6 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://cleverkit.jp/tabinoshiori/view.html" />
   <title>旅行しおり閲覧｜旅行計画を見やすく確認</title>
   <meta name="description" content="共有URLから旅行しおりを表示する閲覧画面です。表紙と日別予定をスマホで見やすく確認できます。">
   <meta property="og:title" content="旅行しおり閲覧｜旅行計画を見やすく確認">
@@ -281,7 +282,7 @@
     (function() {
       var c = document.getElementById('ck-footer-container');
       if (!c) return;
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r){return r.text();})
         .then(function(h){
           c.innerHTML = h;

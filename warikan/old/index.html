@@ -13,6 +13,7 @@
   gtag('config', 'G-F6517NYNFF');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- TODO(横断修正 第1弾): warikan/old/ は現状維持方針のため canonical は未設定のまま -->
   <meta name="description" content="飲み会・グループ旅行などの割り勘を、合計金額と人数を入れるだけですぐ計算できる無料ツール。アプリ不要、管理職だけ多めに払うケースなどの個別精算にも対応。">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
@@ -691,7 +692,7 @@
       var container = document.getElementById('ck-footer-container');
       if (!container) return;
 
-      fetch('https://cleverkitjp.github.io/footer.html')
+      fetch('/footer.html')
         .then(function(r) { return r.text(); })
         .then(function(html) {
           container.innerHTML = html;

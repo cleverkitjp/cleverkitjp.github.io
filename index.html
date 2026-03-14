@@ -1030,7 +1030,7 @@
   (function () {
     var container = document.getElementById('ck-footer-container');
     if (!container) return;
-    fetch('https://cleverkit.jp/footer.html')
+    fetch('/footer.html')
       .then(function (r) { return r.text(); })
       .then(function (html) {
         container.innerHTML = html;

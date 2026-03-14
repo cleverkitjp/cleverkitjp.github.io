@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://cleverkit.jp/eto/" />
 <title>干支・十二支早見表｜生まれ年・年齢・西暦・和暦を確認できる無料ツール</title>
 <meta name="description" content="生まれ年を入力するだけで干支・十二支・年齢・和暦を即確認。家族みんなの干支をまとめてチェック。1950〜2040年の干支早見表付き。">
 <link rel="stylesheet" href="/common.css">
@@ -789,7 +790,7 @@ function buildJunishiGrid() {
 }
 
 // ====== footer ======
-fetch('https://cleverkitjp.github.io/footer.html')
+fetch('/footer.html')
   .then(r => r.text())
   .then(html => { document.getElementById('ck-footer-container').innerHTML = html; })
   .catch(() => {});
