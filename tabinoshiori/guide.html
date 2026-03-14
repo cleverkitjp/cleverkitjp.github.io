@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅行しおりの作り方｜LINEで共有しやすいしおりをスマホで作る方法</title>
+  <meta name="description" content="旅行しおりの作り方を、幹事向けにわかりやすく解説します。旅行タイトル、日程、集合場所、持ち物、日別予定の整理方法から、LINEで共有しやすいURL共有・画像生成の使い方まで紹介。登録不要・無料。">
+  <meta property="og:title" content="旅行しおりの作り方｜LINEで共有しやすいしおりをスマホで作る方法">
+  <meta property="og:description" content="旅行しおりの作り方を、幹事向けにわかりやすく解説。日別予定の整理、URL共有、画像生成まで登録不要・無料で使えます。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cleverkitjp.github.io/tabinoshiori/guide.html">
+  <meta property="og:image" content="https://cleverkitjp.github.io/ogp.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://cleverkitjp.github.io/tabinoshiori/guide.html">
+
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
+       crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --ck-line:#eddac8;
+      --ck-text:#3e2b1f;
+      --ck-sub:#7b6655;
+      --ck-main:#ef8d32;
+      --ck-shadow:0 10px 28px rgba(90,52,18,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#fff7ef 0%, #fffdfb 260px);
+      color:var(--ck-text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans","Yu Gothic",sans-serif;
+      line-height:1.75;
+    }
+    .wrap{
+      width:min(920px,100%);
+      margin:0 auto;
+      padding:16px 14px 40px;
+    }
+    .hero,.card{
+      background:#fff;
+      border:1px solid var(--ck-line);
+      border-radius:24px;
+      box-shadow:var(--ck-shadow);
+    }
+    .hero{
+      padding:22px 18px;
+      margin-bottom:16px;
+      background:linear-gradient(135deg,#fff0dc 0%, #fffaf4 100%);
+    }
+    .eyebrow{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      color:#975200;
+      background:#ffe1bc;
+      margin-bottom:10px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.35;
+      color:#5b3208;
+    }
+    .lead{
+      margin:0;
+      color:var(--ck-sub);
+      font-size:15px;
+    }
+    .hero-actions{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:16px;
+    }
+    .btn{
+      display:inline-flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-decoration:none;
+      text-align:center;
+      border-radius:14px;
+      padding:13px 14px;
+      font-size:15px;
+      font-weight:700;
+      line-height:1.35;
+    }
+    .btn small{
+      display:block;
+      margin-top:2px;
+      font-size:12px;
+      font-weight:700;
+      opacity:.95;
+    }
+    .btn-main{
+      background:linear-gradient(135deg,var(--ck-main) 0%, #ffb35d 100%);
+      color:#fff;
+      box-shadow:0 8px 20px rgba(239,141,50,.25);
+    }
+    .btn-sub{
+      background:#fff;
+      color:#8b4a09;
+      border:1px solid var(--ck-line);
+    }
+    .grid{
+      display:grid;
+      gap:16px;
+    }
+    .card{padding:18px 16px}
+    h2{
+      margin:0 0 12px;
+      font-size:22px;
+      color:#6b3b0d;
+      line-height:1.4;
+    }
+    h3{
+      margin:18px 0 8px;
+      font-size:17px;
+      color:#6b3b0d;
+      line-height:1.5;
+    }
+    p{margin:0 0 12px}
+    ul,ol{
+      margin:0 0 12px 1.2em;
+      padding:0;
+    }
+    li{margin-bottom:6px}
+    .note{
+      background:#fffaf5;
+      border:1px dashed #eed7c0;
+      border-radius:16px;
+      padding:12px;
+      color:var(--ck-sub);
+      font-size:14px;
+    }
+    .faq-item + .faq-item{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid #f0dfcf;
+    }
+    .cta-card{
+      background:linear-gradient(135deg,#fff0dc 0%, #fffaf4 100%);
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:12px;
+    }
+    .chip{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--ck-line);
+      background:#fff8ef;
+      color:#815229;
+      font-size:12px;
+      font-weight:700;
+    }
+    @media (min-width: 720px){
+      .hero-actions{
+        grid-template-columns:1fr 1fr;
+        max-width:560px;
+      }
+      h1{font-size:36px}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">旅行幹事向けガイド</div>
+      <h1>旅行しおりの作り方｜LINEで共有しやすいしおりをスマホで作る方法</h1>
+      <p class="lead">旅行しおりは、日程・集合場所・持ち物・日別予定を一つにまとめて共有するための案内です。このページでは、旅行しおりに入れる内容と、スマホで見やすく共有しやすい作り方を整理します。登録不要・無料で使える作成ツールへの導線もあわせて紹介します。</p>
+      <div class="hero-actions">
+        <a class="btn btn-main" href="/tabinoshiori/">
+          旅行しおりをつくる
+          <small>会員登録不要・無料</small>
+        </a>
+        <a class="btn btn-sub" href="/travel-packing-checklist/">持ち物チェックリストを見る</a>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>旅行しおりとは</h2>
+        <p>旅行しおりは、参加者全員が同じ情報を見られるようにするための共有メモです。家族旅行、友人旅行、社員旅行、合宿、修学旅行など、人数が増えるほど「集合は何時か」「持ち物は何か」「その日の予定は何か」を一つにまとめる価値が高くなります。</p>
+        <p>紙のしおりや画像共有も便利ですが、内容をあとから更新しやすいのはURL共有です。幹事が内容を整理してURLを送り、参加者がスマホで確認できる形にしておくと、当日の連絡がかなり楽になります。</p>
+      </section>
+
+      <section class="card">
+        <h2>旅行しおりに入れる内容</h2>
+        <div class="chips">
+          <span class="chip">旅行タイトル</span>
+          <span class="chip">日程</span>
+          <span class="chip">集合時間</span>
+          <span class="chip">集合場所</span>
+          <span class="chip">参加メンバー</span>
+          <span class="chip">持ち物</span>
+          <span class="chip">日別予定</span>
+          <span class="chip">共通メモ</span>
+        </div>
+        <p>最低限入れておきたいのは、旅行タイトル、日程、集合時間、集合場所です。そこに参加メンバーや持ち物、日ごとの予定を足すと、参加者が迷いにくくなります。</p>
+        <p>旅行しおりを作るときは、「前日までに必要な情報」と「当日に見る情報」を分けて考えると整理しやすくなります。共通メモには集合や注意事項、日別タブにはその日の行程だけを書くと見やすくなります。</p>
+      </section>
+
+      <section class="card">
+        <h2>スマホで見やすい旅行しおりの作り方</h2>
+
+        <h3>1. 基本情報を先に埋める</h3>
+        <p>最初に旅行タイトル、日程、集合時間、集合場所を入力します。ここが曖昧だと、その後の日別予定を丁寧に作っても参加者に伝わりにくくなります。</p>
+
+        <h3>2. 日別に予定を分ける</h3>
+        <p>予定を一つの長文にせず、1日目・2日目・3日目のように分けて整理します。時刻と内容を分けて入れると、見返したときに流れが追いやすくなります。</p>
+
+        <h3>3. 共通メモは全員に伝えたいことだけに絞る</h3>
+        <p>「朝食は7:00から」「雨天時は予定変更」「前日にレンタカー会社へ連絡」など、全日共通で見てほしい内容をまとめます。日別予定と混ぜるより、共通事項として分離した方が読みやすいです。</p>
+
+        <h3>4. 共有はURLを主軸にする</h3>
+        <p>このツールでは、内容を入力して共有URLをコピーし、LINEで送る使い方が基本です。参加者はURLを開くだけで旅行しおりを確認できます。必要なときだけ画像も生成できます。</p>
+
+        <div class="note">
+          内容を変更した場合は、共有URLをもう一度コピーして送り直してください。URLにはしおり内容が反映されるため、更新後は新しいURLが必要になります。
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>このツールの特徴</h2>
+        <ul>
+          <li>旅行しおりをスマホで作成できる</li>
+          <li>日別タブで予定を整理できる</li>
+          <li>共有URLをLINEで送りやすい</li>
+          <li>必要に応じて画像も生成できる</li>
+          <li>登録不要・無料で使える</li>
+        </ul>
+        <p>旅行幹事にとって重要なのは、作る手間が少ないことと、共有後の確認がしやすいことです。このツールは、URL共有を主軸にしながら、画像生成も併用できるようにしているため、少人数旅行にも複数人旅行にも使いやすい構成です。</p>
+      </section>
+
+      <section class="card">
+        <h2>よくある質問</h2>
+
+        <div class="faq-item">
+          <h3>会員登録は必要ですか</h3>
+          <p>不要です。登録なし・無料で使えます。</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>共有URLを送れば相手も見られますか</h3>
+          <p>見られます。幹事が作成した共有URLを開くだけで、参加者はスマホで旅行しおりを確認できます。</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>内容を変更したらどうなりますか</h3>
+          <p>変更後は共有URLも変わるため、もう一度URLをコピーして共有し直してください。</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>画像として保存できますか</h3>
+          <p>できます。URL共有を主軸にしつつ、必要なページだけ画像として生成することもできます。</p>
+        </div>
+      </section>
+
+      <section class="card cta-card">
+        <h2>旅行しおりを作ってみる</h2>
+        <p>旅行タイトル、日程、集合場所、日別予定を入力すると、共有URLを作成できます。LINEで送りやすい形で整理したいときに向いています。</p>
+        <div class="hero-actions" style="margin-top:12px">
+          <a class="btn btn-main" href="/tabinoshiori/">
+            旅行しおりをつくる
+            <small>会員登録不要・無料</small>
+          </a>
+          <a class="btn btn-sub" href="/tabinoshiori/">ツールのトップへ戻る</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="ck-footer-container"></div>
+
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(response) { return response.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+
+          try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (e) {
+            console.warn('adsbygoogle error', e);
+          }
+        })
+        .catch(function(e) {
+          console.warn('footer load error', e);
+        });
+    })();
+  </script>
+</body>
+</html>

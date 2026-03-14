@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅行しおり閲覧｜旅行計画を見やすく確認</title>
+  <meta name="description" content="共有URLから旅行しおりを表示する閲覧画面です。表紙と日別予定をスマホで見やすく確認できます。">
+  <meta property="og:title" content="旅行しおり閲覧｜旅行計画を見やすく確認">
+  <meta property="og:description" content="共有URLから旅行しおりを表示する閲覧画面です。表紙と日別予定をスマホで見やすく確認できます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cleverkitjp.github.io/tabinoshiori/view.html">
+  <meta property="og:image" content="https://cleverkitjp.github.io/img/travel-shiori-ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange:#E8744A; --amber:#F5A623; --rose:#E8726A; --cream:#FFF8F0; --sand:#F2E8D8;
+      --brown:#8B5E3C; --text:#2D1B0E; --sub:#7A5C44; --border:#E8D5C0; --white:#FFFFFF;
+      --shadow:0 4px 20px rgba(139,94,60,.12); --r-lg:20px; --r-md:12px; --r-sm:8px;
+      --serif:'Noto Serif JP', serif; --sans:'Noto Sans JP', sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--sans);background:var(--cream);color:var(--text);min-height:100vh;padding-bottom:80px;-webkit-text-size-adjust:100%}
+    .page-header{background:linear-gradient(135deg,var(--orange) 0%,var(--rose) 50%,var(--amber) 100%);padding:36px 20px 30px;text-align:center;position:relative;overflow:hidden}
+    .page-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E")}
+    .page-header h1{font-family:var(--serif);font-size:26px;font-weight:700;color:#fff;letter-spacing:.05em;position:relative}
+    .page-header p{font-size:13px;color:rgba(255,255,255,.88);margin-top:6px;position:relative}
+    .container{max-width:600px;margin:0 auto;padding:20px 16px}
+    .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:24px 20px;margin-bottom:16px;border:1px solid var(--border)}
+    .card-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .summary-grid{display:grid;grid-template-columns:88px 1fr;gap:10px 12px}
+    .summary-grid dt{font-size:13px;color:var(--sub);font-weight:700}
+    .summary-grid dd{font-size:15px;color:var(--text)}
+    .tabs{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin-bottom:14px}
+    .tab-btn{flex:0 0 auto;border:1px solid var(--border);background:#FFF3E8;color:var(--brown);border-radius:999px;padding:10px 14px;font-size:14px;font-weight:700;cursor:pointer}
+    .tab-btn.active{background:linear-gradient(135deg,var(--orange),var(--rose));color:#fff;box-shadow:0 4px 16px rgba(232,116,74,.25)}
+    .day-title{font-family:var(--serif);font-size:19px;color:var(--brown);margin-bottom:8px}
+    .day-sub{font-size:13px;color:var(--sub);margin-bottom:12px}
+    .timeline{display:grid;gap:10px}
+    .timeline-row{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:start;background:#fffaf5;border:1px solid #f0dfce;border-radius:14px;padding:10px 12px}
+    .timeline-time{font-weight:700;color:var(--orange);font-size:15px}
+    .timeline-text{font-size:15px;line-height:1.7}
+    .memo-box{margin-top:14px;background:#fff8f0;border:1px dashed var(--border);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.8;color:var(--sub)}
+    .action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+    .btn-main,.btn-sub{width:100%;border:none;border-radius:14px;padding:14px 16px;font-size:15px;font-weight:700;cursor:pointer}
+    .btn-main{background:linear-gradient(135deg,var(--orange),var(--rose));color:#fff}
+    .btn-sub{background:linear-gradient(135deg,var(--amber),#F7B955);color:#fff}
+    .empty{font-size:14px;color:var(--sub)}
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1 id="pageTitle">旅行しおり</h1>
+    <p id="pageSubtitle"></p>
+  </header>
+
+  <main class="container">
+    <div id="coverCard" class="card"></div>
+    <div class="card">
+      <div class="card-title"><span>🗂️</span>日別予定</div>
+      <div id="tabBar" class="tabs"></div>
+      <div id="dayContent"></div>
+      <div class="action-row">
+        <button class="btn-main" id="saveCurrentBtn" type="button">📷 このページを画像保存</button>
+        <button class="btn-sub" id="saveAllBtn" type="button">💾 まとめて保存</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="ck-footer-container"></div>
+
+  <script>
+    var payload = null;
+    var state = null;
+    var cal = null;
+    var activeTab = 'cover';
+
+    function fmtDate(d){
+      var w = ['日','月','火','水','木','金','土'];
+      return (d.getMonth()+1)+'月'+d.getDate()+'日（'+w[d.getDay()]+'）';
+    }
+    function toDateOrNull(v){ return v ? new Date(v) : null; }
+
+    function parsePayload(){
+      try{
+        var params = new URLSearchParams(location.search);
+        var d = params.get('d');
+        if(!d) return null;
+        var json = LZString.decompressFromEncodedURIComponent(d);
+        if(!json) return null;
+        return JSON.parse(json);
+      }catch(e){
+        return null;
+      }
+    }
+
+    function renderCover(){
+      var el = document.getElementById('coverCard');
+      if(!state){
+        el.innerHTML = '<div class="card-title">⚠ データがありません</div><p class="empty">共有URLが正しくありません。</p>';
+        return;
+      }
+      el.innerHTML = `
+        <div class="card-title"><span>🧳</span>表紙</div>
+        <div class="day-title">${escapeHtml(state.title || '旅行しおり')}</div>
+        <dl class="summary-grid">
+          <dt>日程</dt><dd>${escapeHtml(state.tripDate || '')}</dd>
+          <dt>集合時間</dt><dd>${escapeHtml(state.meetingTime || '未設定')}</dd>
+          <dt>集合場所</dt><dd>${escapeHtml(state.meetingPlace || '未設定')}</dd>
+          <dt>メンバー</dt><dd>${escapeHtml(state.members || '未設定')}</dd>
+          <dt>持ち物</dt><dd>${nl2br(state.baggage || '未設定')}</dd>
+        </dl>
+        ${(state.coverMemo || '').trim() ? '<div class="memo-box">'+nl2br(state.coverMemo)+'</div>' : ''}
+      `;
+    }
+
+    function renderTabs(){
+      var tabBar = document.getElementById('tabBar');
+      tabBar.innerHTML = '';
+      var tabs = (state.days || []).map(function(day, idx){
+        return {key:'day-'+idx,label:day.label || ((idx+1)+'日目')};
+      });
+      tabs.forEach(function(tab){
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tab-btn' + (activeTab === tab.key ? ' active' : '');
+        btn.textContent = tab.label;
+        btn.addEventListener('click', function(){
+          activeTab = tab.key;
+          renderTabs();
+          renderDayContent();
+        });
+        tabBar.appendChild(btn);
+      });
+    }
+
+    function renderDayContent(){
+      var box = document.getElementById('dayContent');
+      if(!activeTab || activeTab === 'cover'){
+        if(state.days && state.days.length){
+          activeTab = 'day-0';
+        }else{
+          box.innerHTML = '<p class="empty">表示できる予定がありません。</p>';
+          return;
+        }
+      }
+      var idx = parseInt(activeTab.split('-')[1],10);
+      var day = state.days && state.days[idx];
+      if(!day){ box.innerHTML = '<p class="empty">表示できる予定がありません。</p>'; return; }
+
+      var dateText = '';
+      if(cal && cal.start){
+        var d = new Date(cal.start);
+        d.setDate(d.getDate()+idx);
+        dateText = fmtDate(d);
+      }
+
+      var rows = (day.schedule || []).filter(function(r){
+        return (r.time || '').trim() || (r.text || '').trim();
+      });
+
+      var html = '<div class="day-title">'+escapeHtml(day.label || ((idx+1)+'日目'))+'</div>';
+      if(dateText) html += '<div class="day-sub">'+escapeHtml(dateText)+'</div>';
+
+      if(rows.length){
+        html += '<div class="timeline">';
+        rows.forEach(function(r){
+          html += '<div class="timeline-row"><div class="timeline-time">'+escapeHtml(r.time || '—')+'</div><div class="timeline-text">'+nl2br(r.text || '')+'</div></div>';
+        });
+        html += '</div>';
+      }else{
+        html += '<p class="empty">この日の予定はまだ入力されていません。</p>';
+      }
+
+      if((day.memo || '').trim()){
+        html += '<div class="memo-box">'+nl2br(day.memo)+'</div>';
+      }
+      box.innerHTML = html;
+    }
+
+    function nl2br(s){
+      return escapeHtml(s).replace(/\n/g,'<br>');
+    }
+
+    function escapeHtml(str){
+      return String(str || '').replace(/[&<>"']/g, function(m){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+      });
+    }
+
+    function saveCurrentImage(){
+      var target = document.querySelector('#dayContent');
+      html2canvas(target, {backgroundColor:'#FFF8F0', scale:2}).then(function(canvas){
+        var link = document.createElement('a');
+        link.download = (state.title || '旅行しおり') + '-' + ((state.days[parseInt(activeTab.split('-')[1],10)] && state.days[parseInt(activeTab.split('-')[1],10)].label) || activeTab) + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+
+    function saveAllImages(){
+      var items = [{type:'cover'}].concat((state.days || []).map(function(_, idx){ return {type:'day', key:'day-'+idx}; }));
+      var i = 0;
+      function saveCover(){
+        html2canvas(document.getElementById('coverCard'), {backgroundColor:'#FFF8F0', scale:2}).then(function(canvas){
+          var link = document.createElement('a');
+          link.download = (state.title || '旅行しおり') + '-表紙.png';
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        });
+      }
+      function next(){
+        if(i >= items.length) return;
+        var item = items[i];
+        if(item.type === 'cover'){
+          setTimeout(function(){
+            saveCover();
+            i += 1;
+            setTimeout(next, 300);
+          }, 100);
+          return;
+        }
+        activeTab = item.key;
+        renderTabs();
+        renderDayContent();
+        setTimeout(function(){
+          saveCurrentImage();
+          i += 1;
+          setTimeout(next, 300);
+        }, 100);
+      }
+      next();
+    }
+
+    payload = parsePayload();
+    if(payload){
+      state = payload.state || {};
+      cal = payload.cal || {};
+    }else{
+      state = {title:'', tripDate:'', meetingTime:'', meetingPlace:'', members:'', baggage:'', coverMemo:'', days:[]};
+      cal = {};
+    }
+
+    document.getElementById('pageTitle').textContent = state.title || '旅行しおり';
+    var subtitle = document.getElementById('pageSubtitle');
+    if ((state.tripDate || '').trim()) {
+      subtitle.textContent = state.tripDate;
+    } else if (state.meetingPlace || state.meetingTime) {
+      subtitle.textContent = [state.meetingPlace || '', state.meetingTime || ''].filter(Boolean).join(' / ');
+    } else {
+      subtitle.style.display = 'none';
+    }
+
+    if ((!state.days || !state.days.length) && activeTab === 'cover') {
+      activeTab = 'cover';
+    } else if (state.days && state.days.length) {
+      activeTab = 'day-0';
+    }
+
+    renderCover();
+    renderTabs();
+    renderDayContent();
+
+    document.getElementById('saveCurrentBtn').addEventListener('click', saveCurrentImage);
+    document.getElementById('saveAllBtn').addEventListener('click', saveAllImages);
+
+    (function() {
+      var c = document.getElementById('ck-footer-container');
+      if (!c) return;
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r){return r.text();})
+        .then(function(h){
+          c.innerHTML = h;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+        })
+        .catch(function(){});
+    })();
+  </script>
+</body>
+</html>

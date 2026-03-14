@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINEで共有できる旅行しおり作成｜旅行プランを簡単シェア</title>
+  <meta name="description" content="旅行しおりを簡単作成。LINEで共有できる旅行プラン表を無料で作れます。スマホ対応・登録不要。">
+  <meta property="og:title" content="旅行しおり作成ツール｜URL共有で旅行日程をかんたん共有">
+  <meta property="og:description" content="旅行の日程・集合場所・旅程・持ち物を入力すると、参加者向けの旅行しおりページを作成できます。共有URLをLINEで送るだけで、旅行メンバーがスマホで確認できます。登録不要・無料で利用でき、必要に応じて画像生成にも対応。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cleverkitjp.github.io/tabinoshiori/">
+  <meta property="og:image" content="https://cleverkitjp.github.io/img/travel-shiori-ogp.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://cleverkitjp.github.io/tabinoshiori/">
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --orange:#E8744A; --amber:#F5A623; --rose:#E8726A; --cream:#FFF8F0; --sand:#F2E8D8;
+      --brown:#8B5E3C; --text:#2D1B0E; --sub:#7A5C44; --border:#E8D5C0; --white:#FFFFFF;
+      --shadow:0 4px 20px rgba(139,94,60,.12); --r-lg:20px; --r-md:12px; --r-sm:8px;
+      --serif:'Noto Serif JP', serif; --sans:'Noto Sans JP', sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--sans);background:var(--cream);color:var(--text);min-height:100vh;padding-bottom:80px;-webkit-text-size-adjust:100%}
+    .page-header{background:linear-gradient(135deg,var(--orange) 0%,var(--rose) 50%,var(--amber) 100%);padding:36px 20px 30px;text-align:center;position:relative;overflow:hidden}
+    .page-header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E")}
+    .page-header h1{font-family:var(--serif);font-size:26px;font-weight:700;color:#fff;letter-spacing:.05em;position:relative}
+    .page-header p{font-size:13px;color:rgba(255,255,255,.88);margin-top:6px;position:relative}
+    .container{max-width:600px;margin:0 auto;padding:20px 16px}
+    .card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:24px 20px;margin-bottom:16px;border:1px solid var(--border)}
+    .card-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .card-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+    .card-title-row .card-title{margin-bottom:0;flex:1;min-width:0}
+    .form-group{margin-bottom:16px}.form-group:last-child{margin-bottom:0}
+    label{display:block;font-size:13px;font-weight:500;color:var(--sub);margin-bottom:6px}
+    input[type="text"],input[type="time"],textarea{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--r-md);font-family:var(--sans);font-size:16px;color:var(--text);background:var(--cream);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    input[type="text"]:focus,input[type="time"]:focus,textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,116,74,.15);background:#fff}
+    textarea{min-height:120px;resize:vertical;line-height:1.8}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn-clear,.mini-btn,.btn-generate,.btn-share,.btn-save,.btn-ghost,.tab-btn,.add-row-btn,.del-btn,.date-pick-btn,.cal-nav{font-family:var(--sans);touch-action:manipulation}
+    .btn-clear,.mini-btn,.btn-ghost{border:none;border-radius:999px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer}
+    .btn-clear{background:#fff3ee;color:var(--orange);border:1px solid rgba(232,116,74,.18)}
+    .mini-btn{background:#fff3e2;color:#b76300;border:1px solid rgba(245,166,35,.18)}
+    .btn-ghost{background:#fff;color:var(--sub);border:1px solid var(--border)}
+    .date-range-wrap{position:relative}
+    .date-pick-btn{width:100%;min-height:56px;padding:0 18px;border:1.5px solid var(--border);border-radius:var(--r-md);background:var(--cream);cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;transition:border-color .2s,box-shadow .2s,background .2s}
+    .date-pick-btn:hover{border-color:var(--orange);background:#fff}.date-pick-btn.open{border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,116,74,.15);background:#fff}.date-pick-btn.has-val{border-color:var(--orange)}
+    .date-pick-icon{font-size:20px;flex-shrink:0}.date-pick-body{flex:1;display:flex;flex-direction:column;gap:2px}.date-pick-lbl{font-size:11px;color:var(--sub);font-weight:600;letter-spacing:.06em}.date-pick-val{font-size:15px;font-weight:600;color:var(--text)}.date-pick-val.empty{color:#B8A090;font-weight:400;font-size:14px}.date-pick-arrow{font-size:12px;color:var(--sub);flex-shrink:0;transition:transform .2s}.date-pick-btn.open .date-pick-arrow{transform:rotate(180deg)}
+    .cal-step-bar{display:flex;background:var(--sand);border-bottom:1px solid var(--border)}
+    .cal-step-item{flex:1;padding:8px 12px;text-align:center;font-size:12px;font-weight:600;color:var(--sub);border-bottom:3px solid transparent;transition:color .15s,border-color .15s}.cal-step-item.active{color:var(--orange);border-bottom-color:var(--orange)}.cal-step-item.done{color:var(--brown)}
+    .cal-popup{display:none;margin-top:10px;background:#fff;border:1.5px solid var(--border);border-radius:var(--r-lg);box-shadow:0 8px 32px rgba(139,94,60,.18);overflow:hidden}.cal-popup.open{display:block}
+    .cal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;background:linear-gradient(135deg,var(--orange),var(--rose))}.cal-month-lbl{font-family:var(--serif);font-size:15px;font-weight:700;color:#fff;letter-spacing:.05em}
+    .cal-nav{width:36px;height:36px;border:none;background:rgba(255,255,255,.2);border-radius:50%;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}.cal-nav:hover{background:rgba(255,255,255,.35)}
+    .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);padding:8px 8px 4px;background:var(--sand)}.cal-weekdays span{text-align:center;font-size:12px;font-weight:600;color:var(--sub);padding:4px 0}.cal-weekdays span:first-child{color:#E05050}.cal-weekdays span:last-child{color:#4060C0}
+    .cal-days{display:grid;grid-template-columns:repeat(7,1fr);padding:4px 8px 10px;gap:2px}.cal-day{aspect-ratio:1;min-height:38px;border:none;background:transparent;border-radius:50%;font-size:14px;font-family:var(--sans);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;touch-action:manipulation}.cal-day:hover:not(:disabled):not(.empty){background:#FFF0E8}.cal-day.sun{color:#E05050}.cal-day.sat{color:#4060C0}.cal-day.empty{pointer-events:none}.cal-day.today{font-weight:700;border:1.5px solid var(--orange)}.cal-day.sel-start,.cal-day.sel-end{background:var(--orange)!important;color:#fff!important;font-weight:700}.cal-day.in-range{background:#FFE8D8;border-radius:0}.cal-day.range-s{border-radius:50% 0 0 50%}.cal-day.range-e{border-radius:0 50% 50% 0}.cal-day:disabled{opacity:.3;cursor:default}.cal-hint{text-align:center;font-size:12px;color:var(--sub);padding:6px 0 12px}
+    .desc-card p{font-size:14px;line-height:1.85;color:var(--sub);margin-top:8px}
+    .toolbar-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.toolbar-grid+.toolbar-grid{margin-top:10px}
+    .btn-generate,.btn-share,.btn-save,.btn-save-all{width:100%;border:none;border-radius:14px;padding:16px 20px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .2s,box-shadow .2s,opacity .2s}
+    .btn-generate{background:linear-gradient(135deg,var(--orange),var(--rose));color:#fff;box-shadow:0 6px 20px rgba(232,116,74,.3);margin-bottom:16px}
+    .btn-share{background:linear-gradient(135deg,#25A244,#1A8035);color:#fff;box-shadow:0 4px 16px rgba(37,162,68,.3)}
+    .btn-save{background:linear-gradient(135deg,var(--amber),#F7B955);color:#fff;box-shadow:0 4px 16px rgba(245,166,35,.3)}
+    .btn-save-all{background:linear-gradient(135deg,#8C6A4A,#A9845F);color:#fff;box-shadow:0 4px 16px rgba(140,106,74,.28)}
+    .btn-generate:hover,.btn-share:hover,.btn-save:hover,.btn-save-all:hover{transform:translateY(-1px)}
+    .btn-generate:disabled,.btn-share:disabled,.btn-save:disabled,.btn-save-all:disabled{opacity:.6;cursor:not-allowed;transform:none}
+    .tab-tools{display:flex;flex-direction:column;gap:12px}
+    .tab-bar{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}.tab-bar::-webkit-scrollbar{display:none}
+    .tab-btn{border:none;background:#fff3ee;color:var(--sub);border:1px solid rgba(232,116,74,.14);border-radius:999px;padding:10px 14px;font-size:14px;font-weight:700;white-space:nowrap;cursor:pointer;transition:all .18s ease}
+    .tab-btn.active{background:linear-gradient(135deg,var(--orange),var(--rose));color:#fff;border-color:transparent;box-shadow:0 6px 18px rgba(232,116,74,.28);font-weight:800;outline:2px solid rgba(255,255,255,.65);outline-offset:1px}
+    .cover-fields,.day-fields{display:none}.cover-fields.active,.day-fields.active{display:block}
+    .schedule-row{display:grid;grid-template-columns:108px minmax(0,1fr) 36px;gap:8px;align-items:flex-start;margin-bottom:10px}.time-input{width:108px;min-width:108px;max-width:108px;padding:10px 8px;font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
+    .time-input::-webkit-datetime-edit{padding:0;text-align:right}
+    .time-input::-webkit-datetime-edit-fields-wrapper{display:flex;justify-content:flex-end}
+    .time-input::-webkit-calendar-picker-indicator{margin-left:4px}.content-input{width:100%;min-width:0;min-height:44px;height:44px;padding:10px 12px;font-size:15px;line-height:1.4;resize:none;overflow:hidden}.del-btn{width:36px;min-width:36px;min-height:44px;border:none;border-radius:12px;background:#FFF2EF;color:#CD5A41;font-size:18px;cursor:pointer}.del-btn:disabled{opacity:.4;cursor:not-allowed}
+    .add-row-btn{border:none;border-radius:999px;background:#fff3e2;color:#b76300;font-weight:700;font-size:14px;padding:12px 16px;cursor:pointer}
+    .tab-meta{font-size:13px;color:var(--sub);line-height:1.7;background:#fff9f4;border:1px dashed var(--border);border-radius:12px;padding:12px 14px}
+    .target-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.target-item{display:flex;align-items:center;gap:10px;border:1px solid var(--border);background:#fffaf6;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--text)}.target-item input{accent-color:var(--orange);width:18px;height:18px}
+    #result-section{display:none}#result-section.visible{display:block}
+    .result-preview-wrap{background:#FFF8F0;border-radius:var(--r-md);padding:10px;border:1px solid var(--border);margin-bottom:16px}.result-preview-wrap img{width:100%;display:block;border-radius:10px}
+    .hint-text{font-size:13px;color:var(--sub);line-height:1.7;text-align:center;margin-top:12px}.status-text{font-size:13px;color:var(--sub);line-height:1.7;margin-top:10px;min-height:22px}
+    .gallery-list{display:grid;gap:16px}.gallery-item{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fffaf5}.gallery-item h3{font-size:15px;color:var(--orange);margin-bottom:10px}.gallery-item img{width:100%;display:block;border-radius:12px;border:1px solid var(--border)}.gallery-actions{display:flex;gap:10px;margin-top:10px}
+    .upload-area:hover{border-color:var(--orange);background:#fffdfa}
+    #shiori-canvas-wrap{position:fixed;left:-99999px;top:0;width:1080px;pointer-events:none;opacity:0}
+    #shiori-output{width:1080px;background:#FFF8F0}
+    .s-page{width:1080px;background:#FFF8F0;color:#2D1B0E;font-family:'Noto Sans JP',sans-serif}.s-header{position:relative;min-height:340px;overflow:hidden;background:linear-gradient(135deg,#E8744A 0%,#E8726A 50%,#F5A623 100%)}
+    .s-header-bg{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3C/g%3E%3C/svg%3E")}.s-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.s-header-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(45,27,14,.12),rgba(45,27,14,.55))}
+    .s-header-content{position:relative;z-index:2;padding:60px 72px 72px;color:#fff}.s-badge{display:inline-flex;align-items:center;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.18);font-size:24px;font-weight:700;letter-spacing:.06em}.s-title{font-family:'Noto Serif JP',serif;font-size:64px;font-weight:700;line-height:1.35;margin-top:18px;word-break:break-word}
+    .s-body{padding:48px 56px 36px}.s-section{background:#fff;border:2px solid #E8D5C0;border-radius:28px;padding:26px 28px;margin-bottom:24px;box-shadow:0 10px 28px rgba(139,94,60,.08)}
+    .s-sec-hdr{display:flex;align-items:center;gap:12px;color:#E8744A;font-family:'Noto Serif JP',serif;font-size:38px;font-weight:700;margin-bottom:18px}.s-sec-hdr .ico{font-size:34px}.s-sec-body{display:flex;flex-direction:column;gap:16px}
+    .s-info-row{display:grid;grid-template-columns:180px 1fr;gap:18px;align-items:start;padding:14px 0;border-bottom:1px dashed #E8D5C0}.s-info-row:last-child{border-bottom:none;padding-bottom:0}.s-info-lbl{font-size:28px;font-weight:700;color:#8B5E3C}.s-info-val{font-size:34px;line-height:1.8;white-space:pre-wrap;word-break:break-word}
+    .s-row{display:grid;grid-template-columns:150px 18px 1fr;gap:18px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed #E8D5C0}.s-row:last-child{border-bottom:none;padding-bottom:0}.s-time{font-size:36px;font-weight:700;color:#8B5E3C}.s-dot{width:14px;height:14px;border-radius:50%;background:#F5A623;margin-top:16px}.s-content{font-size:38px;line-height:1.8;word-break:break-word;white-space:pre-wrap}.s-memo{font-size:36px;line-height:1.9;white-space:pre-wrap;word-break:break-word}
+    .s-footer{padding:0 56px 42px;text-align:right;color:#8B5E3C;font-size:22px;font-weight:700}
+    @media (max-width:520px){.field-row,.toolbar-grid,.target-grid{grid-template-columns:1fr}.btn-clear{padding:10px 12px;font-size:12px}.container{padding-left:12px;padding-right:12px}}
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>LINEで共有できる旅行しおり作成ツール</h1>
+    <p>共有URLをLINEで送るだけで、旅行メンバーがスマホで確認できる旅行しおりを作成。登録不要・無料で利用できます。</p>
+<p style="margin-top:6px;font-size:14px;">
+<a href="/tabinoshiori/guide.html">旅行しおりの作り方を見る</a>
+</p>
+
+  </header>
+
+  <div class="container">
+    <div class="card desc-card">
+      <div class="card-title"><span>✨</span>このツールでできること</div>
+      <p>旅行の日程・集合場所・旅程・持ち物などを入力すると、参加者向けの旅行しおりページを作成できます。共有URLをLINEで送るだけで、旅行メンバーがスマホで確認できます。登録不要・無料で利用でき、必要に応じて画像も生成できます。</p>
+      
+    </div>
+
+    <div class="card">
+      <div class="card-title-row">
+        <div class="card-title"><span>📋</span>基本情報</div>
+        <button class="btn-clear" id="clear-btn" type="button">内容をリセット</button>
+      </div>
+      <div class="form-group">
+        <label for="trip-title">旅行タイトル</label>
+        <input type="text" id="trip-title" placeholder="例）沖縄旅行2026">
+      </div>
+      <div class="form-group">
+        <label>日程</label>
+        <div class="date-range-wrap">
+          <button type="button" class="date-pick-btn" id="date-pick-btn" aria-label="日程を選択">
+            <span class="date-pick-icon">📅</span>
+            <span class="date-pick-body">
+              <span class="date-pick-lbl">日程を選択</span>
+              <span class="date-pick-val empty" id="disp-date">タップしてカレンダーを開く</span>
+            </span>
+            <span class="date-pick-arrow">▼</span>
+          </button>
+          <div class="cal-popup" id="cal-popup">
+            <div class="cal-header">
+              <button type="button" class="cal-nav" id="cal-prev">‹</button>
+              <span class="cal-month-lbl" id="cal-month-lbl"></span>
+              <button type="button" class="cal-nav" id="cal-next">›</button>
+            </div>
+            <div class="cal-step-bar">
+              <div class="cal-step-item active" id="step-start">✈ 出発日を選択中</div>
+              <div class="cal-step-item" id="step-end">🏠 帰着日を選択</div>
+            </div>
+            <div class="cal-weekdays"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div>
+            <div class="cal-days" id="cal-days"></div>
+            <div class="cal-hint" id="cal-hint">出発日をタップしてください</div>
+          </div>
+        </div>
+        <input type="hidden" id="trip-date">
+      </div>
+      <div class="field-row">
+        <div class="form-group">
+          <label for="meeting-time">集合時間</label>
+          <input type="time" id="meeting-time">
+        </div>
+        <div class="form-group">
+          <label for="meeting-place">集合場所</label>
+          <input type="text" id="meeting-place" placeholder="例）新宿駅 南口 みどりの窓口前">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="members">参加メンバー</label>
+        <input type="text" id="members" placeholder="例）父・母・長女・次女・長男">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🧭</span>しおり編集</div>
+      <div class="tab-tools">
+        <div class="tab-bar" id="tab-bar"></div>
+        <div class="tab-meta" id="tab-meta">共通メモでは、各日程に共通する持ち物・全体メモを編集できます。各日タブでは「時刻＋内容」の2列で予定を入力します。</div>
+        <div class="cover-fields active" id="cover-fields">
+          <div class="form-group">
+            <label for="baggage">持ち物</label>
+            <textarea id="baggage" placeholder="例）&#10;・身分証明書&#10;・充電器&#10;・常備薬&#10;・モバイルバッテリー"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="cover-memo">全体メモ</label>
+            <textarea id="cover-memo" placeholder="例）集合場所に迷ったらリーダーに連絡してください。ホテルの朝食は7:00からです。"></textarea>
+          </div>
+        </div>
+        <div id="day-fields-wrap"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🖼️</span>背景画像（任意）</div>
+      <div class="upload-area" style="border:2px dashed var(--border);border-radius:var(--r-md);padding:28px 24px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative;">
+        <input type="file" id="bg-image" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;">
+        <div style="font-size:32px;">📷</div>
+        <p id="upload-hint" style="font-size:13px;color:var(--sub);margin-top:8px;">タップして画像を選択<br><span style="font-size:11px;">JPG・PNG・HEIC など対応</span></p>
+      </div>
+      <img id="upload-preview" alt="背景画像プレビュー" style="margin-top:12px;border-radius:var(--r-sm);max-width:100%;max-height:180px;object-fit:cover;display:none;width:100%;">
+      <p class="status-text">背景画像は、しおり画像を生成するときのみ使用されます。URL共有では背景画像は含まれません。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🚀</span>共有・画像生成</div>
+      <div class="toolbar-grid">
+        
+        <p class="helper" style="margin-bottom:8px;">
+        行程など内容を変更したら、このボタンを押してURLを再生成し、参加者に配布してください。
+        </p>
+<button class="btn-share" id="copy-url-btn" type="button"><span>🔗</span> URL生成&コピー</button>
+        <button class="btn-ghost" id="open-view-btn" type="button"><span>👀</span> 閲覧画面を開く</button>
+      </div>
+      <div class="form-group" style="margin-top:12px;">
+        <div id="shareUrlWrap" style="display:none;">
+          <label for="shareUrlField">共有URL</label>
+          <input type="text" id="shareUrlField" readonly placeholder="自動コピーできない場合のみここに表示されます">
+          <p class="helper">自動コピーできない場合は、この欄を長押ししてコピーしてください。</p><p class="helper">内容を変更した場合は、共有URLをもう一度コピーして送ってください。</p>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:16px;">
+        <label>画像生成の対象を選択</label>
+        <div class="target-grid" id="export-targets"></div>
+      </div>
+      <button class="btn-save" id="generate-selected-btn" type="button"><span>📚</span> 選択したページの画像を生成</button>
+      <p class="status-text" id="status-text"></p>
+    </div>
+
+    <div id="result-section">
+      <div class="card" style="margin-top:16px;padding:20px;">
+        <div class="card-title" style="margin-bottom:12px;"><span>✨</span>生成結果</div>
+        <div class="result-actions">
+          <button class="btn-save-all" id="save-all-btn" type="button"><span>💾</span> まとめて保存</button>
+        </div>
+        
+        <div class="gallery-list" id="gallery-list"></div>
+        <p class="hint-text">まとめて保存と個別保存の両方に対応しています。LINEで送るときは、必要な日だけ保存して送る使い方がおすすめです。</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="shiori-canvas-wrap" aria-hidden="true"><div id="shiori-output"></div></div>
+  <div id="ck-footer-container"></div>
+
+  <script>
+    var STORAGE_KEY = 'cleverkitjp_tabinoshiori_v2';
+    var DOW_JA = ['日','月','火','水','木','金','土'];
+    var MONTH_JA = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    function fmtDate(d){return (d.getMonth()+1)+'月'+d.getDate()+'日（'+DOW_JA[d.getDay()]+'）';}
+    function isoDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+    function diffDays(a,b){return Math.round((b-a)/86400000);}
+    function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');}
+    function toDateOrNull(v){if(!v) return null; var d=new Date(v); return isNaN(d.getTime())?null:d;}
+    function createEmptyDay(index){return {label:(index+1)+'日目', schedule:getInitialRows(index), memo:''};}
+    function getInitialRows(dayIdx){var n=dayIdx===0?5:dayIdx===1?6:4, rows=[]; for(var i=0;i<n;i++) rows.push({time:'',text:''}); return rows;}
+    function getSamplePlaceholder(dayIdx,rowIdx,isLastDay){
+      var day1=['例）羽田空港へ移動','例）羽田空港発　JL921便','例）那覇空港着 → レンタカー受け取り','例）国際通り 散策・昼食','例）〇〇ホテル着（チェックイン）'];
+      var day2last=['例）ホテル 朝食・チェックアウト','例）首里城 観光','例）沖縄そば 昼食','例）那覇空港 おみやげタイム','例）那覇空港発　NH462便','例）羽田空港着　解散'];
+      var dayMid=['例）ホテル 朝食','例）観光スポット 見学','例）昼食','例）〇〇ホテル着（チェックイン）'];
+      var dayNLast=['例）ホテル 朝食・チェックアウト','例）観光スポット 見学','例）昼食','例）空港・駅へ移動','例）帰路　解散'];
+      var list=isLastDay?(dayIdx===1?day2last:dayNLast):(dayIdx===0?day1:dayMid);
+      return rowIdx < list.length ? list[rowIdx] : '例）内容を入力';
+    }
+
+    var cal={year:new Date().getFullYear(), month:new Date().getMonth(), start:null, end:null, step:'start'};
+    var bgImageDataUrl=null;
+    var generatedItems=[];
+    var state={
+      title:'', meetingTime:'', meetingPlace:'', members:'', tripDate:'', baggage:'', coverMemo:'',
+      days:[], activeTab:'cover', exportTargets:['cover']
+    };
+
+    function setStatus(msg){document.getElementById('status-text').textContent = msg || '';}
+    function getTotalDays(){ if(!cal.start) return 0; return cal.end ? diffDays(cal.start, cal.end)+1 : 1; }
+    function ensureDays(){ var total=getTotalDays(); while(state.days.length<total) state.days.push(createEmptyDay(state.days.length)); if(state.days.length>total) state.days.splice(total); if(!state.exportTargets.length) state.exportTargets=['cover']; }
+    function currentTabKey(){ return state.activeTab || 'cover'; }
+    function activeDayIndex(){ return currentTabKey().startsWith('day-') ? parseInt(currentTabKey().split('-')[1],10) : -1; }
+
+    function syncStateFromInputs(){
+      state.title=document.getElementById('trip-title').value.trim();
+      state.meetingTime=document.getElementById('meeting-time').value;
+      state.meetingPlace=document.getElementById('meeting-place').value.trim();
+      state.members=document.getElementById('members').value.trim();
+      state.baggage=document.getElementById('baggage').value.trim();
+      state.coverMemo=document.getElementById('cover-memo').value.trim();
+      state.tripDate=document.getElementById('trip-date').value.trim();
+    }
+    function syncInputsFromState(){
+      document.getElementById('trip-title').value=state.title||'';
+      document.getElementById('meeting-time').value=state.meetingTime||'';
+      document.getElementById('meeting-place').value=state.meetingPlace||'';
+      document.getElementById('members').value=state.members||'';
+      document.getElementById('baggage').value=state.baggage||'';
+      document.getElementById('cover-memo').value=state.coverMemo||'';
+      document.getElementById('trip-date').value=state.tripDate||'';
+    }
+    function getSerializableState(){
+      syncStateFromInputs();
+      return {
+        state: state,
+        cal: {year:cal.year, month:cal.month, start:cal.start?cal.start.toISOString():null, end:cal.end?cal.end.toISOString():null, step:cal.step},
+        bgImageDataUrl: bgImageDataUrl
+      };
+    }
+    function getShareState(){
+      syncStateFromInputs();
+      return {
+        state: state,
+        cal: {year:cal.year, month:cal.month, start:cal.start?cal.start.toISOString():null, end:cal.end?cal.end.toISOString():null, step:cal.step}
+      };
+    }
+    function saveLocal(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(getSerializableState())); }catch(e){ console.warn(e); } }
+    function restoreFromObject(payload){
+      if(!payload) return;
+      if(payload.cal){ cal.year=payload.cal.year||cal.year; cal.month=payload.cal.month||cal.month; cal.start=toDateOrNull(payload.cal.start); cal.end=toDateOrNull(payload.cal.end); cal.step=payload.cal.step || (!cal.start?'start':!cal.end?'end':'done'); }
+      if(payload.state){
+        state.title=payload.state.title||''; state.meetingTime=payload.state.meetingTime||''; state.meetingPlace=payload.state.meetingPlace||''; state.members=payload.state.members||''; state.tripDate=payload.state.tripDate||''; state.baggage=payload.state.baggage||''; state.coverMemo=payload.state.coverMemo||'';
+        state.days=Array.isArray(payload.state.days)?payload.state.days.map(function(day,idx){return {label:day.label||((idx+1)+'日目'), schedule:Array.isArray(day.schedule)?day.schedule.map(function(r){return {time:r.time||'', text:r.text||''};}):getInitialRows(idx), memo:day.memo||''};}):[];
+        state.activeTab=payload.state.activeTab||'cover';
+        state.exportTargets=Array.isArray(payload.state.exportTargets)&&payload.state.exportTargets.length?payload.state.exportTargets:['cover'];
+      }
+      bgImageDataUrl=payload.bgImageDataUrl||null;
+      ensureDays();
+      syncInputsFromState();
+      updateDateUI();
+      renderTabs();
+      renderExportTargets();
+      updateBgPreview();
+    }
+    function restoreLocal(){ try{ var raw=localStorage.getItem(STORAGE_KEY); if(!raw) return false; restoreFromObject(JSON.parse(raw)); return true; }catch(e){console.warn(e); return false;} }
+    function restoreFromURL(){
+      try{
+        var params=new URLSearchParams(location.search); var d=params.get('d'); if(!d) return false;
+        var json=LZString.decompressFromEncodedURIComponent(d); if(!json) return false;
+        restoreFromObject(JSON.parse(json));
+        setStatus('共有URLから内容を復元しました。背景画像は共有対象外です。');
+        return true;
+      }catch(e){ console.warn(e); return false; }
+    }
+    function generateShareURL(){
+      syncStateFromInputs();
+      ensureDays();
+      var json=JSON.stringify(getShareState());
+      var compressed=LZString.compressToEncodedURIComponent(json);
+      var base;
+      if(location.protocol === 'file:'){
+        base = location.href.split('?')[0].replace(/[^/]*$/, 'view.html');
+      }else{
+        var dir = location.pathname.replace(/\/index\.html$/, '/');
+        if(!/\/$/.test(dir)) dir = dir.replace(/[^/]*$/, '');
+        base = location.origin + dir + 'view.html';
+      }
+      return base + '?d=' + compressed;
+    }
+    async function copyShareURL(){
+      var url=generateShareURL();
+      var field=document.getElementById('shareUrlField');
+      var wrap=document.getElementById('shareUrlWrap');
+      if(field){ field.value=url; }
+      if(wrap){ wrap.style.display='none'; }
+      try{
+        if(navigator.clipboard && window.isSecureContext){
+          await navigator.clipboard.writeText(url);
+          setStatus('共有URL生成&コピーしました。別端末でも同じ内容を復元できます。');
+          return;
+        }
+        var ta=document.createElement('textarea');
+        ta.value=url;
+        ta.setAttribute('readonly','');
+        ta.style.position='fixed';
+        ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok=document.execCommand('copy');
+        document.body.removeChild(ta);
+        if(ok){
+          setStatus('共有URL生成&コピーしました。別端末でも同じ内容を復元できます。');
+        }else{
+          if(wrap){ wrap.style.display='block'; }
+          setStatus('自動コピーできませんでした。共有URL欄を長押ししてコピーしてください。');
+        }
+      }catch(e){
+        if(wrap){ wrap.style.display='block'; }
+          setStatus('自動コピーできませんでした。共有URL欄を長押ししてコピーしてください。');
+      }
+    }
+
+    function openViewPage(){
+      var url = generateShareURL();
+      var field=document.getElementById('shareUrlField');
+      var wrap=document.getElementById('shareUrlWrap');
+      if(field){ field.value=url; }
+      if(wrap){ wrap.style.display='none'; }
+      window.open(url, '_blank');
+    }
+
+    document.addEventListener('click', function(e){
+      if(e.target && e.target.id==='shareUrlField'){
+        e.target.focus();
+        e.target.select();
+      }
+    });
+
+    function updateBgPreview(){
+      var prev=document.getElementById('upload-preview');
+      if(bgImageDataUrl){ prev.src=bgImageDataUrl; prev.style.display='block'; document.getElementById('upload-hint').textContent='画像を変更するにはタップ'; }
+      else { prev.src=''; prev.style.display='none'; document.getElementById('upload-hint').innerHTML='タップして画像を選択<br><span style="font-size:11px;">JPG・PNG・HEIC など対応</span>'; }
+    }
+
+    function renderTabs(){
+      ensureDays();
+      var tabBar=document.getElementById('tab-bar'); tabBar.innerHTML='';
+      var tabs=[{key:'cover',label:'共通メモ'}].concat(state.days.map(function(day,idx){ return {key:'day-'+idx,label:day.label||((idx+1)+'日目')}; }));
+      if(!tabs.some(function(t){return t.key===state.activeTab;})) state.activeTab='cover';
+      tabs.forEach(function(tab){
+        var btn=document.createElement('button'); btn.type='button'; btn.className='tab-btn'+(state.activeTab===tab.key?' active':''); btn.textContent=tab.label;
+        btn.addEventListener('click', function(){ state.activeTab=tab.key; renderTabs(); renderTabContent(); saveLocal(); }); tabBar.appendChild(btn);
+      });
+      renderTabContent();
+    }
+    function renderTabContent(){
+      document.getElementById('cover-fields').classList.toggle('active', state.activeTab==='cover');
+      var wrap=document.getElementById('day-fields-wrap'); wrap.innerHTML='';
+      var meta=document.getElementById('tab-meta');
+      if(state.activeTab==='cover'){ meta.textContent='表紙では基本情報・持ち物・全体メモを編集できます。共有URLでもこの内容を復元できます。'; return; }
+      var dayIdx=activeDayIndex(); if(dayIdx<0 || !state.days[dayIdx]) return;
+      var day=state.days[dayIdx];
+      var card=document.createElement('div'); card.className='day-fields active';
+      var info=document.createElement('div'); info.className='tab-meta';
+      var dateText=''; if(cal.start){ var d=new Date(cal.start); d.setDate(d.getDate()+dayIdx); dateText=fmtDate(d); }
+      info.textContent=(day.label||((dayIdx+1)+'日目')) + (dateText ? '｜'+dateText : '') + ' の予定を「時刻＋内容」で入力してください。';
+      card.appendChild(info);
+      var rowsWrap=document.createElement('div'); rowsWrap.style.marginTop='14px';
+      day.schedule.forEach(function(row,rowIdx){ rowsWrap.appendChild(buildScheduleRow(day,row,rowIdx,dayIdx)); });
+      card.appendChild(rowsWrap);
+      var addBtn=document.createElement('button'); addBtn.type='button'; addBtn.className='add-row-btn'; addBtn.textContent='＋ 予定を追加'; addBtn.style.marginTop='10px';
+      addBtn.addEventListener('click', function(){ var newRow={time:'',text:''}; day.schedule.push(newRow); rowsWrap.appendChild(buildScheduleRow(day,newRow,day.schedule.length-1,dayIdx)); syncDelBtns(rowsWrap); saveLocal(); });
+      card.appendChild(addBtn);
+      var fg=document.createElement('div'); fg.className='form-group'; fg.style.marginTop='16px';
+      var lab=document.createElement('label'); lab.textContent='この日のメモ';
+      var ta=document.createElement('textarea'); ta.value=day.memo||''; ta.placeholder='例）朝は7:00にロビー集合、雨天時はプランBへ変更'; ta.addEventListener('input', function(){ day.memo=this.value; saveLocal(); });
+      fg.appendChild(lab); fg.appendChild(ta); card.appendChild(fg);
+      wrap.appendChild(card);
+      meta.textContent='今表示している日だけ画像化できます。幹事から「明日の予定」だけ送る運用を想定しています。';
+    }
+        function autoGrowTextarea(el){
+      if(!el) return;
+      el.style.height='auto';
+      el.style.height=Math.max(44, el.scrollHeight)+'px';
+    }
+function buildScheduleRow(day,row,rowIdx,dayIdx){
+      var rowEl=document.createElement('div'); rowEl.className='schedule-row';
+      var ti=document.createElement('input'); ti.type='time'; ti.step=300; ti.className='time-input'; ti.value=row.time||''; ti.addEventListener('input', function(){ row.time=this.value; saveLocal(); }); ti.addEventListener('change', function(){ row.time=this.value; saveLocal(); }); rowEl.appendChild(ti);
+      var ci=document.createElement('textarea'); ci.rows=1; ci.className='content-input'; ci.value=row.text||''; ci.placeholder=getSamplePlaceholder(dayIdx,rowIdx,dayIdx===state.days.length-1); ci.addEventListener('input', function(){ row.text=this.value; autoGrowTextarea(this); saveLocal(); }); rowEl.appendChild(ci); requestAnimationFrame(function(){ autoGrowTextarea(ci); });
+      var del=document.createElement('button'); del.type='button'; del.className='del-btn'; del.textContent='×'; del.addEventListener('click', function(){ var idx=day.schedule.indexOf(row); if(idx!==-1) day.schedule.splice(idx,1); rowEl.remove(); syncDelBtns(rowEl.parentNode); saveLocal(); }); rowEl.appendChild(del);
+      return rowEl;
+    }
+    function syncDelBtns(wrap){ var rows=wrap.querySelectorAll('.schedule-row'); rows.forEach(function(r){ r.querySelector('.del-btn').disabled=rows.length<=1; }); }
+    function renderExportTargets(){
+      ensureDays();
+      var wrap=document.getElementById('export-targets'); wrap.innerHTML='';
+      var items=[{key:'cover',label:'表紙'}].concat(state.days.map(function(day,idx){return {key:'day-'+idx,label:day.label||((idx+1)+'日目')};}));
+      items.forEach(function(item){
+        var label=document.createElement('label'); label.className='target-item';
+        var input=document.createElement('input'); input.type='checkbox'; input.checked=state.exportTargets.indexOf(item.key)!==-1;
+        input.addEventListener('change', function(){ if(this.checked){ if(state.exportTargets.indexOf(item.key)===-1) state.exportTargets.push(item.key); } else { state.exportTargets=state.exportTargets.filter(function(k){ return k!==item.key; }); if(!state.exportTargets.length) state.exportTargets=['cover']; } renderExportTargets(); saveLocal(); });
+        label.appendChild(input); label.appendChild(document.createTextNode(item.label)); wrap.appendChild(label);
+      });
+    }
+
+    function buildHeader(title){
+      var html='';
+      html += '<div class="s-header"><div class="s-header-bg"></div>';
+      if(bgImageDataUrl){ html += '<img class="s-header-img" src="'+bgImageDataUrl+'" alt="背景"><div class="s-header-overlay"></div>'; }
+      html += '<div class="s-header-content"><div class="s-badge">✈ TRAVEL GUIDE</div>';
+      if(title) html += '<div class="s-title">'+esc(title)+'</div>';
+      html += '</div></div>';
+      return html;
+    }
+    function secHdr(icon,title){ return '<div class="s-sec-hdr"><span class="ico">'+icon+'</span><span class="ttl">'+esc(title)+'</span></div>'; }
+    function infoRow(lbl,val){ return '<div class="s-info-row"><div class="s-info-lbl">'+esc(lbl)+'</div><div class="s-info-val">'+esc(val)+'</div></div>'; }
+    function buildCoverHTML(){
+      syncStateFromInputs();
+      var html='<div class="s-page">'+buildHeader(state.title)+'<div class="s-body">';
+      html += '<div class="s-section">'+secHdr('📅','基本情報')+'<div class="s-sec-body">';
+      if(state.tripDate) html += infoRow('日程',state.tripDate);
+      if(state.meetingTime) html += infoRow('集合時間',state.meetingTime);
+      if(state.meetingPlace) html += infoRow('集合場所',state.meetingPlace);
+      if(state.members) html += infoRow('参加メンバー',state.members);
+      html += '</div></div>';
+      if(state.baggage){ html += '<div class="s-section">'+secHdr('🎒','持ち物')+'<div class="s-sec-body"><div class="s-memo">'+esc(state.baggage)+'</div></div></div>'; }
+      if(state.coverMemo){ html += '<div class="s-section">'+secHdr('📝','全体メモ')+'<div class="s-sec-body"><div class="s-memo">'+esc(state.coverMemo)+'</div></div></div>'; }
+      html += '</div><div class="s-footer">cleverkitjp</div></div>';
+      return html;
+    }
+    function buildDayHTML(dayIdx){
+      syncStateFromInputs();
+      var day=state.days[dayIdx]; if(!day) return '';
+      var dateStr=''; if(cal.start){ var d=new Date(cal.start); d.setDate(d.getDate()+dayIdx); dateStr=fmtDate(d); }
+      var validRows=(day.schedule||[]).filter(function(r){ return r.time || r.text; });
+      var html='<div class="s-page">'+buildHeader(state.title)+'<div class="s-body">';
+      html += '<div class="s-section">'+secHdr('🗓️', (day.label||((dayIdx+1)+'日目')) + (dateStr ? '　'+dateStr : '')) + '<div class="s-sec-body">';
+      if(validRows.length===0){ html += '<div class="s-memo">予定が未入力です。</div>'; }
+      validRows.forEach(function(r){ html += '<div class="s-row"><div class="s-time">'+esc(r.time)+'</div><div class="s-dot"></div><div class="s-content">'+esc(r.text)+'</div></div>'; });
+      html += '</div></div>';
+      if(day.memo){ html += '<div class="s-section">'+secHdr('📝','この日のメモ')+'<div class="s-sec-body"><div class="s-memo">'+esc(day.memo)+'</div></div></div>'; }
+      html += '</div><div class="s-footer">cleverkitjp</div></div>';
+      return html;
+    }
+    async function renderImageFromHTML(label, html){
+      document.getElementById('shiori-output').innerHTML=html;
+      await new Promise(function(r){ setTimeout(r, 80); });
+      var canvas=await html2canvas(document.getElementById('shiori-output'), {scale:2, width:1080, windowWidth:1080, useCORS:true, logging:false, backgroundColor:'#FFF8F0'});
+      var dataUrl=canvas.toDataURL('image/png');
+      var blob=await new Promise(function(resolve){ canvas.toBlob(resolve, 'image/png'); });
+      return {label:label, dataUrl:dataUrl, blob:blob};
+    }
+    async function generateCurrentTabImage(){
+      syncStateFromInputs(); ensureDays();
+      var key=currentTabKey(); setStatus('画像を生成しています…');
+      var item = key==='cover' ? await renderImageFromHTML('表紙', buildCoverHTML()) : await renderImageFromHTML(state.days[activeDayIndex()].label, buildDayHTML(activeDayIndex()));
+      generatedItems=[item]; renderResults(); saveLocal(); setStatus('現在のタブを画像化しました。');
+    }
+    async function generateSelectedImages(){
+      syncStateFromInputs(); ensureDays(); setStatus('複数画像を生成しています…');
+      var items=[];
+      for(var i=0;i<state.exportTargets.length;i++){
+        var key=state.exportTargets[i];
+        if(key==='cover') items.push(await renderImageFromHTML('表紙', buildCoverHTML()));
+        else if(key.indexOf('day-')===0){ var idx=parseInt(key.split('-')[1],10); items.push(await renderImageFromHTML(state.days[idx].label, buildDayHTML(idx))); }
+      }
+      generatedItems=items; renderResults(); saveLocal(); setStatus('選択したページの画像を生成しました。');
+    }
+    function saveBlob(blob, name){ var url=URL.createObjectURL(blob); var a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); }
+    function saveAllImages(){
+      if(!generatedItems.length){ setStatus('保存する画像がまだありません。'); return; }
+      var title=(state.title||'旅行しおり').replace(/[\\/:*?"<>|]/g,'');
+      generatedItems.forEach(function(item, idx){
+        setTimeout(function(){ saveBlob(item.blob, title+'-'+item.label+'.png'); }, idx*180);
+      });
+      setStatus('生成済み画像を順番に保存します。');
+    }
+    function renderResults(){
+      var section=document.getElementById('result-section'); var gallery=document.getElementById('gallery-list'); var saveAllBtn=document.getElementById('save-all-btn');
+      if(!generatedItems.length){ section.classList.remove('visible'); gallery.innerHTML=''; if(saveAllBtn) saveAllBtn.style.display='none'; return; }
+      section.classList.add('visible'); gallery.innerHTML=''; if(saveAllBtn) saveAllBtn.style.display='inline-flex';
+      generatedItems.forEach(function(item){
+        var card=document.createElement('div'); card.className='gallery-item';
+        var h3=document.createElement('h3'); h3.textContent=item.label; card.appendChild(h3);
+        var img=document.createElement('img'); img.src=item.dataUrl; img.alt=item.label+' の画像'; card.appendChild(img);
+        var actions=document.createElement('div'); actions.className='gallery-actions';
+        var saveBtn=document.createElement('button'); saveBtn.type='button'; saveBtn.className='btn-save'; saveBtn.style.flex='1'; saveBtn.innerHTML='<span>💾</span> この画像を保存'; saveBtn.addEventListener('click', function(){ var title=(state.title||'旅行しおり').replace(/[\\/:*?"<>|]/g,''); saveBlob(item.blob, title+'-'+item.label+'.png'); });
+        actions.appendChild(saveBtn); card.appendChild(actions); gallery.appendChild(card);
+      });
+      section.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function clearAllInputs(){ if(!confirm('入力内容をすべて消去しますか？')) return; state={title:'', meetingTime:'', meetingPlace:'', members:'', tripDate:'', baggage:'', coverMemo:'', days:[], activeTab:'cover', exportTargets:['cover']}; cal={year:new Date().getFullYear(), month:new Date().getMonth(), start:null, end:null, step:'start'}; bgImageDataUrl=null; generatedItems=[]; syncInputsFromState(); updateBgPreview(); closeCal(); updateDateUI(); renderCal(); renderTabs(); renderExportTargets(); renderResults(); localStorage.removeItem(STORAGE_KEY); history.replaceState({}, '', location.pathname); setStatus('入力内容をリセットしました。'); }
+
+    function renderCal(){
+      var y=cal.year,m=cal.month; document.getElementById('cal-month-lbl').textContent=y+'年 '+MONTH_JA[m];
+      var daysEl=document.getElementById('cal-days'); var today=new Date(); today.setHours(0,0,0,0); var firstDow=new Date(y,m,1).getDay(); var lastDate=new Date(y,m+1,0).getDate(); daysEl.innerHTML='';
+      for(var i=0;i<firstDow;i++){ var emp=document.createElement('div'); emp.className='cal-day empty'; daysEl.appendChild(emp); }
+      for(var d=1;d<=lastDate;d++) (function(day){
+        var date=new Date(y,m,day); date.setHours(0,0,0,0); var t=date.getTime(); var s=cal.start ? new Date(cal.start).setHours(0,0,0,0) : null; var e=cal.end ? new Date(cal.end).setHours(0,0,0,0) : null; var dow=date.getDay();
+        var btn=document.createElement('button'); btn.type='button'; btn.className='cal-day'; btn.textContent=day; if(dow===0) btn.classList.add('sun'); if(dow===6) btn.classList.add('sat'); if(t===today.getTime()) btn.classList.add('today');
+        if(s && t===s){ btn.classList.add('sel-start'); if(e && s!==e) btn.classList.add('range-s'); }
+        if(e && t===e){ btn.classList.add('sel-end'); if(s && s!==e) btn.classList.add('range-e'); }
+        if(s && e && t>s && t<e) btn.classList.add('in-range');
+        btn.addEventListener('click', function(){ onDayClick(date); }); daysEl.appendChild(btn);
+      })(d);
+      document.getElementById('cal-hint').textContent = cal.step==='start' ? '出発日をタップしてください' : cal.step==='end' ? '帰着日をタップしてください（同日 = 日帰り）' : '日程を変更するには、もう一度日付を選び直してください';
+    }
+    function onDayClick(date){ if(cal.step==='start'){ cal.start=date; cal.end=null; cal.step='end'; } else if(cal.step==='end'){ if(date<cal.start){ cal.start=date; cal.end=null; } else { cal.end=date; cal.step='done'; } } else { cal.start=date; cal.end=null; cal.step='end'; } updateDateUI(); renderCal(); saveLocal(); if(cal.step==='done') setTimeout(closeCal,250); }
+    function updateDateUI(){
+      var dispDate=document.getElementById('disp-date'); var btn=document.getElementById('date-pick-btn'); var stepStart=document.getElementById('step-start'); var stepEnd=document.getElementById('step-end'); var isOpen=document.getElementById('cal-popup').classList.contains('open');
+      if(cal.start && cal.end){ var nights=diffDays(cal.start,cal.end); var label=fmtDate(cal.start)+' 〜 '+fmtDate(cal.end)+'　'+(nights+1)+'日間'+(nights>0?'（'+nights+'泊）':'（日帰り）'); dispDate.textContent=label; dispDate.classList.remove('empty'); btn.classList.add('has-val'); state.tripDate=label; document.getElementById('trip-date').value=label; }
+      else if(cal.start){ var one=fmtDate(cal.start)+' 〜 帰着日を選択'; dispDate.textContent=one; dispDate.classList.remove('empty'); btn.classList.remove('has-val'); state.tripDate=fmtDate(cal.start); document.getElementById('trip-date').value=fmtDate(cal.start); }
+      else { dispDate.textContent='タップしてカレンダーを開く'; dispDate.classList.add('empty'); btn.classList.remove('has-val'); state.tripDate=''; document.getElementById('trip-date').value=''; }
+      btn.classList.toggle('open', isOpen); stepStart.className='cal-step-item'; stepEnd.className='cal-step-item';
+      if(cal.step==='start'){ stepStart.classList.add('active'); stepStart.textContent='✈ 出発日を選択中'; stepEnd.textContent=cal.end?fmtDate(cal.end):'🏠 帰着日を選択'; if(cal.end) stepEnd.classList.add('done'); }
+      else if(cal.step==='end'){ stepEnd.classList.add('active'); stepEnd.textContent='🏠 帰着日を選択中'; stepStart.textContent=cal.start?fmtDate(cal.start):'✈ 出発日'; if(cal.start) stepStart.classList.add('done'); }
+      else { stepStart.classList.add('done'); stepEnd.classList.add('done'); stepStart.textContent=fmtDate(cal.start); stepEnd.textContent=fmtDate(cal.end); }
+      ensureDays(); renderTabs(); renderExportTargets(); saveLocal();
+    }
+    function openCal(forStep){ cal.step=forStep; var ref=forStep==='start'?cal.start:(cal.end||cal.start); if(ref){ cal.year=ref.getFullYear(); cal.month=ref.getMonth(); } document.getElementById('cal-popup').classList.add('open'); updateDateUI(); renderCal(); }
+    function closeCal(){ document.getElementById('cal-popup').classList.remove('open'); updateDateUI(); }
+
+    document.getElementById('date-pick-btn').addEventListener('click', function(){ var popup=document.getElementById('cal-popup'); if(popup.classList.contains('open')) closeCal(); else openCal((!cal.start)?'start':(!cal.end)?'end':'start'); });
+    document.getElementById('cal-prev').addEventListener('click', function(){ cal.month--; if(cal.month<0){ cal.month=11; cal.year--; } renderCal(); });
+    document.getElementById('cal-next').addEventListener('click', function(){ cal.month++; if(cal.month>11){ cal.month=0; cal.year++; } renderCal(); });
+    document.getElementById('clear-btn').addEventListener('click', clearAllInputs);
+    document.getElementById('copy-url-btn').addEventListener('click', copyShareURL);
+    document.getElementById('open-view-btn').addEventListener('click', openViewPage);
+    document.getElementById('generate-selected-btn').addEventListener('click', generateSelectedImages);
+    document.getElementById('save-all-btn').addEventListener('click', saveAllImages);
+    document.getElementById('trip-title').addEventListener('input', function(){ state.title=this.value; saveLocal(); });
+    document.getElementById('meeting-time').addEventListener('change', function(){ state.meetingTime=this.value; saveLocal(); });
+    document.getElementById('meeting-place').addEventListener('input', function(){ state.meetingPlace=this.value; saveLocal(); });
+    document.getElementById('members').addEventListener('input', function(){ state.members=this.value; saveLocal(); });
+    document.getElementById('baggage').addEventListener('input', function(){ state.baggage=this.value; saveLocal(); });
+    document.getElementById('cover-memo').addEventListener('input', function(){ state.coverMemo=this.value; saveLocal(); });
+    document.getElementById('bg-image').addEventListener('change', function(e){ var file=e.target.files[0]; if(!file) return; var reader=new FileReader(); reader.onload=function(ev){ bgImageDataUrl=ev.target.result; updateBgPreview(); saveLocal(); }; reader.onerror=function(){ alert('画像の読み込みに失敗しました。'); }; reader.readAsDataURL(file); });
+
+    (function(){
+      var restored = restoreFromURL();
+      if(!restored) restoreLocal();
+      ensureDays(); syncInputsFromState(); updateBgPreview(); updateDateUI(); renderCal(); renderTabs(); renderExportTargets(); renderResults();
+      if(!state.days.length && cal.start) { ensureDays(); renderTabs(); renderExportTargets(); }
+    })();
+
+    (function() {
+      var c = document.getElementById('ck-footer-container'); if (!c) return;
+      fetch('https://cleverkitjp.github.io/footer.html').then(function(r){return r.text();}).then(function(h){ c.innerHTML=h; try{ (adsbygoogle = window.adsbygoogle || []).push({}); }catch(e){ console.warn('adsbygoogle error', e); } }).catch(function(e){ console.warn('footer load error', e); });
+    })();
+  </script>
+</body>
+</html>
