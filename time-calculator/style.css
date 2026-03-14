@@ -1,0 +1,256 @@
+:root {
+  --bg-page: #f5f5f8;
+  --card-bg: #ffffff;
+  --text-main: #222222;
+  --text-sub: #666666;
+  --accent: #2979ff;
+  --accent-soft: rgba(41, 121, 255, 0.12);
+  --border-soft: #e0e0e6;
+  --error: #e53935;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+}
+
+/* ベース */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 12px 32px;
+}
+
+.page-header {
+  margin-bottom: 12px;
+}
+
+.page-title {
+  font-size: 1.25rem;
+  margin: 0 0 6px;
+}
+
+.page-lead {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+/* カード */
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 14px 16px 16px;
+  margin-top: 12px;
+}
+
+.card-title {
+  font-size: 1rem;
+  margin: 0 0 10px;
+}
+
+/* モード切替 */
+
+.mode-toggle {
+  display: flex;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background-color: #edf1ff;
+}
+
+.mode-btn {
+  flex: 1;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  background: transparent;
+  color: var(--text-sub);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.06s ease;
+  white-space: nowrap;
+}
+
+.mode-btn.active {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.mode-btn:active {
+  transform: translateY(1px);
+}
+
+/* 結果カード */
+
+.card-result {
+  margin-top: 10px;
+}
+
+.result-header {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.result-main {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  word-break: keep-all;
+}
+
+.result-sub {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* 入力エリア */
+
+.input-row {
+  margin-top: 10px;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.field-input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  outline: none;
+  background-color: #fafafb;
+}
+
+.field-input:focus {
+  border-color: var(--accent);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+/* 休憩行 */
+
+.break-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.break-chips {
+  display: flex;
+  gap: 6px;
+}
+
+.chip-btn {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background-color: #f3f5ff;
+  padding: 4px 0;
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  cursor: pointer;
+}
+
+.chip-btn:active {
+  background-color: #e0e7ff;
+}
+
+/* アクションボタン */
+
+.actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-secondary {
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background-color: #ffffff;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  cursor: pointer;
+}
+
+.btn-secondary:active {
+  background-color: #f0f1f5;
+}
+
+/* メッセージ */
+
+.message {
+  font-size: 0.78rem;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.message-error {
+  color: var(--error);
+}
+
+.message-note {
+  color: var(--text-sub);
+}
+
+/* パネル表示制御 */
+
+.mode-panel.is-hidden {
+  display: none;
+}
+
+/* 注意書き */
+
+.card-note {
+  font-size: 0.78rem;
+}
+
+.note-text {
+  margin: 0;
+  color: var(--text-sub);
+}
+
+/* PC向けの微調整 */
+
+@media (min-width: 768px) {
+  .page {
+    padding: 24px 0 40px;
+  }
+
+  .page-header {
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    padding: 16px 20px 18px;
+    margin-top: 14px;
+  }
+
+  .result-main {
+    font-size: 1.8rem;
+  }
+}

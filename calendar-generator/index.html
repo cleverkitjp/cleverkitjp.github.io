@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="このカレンダージェネレーターは、営業日、定休日、イベント日、習い事や部活のスケジュールなどを自由に記号入りで作れる無料のカレンダー画像生成ツールです。スマホ対応・登録不要でそのままシェアできます。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="カレンダージェネレーター｜営業日・予定カレンダーをかんたん作成＆SNSシェア">
+  <meta property="og:description" content="インスタやSNSでの告知、LINEでのシェアに最適！営業日、定休日、イベント日、習い事や部活のスケジュールなどを自由に記号入りで作れる無料のカレンダー画像生成ツール。スマホ対応・登録不要でそのままシェアできます。">
+  <meta property="og:url" content="https://cleverkitjp.github.io/calendar-generator/">
+  <meta property="og:image" content="https://cleverkitjp.github.io/calendar-generator/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <title>カレンダージェネレーター｜営業日・予定がひと目で分かるカレンダー画像をかんたん作成＆SNSシェア</title>
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6517NYNFF');
+</script>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- html2canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "カレンダージェネレーター",
+  "url": "https://cleverkitjp.github.io/calendar-generator/",
+  "applicationCategory": "Utility",
+  "operatingSystem": "All"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "カレンダージェネレーター",
+  "operatingSystem": "WEB",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "description": "営業日やイベント予定を記号で作成できる無料のカレンダー画像生成ツール。"
+}
+</script>
+
+</head>
+
+<body class="theme-cool">
+  <div class="container">
+
+    <h1>カレンダー ジェネレーター</h1>
+    <p class="lead">
+      このカレンダージェネレーターは、営業日・定休日・イベント日・習い事や部活・チームの予定を○・△・★などのマークを使って分かりやすく表現できる無料のカレンダー画像生成ツールです。スマホ対応・登録不要で、作成した画像はLINEやSNSにそのままシェアできます。
+    </p>
+
+    <!-- Step1 基本設定 -->
+    <section class="card">
+      <div class="card-header">
+        <h2>Step1. 基本設定</h2>
+        <button id="restoreBtn" class="restore-btn" type="button">復元</button>
+      </div>
+
+      <label>タイトル（任意）</label>
+      <input id="calendarTitle" type="text" placeholder="例：3月の営業カレンダー" />
+
+      <label>開始日</label>
+      <input id="startDate" type="date" />
+
+      <label>終了日</label>
+      <input id="endDate" type="date" />
+
+      <label>週の開始</label>
+      <select id="weekStart">
+        <option value="sun">日曜はじまり</option>
+        <option value="mon">月曜はじまり</option>
+      </select>
+
+      <label>カラー</label>
+      <select id="themeSelect">
+        <option value="cool">寒色系（ブルー＆グレー）</option>
+        <option value="warm">暖色系（オレンジ＆ベージュ）</option>
+      </select>
+
+      <label>背景画像（任意）</label>
+      <div class="bg-input-row">
+        <input id="backgroundImageInput" type="file" accept="image/*" />
+        <button id="clearBackgroundBtn" type="button" class="secondary-btn">背景をクリア</button>
+      </div>
+      <p class="hint small">アップロードした画像は端末内でのみ利用され、保存されません。</p>
+
+      <label>表示形式</label>
+      <select id="layoutMode">
+        <option value="month">月ごとに分ける</option>
+        <option value="continuous">連続したカレンダー</option>
+      </select>
+      </section>
+
+    <!-- Step2 予定の種類（記号設定） -->
+    <section class="card">
+      <h2>Step2. 予定の種類</h2>
+      <p class="hint">
+        使いたい記号と意味を設定します。
+      </p>
+
+      <div class="symbol-row">
+        <input class="symbol-char" id="sym1" maxlength="1" value="●" />
+        <input class="symbol-label" id="sym1label" placeholder="ラベル（例：通常営業）" value="通常営業" />
+      </div>
+
+      <div class="symbol-row">
+        <input class="symbol-char" id="sym2" maxlength="1" value="▲" />
+        <input class="symbol-label" id="sym2label" placeholder="ラベル（例：イベント）" value="イベント" />
+      </div>
+
+      <div class="symbol-row">
+        <input class="symbol-char" id="sym3" maxlength="1" value="✕" />
+        <input class="symbol-label" id="sym3label" placeholder="ラベル（例：定休日）" value="定休日" />
+      </div>
+
+      <div class="symbol-row">
+        <input class="symbol-char" id="sym4" maxlength="1" value="★" />
+        <input class="symbol-label" id="sym4label" placeholder="ラベル（例：特別営業）" value="特別営業" />
+      </div>
+    </section>
+
+    <!-- Step3 カレンダー生成 -->
+    <section class="card">
+      <h2>Step3. カレンダー生成</h2>
+      <button id="generateCalBtn">カレンダーを生成</button>
+      <p class="hint">開始日・終了日と記号を設定してから、カレンダーを生成してください。</p>
+    </section>
+
+    <!-- Step4 予定を入れる -->
+    <section class="card">
+      <h2>Step4. 予定を入れる</h2>
+
+      <h3 class="subheading">記号を選ぶ</h3>
+      <div id="symbolButtons"></div>
+      <p class="hint">
+        上の記号から使いたいものを選んで、下のカレンダーの日付をタップすると予定を入れられます。
+      </p>
+
+      <div id="calendarImageArea">
+        <!-- タイトル（任意） -->
+        <div id="titleArea" class="calendar-main-title" style="display:none;"></div>
+
+        <div id="calendarArea"></div>
+        <div id="legendArea"></div>
+
+        <div class="memo-block">
+          <textarea
+            id="memoText"
+            class="memo-textarea"
+            placeholder="例）12/28〜1/5は年末年始休業です。&#10;例）★のイベントは事前予約制です。"
+          ></textarea>
+        </div>
+      </div>
+
+      <label for="paperAlpha">下地の透明度：<span id="paperAlphaValue">92%</span></label>
+      <input id="paperAlpha" type="range" min="0.6" max="1" step="0.01" value="0.92" />
+    </section>
+
+    <!-- Step5 画像出力 -->
+    <section class="card">
+      <h2>Step5. 画像をつくって共有</h2>
+      <button id="makeImgBtn" style="display:none;">画像をつくる</button>
+      <div id="resultArea"></div>
+      <button id="shareBtn" style="display:none;">共有する</button>
+      <p class="hint small">画像を長押しで保存もできます。</p>
+    </section>
+
+</div>
+  <script src="script.js"></script>
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        })
+        .catch(function(e) {});
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅行持ち物チェックリスト作成ツール｜旅行準備をスマホで簡単整理</title>
+  <meta name="description" content="旅行前の持ち物を自動生成。国内旅行・海外旅行・出張・修学旅行などに合わせて、スマホで見やすいチェックリストを作成できます。入力内容の保存・復元、項目追加、テキストコピーにも対応。">
+  <meta name="keywords" content="旅行 持ち物リスト,旅行 持ち物 チェックリスト,旅行 持ち物 作成,修学旅行 持ち物,出張 持ち物,海外旅行 持ち物">
+  <link rel="canonical" href="https://cleverkitjp.github.io/travel-packing-checklist/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="旅行持ち物チェックリスト作成ツール｜旅行準備をスマホで簡単整理">
+  <meta property="og:description" content="旅行前の持ち物を自動生成。国内旅行・海外旅行・出張・修学旅行などに合わせて、スマホで見やすいチェックリストを作成できます。">
+  <meta property="og:url" content="https://cleverkitjp.github.io/travel-packing-checklist/">
+  <meta property="og:image" content="https://cleverkitjp.github.io/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
+       crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --ck-primary:#f08a24;
+      --ck-primary-dark:#d76c08;
+      --ck-accent:#fff4e8;
+      --ck-bg:#fffaf5;
+      --ck-card:#ffffff;
+      --ck-border:#f2dcc6;
+      --ck-text:#3b3128;
+      --ck-sub:#7a6a5c;
+      --ck-danger:#c95b35;
+      --ck-ok:#2d8a57;
+      --ck-shadow:0 10px 24px rgba(95, 58, 25, 0.08);
+      --ck-radius:18px;
+    }
+
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#fff8f1 0%,#fffdf9 220px);
+      color:var(--ck-text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+      line-height:1.6;
+    }
+
+    .wrap{
+      width:min(980px, 100%);
+      margin:0 auto;
+      padding:16px 14px 40px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#fff1df 0%, #fffaf3 100%);
+      border:1px solid var(--ck-border);
+      border-radius:24px;
+      padding:20px 16px;
+      box-shadow:var(--ck-shadow);
+      margin-bottom:16px;
+    }
+
+    .hero-badge{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      color:#9a5800;
+      background:#ffe2bc;
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+
+    h1{
+      font-size:28px;
+      line-height:1.3;
+      margin:0 0 10px;
+      color:#5f3600;
+    }
+
+    .lead{
+      margin:0;
+      color:var(--ck-sub);
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+      margin-top:16px;
+    }
+
+    .card{
+      background:var(--ck-card);
+      border:1px solid var(--ck-border);
+      border-radius:var(--ck-radius);
+      box-shadow:var(--ck-shadow);
+      padding:16px;
+    }
+
+    h2{
+      margin:0 0 12px;
+      font-size:18px;
+      color:#6f3a00;
+    }
+
+    .subtext{
+      font-size:13px;
+      color:var(--ck-sub);
+      margin:-4px 0 12px;
+    }
+
+    .field{
+      margin-bottom:14px;
+    }
+
+    .field label{
+      display:block;
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    select,
+    input[type="text"]{
+      width:100%;
+      appearance:none;
+      border:1px solid var(--ck-border);
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:16px;
+      background:#fff;
+      color:var(--ck-text);
+    }
+
+    .chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .chip{
+      border:1px solid var(--ck-border);
+      background:#fff8ef;
+      color:#784a19;
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .btn-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    button{
+      border:none;
+      border-radius:14px;
+      padding:13px 14px;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    button:active{
+      transform:scale(.98);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--ck-primary) 0%, #ffad52 100%);
+      color:#fff;
+      box-shadow:0 8px 20px rgba(240,138,36,.28);
+    }
+
+    .btn-secondary{
+      background:#fff3e3;
+      color:#91540d;
+      border:1px solid #f2d0a8;
+    }
+
+    .btn-ghost{
+      background:#fff;
+      color:#7b5a3b;
+      border:1px solid var(--ck-border);
+    }
+
+    .status{
+      margin-top:10px;
+      font-size:13px;
+      color:var(--ck-sub);
+      min-height:20px;
+    }
+
+    .category{
+      border:1px solid #f4dfcb;
+      border-radius:16px;
+      background:#fffdfa;
+      padding:12px;
+      margin-bottom:12px;
+    }
+
+    .category-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+
+    .category-title h3{
+      margin:0;
+      font-size:16px;
+      color:#764200;
+    }
+
+    .count{
+      font-size:12px;
+      color:#9a6b3d;
+      background:#fff2de;
+      border-radius:999px;
+      padding:4px 8px;
+      white-space:nowrap;
+    }
+
+    .item-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .item{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      background:#fff;
+      border:1px solid #f6e6d8;
+      border-radius:14px;
+      padding:10px 12px;
+    }
+
+    .item input[type="checkbox"]{
+      margin-top:4px;
+      width:18px;
+      height:18px;
+      accent-color:var(--ck-primary);
+      flex:0 0 auto;
+    }
+
+    .item.checked .item-text{
+      text-decoration:line-through;
+      color:#aa9c90;
+    }
+
+    .item-main{
+      flex:1;
+      min-width:0;
+    }
+
+    .item-text{
+      font-size:15px;
+      word-break:break-word;
+    }
+
+    .item-note{
+      font-size:12px;
+      color:var(--ck-sub);
+      margin-top:2px;
+    }
+
+    .delete-btn{
+      border:none;
+      background:transparent;
+      color:#bb7d3f;
+      font-size:14px;
+      padding:0 0 0 8px;
+      cursor:pointer;
+    }
+
+    .add-row{
+      display:grid;
+      grid-template-columns:1fr 110px;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .helper{
+      font-size:12px;
+      color:var(--ck-sub);
+      margin-top:8px;
+    }
+
+    .related-links{
+      display:grid;
+      gap:10px;
+    }
+
+    .related-links a{
+      display:block;
+      text-decoration:none;
+      color:#8b4c06;
+      background:#fff6ea;
+      border:1px solid #f3dcc1;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+    }
+
+    .seo-box{
+      font-size:14px;
+      color:var(--ck-sub);
+      background:#fff9f2;
+      border:1px dashed #ebcfb0;
+      border-radius:14px;
+      padding:12px 14px;
+      margin-top:10px;
+    }
+
+    .top-actions{
+      position:sticky;
+      bottom:12px;
+      z-index:10;
+      margin-top:18px;
+    }
+
+    .top-actions-inner{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      background:rgba(255,250,245,.9);
+      backdrop-filter:blur(8px);
+      padding:10px;
+      border:1px solid var(--ck-border);
+      border-radius:18px;
+      box-shadow:var(--ck-shadow);
+    }
+
+    .notice-ok{ color:var(--ck-ok); }
+    .notice-danger{ color:var(--ck-danger); }
+
+    @media (min-width: 860px){
+      .grid{
+        grid-template-columns:360px 1fr;
+        align-items:start;
+      }
+      .hero{
+        padding:26px 22px;
+      }
+      h1{
+        font-size:34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-badge">無料・登録不要・スマホ対応</div>
+      <h1>旅行持ち物チェックリスト作成ツール</h1>
+      <p class="lead">
+        国内旅行・海外旅行・出張・修学旅行に合わせて、持ち物チェックリストを自動作成できます。
+        スマホでそのまま確認でき、入力内容はこの端末に保存されるため次回アクセス時にも復元されます。
+      </p>
+    </section>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="settings-title">
+        <h2 id="settings-title">条件を選ぶ</h2>
+        <p class="subtext">旅行の条件に合わせて、忘れ物防止用の持ち物リストを自動作成します。</p>
+
+        <div class="field">
+          <label for="tripType">旅行タイプ</label>
+          <select id="tripType">
+            <option value="domestic">国内旅行</option>
+            <option value="international">海外旅行</option>
+            <option value="business">出張</option>
+            <option value="school">修学旅行</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="tripDays">日数</label>
+          <select id="tripDays">
+            <option value="daytrip">日帰り</option>
+            <option value="1night">1泊</option>
+            <option value="2to3">2〜3泊</option>
+            <option value="4plus">4泊以上</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="season">季節</label>
+          <select id="season">
+            <option value="spring">春</option>
+            <option value="summer">夏</option>
+            <option value="autumn">秋</option>
+            <option value="winter">冬</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="companions">同行者</label>
+          <select id="companions">
+            <option value="solo">ひとり</option>
+            <option value="family">家族</option>
+            <option value="withkids">子どもあり</option>
+          </select>
+        </div>
+
+        <div class="chip-row" aria-hidden="true">
+          <span class="chip">旅行前の最終確認に便利</span>
+          <span class="chip">LINEで共有しやすい</span>
+          <span class="chip">入力内容を自動保存</span>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-primary" id="generateBtn">リストを作成する</button>
+          <button type="button" class="btn-secondary" id="copyBtn">テキストをコピー</button>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-ghost" id="resetChecksBtn">チェックを外す</button>
+          <button type="button" class="btn-ghost" id="clearStorageBtn">保存内容をクリア</button>
+        </div>
+
+        <div id="statusMessage" class="status" aria-live="polite"></div>
+
+        <div class="seo-box">
+          旅行前の準備では、「抜け漏れがないこと」が最優先です。まず自動生成し、不要な項目を削除しながら自分用リストに整える使い方がおすすめです。
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="list-title">
+        <h2 id="list-title">持ち物チェックリスト</h2>
+        <p class="subtext">不要な項目は削除し、必要な物は追加して自分用リストにできます。</p>
+
+        <div id="listContainer"></div>
+
+        <div class="field">
+          <label for="customItem">項目を追加</label>
+          <div class="add-row">
+            <input type="text" id="customItem" placeholder="例：常備薬、耳栓、ガイドブック">
+            <button type="button" class="btn-primary" id="addItemBtn">追加する</button>
+          </div>
+          <div class="helper">追加項目は「その他」カテゴリに入ります。</div>
+        </div>
+
+        <div class="related-links" style="margin-top:18px;">
+          <a href="https://cleverkitjp.github.io/tabinoshiori/">旅行しおり作成ツール｜日程や集合情報を見やすく整理</a>
+          <a href="https://cleverkitjp.github.io/calendar-generator/">カレンダー生成ツール｜予定入りカレンダー画像を作成</a>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:16px;">
+      <h2>このツールでできること</h2>
+      <p class="subtext">
+        旅行タイプ・日数・季節・同行者に応じて、持ち物のたたき台をすばやく作成できます。
+        国内旅行だけでなく、海外旅行・出張・修学旅行にも対応しています。
+      </p>
+      <p class="subtext" style="margin-top:10px;">
+        生成後は、チェックを入れながら準備を進めたり、不要な項目を削除したり、必要な物を追加したりできます。
+        コピーしてLINEやメモアプリに貼り付ける使い方も便利です。
+      </p>
+    </section>
+
+    <div class="top-actions">
+      <div class="top-actions-inner">
+        <button type="button" class="btn-primary" id="copyBottomBtn">テキストをコピー</button>
+        <button type="button" class="btn-secondary" id="scrollTopBtn">上に戻る</button>
+      </div>
+    </div>
+  </main>
+    <script>
+    (function() {
+      var STORAGE_KEY = 'ck_travel_packing_checklist_v1';
+
+      var els = {
+        tripType: document.getElementById('tripType'),
+        tripDays: document.getElementById('tripDays'),
+        season: document.getElementById('season'),
+        companions: document.getElementById('companions'),
+        generateBtn: document.getElementById('generateBtn'),
+        copyBtn: document.getElementById('copyBtn'),
+        copyBottomBtn: document.getElementById('copyBottomBtn'),
+        resetChecksBtn: document.getElementById('resetChecksBtn'),
+        clearStorageBtn: document.getElementById('clearStorageBtn'),
+        addItemBtn: document.getElementById('addItemBtn'),
+        customItem: document.getElementById('customItem'),
+        listContainer: document.getElementById('listContainer'),
+        statusMessage: document.getElementById('statusMessage'),
+        scrollTopBtn: document.getElementById('scrollTopBtn')
+      };
+
+      var categoryOrder = ['貴重品', '衣類', '洗面用品', '電子機器', '移動関連', 'その他'];
+
+      var baseItems = {
+        '貴重品': ['財布', '身分証', 'クレジットカード', '現金'],
+        '衣類': ['着替え', '下着', '靴下', 'パジャマ'],
+        '洗面用品': ['歯ブラシ', 'タオル', 'スキンケア用品'],
+        '電子機器': ['スマホ', '充電器', 'モバイルバッテリー'],
+        '移動関連': ['交通チケット', '予約確認', '家の鍵'],
+        'その他': ['常備薬', 'ビニール袋', 'ティッシュ']
+      };
+
+      var typeItems = {
+        domestic: {
+          '移動関連': ['宿泊先の住所メモ'],
+          'その他': ['折りたたみ傘']
+        },
+        international: {
+          '貴重品': ['パスポート'],
+          '電子機器': ['変換プラグ'],
+          '移動関連': ['航空券情報', '海外保険情報'],
+          'その他': ['現地通貨', '翻訳アプリ確認']
+        },
+        business: {
+          '衣類': ['仕事用の服'],
+          '電子機器': ['PC', 'PC充電器'],
+          '移動関連': ['名刺', '会社資料'],
+          'その他': ['筆記用具']
+        },
+        school: {
+          '衣類': ['体操服'],
+          '洗面用品': ['洗顔用品'],
+          '移動関連': ['学校配布資料'],
+          'その他': ['筆記用具', '健康保険証の写し']
+        }
+      };
+
+      var dayItems = {
+        daytrip: {
+          '衣類': [],
+          '洗面用品': [],
+          'その他': ['飲み物']
+        },
+        '1night': {
+          '衣類': ['翌日の服'],
+          '洗面用品': ['洗顔用品']
+        },
+        '2to3': {
+          '衣類': ['予備の服', '洗濯ネット'],
+          '洗面用品': ['シャンプー類']
+        },
+        '4plus': {
+          '衣類': ['多めの着替え', '上着'],
+          '洗面用品': ['洗濯用小物'],
+          'その他': ['圧縮袋']
+        }
+      };
+
+      var seasonItems = {
+        spring: {
+          '衣類': ['薄手の上着'],
+          'その他': ['花粉対策用品']
+        },
+        summer: {
+          '衣類': ['半袖', '帽子'],
+          '洗面用品': ['日焼け止め'],
+          'その他': ['汗ふきシート']
+        },
+        autumn: {
+          '衣類': ['羽織りもの'],
+          'その他': ['乾燥対策用品']
+        },
+        winter: {
+          '衣類': ['防寒着', '手袋'],
+          'その他': ['カイロ']
+        }
+      };
+
+      var companionItems = {
+        solo: {},
+        family: {
+          'その他': ['家族共有の薬', 'ウェットティッシュ']
+        },
+        withkids: {
+          '衣類': ['子どもの着替え'],
+          '洗面用品': ['子ども用ケア用品'],
+          'その他': ['おやつ', 'おもちゃ', '母子手帳コピー']
+        }
+      };
+
+      var state = getDefaultState();
+
+      function getDefaultState() {
+        return {
+          inputs: {
+            tripType: 'domestic',
+            tripDays: 'daytrip',
+            season: 'spring',
+            companions: 'solo'
+          },
+          items: [],
+          generatedAtLeastOnce: false
+        };
+      }
+
+      function deepClone(obj) {
+        return JSON.parse(JSON.stringify(obj));
+      }
+
+      function uniquePush(arr, value) {
+        if (arr.indexOf(value) === -1) arr.push(value);
+      }
+
+      function mergeMap(target, source) {
+        Object.keys(source || {}).forEach(function(category) {
+          if (!target[category]) target[category] = [];
+          (source[category] || []).forEach(function(item) {
+            uniquePush(target[category], item);
+          });
+        });
+      }
+
+      function buildItemMap(inputs) {
+        var map = deepClone(baseItems);
+        mergeMap(map, typeItems[inputs.tripType] || {});
+        mergeMap(map, dayItems[inputs.tripDays] || {});
+        mergeMap(map, seasonItems[inputs.season] || {});
+        mergeMap(map, companionItems[inputs.companions] || {});
+        return map;
+      }
+
+      function createItemsFromMap(map) {
+        var items = [];
+        categoryOrder.forEach(function(category) {
+          (map[category] || []).forEach(function(name) {
+            items.push({
+              id: createId(),
+              category: category,
+              text: name,
+              checked: false,
+              note: ''
+            });
+          });
+        });
+        return items;
+      }
+
+      function createId() {
+        return 'i_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+      }
+
+      function syncInputsFromUI() {
+        state.inputs.tripType = els.tripType.value;
+        state.inputs.tripDays = els.tripDays.value;
+        state.inputs.season = els.season.value;
+        state.inputs.companions = els.companions.value;
+      }
+
+      function syncUIFromInputs() {
+        els.tripType.value = state.inputs.tripType;
+        els.tripDays.value = state.inputs.tripDays;
+        els.season.value = state.inputs.season;
+        els.companions.value = state.inputs.companions;
+      }
+
+      function generateList() {
+        syncInputsFromUI();
+        var itemMap = buildItemMap(state.inputs);
+        state.items = createItemsFromMap(itemMap);
+        state.generatedAtLeastOnce = true;
+        renderList();
+        saveState();
+        setStatus('チェックリストを作成しました。', 'ok');
+      }
+
+      function renderList() {
+        els.listContainer.innerHTML = '';
+
+        if (!state.items.length) {
+          var empty = document.createElement('div');
+          empty.className = 'seo-box';
+          empty.textContent = 'まだリストがありません。条件を選んで「リストを作成する」を押してください。';
+          els.listContainer.appendChild(empty);
+          return;
+        }
+
+        categoryOrder.forEach(function(category) {
+          var categoryItems = state.items.filter(function(item) {
+            return item.category === category;
+          });
+
+          if (!categoryItems.length) return;
+
+          var wrap = document.createElement('section');
+          wrap.className = 'category';
+
+          var titleRow = document.createElement('div');
+          titleRow.className = 'category-title';
+
+          var h3 = document.createElement('h3');
+          h3.textContent = category;
+
+          var count = document.createElement('div');
+          count.className = 'count';
+          count.textContent = categoryItems.filter(function(item){ return item.checked; }).length + ' / ' + categoryItems.length + ' 完了';
+
+          titleRow.appendChild(h3);
+          titleRow.appendChild(count);
+          wrap.appendChild(titleRow);
+
+          var list = document.createElement('div');
+          list.className = 'item-list';
+
+          categoryItems.forEach(function(item) {
+            var row = document.createElement('div');
+            row.className = 'item' + (item.checked ? ' checked' : '');
+
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = !!item.checked;
+            checkbox.setAttribute('aria-label', item.text + ' をチェック');
+
+            checkbox.addEventListener('change', function() {
+              item.checked = checkbox.checked;
+              renderList();
+              saveState();
+            });
+
+            var main = document.createElement('div');
+            main.className = 'item-main';
+
+            var text = document.createElement('div');
+            text.className = 'item-text';
+            text.textContent = item.text;
+            main.appendChild(text);
+
+            if (item.note) {
+              var note = document.createElement('div');
+              note.className = 'item-note';
+              note.textContent = item.note;
+              main.appendChild(note);
+            }
+
+            var del = document.createElement('button');
+            del.type = 'button';
+            del.className = 'delete-btn';
+            del.textContent = '削除';
+            del.addEventListener('click', function() {
+              state.items = state.items.filter(function(x) { return x.id !== item.id; });
+              renderList();
+              saveState();
+              setStatus('項目を削除しました。', 'ok');
+            });
+
+            row.appendChild(checkbox);
+            row.appendChild(main);
+            row.appendChild(del);
+            list.appendChild(row);
+          });
+
+          wrap.appendChild(list);
+          els.listContainer.appendChild(wrap);
+        });
+      }
+
+      function addCustomItem() {
+        var value = els.customItem.value.trim();
+        if (!value) {
+          setStatus('追加する項目を入力してください。', 'danger');
+          return;
+        }
+
+        if (!state.generatedAtLeastOnce && !state.items.length) {
+          generateList();
+        }
+
+        state.items.push({
+          id: createId(),
+          category: 'その他',
+          text: value,
+          checked: false,
+          note: '追加項目'
+        });
+
+        els.customItem.value = '';
+        renderList();
+        saveState();
+        setStatus('項目を追加しました。', 'ok');
+      }
+
+      function copyText() {
+        if (!state.items.length) {
+          setStatus('コピーするリストがありません。', 'danger');
+          return;
+        }
+
+        var lines = [];
+        lines.push('【旅行持ち物チェックリスト】');
+        lines.push('旅行タイプ：' + getSelectText(els.tripType));
+        lines.push('日数：' + getSelectText(els.tripDays));
+        lines.push('季節：' + getSelectText(els.season));
+        lines.push('同行者：' + getSelectText(els.companions));
+        lines.push('');
+
+        categoryOrder.forEach(function(category) {
+          var items = state.items.filter(function(item) { return item.category === category; });
+          if (!items.length) return;
+          lines.push('■' + category);
+          items.forEach(function(item) {
+            lines.push((item.checked ? '☑ ' : '☐ ') + item.text);
+          });
+          lines.push('');
+        });
+
+        var text = lines.join('\n');
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function() {
+            setStatus('テキストをコピーしました。LINEなどに貼り付けできます。', 'ok');
+          }).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+          setStatus('テキストをコピーしました。', 'ok');
+        } catch (e) {
+          setStatus('コピーに失敗しました。手動でコピーしてください。', 'danger');
+        }
+        document.body.removeChild(ta);
+      }
+
+      function getSelectText(selectEl) {
+        return selectEl.options[selectEl.selectedIndex].text;
+      }
+
+      function resetChecks() {
+        if (!state.items.length) {
+          setStatus('リセットする項目がありません。', 'danger');
+          return;
+        }
+        state.items.forEach(function(item) {
+          item.checked = false;
+        });
+        renderList();
+        saveState();
+        setStatus('チェックを外しました。', 'ok');
+      }
+
+      function clearStorage() {
+        state = getDefaultState();
+        syncUIFromInputs();
+        els.customItem.value = '';
+        els.listContainer.innerHTML = '';
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+        renderList();
+        setStatus('保存内容をクリアしました。', 'ok');
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {}
+      }
+
+      function loadState() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return false;
+          var parsed = JSON.parse(raw);
+          if (!parsed || !parsed.inputs || !Array.isArray(parsed.items)) return false;
+
+          state = parsed;
+          state.generatedAtLeastOnce = !!parsed.generatedAtLeastOnce;
+          syncUIFromInputs();
+          renderList();
+          setStatus('前回の入力内容を復元しました。', 'ok');
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function setStatus(message, type) {
+        els.statusMessage.textContent = message || '';
+        els.statusMessage.className = 'status ' + (type === 'danger' ? 'notice-danger' : 'notice-ok');
+      }
+
+      els.generateBtn.addEventListener('click', generateList);
+      els.copyBtn.addEventListener('click', copyText);
+      els.copyBottomBtn.addEventListener('click', copyText);
+      els.resetChecksBtn.addEventListener('click', resetChecks);
+      els.clearStorageBtn.addEventListener('click', clearStorage);
+      els.addItemBtn.addEventListener('click', addCustomItem);
+
+      els.customItem.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          addCustomItem();
+        }
+      });
+
+      [els.tripType, els.tripDays, els.season, els.companions].forEach(function(el) {
+        el.addEventListener('change', function() {
+          syncInputsFromUI();
+          saveState();
+        });
+      });
+
+      els.scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      syncUIFromInputs();
+      if (!loadState()) {
+        renderList();
+      }
+    })();
+  </script>
+
+  <div id="ck-footer-container"></div>
+
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(response) { return response.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+
+          try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          } catch (e) {
+            console.warn('adsbygoogle error', e);
+          }
+        })
+        .catch(function(e) {
+          console.warn('footer load error', e);
+        });
+    })();
+  </script>
+</body>
+</html>

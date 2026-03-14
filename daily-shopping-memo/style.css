@@ -1,0 +1,314 @@
+/* ベース */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #fff8f1;
+  color: #333;
+}
+
+.ck-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* カード共通 */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-bottom: 14px;
+}
+
+/* ヘッダー */
+.app-header {
+  background: linear-gradient(135deg, #ffe3c4, #ffd2a0);
+}
+
+.app-title {
+  font-size: 1.25rem;
+  margin: 0 0 8px;
+}
+
+.app-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* モード切替 */
+.app-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.mode-button {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid #ffc48a;
+  background: #fff7ef;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.mode-button.active {
+  background: #ff9f43;
+  color: #fff;
+  border-color: #ff9f43;
+}
+
+/* フィルタ */
+.filter-toggle {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.filter-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+/* セクション */
+.section-title {
+  font-size: 1rem;
+  margin: 0 0 8px;
+}
+
+.note-text {
+  font-size: 0.8rem;
+  color: #777;
+  margin: 8px 0 0;
+}
+
+/* プリセットリスト */
+.items-section {
+  margin-bottom: 8px;
+}
+
+.category-card {
+  margin-bottom: 10px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.category-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.category-count {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+/* 行 */
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  gap: 8px;
+}
+
+.item-row:nth-child(odd) {
+  background: #fffaf5;
+}
+
+.item-row:nth-child(even) {
+  background: #fffbf8;
+}
+
+.item-row.is-buy {
+  border: 1px solid #ffcf99;
+}
+
+.item-row.is-done {
+  background: #e3f3e1;
+  border-color: #9ad08a;
+}
+
+.item-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.item-name.done {
+  text-decoration: line-through;
+  color: #666;
+}
+
+/* 買うチェック */
+.buy-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #ffd7aa;
+  cursor: pointer;
+  white-space: nowrap;  /* ← これを追加 */
+}
+
+.buy-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+/* アクション */
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.done-button {
+  border-radius: 999px;
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+}
+
+.done-button.pending {
+  background: #ffe8c9;
+  color: #995200;
+}
+
+.done-button.completed {
+  background: #4caf50;
+  color: #fff;
+}
+
+.done-button.disabled {
+  background: #eee;
+  color: #999;
+  cursor: default;
+}
+
+/* 削除／非表示ボタン（共通で×表示） */
+.delete-button {
+  border: none;
+  background: transparent;
+  color: #c0392b;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* 入力フォーム */
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-input {
+  border-radius: 999px;
+  border: 1px solid #ffc48a;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.custom-input:focus {
+  border-color: #ff9f43;
+  box-shadow: 0 0 0 2px rgba(255, 159, 67, 0.2);
+}
+
+/* メモ欄 */
+.memo-textarea {
+  width: 100%;
+  min-height: 72px;
+  border-radius: 10px;
+  border: 1px solid #ffc48a;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  resize: none;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.memo-textarea:focus {
+  border-color: #ff9f43;
+  box-shadow: 0 0 0 2px rgba(255, 159, 67, 0.2);
+}
+
+/* ボタン */
+.primary-button,
+.secondary-button,
+.danger-button {
+  width: 100%;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-top: 4px;
+}
+
+.primary-button {
+  background: #ff9f43;
+  color: #fff;
+}
+
+.secondary-button {
+  background: #fff7ef;
+  color: #995200;
+  border: 1px solid #ffc48a;
+}
+
+.danger-button {
+  background: #f46a6a;
+  color: #fff;
+}
+
+.reset-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 小さめ端末対応 */
+@media (min-width: 480px) {
+  .reset-buttons {
+    flex-direction: row;
+  }
+  .reset-buttons button {
+    width: 50%;
+  }
+}

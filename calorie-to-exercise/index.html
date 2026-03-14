@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>カロリー → 運動時間換算ツール｜食べたカロリーの消費に必要な運動時間が分かります</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6517NYNFF');
+</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="page-header">
+      <h1 class="page-title">カロリー → 運動時間換算ツール</h1>
+      <p class="page-subtitle">
+        食べたカロリーを、歩く・走る・自転車・階段で「何分？」に換算します。
+      </p>
+    </header>
+
+    <main>
+      <!-- 入力カード -->
+      <section class="card input-card">
+        <h2 class="card-title">1. カロリーと体重を入力</h2>
+
+        <div class="field">
+          <label for="calorieInput">カロリー (kcal)<span class="required">*</span></label>
+          <input
+            id="calorieInput"
+            type="number"
+            inputmode="decimal"
+            min="1"
+            placeholder="例）450"
+          />
+        </div>
+
+        <div class="field">
+          <label for="weightInput">体重 (kg) <span class="optional">任意</span></label>
+          <input
+            id="weightInput"
+            type="number"
+            inputmode="decimal"
+            min="20"
+            max="200"
+            placeholder="未入力の場合は 60kg で計算"
+          />
+        </div>
+
+        <p id="inputError" class="error-text" aria-live="polite"></p>
+
+        <button id="calculateBtn" class="primary-button">
+          このカロリーを運動時間に換算
+        </button>
+      </section>
+
+      <!-- 結果カード -->
+      <section id="resultCard" class="card result-card" hidden>
+        <h2 class="card-title">2. 必要な運動時間の目安</h2>
+        <p id="summaryText" class="summary-text"></p>
+
+        <div id="exerciseCards" class="exercise-grid">
+          <!-- JSでカードを追加 -->
+        </div>
+      </section>
+
+      <p class="note">
+        ※計算結果は METs に基づく一般的な目安です。実際の消費カロリーには個人差があります。<br />
+        ※医療・ダイエット指導ではなく、参考情報としてご利用ください。
+      </p>
+    </main>
+
+  </div>
+
+  <!-- チャレンジモード用オーバーレイ -->
+  <div id="challengeOverlay" class="overlay hidden" aria-hidden="true">
+    <div class="overlay-backdrop"></div>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="challengeTitle">
+      <button id="modalCloseBtn" class="modal-close" aria-label="閉じる">×</button>
+
+      <div class="modal-header">
+        <div id="challengeIcon" class="challenge-icon"></div>
+        <div class="modal-header-text">
+          <h2 id="challengeTitle" class="modal-title"></h2>
+          <p id="challengeSubtitle" class="modal-subtitle"></p>
+        </div>
+      </div>
+
+      <!-- 準備OK？ 画面 -->
+      <div id="challengeReady" class="modal-body">
+        <p class="ready-text">準備OK？</p>
+        <button id="challengeStartBtn" class="primary-button full-width">
+          スタート
+        </button>
+      </div>
+
+      <!-- タイマー画面 -->
+      <div id="challengeTimer" class="modal-body hidden">
+        <div class="timer-display" id="timerDisplay">00:00</div>
+        <p id="timerTargetText" class="timer-target-text"></p>
+
+        <div class="progress-bar">
+          <div id="timerProgress" class="progress-inner"></div>
+        </div>
+
+        <p id="timerMessage" class="timer-message"></p>
+
+        <div class="timer-controls">
+          <button id="pauseResumeBtn" class="secondary-button">一時停止</button>
+          <button id="stopBtn" class="ghost-button">終了</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        })
+        .catch(function(e) {});
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

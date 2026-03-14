@@ -1,0 +1,445 @@
+:root {
+  /* デフォルトは寒色系テーマ */
+  --bg-main: #f4f8fb;
+  --card-bg: #ffffff;
+  --accent: #4a90e2;
+  --accent-soft: rgba(74, 144, 226, 0.08);
+  --text-main: #223146;
+  --text-sub: #666666;
+  --error: #e53935;
+  --border-soft: #dde5ee;
+  --bg-image: none;
+  --bg-opacity: 0.25;
+  --card-opacity: 1;
+  --shadow-soft: 0 6px 14px rgba(0, 0, 0, 0.04);
+}
+
+/* 暖色系テーマのオーバーライド */
+body.theme-warm {
+  --bg-main: #fff7f3;
+  --card-bg: #ffffff;
+  --accent: #ff7f50; /* コーラル系 */
+  --accent-soft: rgba(255, 127, 80, 0.08);
+  --text-main: #503028;
+}
+
+/* 全体レイアウト */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: var(--text-main);
+  font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-main);
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ヘッダー */
+
+.header {
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: var(--text-sub);
+}
+
+.short-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+/* カード共通 */
+
+.card {
+  position: relative;
+  background-color: rgba(255, 255, 255, var(--card-opacity));
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  padding: 16px 16px 18px;
+  margin-bottom: 16px;
+}
+
+/* 入力カード */
+
+.input-card {
+  border-left: 4px solid var(--accent);
+  min-height: 0;
+}
+
+.input-card .form-group {
+  margin-bottom: 12px;
+}
+
+.bg-group {
+  border: 1px dashed var(--border-soft);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.input-card label {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.required {
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: #ffffff;
+}
+
+input[type="text"]::placeholder {
+  color: #aaaaaa;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.bg-group input[type="file"] {
+  padding: 8px 10px;
+  background-color: #ffffff;
+}
+
+.bg-opacity-control {
+  margin-top: 10px;
+}
+
+.range-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+
+.range-value {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+#bgOpacityInput {
+  width: 100%;
+}
+
+.help-text {
+  margin: 6px 0 0;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+.text-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.text-btn:disabled {
+  color: #b5bdc9;
+  cursor: not-allowed;
+}
+
+/* テーマ切り替え */
+
+.theme-group {
+  margin-top: 8px;
+}
+
+.theme-label {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.theme-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-btn {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background-color: #ffffff;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--text-sub);
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.theme-btn.active {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* エラーメッセージ */
+
+.error-message {
+  min-height: 1em;
+  margin: 4px 0 10px;
+  font-size: 0.85rem;
+  color: var(--error);
+}
+
+/* 結果カード */
+
+.result-card {
+  border-left: 4px solid var(--accent);
+  min-height: 210px; /* 画像化時のアスペクト比を意識して少し高さを確保 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.result-card.has-bg-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: var(--bg-opacity);
+  border-radius: 16px;
+  z-index: 0;
+}
+
+.result-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ヘッダー部分（TODAY + 今日の日付） */
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+.result-header-left {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.result-header-right {
+  text-align: right;
+}
+
+/* 欧文風日付（today ＆ event） */
+.date-en {
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.03em;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+/* メイン「あと◯日」「本日」「◯日経過」 */
+.result-main {
+  font-size: 1.1rem;          /* ← プレースホルダ用の標準サイズに変更 */
+  font-weight: 600;
+  margin: 10px 0 6px;
+  color: var(--accent);
+  word-break: keep-all;
+  text-align: center;
+}
+
+/* 結果が出たときにだけ大きくする */
+.result-main.has-result {
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+
+/* イベント名＋イベント日 */
+
+.result-sub {
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.result-sub.date {
+  margin-top: 2px;
+}
+
+/* ボタン */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.06s ease, box-shadow 0.06s ease, background-color 0.12s ease, color 0.12s ease;
+}
+
+.primary-btn {
+  background-color: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.outline-btn {
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  box-shadow: none;
+  margin-bottom: 8px;
+}
+
+.outline-btn:active {
+  background-color: var(--accent-soft);
+}
+
+.secondary-btn {
+  background-color: #ffffff;
+  color: var(--accent);
+  border: 1px solid var(--border-soft);
+  box-shadow: none;
+}
+
+.secondary-btn:active {
+  background-color: var(--accent-soft);
+}
+
+/* アクションエリア */
+
+.actions {
+  margin-bottom: 16px;
+}
+
+.hint {
+  margin: 8px 4px 0;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+.bookmark-hint {
+  margin-top: 4px;
+}
+
+/* 補足説明 */
+
+.explain {
+  margin-bottom: 24px;
+}
+
+.explain-title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.explain-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  list-style: disc;
+}
+
+.explain-list li {
+  margin-bottom: 4px;
+}
+
+/* フッター（読み込み前のプレースホルダ） */
+
+.footer-placeholder {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: #999999;
+  text-align: center;
+  padding: 8px 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* PC幅対応（軽く中央寄せ） */
+
+@media (min-width: 600px) {
+  .page-wrapper {
+    padding: 24px 16px 32px;
+  }
+
+  .header {
+    text-align: center;
+  }
+}

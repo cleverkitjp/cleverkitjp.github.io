@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>生まれ年オールインワン判定｜年齢・干支・和暦・厄年が一瞬で分かる無料ツール</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6517NYNFF');
+</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="生年月日を1回入力するだけで、満年齢・数え年・干支・和暦・節目年齢・学年・社会人年数までを一括表示できる、スマホ特化の年齢計算ツールです。広告を最小限に抑えた、軽くて見やすいWebアプリです。">
+  <link rel="canonical" href="https://cleverkitjp.github.io/age-eto-tool/">
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="生まれ年オールインワン判定｜年齢・干支・和暦・厄年が一瞬で分かる無料ツール">
+  <meta property="og:description" content="生年月日を1回入力するだけで、満年齢・数え年・干支・和暦・節目年齢・学年・社会人年数までを一括表示できる、スマホ特化の年齢計算ツールです。">
+  <meta property="og:image" content="https://cleverkitjp.github.io/age-eto-tool/ogp.png">
+  <meta property="og:url" content="https://cleverkitjp.github.io/age-eto-tool/">
+  <meta name="twitter:card" content="summary_large_image">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --text-main: #111827;
+      --text-sub: #6b7280;
+      --border: #e5e7eb;
+      --radius-lg: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245,245,247,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+    }
+    .site-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    main {
+      padding: 12px;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 8px 0 4px;
+    }
+    .lead {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.04);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .card-subtitle {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    input[type="date"] {
+      width: 100%;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .field-row {
+      margin-bottom: 10px;
+    }
+    .inline-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .inline-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+    .btn-primary {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn-primary:active {
+      opacity: 0.9;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .result-label {
+      color: var(--text-sub);
+    }
+    .result-value {
+      font-weight: 500;
+    }
+    .bottom-links {
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .bottom-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin-right: 8px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .copy-btn {
+      border: none;
+      background: transparent;
+      font-size: 11px;
+      color: var(--accent);
+      padding: 4px 6px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .copy-btn:active {
+      background: var(--accent-soft);
+    }
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid var(--border);
+      background: #fff;
+      z-index: 20;
+    }
+    .bottom-nav-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .nav-item {
+      padding: 6px 0 4px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+    .nav-item.active {
+      color: var(--accent);
+      font-weight: 600;
+      border-top: 2px solid var(--accent);
+    }
+    .footer-links {
+      padding: 12px;
+      font-size: 11px;
+      color: var(--text-sub);
+      text-align: center;
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "生まれ年オールインワン判定｜年齢・干支・和暦・厄年が一瞬で分かる無料ツール",
+  "url": "https://cleverkitjp.github.io/age-eto-tool/",
+  "applicationCategory": "Utility",
+  "operatingSystem": "All"
+}
+</script>
+
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="header-inner">
+      <div class="site-title">生まれ年オールインワン判定</div>
+      <div style="font-size:12px;color:#6b7280;">年齢・干支・和暦・厄年が一瞬で分かる無料ツール</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h1>生年月日から一括で計算</h1>
+      <p class="lead">
+        生年月日を1回入力するだけで、年齢・数え年・干支・和暦・節目年齢・学年をまとめて表示します。
+      </p>
+      <div class="field-row">
+        <label for="birthdate">生年月日</label>
+        <input type="date" id="birthdate">
+      </div>
+      <div class="inline-row">
+        <input type="checkbox" id="useToday" checked>
+        <label for="useToday" style="margin:0;">今日（現在）時点で計算する</label>
+      </div>
+      <div class="field-row" id="refDateRow" style="display:none;">
+        <label for="referenceDate">基準日</label>
+        <input type="date" id="referenceDate">
+      </div>
+      <button class="btn-primary" id="calcBtn">一括計算する</button>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">基本情報</div>
+          <div class="card-subtitle">満年齢・数え年など</div>
+        </div>
+        <button class="copy-btn" data-copy-target="basicCard">コピー</button>
+      </div>
+      <div id="basicCard">
+        <div class="result-row">
+          <div class="result-label">満年齢</div>
+          <div class="result-value" id="ageYears">–</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">数え年</div>
+          <div class="result-value" id="kazoedos">–</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">誕生日からの日数</div>
+          <div class="result-value" id="daysSinceBirth">–</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">暦情報</div>
+          <div class="card-subtitle">和暦・西暦・干支・曜日</div>
+        </div>
+        <button class="copy-btn" data-copy-target="calendarCard">コピー</button>
+      </div>
+      <div id="calendarCard">
+        <div class="result-row">
+          <div class="result-label">西暦・和暦</div>
+          <div class="result-value" id="eraText">–</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">干支</div>
+          <div class="result-value" id="eto">–</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">生まれた曜日</div>
+          <div class="result-value" id="weekday">–</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">節目年齢</div>
+          <div class="card-subtitle">主な節目の年</div>
+        </div>
+        <button class="copy-btn" data-copy-target="milestoneCard">コピー</button>
+      </div>
+      <div id="milestoneCard"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">学年情報</div>
+          <div class="card-subtitle">現在の学年と入学・卒業年</div>
+        </div>
+        <button class="copy-btn" data-copy-target="schoolCard">コピー</button>
+      </div>
+      <div id="schoolCard">
+        <div class="result-row">
+          <div class="result-label">現在の区分</div>
+          <div class="result-value" id="schoolStage">–</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">現在の学年</div>
+          <div class="result-value" id="schoolGrade">–</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">小学校入学年</div>
+          <div class="result-value" id="elemEnterYear">–</div>
+        </div>
+        <div class="result-row">
+          <div class="result-label">高校卒業年</div>
+          <div class="result-value" id="highGradYear">–</div>
+        </div>
+      </div>
+    </section>
+      <div class="footer-links">
+        <a href="about.html">このサイトについて</a>｜
+        <a href="how-to.html">使い方</a>
+      </div>
+    
+  </main>
+  <div id="ck-footer-container"></div>
+<script>
+  (function() {
+    var container = document.getElementById('ck-footer-container');
+    if (!container) return;
+
+    fetch('https://cleverkitjp.github.io/footer.html')
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        container.innerHTML = html;
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+      })
+      .catch(function(e) {});
+  })();
+</script>
+  
+</div>
+
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="nav-item active">
+      <span>一括計算</span>
+    </a>
+    <a href="age-table.html" class="nav-item">
+      <span>年齢表</span>
+    </a>
+    <a href="gakunen-table.html" class="nav-item">
+      <span>学年表</span>
+    </a>
+    <a href="calendar-table.html" class="nav-item">
+      <span>暦</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+  const birthInput = document.getElementById('birthdate');
+  const useTodayCheckbox = document.getElementById('useToday');
+  const refDateRow = document.getElementById('refDateRow');
+  const refInput = document.getElementById('referenceDate');
+  const calcBtn = document.getElementById('calcBtn');
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const today = new Date();
+    refInput.value = today.toISOString().slice(0, 10);
+  });
+
+  useTodayCheckbox.addEventListener('change', () => {
+    refDateRow.style.display = useTodayCheckbox.checked ? 'none' : 'block';
+  });
+
+  calcBtn.addEventListener('click', () => {
+    const birthStr = birthInput.value;
+    if (!birthStr) {
+      alert('生年月日を入力してください。');
+      return;
+    }
+    const birth = new Date(birthStr + 'T00:00:00');
+    let baseDate = new Date();
+    if (!useTodayCheckbox.checked) {
+      const refStr = refInput.value;
+      if (!refStr) {
+        alert('基準日を入力してください。');
+        return;
+      }
+      baseDate = new Date(refStr + 'T00:00:00');
+    }
+    if (birth > baseDate) {
+      alert('基準日より未来の生年月日です。');
+      return;
+    }
+
+    updateBasicInfo(birth, baseDate);
+    updateCalendarInfo(birth);
+    updateMilestones(birth);
+    updateSchoolInfo(birth, baseDate);
+  });
+
+  function updateBasicInfo(birth, baseDate) {
+    const age = calcAge(birth, baseDate);
+    document.getElementById('ageYears').textContent = `${age}歳`;
+    document.getElementById('kazoedos').textContent = `${age + 1}歳`;
+
+    const days = Math.floor((baseDate - birth) / (1000 * 60 * 60 * 24));
+    document.getElementById('daysSinceBirth').textContent = `${days.toLocaleString()}日`;
+  }
+
+  function calcAge(birth, baseDate) {
+    let age = baseDate.getFullYear() - birth.getFullYear();
+    const m = baseDate.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && baseDate.getDate() < birth.getDate())) age--;
+    return age;
+  }
+
+  function updateCalendarInfo(birth) {
+    const y = birth.getFullYear();
+    document.getElementById('eraText').textContent =
+      `${y}年（${toJapaneseEra(y)}）`;
+
+    document.getElementById('eto').textContent = getEto(y);
+
+    const weekdayNames = ['日', '月', '火', '水', '木', '金', '土'];
+    document.getElementById('weekday').textContent =
+      weekdayNames[birth.getDay()] + '曜日';
+  }
+
+  function toJapaneseEra(year) {
+    if (year >= 2019) return `令和${year - 2018}年`;
+    if (year >= 1989) return `平成${year - 1988}年`;
+    if (year >= 1926) return `昭和${year - 1925}年`;
+    if (year >= 1912) return `大正${year - 1911}年`;
+    if (year >= 1868) return `明治${year - 1867}年`;
+    return '不明（明治以前）';
+  }
+
+  function getEto(year) {
+    const etoList = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+    const index = (year - 4) % 12;
+    return etoList[index < 0 ? index + 12 : index];
+  }
+
+  function updateMilestones(birth) {
+    const container = document.getElementById('milestoneCard');
+    container.innerHTML = '';
+    const milestones = [20, 30, 40, 50, 60, 65, 70];
+    milestones.forEach(m => {
+      const year = birth.getFullYear() + m;
+      const era = toJapaneseEra(year);
+      const row = document.createElement('div');
+      row.className = 'result-row';
+      row.innerHTML = `
+        <div class="result-label">${m}歳の年</div>
+        <div class="result-value">${year}年（${era}）</div>
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  // ★ 修正版：日本の学年ルール（4/2〜翌4/1）に完全準拠
+  function updateSchoolInfo(birth, baseDate) {
+    const by = birth.getFullYear();
+    const bm = birth.getMonth() + 1;
+    const bd = birth.getDate();
+
+    // 小学校入学年度
+    let enter;
+    if (bm > 4 || (bm === 4 && bd >= 2)) {
+      enter = by + 7; // 4/2〜12/31
+    } else {
+      enter = by + 6; // 1/1〜4/1
+    }
+
+    const grad = enter + 12;
+
+    // 現在の学年度
+    const cy = baseDate.getFullYear();
+    const cm = baseDate.getMonth() + 1;
+    const schoolYear = cm >= 4 ? cy : cy - 1;
+
+    // index=0が小1
+    const index = schoolYear - enter;
+
+    let stage = '未就学';
+    let grade = '–';
+
+    if (index < 0) {
+      stage = '未就学';
+    } else if (index <= 5) {
+      stage = '小学生';
+      grade = `${index + 1}年生`;
+    } else if (index <= 8) {
+      stage = '中学生';
+      grade = `${index - 5}年生`;
+    } else if (index <= 11) {
+      stage = '高校生';
+      grade = `${index - 8}年生`;
+    } else if (index <= 15) {
+      stage = '大学生など';
+      grade = `${index - 11}年生相当`;
+    } else {
+      stage = '社会人など';
+      grade = '–';
+    }
+
+    document.getElementById('elemEnterYear').textContent =
+      `${enter}年（${toJapaneseEra(enter)}）`;
+    document.getElementById('highGradYear').textContent =
+      `${grad}年（${toJapaneseEra(grad)}）`;
+
+    document.getElementById('schoolStage').textContent = stage;
+    document.getElementById('schoolGrade').textContent = grade;
+  }
+
+  // カードコピー
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const target = document.getElementById(btn.dataset.copyTarget);
+      const texts = [];
+      target.querySelectorAll('.result-row').forEach(row => {
+        const label = row.querySelector('.result-label')?.textContent ?? '';
+        const value = row.querySelector('.result-value')?.textContent ?? '';
+        texts.push(`${label}：${value}`);
+      });
+      try {
+        await navigator.clipboard.writeText(texts.join('\n'));
+        btn.textContent = 'コピー済';
+        setTimeout(() => btn.textContent = 'コピー', 1200);
+      } catch {
+        alert('コピーに失敗しました。');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

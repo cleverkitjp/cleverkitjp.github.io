@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- updated -->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
+     crossorigin="anonymous"></script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>曜日・祝日・営業日 判定ツール</title>
+  <meta name="description" content="日付を入れるだけで「曜日」「暦日（土日/平日）」「祝日」「営業日」「今日からの差」「年初/年度の週番号」を即判定（日本時間）。" />
+
+  <meta property="og:title" content="曜日・祝日・営業日 判定ツール" />
+  <meta property="og:description" content="曜日・祝日・営業日・今日からの差・週番号を1画面で即判定（日本時間）。" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="ck-wrap">
+    <header class="ck-head">
+      <h1 class="ck-title">曜日・祝日・営業日 判定ツール</h1>
+      <p class="ck-subtitle">日本時間で「今日」を初期セット。祝日判定は外部API参照（失敗時も暦日/曜日は即答）。</p>
+    </header>
+
+    <section class="ck-card" aria-label="日付入力">
+      <div class="ck-field">
+        <label class="ck-label" for="dateInput">日付</label>
+        <input id="dateInput" class="ck-input" type="date" inputmode="none" />
+      </div>
+
+      <div class="ck-actions" role="group" aria-label="操作">
+        <button id="todayBtn" class="ck-btn ck-btn-primary" type="button">今日</button>
+        <button id="clearBtn" class="ck-btn" type="button">クリア</button>
+      </div>
+
+      <details class="ck-help">
+        <summary>補足</summary>
+        <div class="ck-help-body">
+          <p>「今日」は日本時間（Asia/Tokyo）を採用します。祝日判定は外部APIを参照し、通信に失敗した場合は「祝日：取得失敗」と表示します（曜日/暦日は端末内で即表示）。</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="ck-card ck-result" aria-label="判定結果">
+      <div class="ck-result-top">
+        <div class="ck-date" id="datePretty">—</div>
+        <div class="ck-badges" id="badges"></div>
+      </div>
+
+      <div class="ck-result-main">
+        <div class="ck-row">
+          <div class="ck-row-label">曜日</div>
+          <div class="ck-row-value" id="dowText">—</div>
+        </div>
+
+        <div class="ck-row">
+          <div class="ck-row-label">暦日</div>
+          <div class="ck-row-value" id="calendarDayText">—</div>
+        </div>
+
+        <div class="ck-row">
+          <div class="ck-row-label">祝日</div>
+          <div class="ck-row-value" id="holidayText">—</div>
+        </div>
+
+        <div class="ck-row" id="holidayNameRow" hidden>
+          <div class="ck-row-label">祝日名</div>
+          <div class="ck-row-value" id="holidayNameText">—</div>
+        </div>
+
+        <div class="ck-row">
+          <div class="ck-row-label">営業日</div>
+          <div class="ck-row-value" id="businessDayText">—</div>
+        </div>
+
+        <div class="ck-row">
+          <div class="ck-row-label">今日から</div>
+          <div class="ck-row-value" id="diffText">—</div>
+        </div>
+
+        <div class="ck-row">
+          <div class="ck-row-label">年初週</div>
+          <div class="ck-row-value" id="yearWeekText">—</div>
+        </div>
+
+        <div class="ck-row">
+          <div class="ck-row-label">年度週</div>
+          <div class="ck-row-value" id="fiscalWeekText">—</div>
+        </div>
+      </div>
+
+      <div class="ck-note" id="noteText" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        })
+        .catch(function(e) {});
+    })();
+  </script>
+</body>
+</html>

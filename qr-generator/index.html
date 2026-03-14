@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>QRコード作成ツール｜シンプル＆高速</title>
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6517NYNFF');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta property="og:title" content="QRコード作成ツール">
+  <meta property="og:description" content="URLやテキストからQRコードを作成して保存できます。">
+  <meta name="description" content="スマホ最適化された無料のQRコード作成ツール。URL・テキストから即時生成しPNG保存できます。">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --primary: #007aff;
+      --primary-dark: #0060c7;
+      --text-main: #222;
+      --text-muted: #666;
+      --border: #ddd;
+      --error: #d32f2f;
+      --radius-lg: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 16px;
+      background: #f5f5f7;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+    }
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 22px 20px 26px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    h1 {
+      font-size: 1.25rem;
+      margin: 0 0 4px;
+      font-weight: 700;
+    }
+    .subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .input-help {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin: 4px 0 6px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      resize: vertical;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0,122,255,0.15);
+    }
+
+    .options-group {
+      margin-top: 10px;
+      margin-bottom: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .option-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.82rem;
+    }
+    .option-row span.label {
+      font-weight: 600;
+    }
+    .option-row select {
+      flex: 1;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      background: #fff;
+    }
+
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .color-row span.label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .color-swatches {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .color-swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      padding: 0;
+      background-clip: padding-box;
+      cursor: pointer;
+    }
+    .color-swatch::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+    }
+    .color-swatch.active {
+      border-color: #000;
+    }
+    .color-swatch[data-color="#000000"]::after { background: #000000; }
+    .color-swatch[data-color="#333333"]::after { background: #333333; }
+    .color-swatch[data-color="#1b3a8a"]::after { background: #1b3a8a; }
+    .color-swatch[data-color="#006644"]::after { background: #006644; }
+    .color-swatch[data-color="#7a1e2c"]::after { background: #7a1e2c; }
+    .color-swatch[data-color="#4b2d73"]::after { background: #4b2d73; }
+
+    .color-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0 6px;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      flex: 1;
+    }
+    .btn-primary:active {
+      background: var(--primary-dark);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .qr-wrapper {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .qr-target {
+      width: 220px;
+      height: 220px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05) inset;
+    }
+    .qr-placeholder {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.45;
+      padding: 0 8px;
+    }
+
+    .btn-download {
+      border-radius: 999px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      background: #fff;
+      color: var(--text-main);
+      text-decoration: none;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .btn-download.enabled {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .error-message {
+      font-size: 0.78rem;
+      color: var(--error);
+      min-height: 1em;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+<main class="card">
+  <h1>QRコード作成ツール</h1>
+  <p class="subtitle">ブラウザだけで、URLやテキストからQRコードを作成できます。</p>
+
+  <label for="qr-input">内容（URL・テキストなど）</label>
+  <p class="input-help">名刺URL・Wi-Fi情報・イベント案内など自由に入力できます。</p>
+  <textarea id="qr-input" placeholder="例：https://example.com"></textarea>
+
+  <div class="options-group">
+    <div class="option-row">
+      <span class="label">サイズ</span>
+      <select id="size-select">
+        <option value="160">小（160px）</option>
+        <option value="220" selected>中（220px）</option>
+        <option value="280">大（280px）</option>
+      </select>
+    </div>
+    <div class="option-row">
+      <span class="label">誤り訂正レベル</span>
+      <select id="level-select">
+        <option value="L">L（データ優先）</option>
+        <option value="M" selected>M（標準）</option>
+        <option value="Q">Q（やや強い）</option>
+        <option value="H">H（読み取り優先）</option>
+      </select>
+    </div>
+    <div class="color-row">
+      <span class="label">色</span>
+      <div class="color-swatches" id="color-swatches">
+        <button type="button" class="color-swatch active" data-color="#000000" aria-label="黒"></button>
+        <button type="button" class="color-swatch" data-color="#333333" aria-label="ダークグレー"></button>
+        <button type="button" class="color-swatch" data-color="#1b3a8a" aria-label="ネイビー"></button>
+        <button type="button" class="color-swatch" data-color="#006644" aria-label="ダークグリーン"></button>
+        <button type="button" class="color-swatch" data-color="#7a1e2c" aria-label="バーガンディ"></button>
+        <button type="button" class="color-swatch" data-color="#4b2d73" aria-label="ディープパープル"></button>
+      </div>
+    </div>
+    <div class="color-labels">
+      <span>黒</span><span>ダークグレー</span><span>ネイビー</span>
+      <span>ダークグリーン</span><span>バーガンディ</span><span>ディープパープル</span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="generate-btn" class="btn btn-primary" type="button">QRコードを生成</button>
+    <button id="clear-btn" class="btn btn-ghost" type="button">クリア</button>
+  </div>
+  <div id="error-message" class="error-message"></div>
+
+  <div class="qr-wrapper">
+    <div id="qr-target" class="qr-target">
+      <div id="qr-placeholder" class="qr-placeholder">
+        入力した内容から<br>ここにQRコードが表示されます。
+      </div>
+    </div>
+    <a id="download-btn" class="btn-download" href="#">PNG画像として保存</a>
+  </div>
+</main>
+</div>
+
+<!-- qrcode.js（integrityなし） -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+(function () {
+  const input = document.getElementById('qr-input');
+  const generateBtn = document.getElementById('generate-btn');
+  const clearBtn = document.getElementById('clear-btn');
+  const errorEl = document.getElementById('error-message');
+  const qrTarget = document.getElementById('qr-target');
+  const placeholder = document.getElementById('qr-placeholder');
+  const downloadBtn = document.getElementById('download-btn');
+
+  const sizeSelect = document.getElementById('size-select');
+  const levelSelect = document.getElementById('level-select');
+  const colorSwatches = document.querySelectorAll('.color-swatch');
+
+  let qrInstance = null;
+  let currentColor = "#000000";
+
+  function resetQR() {
+    if (qrInstance) qrInstance.clear();
+    qrTarget.innerHTML = "";
+    qrTarget.appendChild(placeholder);
+    downloadBtn.classList.remove("enabled");
+    downloadBtn.href = "#";
+    downloadBtn.download = "";
+  }
+
+  function generateQR() {
+    const text = input.value.trim();
+    if (!text) {
+      errorEl.textContent = "QRコードにしたい内容を入力してください。";
+      resetQR();
+      return;
+    }
+    errorEl.textContent = "";
+
+    const size = parseInt(sizeSelect.value, 10) || 220;
+    const levelKey = levelSelect.value || "M";
+    const correctLevel = QRCode.CorrectLevel[levelKey] || QRCode.CorrectLevel.M;
+
+    qrTarget.innerHTML = "";
+    qrInstance = new QRCode(qrTarget, {
+      text: text,
+      width: size,
+      height: size,
+      colorDark: currentColor,
+      colorLight: "#ffffff",
+      correctLevel: correctLevel
+    });
+
+    setTimeout(() => {
+      const canvas = qrTarget.querySelector("canvas");
+      if (canvas && canvas.toDataURL) {
+        const dataUrl = canvas.toDataURL("image/png");
+        downloadBtn.href = dataUrl;
+        downloadBtn.download = "qr.png";
+        downloadBtn.classList.add("enabled");
+      } else {
+        downloadBtn.classList.remove("enabled");
+        downloadBtn.href = "#";
+        downloadBtn.download = "";
+      }
+    }, 60);
+  }
+
+  generateBtn.addEventListener("click", generateQR);
+
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    errorEl.textContent = "";
+    resetQR();
+  });
+
+  colorSwatches.forEach(btn => {
+    btn.addEventListener("click", () => {
+      colorSwatches.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentColor = btn.getAttribute("data-color") || "#000000";
+    });
+  });
+
+  resetQR();
+})();
+</script>
+
+<div id="ck-footer-container"></div>
+<script>
+  (function() {
+    var container = document.getElementById('ck-footer-container');
+    if (!container) return;
+
+    fetch('https://cleverkitjp.github.io/footer.html')
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        container.innerHTML = html;
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+      })
+      .catch(function(e) {});
+  })();
+</script>
+</body>
+</html>

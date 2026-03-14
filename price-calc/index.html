@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>税込・税抜・割引（%OFF）計算ツール｜買い物中にすぐ使える無料計算機</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6517NYNFF');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="税込価格・税抜価格・割引後価格を素早く計算。セール価格の確認や家計簿入力に。スマホ対応・登録不要の無料計算ツールです。">
+  <!-- 簡易OGP（必要に応じて画像パスを変更） -->
+  <meta property="og:title" content="ショッピング中に“税込いくら？税抜いくら？何％OFF？”が一瞬で分かるシンプル計算ツール">
+  <meta property="og:description" content="ショッピング中に“税込いくら？税抜いくら？何％OFF？”が一瞬で分かるシンプル計算ツール。">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1 class="page-title">税込・税抜・割引 計算ツール</h1>
+      <p class="page-subtitle">
+        買い物中に「税込いくら？」「税抜いくら？」「何％OFF？」が一瞬で分かる、スマホ向けの軽量計算ツールです。
+      </p>
+    </header>
+
+    <section class="card">
+      <div class="tabs" role="tablist">
+        <button class="tab-button active" data-tab="tax" type="button">税込↔税抜</button>
+        <button class="tab-button" data-tab="discount" type="button">%割引</button>
+        <button class="tab-button" data-tab="discount-tax" type="button">割引＋税込</button>
+      </div>
+
+      <!-- 税込↔税抜タブ -->
+      <div class="tab-panel active" id="tab-tax" role="tabpanel">
+        <div class="field">
+          <label for="tax-amount" class="field-label">元の金額（円）</label>
+          <input
+            id="tax-amount"
+            type="number"
+            inputmode="decimal"
+            class="field-input"
+            placeholder="例）1280"
+          >
+        </div>
+
+        <div class="field">
+          <span class="field-label">今の金額は</span>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="tax-mode" value="inclusive" checked>
+              <span>税込</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="tax-mode" value="exclusive">
+              <span>税抜</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-label">税率</span>
+          <div class="pill-group" data-taxrate-group="tax">
+            <button class="pill-button active" type="button" data-taxrate="10">10%</button>
+            <button class="pill-button" type="button" data-taxrate="8">8%</button>
+          </div>
+        </div>
+
+        <p class="field-error" id="tax-error" aria-live="polite"></p>
+
+        <div class="actions">
+          <button id="tax-calc-btn" class="primary-button" type="button">計算する</button>
+        </div>
+
+        <div class="result-card" id="tax-result" aria-live="polite">
+          <p class="result-placeholder">金額とモードを入力して「計算する」を押してください。</p>
+        </div>
+      </div>
+
+      <!-- 割引のみタブ -->
+      <div class="tab-panel" id="tab-discount" role="tabpanel">
+        <div class="field">
+          <label for="discount-original" class="field-label">元の価格（円）</label>
+          <input
+            id="discount-original"
+            type="number"
+            inputmode="decimal"
+            class="field-input"
+            placeholder="例）5000"
+          >
+        </div>
+
+        <div class="field">
+          <label for="discount-rate" class="field-label">割引率（％OFF）</label>
+          <div class="pill-group" data-discount-group="single">
+            <button class="pill-button" type="button" data-discount="10">10%</button>
+            <button class="pill-button" type="button" data-discount="20">20%</button>
+            <button class="pill-button" type="button" data-discount="30">30%</button>
+            <button class="pill-button" type="button" data-discount="50">50%</button>
+          </div>
+          <input
+            id="discount-rate"
+            type="number"
+            inputmode="decimal"
+            class="field-input field-input-inline"
+            placeholder="任意の％（例：15）"
+          >
+        </div>
+
+        <p class="field-error" id="discount-error" aria-live="polite"></p>
+
+        <div class="actions">
+          <button id="discount-calc-btn" class="primary-button" type="button">計算する</button>
+        </div>
+
+        <div class="result-card" id="discount-result" aria-live="polite">
+          <p class="result-placeholder">元の価格と割引率を入力して「計算する」を押してください。</p>
+        </div>
+      </div>
+
+      <!-- 割引＋税込タブ -->
+      <div class="tab-panel" id="tab-discount-tax" role="tabpanel">
+        <div class="field">
+          <label for="dt-original" class="field-label">元の価格（円）</label>
+          <input
+            id="dt-original"
+            type="number"
+            inputmode="decimal"
+            class="field-input"
+            placeholder="例）1280"
+          >
+        </div>
+
+        <div class="field">
+          <label for="dt-discount-rate" class="field-label">割引率（％OFF）</label>
+          <div class="pill-group" data-discount-group="dt">
+            <button class="pill-button" type="button" data-discount="10">10%</button>
+            <button class="pill-button" type="button" data-discount="20">20%</button>
+            <button class="pill-button" type="button" data-discount="30">30%</button>
+            <button class="pill-button" type="button" data-discount="50">50%</button>
+          </div>
+          <input
+            id="dt-discount-rate"
+            type="number"
+            inputmode="decimal"
+            class="field-input field-input-inline"
+            placeholder="任意の％（例：25）"
+          >
+        </div>
+
+        <div class="field">
+          <span class="field-label">税率</span>
+          <div class="pill-group" data-taxrate-group="dt">
+            <button class="pill-button active" type="button" data-taxrate="10">10%</button>
+            <button class="pill-button" type="button" data-taxrate="8">8%</button>
+          </div>
+        </div>
+
+        <p class="field-error" id="dt-error" aria-live="polite"></p>
+
+        <div class="actions">
+          <button id="dt-calc-btn" class="primary-button" type="button">計算する</button>
+        </div>
+
+        <div class="result-card" id="dt-result" aria-live="polite">
+          <p class="result-placeholder">元の価格・割引率・税率を入力して「計算する」を押してください。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        })
+        .catch(function(e) {});
+    })();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

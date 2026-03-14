@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>このサイトについて｜年齢・干支・和暦 一括計算ツール</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="年齢・干支・和暦・学年などをまとめて確認できる本ツールの目的、計算ロジック、プライバシー方針、広告・アフィリエイト、免責事項について説明します。">
+  <link rel="canonical" href="https://cleverkitjp.github.io/age-eto-tool/about.html">
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --text-main: #111827;
+      --text-sub: #6b7280;
+      --border: #e5e7eb;
+      --radius-lg: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245,245,247,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+    }
+    .site-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    main {
+      padding: 12px;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 8px 0 4px;
+    }
+    .lead {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.04);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 15px;
+      margin: 8px 0 4px;
+    }
+    p {
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 4px 0 8px;
+    }
+    ul {
+      padding-left: 18px;
+      margin: 4px 0 8px;
+    }
+    li {
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 2px;
+    }
+    .note {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 4px;
+    }
+    footer {
+      padding: 12px;
+      font-size: 11px;
+      color: var(--text-sub);
+      text-align: center;
+    }
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid var(--border);
+      background: #fff;
+      z-index: 20;
+    }
+    .bottom-nav-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .nav-item {
+      padding: 6px 0 4px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+    .nav-item.active {
+      color: var(--accent);
+      font-weight: 600;
+      border-top: 2px solid var(--accent);
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="header-inner">
+      <div class="site-title">このサイトについて</div>
+      <div style="font-size:12px;color:#6b7280;">年齢・干支・和暦 一括計算</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h1>このサイトについて</h1>
+      <p class="lead">
+        このサイトは、「年齢・干支・和暦・学年」をできるだけシンプルな操作でまとめて確認できるようにした、個人運営のWebツールです。
+        広告や余計なボタンを最小限にして、スマートフォンからの利用に最適化しています。
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="card-title">サイトの目的</div>
+      <div class="card-subtitle">「調べたいことだけ、すぐに分かる」ために</div>
+      <p>
+        既存の年齢計算・干支・和暦サイトは、PC前提のレイアウトや広告の多さにより、
+        スマホで使いにくいケースが多いと感じています。
+      </p>
+      <p>
+        このサイトでは次のような点を重視しています。
+      </p>
+      <ul>
+        <li>生年月日の入力は1回だけで、年齢・数え年・干支・和暦・学年などを一括表示</li>
+        <li>スマホで見やすい縦スクロールのカードUI</li>
+        <li>広告はページ下部などに限定し、操作エリアと明確に分離</li>
+        <li>長期的にメンテナンス不要な、シンプルな静的サイト構成</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="card-title">提供している主な機能</div>
+      <div class="card-subtitle">4つのページで構成されています</div>
+      <ul>
+        <li>
+          <strong>一括計算（トップページ）</strong><br>
+          生年月日と基準日から、満年齢・数え年・干支・和暦・節目年齢・学年などを一度に計算します。
+        </li>
+        <li>
+          <strong>年齢早見表</strong><br>
+          生まれ年ごとの「今年の年齢」「和暦」「干支」を一覧できます。
+        </li>
+        <li>
+          <strong>学年早見表</strong><br>
+          「◯年4月2日〜翌年4月1日生まれ」を1つの学年としてまとめ、現在の学年・大学年次・社会人年数を確認できます。
+        </li>
+        <li>
+          <strong>和暦・干支早見表</strong><br>
+          明治・大正・昭和・平成・令和それぞれの年について、西暦・和暦・干支を一覧表示します。
+        </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="card-title">計算ロジックの考え方</div>
+      <div class="card-subtitle">できるだけ直感的で、かつ説明可能なルールに限定</div>
+
+      <h2>年齢の計算</h2>
+      <ul>
+        <li>満年齢：基準日から見て「誕生日を迎えたかどうか」で計算</li>
+        <li>数え年：満年齢＋1として計算</li>
+      </ul>
+
+      <h2>学年の計算</h2>
+      <ul>
+        <li>日本の学年ルール（4月2日〜翌年4月1日生まれが同じ学年）に基づきます。</li>
+        <li>小学校入学年は「4月2日〜12月31日生まれ → 誕生年＋7」「1月1日〜4月1日生まれ → 誕生年＋6」で計算しています。</li>
+        <li>大学や社会人については、浪人や留年を考慮せず「ストレートに進学・卒業した場合」の目安として表示しています。</li>
+      </ul>
+
+      <h2>和暦と干支</h2>
+      <ul>
+        <li>元号は、以下のように西暦との対応を簡略化して計算しています。<br>
+          例）令和：2019年＝令和1年、2020年＝令和2年…
+        </li>
+        <li>実際の元号切り替え日は月日が異なりますが、本サイトでは「その年の多くの期間を占める元号」として扱っています。</li>
+        <li>干支は、西暦年からシンプルな周期計算で求めています。</li>
+      </ul>
+
+      <p class="note">
+        正確な手続きや公式書類に利用する場合は、必ず役所・学校・各種制度の公式情報をご確認ください。
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="card-title">入力データとプライバシー</div>
+      <div class="card-subtitle">生年月日はブラウザ内だけで処理されます</div>
+      <ul>
+        <li>生年月日や基準日は、JavaScriptにより「お使いのブラウザ内」でのみ計算に利用されます。</li>
+        <li>サーバ側で個人を特定できる情報を保存・収集する仕組みは設けていません。</li>
+        <li>アクセス解析ツールや広告サービスを導入する場合は、別途そのサービスのポリシーに従います。</li>
+      </ul>
+      <p class="note">
+        ただし、広告配信事業者によるクッキー等の利用が行われる場合があります。
+        詳細は各事業者のプライバシーポリシーをご確認ください。
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="card-title">広告・アフィリエイトについて</div>
+      <div class="card-subtitle">操作の邪魔にならない最小限の表示を目指します</div>
+      <ul>
+        <li>ページ下部など、操作の邪魔にならない位置に広告枠を設ける場合があります。</li>
+        <li>一部のリンクについて、アフィリエイトリンクを利用することがあります。</li>
+        <li>いずれの場合も、計算結果や表示内容は広告とは独立しており、恣意的な変更は行いません。</li>
+      </ul>
+      <p class="note">
+        広告収入は、ドメイン・サーバ維持や今後の機能改善の参考とする予定です。
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="card-title">免責事項</div>
+      <div class="card-subtitle">ご利用はご自身の責任でお願いします</div>
+      <ul>
+        <li>本サイトの計算結果や表示内容について、正確性の確保に努めていますが、その完全性を保証するものではありません。</li>
+        <li>本サイトの利用により生じたいかなる損害についても、運営者は責任を負いかねます。</li>
+        <li>重要な手続き（入学・受験・各種届け出・契約など）の際は、必ず公式の情報源で確認してください。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="card-title">お問い合わせ・フィードバック</div>
+      <div class="card-subtitle">不具合やご要望があればお知らせください</div>
+      <p>
+        計算ロジックの誤りや表示崩れなどを見つけた場合は、
+        ご利用のブラウザや入力内容とあわせてお知らせいただけると助かります。
+      </p>
+      <p>
+        連絡先は、今後 GitHub のリポジトリ（Issue）やX（旧Twitter）アカウントなどを通じてご案内する予定です。
+      </p>
+    </section>
+
+    <footer>
+      <a href="index.html">一括計算ツールに戻る</a>
+    </footer>
+  </main>
+</div>
+
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="nav-item">
+      <span>一括計算</span>
+    </a>
+    <a href="age-table.html" class="nav-item">
+      <span>年齢表</span>
+    </a>
+    <a href="gakunen-table.html" class="nav-item">
+      <span>学年表</span>
+    </a>
+    <a href="calendar-table.html" class="nav-item">
+      <span>暦</span>
+    </a>
+  </div>
+</nav>
+
+<div id="ck-footer-container"></div>
+<script>
+  (function() {
+    var container = document.getElementById('ck-footer-container');
+    if (!container) return;
+
+    fetch('https://cleverkitjp.github.io/footer.html')
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        container.innerHTML = html;
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+      })
+      .catch(function(e) {});
+  })();
+</script>
+
+</body>
+</html>

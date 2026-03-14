@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>毎日のお買い物メモ｜スマホ用買い物チェックリスト</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="牛乳や卵、ティッシュなど、よく買うものをプリセットしたスマホ専用の買い物メモです。在庫チェックと買い物中のチェックを1画面で簡単に管理できます。">
+  <meta property="og:title" content="毎日のお買い物メモ｜スマホ用買い物チェックリスト">
+  <meta property="og:description" content="よく買うものをプリセットした、スマホ専用の買い物用チェックリスト。家で在庫チェック、お店ではカゴに入れたらタップでチェック済みにできます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cleverkitjp.github.io/daily-shopping-memo/">
+  <meta property="og:image" content="https://cleverkitjp.github.io/ogp/daily-shopping-memo.png">
+
+  <!-- OGP -->
+  <meta property="og:title" content="毎日のお買い物メモ｜スマホ用買い物チェックリスト">
+  <meta property="og:description" content="よく買うものをプリセットした、スマホ専用の買い物用チェックリスト。家で在庫チェック、お店ではカゴに入れたらタップでチェック済みにできます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cleverkitjp.github.io/daily-shopping-memo/">
+  <meta property="og:image" content="https://cleverkitjp.github.io/daily-shopping-memo/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- X (Twitter) Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="毎日のお買い物メモ">
+  <meta name="twitter:description" content="在庫チェックと買い物中チェックを1画面で。毎日使えるスマホ用お買い物メモ。">
+  <meta name="twitter:image" content="https://cleverkitjp.github.io/daily-shopping-memo/ogp.png">
+
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-9727255179923866"
+     crossorigin="anonymous"></script>
+
+  <!-- cleverkitjp common CSS -->
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <!-- page local CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="ck-container">
+    <header class="app-header card">
+      <h1 class="app-title">毎日のお買い物メモ</h1>
+      <p class="app-description">
+        牛乳や卵、ティッシュなどの「よく買うもの」をプリセットした、
+        スマホ専用の買い物チェックリストです。<br>
+        家では在庫を見ながら「買うもの」にチェックし、お店ではカゴに入れたらタップしてチェック済みにできます。
+      </p>
+    </header>
+
+    <section class="app-controls card">
+      <div class="mode-toggle">
+        <button type="button" id="mode-stock-btn" class="mode-button active">
+          在庫チェック
+        </button>
+        <button type="button" id="mode-shopping-btn" class="mode-button">
+          買い物中
+        </button>
+      </div>
+      <div class="filter-toggle">
+        <label class="filter-label">
+          <input type="checkbox" id="filter-today">
+          <span>今日の買い物だけ表示</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="items-section">
+      <div id="items-container"></div>
+    </section>
+
+    <section class="custom-section card" id="custom-section">
+      <h2 class="section-title">その他の買うものを追加</h2>
+      <form id="custom-form" class="custom-form">
+        <input
+          type="text"
+          id="custom-name"
+          class="custom-input"
+          placeholder="例：しょうが、おやつ、◯◯ソースなど"
+          autocomplete="off"
+        >
+        <button type="submit" class="primary-button">
+          リストに追加
+        </button>
+      </form>
+      <p class="note-text">
+        追加した品目も、次回以降この端末のブラウザに保存されます。
+      </p>
+    </section>
+
+    <section class="memo-section card">
+      <h2 class="section-title">メモ</h2>
+      <textarea
+        id="free-memo"
+        class="memo-textarea"
+        rows="3"
+        placeholder="特売情報や、今日の買い物のメモを書いておけます。"
+      ></textarea>
+      <p class="note-text">
+        このメモはこの端末のブラウザに保存されます。在庫チェック中も買い物中も自由に編集できます。
+      </p>
+    </section>
+
+    <section class="reset-section card">
+      <h2 class="section-title">リセット</h2>
+      <p class="note-text">
+        買い物が終わったら、今日の買い物フラグだけをリセットできます。
+        すべて初期状態に戻すこともできます。
+      </p>
+      <div class="reset-buttons">
+        <button type="button" id="reset-today-btn" class="secondary-button">
+          今日の買い物をリセット
+        </button>
+        <button type="button" id="reset-all-btn" class="danger-button">
+          すべて初期化（プリセットに戻す）
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        })
+        .catch(function(e) {});
+    })();
+  </script>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

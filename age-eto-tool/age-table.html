@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>年齢早見表｜生まれ年から今年の年齢・干支・和暦・長寿祝いを確認</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="生まれ年ごとに、今年の満年齢・和暦・干支・還暦や米寿などの長寿祝いを一覧できる年齢早見表です。1920年〜今年まで対応し、スマホでも見やすい縦スクロールUIです。">
+  <link rel="canonical" href="https://cleverkitjp.github.io/age-eto-tool/age-table.html">
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --text-main: #111827;
+      --text-sub: #6b7280;
+      --border: #e5e7eb;
+      --radius-lg: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245,245,247,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+    }
+    .site-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    main {
+      padding: 12px;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 8px 0 4px;
+    }
+    .lead {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.04);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    select {
+      width: 100%;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .info-line {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 4px;
+    }
+    .age-item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .age-item:last-child {
+      border-bottom: none;
+    }
+    .age-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .age-year {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .age-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .age-detail {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .age-detail-label {
+      color: var(--text-sub);
+    }
+    .age-detail-value {
+      font-weight: 500;
+    }
+    .age-detail-value-highlight {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid var(--border);
+      background: #fff;
+      z-index: 20;
+    }
+    .bottom-nav-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .nav-item {
+      padding: 6px 0 4px;
+      font-size: 11px;
+      text-align: center;
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+    .nav-item.active {
+      color: var(--accent);
+      font-weight: 600;
+      border-top: 2px solid var(--accent);
+    }
+    .footer-links {
+      padding: 12px;
+      font-size: 11px;
+      color: var(--text-sub);
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .age-item {
+        padding: 6px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="header-inner">
+      <div class="site-title">年齢早見表</div>
+      <div style="font-size:12px;color:#6b7280;">今年の年齢・和暦・干支</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h1>年齢早見表</h1>
+      <p class="lead">
+        生まれ年ごとの「今年の満年齢」「和暦」「干支」を一覧できます。<br>
+        さらに、今年が還暦・古希・喜寿・傘寿・米寿・卒寿・白寿・百寿（紀寿）にあたる場合は、長寿祝いとして表示します。
+      </p>
+      <label for="decadeFilter">表示する生まれ年（年代）</label>
+      <select id="decadeFilter">
+        <option value="all">すべての年を表示</option>
+        <!-- JSで年代ごとの option を追加 -->
+      </select>
+      <div class="info-line" id="currentYearInfo"></div>
+    </section>
+
+    <section class="card">
+      <div id="ageList">
+        <!-- JSで年ごとのカードを生成 -->
+      </div>
+    </section>
+
+      <div class="footer-links">
+        <a href="index.html">一括計算ツールに戻る</a>｜
+        <a href="how-to.html">使い方</a>｜
+        <a href="about.html">このサイトについて</a>
+      </div>
+    
+    <div id="ck-footer-container"></div>
+  </main>
+  <script>
+  (function() {
+    var container = document.getElementById('ck-footer-container');
+    if (!container) return;
+
+    fetch('https://cleverkitjp.github.io/footer.html')
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        container.innerHTML = html;
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+      })
+      .catch(function(e) {});
+  })();
+  </script>
+</div>
+
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <a href="index.html" class="nav-item">
+      <span>一括計算</span>
+    </a>
+    <a href="age-table.html" class="nav-item active">
+      <span>年齢表</span>
+    </a>
+    <a href="gakunen-table.html" class="nav-item">
+      <span>学年表</span>
+    </a>
+    <a href="calendar-table.html" class="nav-item">
+      <span>暦</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+  const decadeSelect = document.getElementById('decadeFilter');
+  const ageList = document.getElementById('ageList');
+  const currentYearInfo = document.getElementById('currentYearInfo');
+
+  const today = new Date();
+  const CURRENT_YEAR = today.getFullYear();
+  const MIN_YEAR = 1920;   // 必要に応じて拡張
+  const MAX_YEAR = CURRENT_YEAR;
+
+  // 和暦
+  function toJapaneseEra(year) {
+    if (year >= 2019) return `令和${year - 2018}年`;
+    if (year >= 1989) return `平成${year - 1988}年`;
+    if (year >= 1926) return `昭和${year - 1925}年`;
+    if (year >= 1912) return `大正${year - 1911}年`;
+    if (year >= 1868) return `明治${year - 1867}年`;
+    return '不明（明治以前）';
+  }
+
+  // 干支
+  function getEto(year) {
+    const etoList = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+    const index = (year - 4) % 12;
+    return etoList[index < 0 ? index + 12 : index];
+  }
+
+  // 長寿祝い（今年の満年齢ベース）
+  const LONGEVITY_MILESTONES = {
+    60: '還暦',
+    70: '古希',
+    77: '喜寿',
+    80: '傘寿',
+    88: '米寿',
+    90: '卒寿',
+    99: '白寿',
+    100: '百寿（紀寿）'
+  };
+
+  function getAgeThisYear(birthYear) {
+    return CURRENT_YEAR - birthYear;
+  }
+
+  function getLongevityLabel(age) {
+    return LONGEVITY_MILESTONES[age] || null;
+  }
+
+  function buildDecadeOptions() {
+    const usedDecades = new Set();
+    for (let y = MAX_YEAR; y >= MIN_YEAR; y--) {
+      usedDecades.add(Math.floor(y / 10) * 10);
+    }
+    const decades = Array.from(usedDecades).sort((a, b) => b - a);
+
+    decades.forEach(dec => {
+      const opt = document.createElement('option');
+      opt.value = String(dec);
+      opt.textContent = `${dec}年代生まれ`;
+      decadeSelect.appendChild(opt);
+    });
+
+    currentYearInfo.textContent = `※ ${CURRENT_YEAR}年時点の満年齢と長寿祝い（該当がある場合）を表示しています。`;
+  }
+
+  function renderList() {
+    const value = decadeSelect.value;
+    ageList.innerHTML = '';
+
+    for (let y = MAX_YEAR; y >= MIN_YEAR; y--) {
+      const decade = Math.floor(y / 10) * 10;
+      if (value !== 'all' && String(decade) !== value) continue;
+
+      const age = getAgeThisYear(y);
+      const era = toJapaneseEra(y);
+      const eto = getEto(y);
+      const longevity = getLongevityLabel(age);
+
+      const item = document.createElement('div');
+      item.className = 'age-item';
+
+      const header = document.createElement('div');
+      header.className = 'age-item-header';
+
+      const yearEl = document.createElement('div');
+      yearEl.className = 'age-year';
+      yearEl.textContent = `${y}年生まれ`;
+
+      const subEl = document.createElement('div');
+      subEl.className = 'age-sub';
+      subEl.textContent = `${era}／${eto}年`;
+
+      header.appendChild(yearEl);
+      header.appendChild(subEl);
+
+      const detailAge = document.createElement('div');
+      detailAge.className = 'age-detail';
+
+      const labelAge = document.createElement('div');
+      labelAge.className = 'age-detail-label';
+      labelAge.textContent = '今年の満年齢';
+
+      const valueAge = document.createElement('div');
+      valueAge.className = 'age-detail-value';
+      valueAge.textContent = age >= 0 ? `${age}歳` : '—';
+
+      detailAge.appendChild(labelAge);
+      detailAge.appendChild(valueAge);
+
+      item.appendChild(header);
+      item.appendChild(detailAge);
+
+      // 長寿祝いがある場合のみ追加行を表示
+      if (longevity) {
+        const detailLong = document.createElement('div');
+        detailLong.className = 'age-detail';
+
+        const labelLong = document.createElement('div');
+        labelLong.className = 'age-detail-label';
+        labelLong.textContent = '長寿祝い';
+
+        const valueLong = document.createElement('div');
+        valueLong.className = 'age-detail-value age-detail-value-highlight';
+        valueLong.textContent = `${longevity}`;
+
+        detailLong.appendChild(labelLong);
+        detailLong.appendChild(valueLong);
+        item.appendChild(detailLong);
+      }
+
+      ageList.appendChild(item);
+    }
+  }
+
+  decadeSelect.addEventListener('change', renderList);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    buildDecadeOptions();
+    renderList();
+  });
+</script>
+
+
+</body>
+</html>

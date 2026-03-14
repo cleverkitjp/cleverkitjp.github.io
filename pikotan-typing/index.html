@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ピコたん|小学生英単語も学べる無料のタイピング練習</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F6517NYNFF');
+</script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="ピコたん｜英単語｜タイピング｜小学生向け無料タイピングゲーム">
+<meta property="og:description" content="英単語365語入りのタイピング練習アプリ。小学生向け・無料・学校や家庭で使える安心設計。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://cleverkitjp.github.io/pikotan-typing/ogp.png">
+<meta property="og:url" content="https://cleverkitjp.github.io/pikotan-typing/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg1: #fffbf0;
+      --bg2: #e6f7ff;
+      --card-bg: #ffffff;
+      --primary: #4a90e2;
+      --easy: #4caf50;
+      --normal: #4a90e2;
+      --hard: #ff9800;
+      --challenge: #e91e63;
+    }
+
+    body {
+      font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 16px;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin: 12px 0 16px;
+      letter-spacing: 0.06em;
+      color: #444;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    .logo-title {
+      margin: 12px 0 16px;
+      text-align: center;
+    }
+    .logo-title svg {
+      height: 80px;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 20px 20px 24px;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 6px;
+      border-radius: 18px 18px 0 0;
+      background: linear-gradient(90deg, #ffb74d, #4a90e2, #81c784, #f48fb1);
+    }
+
+    .level-desc {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      color: #555;
+    }
+
+    .level-btn {
+      width: 100%;
+      padding: 16px;
+      margin: 8px 0;
+      font-size: 20px;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.08s ease;
+    }
+
+    .btn-easy {
+      background: var(--easy);
+      box-shadow: 0 3px 10px rgba(76,175,80,0.35);
+    }
+
+    .btn-normal {
+      background: var(--normal);
+      box-shadow: 0 3px 10px rgba(74,144,226,0.35);
+    }
+
+    .btn-hard {
+      background: var(--hard);
+      box-shadow: 0 3px 10px rgba(255,152,0,0.35);
+    }
+
+    .btn-challenge {
+      background: var(--challenge);
+      box-shadow: 0 3px 10px rgba(233,30,99,0.35);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+
+    #count {
+      font-size: 18px;
+      color: #333;
+      background: #f1f8ff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #timer {
+      font-size: 18px;
+      color: #fff;
+      background: #ff7043;
+      padding: 6px 14px;
+      border-radius: 999px;
+      min-width: 130px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(255,112,67,0.5);
+      transition: transform 0.15s ease;
+    }
+
+    #timer.timer-warning {
+      animation: timer-blink 0.6s infinite alternate;
+    }
+    @keyframes timer-blink {
+      from {
+        background: #ff7043;
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(255,112,67,0.5);
+      }
+      to {
+        background: #d32f2f;
+        transform: scale(1.08);
+        box-shadow: 0 0 12px rgba(211,47,47,0.8);
+      }
+    }
+
+    #levelStatus {
+      margin-top: 4px;
+      margin-bottom: 22px;
+      font-size: 18px;
+      color: #666;
+      padding: 5px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      background: #fff3cd;
+    }
+
+    .question-box {
+      border-radius: 14px;
+      border: 2px solid #e0e7ff;
+      background: #f9fbff;
+      padding: 12px 12px 10px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: box-shadow 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+    }
+
+    .question-box.error {
+      animation: flash-red 0.18s 2;
+    }
+    @keyframes flash-red {
+      50% {
+        background-color: #ffe5e5;
+        border-color: #f44336;
+        box-shadow: 0 0 0 4px rgba(244,67,54,0.35);
+      }
+    }
+
+    .question-box.success {
+      animation: flash-blue 0.18s 1;
+    }
+    @keyframes flash-blue {
+      50% {
+        background-color: #e3f2fd;
+        border-color: #42a5f5;
+        box-shadow: 0 0 0 4px rgba(66,165,245,0.4);
+      }
+    }
+
+    #jp {
+      font-size: 22px;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    #jp .jp-kana { color: #1565c0; font-weight: 600; }
+    #jp .jp-alpha { color: #d32f2f; font-weight: 700; }
+
+    #roma {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 6px;
+      line-height: 1.6;
+      background: #f9fafb;
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-family: ui-monospace, monospace;
+    }
+
+#input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 14px;
+  font-size: 20px;
+  border: 2px solid #d0d7e2;
+  border-radius: 10px;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+    #input:focus {
+      outline: none;
+      border-color: #4a90e2;
+      box-shadow: 0 0 0 3px rgba(74,144,226,0.25);
+    }
+
+    #result {
+      font-size: 24px;
+      text-align: center;
+      margin-top: 14px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.8;
+    }
+    .result-level {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    #result span.small {
+      font-size: 18px;
+      font-weight: normal;
+      color: #666;
+    }
+.result-date {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.result-rank {
+  margin-top: 16px;
+  padding: 10px 14px;
+  display: inline-block;
+  border-radius: 12px;
+  background: #fff3e0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.result-rank-title {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ff6f00;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.result-rank-comment {
+  display: block;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+    #backBtn, #backBtnGame {
+      padding: 12px 18px;
+      margin-top: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 999px;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+      transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.08s ease;
+    }
+
+    #backBtnGame {
+      background: #ef5350;
+    }
+
+    #backBtn {
+      background: #9e9e9e;
+    }
+.name-box {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+.name-box-label {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.name-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  font-size: 16px;
+  border: 1.5px solid #d0d7e2;
+  border-radius: 8px;
+}
+
+.result-name {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+    .roma-toggle {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: #f5f5f5;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+.site-info {
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px dashed #dddddd;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.7;
+}
+
+.site-info-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #666;
+}
+
+.site-info-list {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.site-info-list li {
+  margin-bottom: 2px;
+}
+
+    .roma-label {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .roma-toggle-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .roma-btn {
+      flex: 1;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 0;
+      font-size: 16px;
+      cursor: pointer;
+      background: #e0e0e0;
+      color: #555;
+      font-weight: 600;
+      transition: background 0.08s ease, transform 0.08s ease, box-shadow 0.08s ease;
+    }
+
+    .roma-btn-active {
+      background: #4a90e2;
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(74,144,226,0.5);
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 24px; }
+      .screen { padding: 16px 14px 20px; border-radius: 16px; }
+      #jp { font-size: 20px; }
+      #roma { font-size: 18px; }
+      #input { font-size: 18px; }
+    }
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.question-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.skip-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #e0e7ff;
+  color: #455a64;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.16);
+  transition: background 0.1s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+.skip-btn:hover {
+  background: #c5d0ff;
+}
+.skip-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 rgba(0,0,0,0.2);
+}
+.result-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.result-action-btn {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.08s ease;
+}
+
+.result-action-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.22);
+  opacity: 0.9;
+}
+
+.result-btn-shot {
+  background: #29b6f6;
+  color: #fff;
+}
+
+.result-btn-copy {
+  background: #66bb6a;
+  color: #fff;
+}
+
+  </style>
+
+</head>
+<body>
+
+  <!-- ロゴ -->
+  <h1 class="logo-title">
+    <svg width="320" height="90" viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="piko-orange" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FFD26F"/>
+          <stop offset="100%" stop-color="#FF9F1C"/>
+        </linearGradient>
+        <linearGradient id="piko-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#74B3FF"/>
+          <stop offset="100%" stop-color="#3A86FF"/>
+        </linearGradient>
+        <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.18"/>
+        </filter>
+      </defs>
+
+      <g filter="url(#soft-shadow)">
+        <rect x="10" y="12" width="300" height="66" rx="18" fill="#FFFFFF"/>
+        <rect x="10" y="12" width="300" height="66" rx="18" fill="#F6F7FB" opacity="0.7"/>
+
+        <text x="160" y="60"
+              text-anchor="middle"
+              font-family="Rounded M+, Nunito, sans-serif"
+              font-size="42" font-weight="800"
+              stroke="#FFFFFF" stroke-width="1.5" paint-order="stroke">
+          <tspan fill="url(#piko-orange)">ピコ</tspan>
+          <tspan fill="url(#piko-blue)" font-weight="700">たん</tspan>
+        </text>
+      </g>
+    </svg>
+  </h1>
+
+  <!-- レベル選択画面 -->
+  <div class="screen" id="levelScreen">
+    <p class="level-desc">
+      レベルをえらぶと、すぐにタイピングがはじまるよ。<br>
+      ２分でなんもじうてるかな？ きろくをのばしてみよう！
+    </p>
+  <div class="name-box">
+    <div class="name-box-label">なまえ</div>
+    <input id="playerNameInput"
+           class="name-input"
+           placeholder="れんしゅうする人のなまえ"
+           autocomplete="off">
+  </div>
+
+    <button class="level-btn btn-easy" onclick="startGame('easy')">
+      レベル1：やさしい <span>（まずはここから）</span>
+    </button>
+    <button class="level-btn btn-normal" onclick="startGame('normal')">
+      レベル2：ふつう <span>（なれてきたら）</span>
+    </button>
+    <button class="level-btn btn-hard" onclick="startGame('hard')">
+      レベル3：ちょっとむずかしい <span>（できるかな）</span>
+    </button>
+    <button class="level-btn btn-challenge" onclick="startGame('challenge')">
+      レベル4：チャレンジだ <span>（これができたらすごい！）</span>
+    </button>
+
+    <!-- アルファベットお手本 ON/OFF -->
+    <div class="roma-toggle">
+      <div class="roma-label">アルファベットのお手本</div>
+      <div class="roma-toggle-buttons">
+        <button type="button" class="roma-btn" id="romaOnBtn" onclick="setRomaMode(true)">あり</button>
+        <button type="button" class="roma-btn" id="romaOffBtn" onclick="setRomaMode(false)">なし</button>
+      </div>
+    </div>
+    <!-- サイト説明（先生・保護者向け） -->
+    <div class="site-info">
+      <h2 class="site-info-title">＜このサイト「ピコたん」について＞</h2>
+      <ul class="site-info-list">
+        <li>無料でローマ字入力タイピングの練習ができます。タイピング練習の中に英単語が入っている点が特徴です。</li>
+        <li>主な利用者は小学校３年生から６年生を想定し、小学校で学習する英単語365語を厳選して問題文に入れました。</li>
+        <li>入力されたなまえ・スコアは、すべてお使いの端末の中だけに保存されます。サーバーには一切送信されないので安心です。</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ゲーム画面 -->
+  <div class="screen" id="gameScreen" style="display:none;">
+    <div class="top-bar">
+      <div id="count">0 もんクリア</div>
+      <div id="timer"><span class="label">のこり</span> 120びょう</div>
+    </div>
+
+    <div id="levelStatus"></div>
+
+<div class="question-box" id="questionBox">
+  <div class="question-header">
+    <div class="question-label">もんだい</div>
+    <button type="button" class="skip-btn" onclick="skipSentence()">とばす</button>
+  </div>
+  <div id="jp"></div>
+  <div id="roma"></div>
+</div>
+    <!-- 入力欄（ここが消えていた） -->
+    <input id="input" placeholder="ローマじでタイプ…" autocomplete="off">
+
+    <!-- 「やめる」ボタン -->
+    <button id="backBtnGame" onclick="confirmBack()">やめる</button>
+  </div>
+
+  <!-- 結果画面 -->
+<div class="screen" id="resultScreen" style="display:none;">
+  <div id="result"></div>
+
+  <div class="result-actions">
+    <button type="button"
+            class="result-action-btn result-btn-shot"
+            onclick="captureResult()">
+      スクショ
+    </button>
+    <button type="button"
+            class="result-action-btn result-btn-copy"
+            onclick="copyResult()">
+      コピペ
+    </button>
+  </div>
+
+  <button id="backBtn" onclick="goBack()">レベルをえらぶ</button>
+</div>
+
+
+  <!-- 文データ -->
+  <script src="sentences.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+
+  <script>
+  // 定数
+  const TOTAL_TIME = 120;
+  const LEVEL_LABELS = {
+    easy: "レベル1：やさしい",
+    normal: "レベル2：ふつう",
+    hard: "レベル3：ちょっとむずかしい",
+    challenge: "レベル4：チャレンジだ"
+  };
+  const HS_KEY = "pikotan_high_scores_v1";
+const NAME_KEY = "pikotan_player_name_v1";
+let playerName = "";
+
+// HTML表示用エスケープ（念のため）
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#39;"
+  }[c]));
+}
+
+function loadPlayerName() {
+  const n = localStorage.getItem(NAME_KEY) || "";
+  playerName = n;
+  const inp = document.getElementById("playerNameInput");
+  if (inp) inp.value = n;
+}
+
+function savePlayerName(name) {
+  localStorage.setItem(NAME_KEY, name);
+}
+
+function getRank(cpm) {
+  if (cpm >= 700) {
+    return {
+      title: "でんせつのピコ神",
+      comment: "700もじ/分…つくった人も目をうたがうレベル！ まさにでんせつのピコ神。"
+    };
+  }
+  if (cpm >= 580) {
+    return {
+      title: "超ピコ神",
+      comment: "もう人間ワザとは思えないはやさ。せかいトップクラスといってもいいかも。"
+    };
+  }
+  if (cpm >= 470) {
+    return {
+      title: "ピコ神",
+      comment: "キーボードと手がひとつになっているみたい。ピコたんもおどろくスゴさ！"
+    };
+  }
+  if (cpm >= 380) {
+    return {
+      title: "タイピング王者",
+      comment: "学校の中でもトップレベルかも？ タイピング大会があったら出てみたい！"
+    };
+  }
+  if (cpm >= 310) {
+    return {
+      title: "タイピング王",
+      comment: "どんな文でもスイスイうてちゃう、王さまクラスのスピード！"
+    };
+  }
+  if (cpm >= 260) {
+    return {
+      title: "でんせつのマスター",
+      comment: "れんしゅうの力がしっかり出ているよ。おともだちからあこがれられるレベル。"
+    };
+  }
+  if (cpm >= 220) {
+    return {
+      title: "タイピングマスター",
+      comment: "おとなでもかてない人がたくさんいそう。じしんをもってOKなスピード！"
+    };
+  }
+  if (cpm >= 190) {
+    return {
+      title: "スーパー名人",
+      comment: "まばたきしているあいだに文ができあがるはやさ！ まさにスーパー。"
+    };
+  }
+  if (cpm >= 160) {
+    return {
+      title: "名人",
+      comment: "とってもきれいで速いうちかた。クラスのスターといってもいいレベル！"
+    };
+  }
+  if (cpm >= 140) {
+    return {
+      title: "はやうち１きゅう",
+      comment: "スピードも正確さもバランスばっちり。つぎは「名人」をめざしてみよう！"
+    };
+  }
+  if (cpm >= 120) {
+    return {
+      title: "はやうち２きゅう",
+      comment: "タイピングがたのしくなってきたころ。いろんな文でチャレンジしてみよう。"
+    };
+  }
+  if (cpm >= 100) {
+    return {
+      title: "はやうち３きゅう",
+      comment: "なかなかのはやさ！ れんしゅうをつづければ、もっと上のきゅうもすぐそこだよ。"
+    };
+  }
+  if (cpm >= 80) {
+    return {
+      title: "れんしゅう名人みならい",
+      comment: "ローマじにだいぶなれてきたね。まいにちちょっとずつぶんしょうをうってみよう。"
+    };
+  }
+  if (cpm >= 60) {
+    return {
+      title: "がんばりピコたん",
+      comment: "ていねいにうてているよ。その調子で、すこしずつスピードアップしてみよう。"
+    };
+  }
+  if (cpm >= 40) {
+    return {
+      title: "チャレンジキッズ",
+      comment: "まちがえながらでもOK！ さいごまでやりきれたのがいちばんえらいよ。"
+    };
+  }
+  return {
+    title: "ピコたんみならい",
+    comment: "キーボードとともだちになる第一歩。あせらず、ゆっくりたのしくつづけよう。"
+  };
+}
+
+  function loadHighScores() {
+    const raw = localStorage.getItem(HS_KEY);
+    if (!raw) return {};
+    try {
+      return JSON.parse(raw);
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveHighScores(obj) {
+    localStorage.setItem(HS_KEY, JSON.stringify(obj));
+  }
+
+
+  let showRoma = true;
+  const YURAGI_MAP = [
+    ["shi","si"], ["chi","ti"], ["tsu","tu"], ["ji","zi"], ["fu","hu"],
+    ["sha","sya"], ["shu","syu"], ["sho","syo"],
+    ["cha","tya"], ["chu","tyu"], ["cho","tyo"],
+    ["ja","zya"], ["ju","zyu"], ["jo","zyo"],
+    ["ou","oo"], ["ei","ee"],
+    ["xtu","ltu"]
+  ];
+
+  function normalizeInput(str) {
+    return str.toLowerCase().replace(/[^a-z]/g, "");
+  }
+
+  function matchWithYuragi(user, target) {
+    if (user === target) return true;
+    for (const [base, alt] of YURAGI_MAP) {
+      const altPat = new RegExp(alt, "g");
+      if (user.replace(altPat, base) === target) return true;
+    }
+    return false;
+  }
+
+  function isPossiblePrefix(user, target) {
+    if (user.length === 0) return true;
+    const cand = new Set([target]);
+    for (const [base, alt] of YURAGI_MAP) {
+      if (target.includes(base)) cand.add(target.replace(new RegExp(base, "g"), alt));
+    }
+    for (const c of cand) if (c.startsWith(user)) return true;
+    return false;
+  }
+// 効果音（Web Audio API）: ファイル不要
+function playSound(type) {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return;
+
+  if (!playSound.ctx) {
+    playSound.ctx = new AudioCtx();
+  }
+  const ctx = playSound.ctx;
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  // 種類ごとに高さ変更
+  if (type === "ok") {
+    osc.frequency.value = 880;    // 正解：高め
+  } else if (type === "ng") {
+    osc.frequency.value = 220;    // ミス：低め
+  } else if (type === "end") {
+    osc.frequency.value = 440;    // 終了：中くらい
+  } else {
+    osc.frequency.value = 600;
+  }
+
+  const now = ctx.currentTime;
+  gain.gain.setValueAtTime(0.2, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+  osc.start(now);
+  osc.stop(now + 0.15);
+}
+
+  // 赤点滅
+function triggerErrorFlash() {
+  const box = document.getElementById("questionBox");
+  box.classList.remove("error","success");
+  void box.offsetWidth;
+  box.classList.add("error");
+
+  playSound("ng");
+}
+
+
+  // ★正解（青フラッシュ1回のみ）
+ function triggerSuccessFlash(callback) {
+  const box = document.getElementById("questionBox");
+
+  box.classList.remove("error", "success");
+  void box.offsetWidth;
+
+  box.classList.add("success");
+  playSound("ok");
+
+  setTimeout(() => {
+    box.classList.remove("success");
+    if (callback) callback();
+  }, 200);
+}
+
+  // 文章の色分け（英字＝赤、日本語＝青）
+  function styleJpSentence(str) {
+    let result = "";
+    let buffer = "";
+    let currentType = null;
+    const isAlpha = (ch) => /[A-Za-z]/.test(ch);
+    const isLineBreak = (ch) => ch === "\n";
+
+    for (const ch of str) {
+      if (isLineBreak(ch)) {
+        if (buffer) {
+          result += currentType === "alpha"
+            ? `<span class="jp-alpha">${buffer}</span>`
+            : `<span class="jp-kana">${buffer}</span>`;
+          buffer = "";
+          currentType = null;
+        }
+        result += "<br>";
+        continue;
+      }
+
+      const type = isAlpha(ch) ? "alpha" : "kana";
+
+      if (currentType === null) {
+        currentType = type;
+        buffer = ch;
+      } else if (type === currentType) {
+        buffer += ch;
+      } else {
+        result += currentType === "alpha"
+          ? `<span class="jp-alpha">${buffer}</span>`
+          : `<span class="jp-kana">${buffer}</span>`;
+        buffer = ch;
+        currentType = type;
+      }
+    }
+
+    if (buffer) {
+      result += currentType === "alpha"
+        ? `<span class="jp-alpha">${buffer}</span>`
+        : `<span class="jp-kana">${buffer}</span>`;
+    }
+
+    return result;
+  }
+
+  // お手本 ON/OFF
+  function setRomaMode(isOn) {
+    showRoma = isOn;
+    document.getElementById("romaOnBtn").classList.toggle("roma-btn-active", isOn);
+    document.getElementById("romaOffBtn").classList.toggle("roma-btn-active", !isOn);
+  }
+
+  // ゲーム本体
+  let current;
+  let remaining = TOTAL_TIME;
+  let timerId;
+  let score = 0;
+  let solved = 0;
+  let level = "easy";
+
+  function setSentence() {
+    const arr = SENTENCES[level];
+    current = arr[Math.floor(Math.random() * arr.length)];
+
+    document.getElementById("jp").innerHTML = styleJpSentence(current.jp);
+
+    const romaDiv = document.getElementById("roma");
+    romaDiv.textContent = current.roma;
+    romaDiv.style.display = showRoma ? "block" : "none";
+
+    const input = document.getElementById("input");
+    input.value = "";
+    input.focus();
+  }
+
+function skipSentence() {
+  // スコアやもん数は増やさず、単に次の問題へ
+  setSentence();
+}
+
+
+  function startGame(lv) {
+    level = lv;
+    score = 0;
+    solved = 0;
+    remaining = TOTAL_TIME;
+
+    // ★ なまえを確定して保存（空でも可）
+    const nameInput = document.getElementById("playerNameInput");
+    playerName = nameInput ? nameInput.value.trim() : "";
+    savePlayerName(playerName);
+
+    document.getElementById("count").textContent = "0 もんクリア";
+
+    const timerEl = document.getElementById("timer");
+    timerEl.innerHTML = `<span class="label">のこり</span> ${remaining}びょう`;
+    timerEl.classList.remove("timer-warning");
+
+    document.getElementById("levelStatus").textContent =
+      `${LEVEL_LABELS[lv]} をプレイ中`;
+
+    document.getElementById("levelScreen").style.display = "none";
+    document.getElementById("resultScreen").style.display = "none";
+    document.getElementById("gameScreen").style.display = "block";
+
+    setSentence();
+
+    if (timerId) clearInterval(timerId);
+
+    timerId = setInterval(() => {
+      remaining--;
+      if (remaining < 0) remaining = 0;
+      timerEl.innerHTML = `<span class="label">のこり</span> ${remaining}びょう`;
+
+      if (remaining > 0 && remaining <= 10) timerEl.classList.add("timer-warning");
+      else timerEl.classList.remove("timer-warning");
+
+      if (remaining <= 0) endGame();
+    }, 1000);
+  }
+
+  document.getElementById("input").addEventListener("input", () => {
+    if (!current) return;
+
+    const user = normalizeInput(document.getElementById("input").value);
+    const target = normalizeInput(current.roma);
+
+    if (user.length > 0 && !isPossiblePrefix(user, target)) {
+      triggerErrorFlash();
+    }
+
+    if (matchWithYuragi(user, target)) {
+      score += target.length;
+      solved++;
+      document.getElementById("count").textContent = `${solved} もんクリア`;
+
+      triggerSuccessFlash(() => setSentence());
+    }
+  });
+
+  function confirmBack() {
+    if (confirm("ゲームをやめて、さいしょにもどる？")) {
+      clearInterval(timerId);
+      document.getElementById("gameScreen").style.display = "none";
+      document.getElementById("levelScreen").style.display = "block";
+      current = null;
+    }
+  }
+
+function endGame() {
+  clearInterval(timerId);
+  playSound("end");
+  document.getElementById("gameScreen").style.display = "none";
+  document.getElementById("resultScreen").style.display = "block";
+
+  const usedSeconds = Math.max(1, TOTAL_TIME - remaining);
+  const charsPerMinute = Math.round(score * 60 / usedSeconds);
+
+  const levelLabel = LEVEL_LABELS[level];
+
+  // --- プレイ日時 ---
+  const now = new Date();
+  const playDateStr =
+    now.getFullYear() + "/" +
+    String(now.getMonth()+1).padStart(2, "0") + "/" +
+    String(now.getDate()).padStart(2, "0") + " " +
+    String(now.getHours()).padStart(2, "0") + ":" +
+    String(now.getMinutes()).padStart(2, "0") + ":" +
+    String(now.getSeconds()).padStart(2, "0");
+
+  // --- ハイスコア処理 ---
+  const hs = loadHighScores();
+  const prev = hs[level] || { score: 0, cpm: 0 };
+  let isNewRecord = false;
+
+  if (score > prev.score) {
+    hs[level] = { score: score, cpm: charsPerMinute };
+    saveHighScores(hs);
+    isNewRecord = true;
+  }
+
+  let highScoreText = "";
+  if (prev.score > 0) {
+    highScoreText =
+      `これまでのさいこう：${prev.score} もじ（やく ${prev.cpm} もじ/分）`;
+  }
+  if (isNewRecord) {
+    highScoreText = highScoreText
+      ? highScoreText + "<br>さいこうきろくこうしん！"
+      : "さいこうきろくこうしん！";
+  }
+
+  // --- 称号（ピコたんランク） ---
+  const rankInfo = getRank(charsPerMinute);
+
+  // --- 結果画面 HTML ---
+  let html = "";
+  html += `<div class="result-level">${levelLabel} をプレイしたよ</div>`;
+  html += `<div class="result-date">${playDateStr}</div>`;
+
+  // ★ なまえ表示（入力されているときだけ）
+  if (playerName) {
+    html += `<div class="result-name">なまえ：${escapeHtml(playerName)}</div>`;
+  }
+
+  html += `スコア：${score} もじ！ / ${solved} もんクリア<br>`;
+  html += `<span class="small">１分あたり：やく ${charsPerMinute} もじ</span>`;
+
+  // 称号ブロック（タイトル＋コメント）
+  if (rankInfo && rankInfo.title) {
+    html += `<br><div class="result-rank">` +
+            `<span class="result-rank-title">${rankInfo.title}</span>` +
+            `<span class="result-rank-comment">${rankInfo.comment}</span>` +
+            `</div>`;
+  }
+
+  if (highScoreText) {
+    html += `<br><br><span class="small">${highScoreText}</span>`;
+  }
+
+  document.getElementById("result").innerHTML = html;
+
+  current = null;
+}
+
+
+
+  function goBack() {
+    document.getElementById("resultScreen").style.display = "none";
+    document.getElementById("levelScreen").style.display = "block";
+  }
+
+  setRomaMode(true);
+
+  // なまえ入力の同期
+  const nameInputEl = document.getElementById("playerNameInput");
+  if (nameInputEl) {
+    nameInputEl.addEventListener("input", (e) => {
+      playerName = e.target.value.trim();
+      savePlayerName(playerName);
+    });
+  }
+
+  // 保存済みのなまえを読み込む
+  loadPlayerName();
+
+
+function captureResult() {
+  const target = document.getElementById("resultScreen");
+  if (!window.html2canvas) {
+    alert("スクショ機能がつかえません（ブラウザ制限）");
+    return;
+  }
+
+  html2canvas(target, {
+    scale: 2
+  }).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "pikotan_score.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+function copyResult() {
+  const el = document.getElementById("result");
+  if (!el) return;
+
+  const text = el.innerText || el.textContent || "";
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        alert("結果をコピーしたよ！");
+      })
+      .catch(() => {
+        alert("コピーにしっぱいしました");
+      });
+  } else {
+    // 古いブラウザ向けフォールバック
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+      alert("結果をコピーしたよ！");
+    } catch (e) {
+      alert("コピーにしっぱいしました");
+    }
+    document.body.removeChild(ta);
+  }
+}
+
+  </script>
+ 
+<div id="ck-footer-container"></div>
+<script>
+  (function() {
+    var container = document.getElementById('ck-footer-container');
+    if (!container) return;
+
+    fetch('https://cleverkitjp.github.io/footer.html')
+      .then(function(r) { return r.text(); })
+      .then(function(html) {
+        container.innerHTML = html;
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+      })
+      .catch(function(e) {});
+  })();
+</script>
+</body>
+</html>
+
+
+
+

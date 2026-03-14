@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
+       crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>勉強用ポモドーロタイマー｜なぜか集中できる25分タイマー</title>
+  <meta name="description" content="勉強に集中できるポモドーロタイマー（25分集中→5分休憩）。登録不要・無料・スマホ最適化。ワンタップで開始、4セットごと長休憩15分にも対応。勉強時間ログ（今日・今週・月別）も自動保存。" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="勉強用ポモドーロタイマー｜なぜか集中できる25分タイマー" />
+  <meta property="og:description" content="ポモドーロ（25分集中→5分休憩）で勉強が進む。登録不要・無料・スマホ最適化。長休憩15分、ログ（今日/今週/月別）も自動保存。" />
+
+  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+
+  <style>
+    :root { color-scheme: light dark; }
+    body { -webkit-tap-highlight-color: transparent; }
+
+    .wrap { max-width: 820px; margin: 0 auto; padding: 14px 12px 32px; }
+    .hero { margin-top: 10px; }
+    .sub2 { margin-top: 6px; color: var(--text-sub); }
+
+    .timer-shell {
+      margin-top: 12px;
+      background: #161616;
+      border-radius: 18px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .timer-face { display: grid; gap: 12px; }
+    .timer-core {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      display: grid;
+      gap: 12px;
+    }
+    .timer-card {
+      --phase-border: var(--border);
+      --phase-flash: rgba(255,255,255,0.95);
+      --phase-flash-bg: rgba(255,255,255,0.18);
+      transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    body.phase-focus .timer-card {
+      --phase-border: rgba(37,99,235,0.25);
+      --phase-flash: rgba(37,99,235,0.28);
+      --phase-flash-bg: rgba(37,99,235,0.22);
+      background: rgba(37,99,235,0.08);
+      border-color: var(--phase-border);
+      box-shadow: 0 6px 18px rgba(37,99,235,0.08);
+    }
+    body.phase-rest .timer-card {
+      --phase-border: rgba(37,99,235,0.55);
+      --phase-flash-bg: rgba(37,99,235,0.5);
+      background: rgba(37,99,235,0.32);
+      border-color: var(--phase-border);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+    }
+    body.phase-long .timer-card {
+      --phase-border: rgba(16,185,129,0.22);
+      --phase-flash: rgba(16,185,129,0.28);
+      --phase-flash-bg: rgba(16,185,129,0.2);
+      background: rgba(16,185,129,0.08);
+      border-color: var(--phase-border);
+      box-shadow: 0 6px 18px rgba(16,185,129,0.06);
+    }
+    .timer-card.flash {
+      animation: phase-flash 2s ease-in-out;
+    }
+    @keyframes phase-flash {
+      0% {
+        background-color: inherit;
+        border-color: var(--phase-border);
+      }
+      8% {
+        background-color: var(--phase-flash-bg);
+        border-color: var(--phase-flash);
+      }
+      16% {
+        background-color: inherit;
+        border-color: var(--phase-border);
+      }
+      28% {
+        background-color: var(--phase-flash-bg);
+        border-color: var(--phase-flash);
+      }
+      36% {
+        background-color: inherit;
+        border-color: var(--phase-border);
+      }
+      48% {
+        background-color: var(--phase-flash-bg);
+        border-color: var(--phase-flash);
+      }
+      56% {
+        background-color: inherit;
+        border-color: var(--phase-border);
+      }
+      68% {
+        background-color: var(--phase-flash-bg);
+        border-color: var(--phase-flash);
+      }
+      76% {
+        background-color: inherit;
+        border-color: var(--phase-border);
+      }
+      88% {
+        background-color: var(--phase-flash-bg);
+        border-color: var(--phase-flash);
+      }
+      96% {
+        background-color: inherit;
+        border-color: var(--phase-border);
+      }
+      100% {
+        background-color: inherit;
+        border-color: var(--phase-border);
+      }
+    }
+
+    .phase-flash-screen {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10000;
+    }
+    .phase-flash-screen.is-flashing {
+      animation: screen-flash 2s ease-in-out;
+    }
+    @keyframes screen-flash {
+      0% { opacity: 0; }
+      5% { opacity: 1; }
+      10% { opacity: 0; }
+      15% { opacity: 1; }
+      20% { opacity: 0; }
+      25% { opacity: 1; }
+      30% { opacity: 0; }
+      35% { opacity: 1; }
+      40% { opacity: 0; }
+      45% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .phase-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(127,127,127,0.06);
+      width: fit-content;
+      font-weight: 700;
+    }
+    #phaseLabel { display: inline-flex; align-items: baseline; gap: 6px; }
+    .phase-sub {
+      font-size: 0.65em;
+      color: var(--text-sub);
+      font-weight: 400;
+    }
+    .phase-dot { width: 10px; height: 10px; border-radius: 999px; background: currentColor; opacity: 0.8; }
+    body.phase-focus .phase-dot { background: #4CAF50; }
+    body.phase-rest .phase-dot,
+    body.phase-long .phase-dot { background: #4FC3F7; }
+    .phase-meta { color: var(--text-sub); font-size: 12px; margin-top: 2px; }
+
+    .time {
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      font-size: clamp(46px, 12vw, 72px);
+      text-align: center;
+      padding: 20px 0 12px;
+      margin: 12px 0;
+    }
+    .time .ss,
+    .time .sep {
+      font-size: 0.5em;
+      font-weight: 400;
+      color: var(--text-sub);
+      opacity: 0.4;
+    }
+
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn-row .btn { width: 100%; }
+
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary {
+      border-color: rgba(255,255,255,0.4);
+      background: var(--accent, #2563eb);
+      color: white;
+    }
+    .btn.ghost { background: transparent; }
+    .btn.small { padding: 10px 12px; font-weight: 800; border-radius: 12px; font-size: 13px; }
+
+    .row { display: grid; gap: 10px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .muted { color: var(--text-sub); font-size: 12px; }
+    .hr { height: 1px; background: var(--border); margin: 10px 0; }
+
+    details { border: 1px solid var(--border); border-radius: 14px; background: var(--card); padding: 10px 12px; }
+    details + details { margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 900; }
+    summary::-webkit-details-marker { display: none; }
+
+    .controls { display: grid; gap: 10px; margin-top: 6px; }
+    .outside-card-area { display: grid; gap: 10px; margin-top: 10px; }
+    #hintLine { margin-bottom: 16px; }
+    .chip-row { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .chip {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-weight: 800;
+      font-size: 12px;
+      background: rgba(127,127,127,0.06);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+    .chip[aria-pressed="true"] {
+      background: rgba(37,99,235,0.28);
+      border-color: rgba(37,99,235,0.7);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(37,99,235,0.25), 0 0 0 2px rgba(37,99,235,0.18);
+    }
+    .chip[aria-pressed="true"]::after {
+      content: "選択中";
+      font-size: 10px;
+      font-weight: 900;
+      margin-left: 6px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+    }
+
+    .log-kpis { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 8px; }
+    .kpi { display: flex; justify-content: space-between; gap: 10px; font-variant-numeric: tabular-nums; }
+    .kpi b { font-weight: 900; }
+    .log-list { margin: 10px 0 8px; padding-left: 18px; color: var(--text-sub); }
+    .log-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+    .danger { border-color: rgba(220,38,38,0.35); color: rgb(220,38,38); }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+      max-width: 92vw;
+      background: rgba(0,0,0,0.78);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+      z-index: 9999;
+    }
+    .toast.show { opacity: 1; }
+
+    .record-banner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(127,127,127,0.06);
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+    .record-banner[hidden] {
+      display: none;
+    }
+    .record-banner strong { color: var(--text); }
+    .record-action {
+      border: none;
+      background: transparent;
+      color: var(--accent, #2563eb);
+      font-weight: 800;
+      cursor: pointer;
+      padding: 0;
+    }
+    .record-action[disabled] {
+      color: var(--text-sub);
+      cursor: default;
+    }
+    .goal-choice {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #f5f1ee;
+      color: var(--text);
+      display: grid;
+      gap: 10px;
+    }
+    .goal-choice[hidden] { display: none; }
+    .goal-choice-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 560px) {
+      .btn-row { grid-template-columns: 1fr 1fr 1fr; }
+      .btn-row .btn.primary { grid-column: span 2; }
+    }
+/* ===== タイトルを控えめにする ===== */
+.hero h1 {
+  font-size: 1.5rem;   /* ← 少し小さめ */
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+    body.is-running .hero,
+    body.is-running details:not(#logDetails) {
+      opacity: 0.35;
+    }
+    body.is-running .outside-card > :not(#hintLine) {
+      opacity: 0.35;
+    }
+    body.is-running #hintLine.is-muted {
+      opacity: 0.35;
+    }
+    body.is-running #logDetails {
+      opacity: 0.4;
+    }
+    body.is-running #timeDisplay,
+    body.is-running #phasePill,
+    body.is-running #phaseLabel,
+    body.is-running #phaseMeta,
+    body.is-running #startPauseBtn,
+    body.is-running #skipRestBtn {
+      opacity: 1;
+    }
+    body:not(.is-running) #logDetails summary {
+      opacity: 1;
+      font-weight: 900;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"基本は何分ですか？","acceptedAnswer":{"@type":"Answer","text":"一般的なポモドーロテクニックに合わせ、25分集中→5分休憩を1セットとしています。4セットごとに長休憩を入れる使い方がよく知られています。"}},
+      {"@type":"Question","name":"休憩をスキップしても大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"休憩はスキップできますが、集中力を保つには短い休憩がおすすめです。軽く体を伸ばすだけでも集中力の維持に効果があります。"}},
+      {"@type":"Question","name":"画面を消したり、別のアプリを開いても動きますか？","acceptedAnswer":{"@type":"Answer","text":"はい。画面OFFや別タブ、別アプリに切り替えてもタイマーは継続します。復帰時に、残り時間や状態が自動で同期されます。"}},
+      {"@type":"Question","name":"目標セットを達成すると、なぜ一度止まるのですか？","acceptedAnswer":{"@type":"Answer","text":"一度区切りを作り、「もう1セット続ける」か「今日はここまで」を迷わず選べるようにするためです。続けると決めた場合は、すぐに休憩が始まります。"}},
+      {"@type":"Question","name":"「今日」はいつ切り替わりますか？","acceptedAnswer":{"@type":"Answer","text":"このツールでは、午前4時を1日の区切りにしています。夜遅くまでの学習も、同じ日の記録として残しやすくするためです。"}},
+      {"@type":"Question","name":"集中の記録はどのタイミングで残りますか？","acceptedAnswer":{"@type":"Answer","text":"集中（25分）が終わった時点で、自動で記録されます。もし誤って記録された場合は、次の休憩中に表示される「取り消す」から削除できます。"}}
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="phase-flash-screen" id="phaseFlashScreen" aria-hidden="true"></div>
+  <main class="wrap">
+    <header class="hero">
+      <h1>勉強用ポモドーロタイマー</h1>
+      <p class="sub2">ポモドーロテクニックとは、「25分集中 → 5分休憩」をくり返す、シンプルな集中法です。<br></p>
+    </header>
+
+    <section class="timer-shell" aria-label="タイマー">
+      <div class="timer-face">
+        <div class="timer-core timer-card" role="group" aria-label="集中・休憩カード">
+          <div>
+            <div class="phase-pill" id="phasePill" aria-live="polite">
+              <span class="phase-dot" aria-hidden="true"></span>
+              <span id="phaseLabel">
+                <span class="phase-main" id="phaseMain">集中</span>
+                <span class="phase-sub" id="phaseSub">1セット目</span>
+              </span>
+            </div>
+            <div class="phase-meta" id="phaseMeta">セット 1 / 4（長休憩まで）</div>
+          </div>
+
+          <div class="time" id="timeDisplay">
+            <span class="mm">25</span><span class="sep">:</span><span class="ss">00</span>
+          </div>
+
+          <div class="btn-row" role="group" aria-label="操作">
+            <button class="btn primary" id="startPauseBtn">開始</button>
+            <button class="btn ghost" id="resetBtn">リセット</button>
+            <button class="btn small" id="skipRestBtn" style="display:none;">休憩をスキップ</button>
+          </div>
+        </div>
+        <div class="record-banner" id="recordBanner" hidden>
+          <div id="recordBannerText"></div>
+          <button class="record-action" id="recordBannerAction" type="button">取り消す</button>
+        </div>
+        <div class="goal-choice" id="goalChoice" hidden>
+          <div id="goalChoiceText"></div>
+          <div class="goal-choice-actions" id="goalChoiceActions">
+            <button class="btn" id="goalContinueBtn" type="button">もう1セット</button>
+            <button class="btn ghost" id="goalStopBtn" type="button">今日はここまで</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="outside-card-area outside-card" aria-label="目標セットとオプション">
+      <div class="muted" id="hintLine">すぐ開始できます（設定は最小限）。</div>
+
+      <div class="controls">
+        <div class="grid2">
+          <div>
+            <div class="muted">目標セット</div>
+            <div class="chip-row" role="group" aria-label="目標セット">
+              <button class="chip" data-goal="0" aria-pressed="true">目標なし</button>
+              <button class="chip" data-goal="4" aria-pressed="false">4セット</button>
+              <button class="chip" data-goal="8" aria-pressed="false">8セット</button>
+              <button class="chip" data-goal="12" aria-pressed="false">12セット</button>
+            </div>
+          </div>
+          <div>
+            <div class="muted">オプション</div>
+            <div class="row">
+              <label class="chip" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <span>長休憩（4セットごと15分）</span>
+                <input id="longBreakToggle" type="checkbox" checked />
+              </label>
+              <label class="chip" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                <span>画面を点けたまま（対応端末）</span>
+                <input id="wakeLockToggle" type="checkbox" />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+      </div>
+    </section>
+
+    <section class="row" aria-label="補足情報">
+      <details>
+        <summary>なぜポモドーロテクニックは効果が高いのか</summary>
+        <div class="muted" style="margin-top:8px; line-height:1.7;">
+          ポモドーロテクニックが効果的だと言われる理由は、人間の「集中力の限界」と「脳の回復メカニズム」に合っているからです。<br>
+          一般に、強い集中を保てる時間は20〜30分程度とされており、それ以上続けると集中力は低下しやすくなります。短い休憩をはさむことで、次の集中に入りやすくなります。<br>
+          また「終わりが見える時間設定」は先延ばしやダラダラ作業を防ぎやすいとされています。特別な道具や才能が不要で、今日からすぐ始められる点も、広く使われている理由のひとつです。
+        </div>
+      </details>
+
+      <details id="logDetails">
+        <summary>ログ</summary>
+
+        <div class="log-kpis" aria-label="ログ集計" style="margin-top:10px;">
+          <div class="kpi"><span>今日</span><b id="kpiToday">0.0時間</b></div>
+          <div class="kpi"><span>今週</span><b id="kpiThisWeek">0.0時間</b></div>
+          <div class="kpi"><span>先週</span><b id="kpiLastWeek">0.0時間</b></div>
+        </div>
+        <div class="muted">※「今日」は午前4時で切り替わります</div>
+
+        <ol class="log-list" id="monthList" aria-label="月別ログ"></ol>
+
+        <div class="log-actions" aria-label="ログ操作">
+          <button class="btn" id="copyLogBtn">ログをコピー</button>
+          <button class="btn ghost danger" id="resetLogBtn">ログをリセット</button>
+        </div>
+
+        <div class="muted" style="margin-top:10px; line-height:1.6;">
+          ※ログはこの端末のブラウザにのみ保存されます。<br>
+          ※機種変更・ブラウザ変更・データ削除で消えます。
+        </div>
+      </details>
+
+      <details>
+        <summary>よくある質問</summary>
+        <div class="muted" style="margin-top:8px; line-height:1.7;">
+          <b>Q. 基本は何分ですか？</b><br>
+          A. 一般的なポモドーロテクニックに合わせ、25分集中 → 5分休憩を1セットとしています。4セットごとに長休憩を入れる使い方がよく知られています。<br><br>
+          <b>Q. 休憩をスキップしても大丈夫ですか？</b><br>
+          A. 休憩はスキップできますが、集中力を保つには短い休憩がおすすめです。軽く体を伸ばすだけでも集中力の維持に効果があります。<br><br>
+          <b>Q. 画面を消したり、別のアプリを開いても動きますか？</b><br>
+          A. はい。画面OFFや別タブ、別アプリに切り替えてもタイマーは継続します。復帰時に、残り時間や状態が自動で同期されます。<br><br>
+          <b>Q. 目標セットを達成すると、なぜ一度止まるのですか？</b><br>
+          A. 一度区切りを作り、<b>「もう1セット続ける」か「今日はここまで」</b>を迷わず選べるようにするためです。続けると決めた場合は、すぐに休憩が始まります。<br><br>
+          <b>Q. 「今日」はいつ切り替わりますか？</b><br>
+          A. このツールでは、午前4時を1日の区切りにしています。夜遅くまでの学習も、同じ日の記録として残しやすくするためです。<br><br>
+          <b>Q. 集中の記録はどのタイミングで残りますか？</b><br>
+          A. 集中（25分）が終わった時点で、自動で記録されます。もし誤って記録された場合は、次の休憩中に表示される「取り消す」から削除できます。
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- footer.html loader (required) -->
+  <div id="ck-footer-container"></div>
+  <script>
+    (function() {
+      var container = document.getElementById('ck-footer-container');
+      if (!container) return;
+
+      fetch('https://cleverkitjp.github.io/footer.html')
+        .then(function(response) { return response.text(); })
+        .then(function(html) {
+          container.innerHTML = html;
+
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); }
+          catch (e) { console.warn('adsbygoogle error', e); }
+        })
+        .catch(function(e) { console.warn('footer load error', e); });
+    })();
+  </script>
+
+  <script>
+    (function(){
+      "use strict";
+      var PHASE_FOCUS = "focus";
+      var PHASE_REST = "rest";
+      var PHASE_LONG = "long";
+
+      var DEFAULT_FOCUS_SEC = 25 * 60;
+      var DEFAULT_REST_SEC  = 5 * 60;
+      var DEFAULT_LONG_SEC  = 15 * 60;
+
+      var LONG_BREAK_EVERY = 4;
+      var DAY_RESET_HOUR = 4;
+      var DAY_RESET_MS = DAY_RESET_HOUR * 60 * 60 * 1000;
+      var LS_KEY = "ck_pomodoro_v1";
+      var LS_LOG_KEY = "ck_pomodoro_log_v1"; // { "YYYY-MM-DD": secondsFocused }
+
+      var state = {
+        phase: PHASE_FOCUS,
+        running: false,
+        endAt: 0,
+        remainingSec: DEFAULT_FOCUS_SEC,
+        focusCount: 0,
+        goalSets: 0,
+        longBreakEnabled: true,
+        wakeLockEnabled: false,
+        wakeLock: null,
+        audioArmed: false,
+        lastCanceledAt: 0,
+        lastDayKey: "",
+        goalChoiceActive: false,
+        goalChoiceGoal: 0,
+        goalChoiceFinished: false
+      };
+
+      var timeDisplay = document.getElementById("timeDisplay");
+      var phaseMain  = document.getElementById("phaseMain");
+      var phaseSub   = document.getElementById("phaseSub");
+      var phaseMeta   = document.getElementById("phaseMeta");
+      var hintLine    = document.getElementById("hintLine");
+      var timerCard   = document.querySelector(".timer-card");
+      var phaseFlashScreen = document.getElementById("phaseFlashScreen");
+
+      var startPauseBtn = document.getElementById("startPauseBtn");
+      var resetBtn      = document.getElementById("resetBtn");
+      var skipRestBtn   = document.getElementById("skipRestBtn");
+      var recordBanner = document.getElementById("recordBanner");
+      var recordBannerText = document.getElementById("recordBannerText");
+      var recordBannerAction = document.getElementById("recordBannerAction");
+      var goalChoice = document.getElementById("goalChoice");
+      var goalChoiceText = document.getElementById("goalChoiceText");
+      var goalChoiceActions = document.getElementById("goalChoiceActions");
+      var goalContinueBtn = document.getElementById("goalContinueBtn");
+      var goalStopBtn = document.getElementById("goalStopBtn");
+
+      var longBreakToggle = document.getElementById("longBreakToggle");
+      var wakeLockToggle  = document.getElementById("wakeLockToggle");
+
+      var toastEl = document.getElementById("toast");
+
+      var kpiToday = document.getElementById("kpiToday");
+      var kpiThisWeek = document.getElementById("kpiThisWeek");
+      var kpiLastWeek = document.getElementById("kpiLastWeek");
+      var monthList = document.getElementById("monthList");
+
+      var copyLogBtn = document.getElementById("copyLogBtn");
+      var resetLogBtn = document.getElementById("resetLogBtn");
+
+      function pad2(n){ return (n < 10 ? "0" : "") + n; }
+      var timeDisplayMm = timeDisplay.querySelector(".mm");
+      var timeDisplaySep = timeDisplay.querySelector(".sep");
+      var timeDisplaySs = timeDisplay.querySelector(".ss");
+
+      function setTimeDisplay(sec){
+        var m = Math.floor(sec / 60);
+        var s = Math.max(0, sec % 60);
+        timeDisplayMm.textContent = pad2(m);
+        timeDisplaySep.textContent = ":";
+        timeDisplaySs.textContent = pad2(s);
+      }
+      function nowMs(){ return Date.now(); }
+
+      function showToast(msg){
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(function(){ toastEl.classList.remove("show"); }, 1600);
+      }
+
+      function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+      function getLocalISODate(d){
+        var y = d.getFullYear();
+        var m = pad2(d.getMonth() + 1);
+        var day = pad2(d.getDate());
+        return y + "-" + m + "-" + day;
+      }
+
+      function getShiftedDate(ms){
+        return new Date(ms - DAY_RESET_MS);
+      }
+
+      function getDayKeyByReset(ms){
+        return getLocalISODate(getShiftedDate(ms));
+      }
+
+      function weekStartISO(d){
+        var dd = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        var day = dd.getDay(); // 0 Sun ... 6 Sat
+        var diff = (day === 0 ? -6 : 1 - day); // to Monday
+        dd.setDate(dd.getDate() + diff);
+        dd.setHours(0,0,0,0);
+        return dd;
+      }
+
+      function toHours1(sec){
+        var hours = sec / 3600;
+        return (Math.round(hours * 10) / 10).toFixed(1);
+      }
+
+      function safeJSONParse(s, fallback){
+        try { return JSON.parse(s); } catch(e){ return fallback; }
+      }
+
+      function loadState(){
+        var raw = localStorage.getItem(LS_KEY);
+        if (!raw) return;
+        var data = safeJSONParse(raw, null);
+        if (!data) return;
+
+        state.goalSets = (typeof data.goalSets === "number") ? data.goalSets : 0;
+        state.longBreakEnabled = (typeof data.longBreakEnabled === "boolean") ? data.longBreakEnabled : true;
+        state.lastCanceledAt = (typeof data.lastCanceledAt === "number") ? data.lastCanceledAt : 0;
+        state.lastDayKey = (typeof data.lastDayKey === "string") ? data.lastDayKey : "";
+
+        if (data && data.timer && typeof data.timer === "object") {
+          var t = data.timer;
+          if (t.phase) state.phase = t.phase;
+          if (typeof t.focusCount === "number") state.focusCount = t.focusCount;
+
+          if (typeof t.endAt === "number" && typeof t.running === "boolean") {
+            state.running = t.running;
+            state.endAt = t.endAt;
+            if (!state.running && typeof t.remainingSec === "number") {
+              state.remainingSec = t.remainingSec;
+            }
+          }
+        }
+
+        if (state.running && state.endAt > 0) {
+          var rem = Math.ceil((state.endAt - nowMs()) / 1000);
+          state.remainingSec = rem;
+        }
+      }
+
+      function saveState(){
+        var payload = {
+          goalSets: state.goalSets,
+          longBreakEnabled: state.longBreakEnabled,
+          lastCanceledAt: state.lastCanceledAt,
+          timer: {
+            phase: state.phase,
+            running: state.running,
+            endAt: state.endAt,
+            remainingSec: state.remainingSec,
+            focusCount: state.focusCount
+          },
+          lastDayKey: state.lastDayKey
+        };
+        localStorage.setItem(LS_KEY, JSON.stringify(payload));
+      }
+
+      function normalizeLogEntries(raw){
+        var entries = [];
+        if (Array.isArray(raw)) {
+          entries = raw;
+        } else if (raw && Array.isArray(raw.entries)) {
+          entries = raw.entries;
+        } else if (raw && typeof raw === "object") {
+          Object.keys(raw).forEach(function(dateKey){
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) return;
+            var sec = raw[dateKey];
+            if (typeof sec !== "number") return;
+            var d = new Date(dateKey + "T04:00:00");
+            entries.push({ seconds: sec, recordedAt: d.getTime(), provisional: false });
+          });
+        }
+        return entries
+          .map(function(entry){
+            if (!entry || typeof entry !== "object") return null;
+            var seconds = (typeof entry.seconds === "number") ? entry.seconds : 0;
+            var recordedAt = entry.recordedAt;
+            if (typeof recordedAt === "string") recordedAt = Date.parse(recordedAt);
+            if (typeof recordedAt !== "number" || !isFinite(recordedAt)) recordedAt = nowMs();
+            var provisional = !!entry.provisional;
+            return { seconds: seconds, recordedAt: recordedAt, provisional: provisional };
+          })
+          .filter(function(entry){ return entry && entry.seconds > 0; })
+          .sort(function(a, b){ return a.recordedAt - b.recordedAt; });
+      }
+
+      function loadLogEntries(){
+        var raw = localStorage.getItem(LS_LOG_KEY);
+        if (!raw) return [];
+        var data = safeJSONParse(raw, null);
+        return normalizeLogEntries(data);
+      }
+
+      function saveLogEntries(entries){
+        localStorage.setItem(LS_LOG_KEY, JSON.stringify({ entries: entries }));
+      }
+
+      function addProvisionalFocusLog(recordedAtMs){
+        var entries = loadLogEntries();
+        entries.push({ seconds: DEFAULT_FOCUS_SEC, recordedAt: recordedAtMs, provisional: true });
+        state.lastCanceledAt = 0;
+        saveLogEntries(entries);
+        renderLog();
+      }
+
+      function confirmLatestProvisional(){
+        var entries = loadLogEntries();
+        for (var i = entries.length - 1; i >= 0; i--) {
+          if (entries[i].provisional) {
+            entries[i].provisional = false;
+            saveLogEntries(entries);
+            return;
+          }
+        }
+      }
+
+      function removeLatestProvisional(){
+        var entries = loadLogEntries();
+        for (var i = entries.length - 1; i >= 0; i--) {
+          if (entries[i].provisional) {
+            var removed = entries.splice(i, 1)[0];
+            saveLogEntries(entries);
+            return removed;
+          }
+        }
+        return null;
+      }
+
+      function sumEntriesBetween(entries, startDate, endDateExclusive){
+        var total = 0;
+        var startMs = startDate.getTime();
+        var endMs = endDateExclusive.getTime();
+        entries.forEach(function(entry){
+          if (entry.recordedAt >= startMs && entry.recordedAt < endMs) {
+            total += entry.seconds;
+          }
+        });
+        return total;
+      }
+
+      function sumEntriesBetweenShifted(entries, startDate, endDateExclusive){
+        var total = 0;
+        var startMs = startDate.getTime();
+        var endMs = endDateExclusive.getTime();
+        entries.forEach(function(entry){
+          var shifted = entry.recordedAt - DAY_RESET_MS;
+          if (shifted >= startMs && shifted < endMs) {
+            total += entry.seconds;
+          }
+        });
+        return total;
+      }
+
+      function getMonthKey(d){
+        return d.getFullYear() + "-" + pad2(d.getMonth() + 1);
+      }
+
+      function renderLog(){
+        var entries = loadLogEntries();
+
+        var todayShifted = getShiftedDate(nowMs());
+        todayShifted.setHours(0,0,0,0);
+        var tomorrowShifted = new Date(todayShifted.getTime()); tomorrowShifted.setDate(tomorrowShifted.getDate() + 1);
+        var todaySec = sumEntriesBetweenShifted(entries, todayShifted, tomorrowShifted);
+
+        var ws = weekStartISO(todayShifted);
+        var wsNext = new Date(ws.getTime()); wsNext.setDate(wsNext.getDate() + 7);
+        var lastWs = new Date(ws.getTime()); lastWs.setDate(lastWs.getDate() - 7);
+
+        var thisWeekSec = sumEntriesBetweenShifted(entries, ws, wsNext);
+        var lastWeekSec = sumEntriesBetweenShifted(entries, lastWs, ws);
+
+        kpiToday.textContent = toHours1(todaySec) + "時間";
+        kpiThisWeek.textContent = toHours1(thisWeekSec) + "時間";
+        kpiLastWeek.textContent = toHours1(lastWeekSec) + "時間";
+
+        monthList.innerHTML = "";
+        var months = {};
+        entries.forEach(function(entry){
+          var shiftedDate = getShiftedDate(entry.recordedAt);
+          var key = getLocalISODate(shiftedDate);
+          var mkey = getMonthKey(shiftedDate);
+          months[mkey] = (months[mkey] || 0) + entry.seconds;
+        });
+
+        var hasAny = Object.keys(months).length > 0;
+        if (!hasAny) {
+          var li0 = document.createElement("li");
+          li0.textContent = "まだログがありません（集中が完了すると自動で記録されます）";
+          monthList.appendChild(li0);
+          return;
+        }
+
+        var d = getShiftedDate(nowMs());
+        d.setDate(1); d.setHours(0,0,0,0);
+        var keys = [];
+        for (var i=0; i<12; i++){
+          keys.push(getMonthKey(d));
+          d.setMonth(d.getMonth() - 1);
+        }
+
+        keys.forEach(function(k){
+          if (!months[k]) return;
+          var y = k.slice(0,4);
+          var m = k.slice(5,7);
+          var li = document.createElement("li");
+          li.textContent = y + "年" + parseInt(m,10) + "月　" + toHours1(months[k]) + "時間";
+          monthList.appendChild(li);
+        });
+      }
+
+      function buildCopyText(){
+        var entries = loadLogEntries();
+
+        var todayShifted = getShiftedDate(nowMs());
+        todayShifted.setHours(0,0,0,0);
+        var tomorrowShifted = new Date(todayShifted.getTime()); tomorrowShifted.setDate(tomorrowShifted.getDate() + 1);
+
+        var ws = weekStartISO(todayShifted);
+        var wsNext = new Date(ws.getTime()); wsNext.setDate(wsNext.getDate() + 7);
+        var lastWs = new Date(ws.getTime()); lastWs.setDate(lastWs.getDate() - 7);
+
+        var todaySec = sumEntriesBetweenShifted(entries, todayShifted, tomorrowShifted);
+        var thisWeekSec = sumEntriesBetweenShifted(entries, ws, wsNext);
+        var lastWeekSec = sumEntriesBetweenShifted(entries, lastWs, ws);
+
+        var months = {};
+        entries.forEach(function(entry){
+          var shiftedDate = getShiftedDate(entry.recordedAt);
+          var key = getLocalISODate(shiftedDate);
+          var mkey = getMonthKey(shiftedDate);
+          months[mkey] = (months[mkey] || 0) + entry.seconds;
+        });
+
+        var lines = [];
+        lines.push("【勉強ログ】");
+        lines.push("今日：" + toHours1(todaySec) + "時間");
+        lines.push("今週：" + toHours1(thisWeekSec) + "時間");
+        lines.push("先週：" + toHours1(lastWeekSec) + "時間");
+        lines.push("");
+
+        if (Object.keys(months).length === 0) {
+          lines.push("（まだログがありません）");
+          return lines.join("\n");
+        }
+
+        var d = getShiftedDate(nowMs());
+        d.setDate(1); d.setHours(0,0,0,0);
+        for (var i=0; i<12; i++){
+          var key = getMonthKey(d);
+          if (months[key]) {
+            var y = key.slice(0,4);
+            var m = key.slice(5,7);
+            lines.push(y + "年" + parseInt(m,10) + "月　" + toHours1(months[key]) + "時間");
+          }
+          d.setMonth(d.getMonth() - 1);
+        }
+        return lines.join("\n");
+      }
+
+      function formatDateTime(ms){
+        var d = new Date(ms);
+        if (!isFinite(d.getTime())) return "";
+        var y = d.getFullYear();
+        var m = pad2(d.getMonth() + 1);
+        var day = pad2(d.getDate());
+        var hh = pad2(d.getHours());
+        var mm = pad2(d.getMinutes());
+        return y + "/" + m + "/" + day + " " + hh + ":" + mm;
+      }
+
+      function getLatestProvisionalEntry(entries){
+        for (var i = entries.length - 1; i >= 0; i--) {
+          if (entries[i].provisional) return entries[i];
+        }
+        return null;
+      }
+
+      function renderRecordBanner(){
+        var isRestPhase = (state.phase === PHASE_REST || state.phase === PHASE_LONG);
+        if (!isRestPhase) {
+          recordBanner.hidden = true;
+          recordBannerAction.disabled = true;
+          return;
+        }
+        var entries = loadLogEntries();
+        var latest = getLatestProvisionalEntry(entries);
+        if (latest) {
+          var timestamp = formatDateTime(latest.recordedAt);
+          if (!timestamp) {
+            recordBanner.hidden = true;
+            recordBannerAction.disabled = true;
+            return;
+          }
+          var label = timestamp + "｜25分の集中を記録しました";
+          if (!label.trim()) {
+            recordBanner.hidden = true;
+            recordBannerAction.disabled = true;
+            return;
+          }
+          recordBannerText.textContent = label;
+          recordBannerAction.textContent = "取り消す";
+          recordBannerAction.disabled = false;
+          recordBanner.hidden = false;
+          return;
+        }
+        if (state.lastCanceledAt) {
+          var canceledAt = formatDateTime(state.lastCanceledAt);
+          if (!canceledAt) {
+            state.lastCanceledAt = 0;
+            recordBanner.hidden = true;
+            recordBannerAction.disabled = true;
+            return;
+          }
+          var canceledLabel = canceledAt + "｜記録を取り消しました";
+          if (!canceledLabel.trim()) {
+            state.lastCanceledAt = 0;
+            recordBanner.hidden = true;
+            recordBannerAction.disabled = true;
+            return;
+          }
+          recordBannerText.textContent = canceledLabel;
+          recordBannerAction.textContent = "取り消しました";
+          recordBannerAction.disabled = true;
+          recordBanner.hidden = false;
+          return;
+        }
+        recordBanner.hidden = true;
+      }
+
+      function renderGoalChoice(){
+        if (!goalChoice) return;
+        if (state.goalChoiceActive) {
+          goalChoiceText.textContent = "目標の" + state.goalChoiceGoal + "セットが終わりました";
+          goalChoiceActions.hidden = false;
+          goalChoice.hidden = false;
+          return;
+        }
+        if (state.goalChoiceFinished) {
+          goalChoiceText.textContent = "おつかれさまでした！";
+          goalChoiceActions.hidden = true;
+          goalChoice.hidden = false;
+          return;
+        }
+        goalChoice.hidden = true;
+      }
+
+      function clearGoalChoice(){
+        state.goalChoiceActive = false;
+        state.goalChoiceFinished = false;
+        state.goalChoiceGoal = 0;
+      }
+
+      function startRestAfterGoalChoice(){
+        clearGoalChoice();
+        if (state.longBreakEnabled && (state.focusCount % LONG_BREAK_EVERY === 0)) {
+          state.phase = PHASE_LONG;
+          state.remainingSec = DEFAULT_LONG_SEC;
+        } else {
+          state.phase = PHASE_REST;
+          state.remainingSec = DEFAULT_REST_SEC;
+        }
+        state.running = true;
+        state.endAt = nowMs() + state.remainingSec * 1000;
+        if (wakeLockToggle.checked) setWakeLock(true);
+        vibrate();
+        saveState();
+        render();
+        triggerPhaseFlash();
+      }
+
+      async function copyText(text){
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast("コピーしました");
+          return true;
+        } catch (e) {
+          try {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            showToast("コピーしました");
+            return true;
+          } catch (e2) {
+            showToast("コピーできませんでした");
+            return false;
+          }
+        }
+      }
+      var audioCtx = null;
+      function armAudio(){
+        if (state.audioArmed) return;
+        state.audioArmed = true;
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+        } catch(e){ audioCtx = null; }
+      }
+
+      function beep(){
+        try {
+          if (!audioCtx) return;
+          var o = audioCtx.createOscillator();
+          var g = audioCtx.createGain();
+          o.connect(g); g.connect(audioCtx.destination);
+          o.type = "sine";
+          o.frequency.value = 880;
+          g.gain.value = 0.0001;
+          var t0 = audioCtx.currentTime;
+          g.gain.exponentialRampToValueAtTime(0.2, t0 + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.25);
+          o.start(t0);
+          o.stop(t0 + 0.28);
+        } catch(e){}
+      }
+
+      function vibrate(){
+        try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch(e){}
+      }
+
+      async function notifyDone(message){
+        beep();
+        vibrate();
+        try {
+          if ("Notification" in window && Notification.permission === "granted") {
+            new Notification("ポモドーロタイマー", { body: message });
+          }
+        } catch(e){}
+      }
+
+      async function setWakeLock(enabled){
+        if (!("wakeLock" in navigator)) {
+          if (enabled) showToast("この端末では未対応です");
+          state.wakeLock = null;
+          return;
+        }
+        try {
+          if (enabled) {
+            state.wakeLock = await navigator.wakeLock.request("screen");
+            state.wakeLock.addEventListener("release", function(){ state.wakeLock = null; });
+            showToast("画面スリープ抑止：ON");
+          } else {
+            if (state.wakeLock) await state.wakeLock.release();
+            showToast("画面スリープ抑止：OFF");
+          }
+        } catch(e) {
+          state.wakeLock = null;
+          if (enabled) {
+            state.wakeLockEnabled = false;
+            wakeLockToggle.checked = false;
+            showToast("設定できませんでした");
+          }
+        } finally {
+          if (!enabled) state.wakeLock = null;
+        }
+      }
+
+      function handleVisibilityChange(isHidden){
+        if (isHidden) return;
+        if (state.running && state.wakeLockEnabled && wakeLockToggle.checked) {
+          setWakeLock(true);
+        }
+        advanceCurrentPhaseOnceIfOverdue();
+        syncRemainingFromEndAt();
+        render();
+      }
+
+      document.addEventListener("visibilitychange", function(){
+        handleVisibilityChange(document.visibilityState === "hidden");
+      });
+
+      window.addEventListener("pagehide", function(){
+        handleVisibilityChange(true);
+      });
+
+      function phaseDurationSec(phase){
+        if (phase === PHASE_FOCUS) return DEFAULT_FOCUS_SEC;
+        if (phase === PHASE_REST) return DEFAULT_REST_SEC;
+        return DEFAULT_LONG_SEC;
+      }
+
+      function syncRemainingFromEndAt(){
+        if (!state.running) return;
+        var rem = Math.ceil((state.endAt - nowMs()) / 1000);
+        state.remainingSec = clamp(rem, 0, 24*60*60);
+      }
+
+      function ensureDayKey(){
+        var currentKey = getDayKeyByReset(nowMs());
+        if (!state.lastDayKey) {
+          state.lastDayKey = currentKey;
+          saveState();
+          return false;
+        }
+        if (state.lastDayKey !== currentKey) {
+          state.lastDayKey = currentKey;
+          state.focusCount = 0;
+          saveState();
+          return true;
+        }
+        return false;
+      }
+
+      function pause(){
+        syncRemainingFromEndAt();
+        state.running = false;
+        state.endAt = 0;
+        setWakeLock(false);
+        saveState();
+        render();
+      }
+
+      function setPhaseClass(){
+        document.body.classList.remove("phase-focus", "phase-rest", "phase-long");
+        if (state.phase === PHASE_FOCUS) document.body.classList.add("phase-focus");
+        if (state.phase === PHASE_REST) document.body.classList.add("phase-rest");
+        if (state.phase === PHASE_LONG) document.body.classList.add("phase-long");
+      }
+
+      function triggerPhaseFlash(){
+        if (timerCard) {
+          timerCard.classList.remove("flash");
+          void timerCard.offsetWidth;
+          timerCard.classList.add("flash");
+          clearTimeout(triggerPhaseFlash._t);
+          triggerPhaseFlash._t = setTimeout(function(){
+            timerCard.classList.remove("flash");
+          }, 2000);
+        }
+
+        if (phaseFlashScreen) {
+          phaseFlashScreen.classList.remove("is-flashing");
+          void phaseFlashScreen.offsetWidth;
+          phaseFlashScreen.classList.add("is-flashing");
+          clearTimeout(triggerPhaseFlash._s);
+          triggerPhaseFlash._s = setTimeout(function(){
+            phaseFlashScreen.classList.remove("is-flashing");
+          }, 2000);
+        }
+      }
+
+      function resetTimer(confirmFirst){
+        var doReset = function(){
+          state.running = false;
+          state.endAt = 0;
+          state.phase = PHASE_FOCUS;
+          state.remainingSec = DEFAULT_FOCUS_SEC;
+          state.focusCount = 0;
+          state.lastCanceledAt = 0;
+          clearGoalChoice();
+          setWakeLock(false);
+          saveState();
+          render();
+          showToast("リセットしました");
+        };
+        if (confirmFirst) {
+          if (confirm("タイマーをリセットしますか？")) doReset();
+        } else {
+          doReset();
+        }
+      }
+
+      function finalizeProvisionalOnFocusStart(){
+        confirmLatestProvisional();
+        state.lastCanceledAt = 0;
+      }
+
+      function completeCurrentPhaseOnce(recordedAtMs, nextPhaseStartMs){
+        var prev = state.phase;
+        var recordedAt = (typeof recordedAtMs === "number") ? recordedAtMs : nowMs();
+        var nextStart = (typeof nextPhaseStartMs === "number") ? nextPhaseStartMs : recordedAt;
+
+        if (prev === PHASE_FOCUS) {
+          addProvisionalFocusLog(recordedAt);
+          state.focusCount += 1;
+
+          if (state.goalSets > 0 && state.focusCount >= state.goalSets) {
+            state.phase = PHASE_FOCUS;
+            state.remainingSec = DEFAULT_FOCUS_SEC;
+            state.running = false;
+            state.endAt = 0;
+            state.goalChoiceActive = true;
+            state.goalChoiceGoal = state.goalSets;
+            state.goalChoiceFinished = false;
+            setWakeLock(false);
+            saveState();
+            render();
+            notifyDone("目標セット完了。ここまでおつかれさま。");
+            showToast("目標セット完了");
+            return;
+          }
+
+          if (state.longBreakEnabled && (state.focusCount % LONG_BREAK_EVERY === 0)) {
+            state.phase = PHASE_LONG;
+            state.remainingSec = DEFAULT_LONG_SEC;
+            notifyDone("4セット完了。少し長めに休もう。");
+          } else {
+            state.phase = PHASE_REST;
+            state.remainingSec = DEFAULT_REST_SEC;
+            notifyDone("25分おつかれさま。5分休憩しよう。");
+          }
+        } else {
+          finalizeProvisionalOnFocusStart();
+          state.phase = PHASE_FOCUS;
+          state.remainingSec = DEFAULT_FOCUS_SEC;
+          notifyDone("休憩おわり。次の25分、いこう。");
+        }
+
+        if (state.running) state.endAt = nextStart + state.remainingSec * 1000;
+        else state.endAt = 0;
+
+        saveState();
+        render();
+        triggerPhaseFlash();
+      }
+
+      function advanceCurrentPhaseOnceIfOverdue(){
+        if (!state.running || state.endAt <= 0) return;
+        var now = nowMs();
+        if (now >= state.endAt) {
+          state.remainingSec = 0;
+          completeCurrentPhaseOnce(state.endAt, now);
+        }
+      }
+
+      function tick(){
+        var dayChanged = ensureDayKey();
+        if (dayChanged) render();
+        if (!state.running) return;
+        syncRemainingFromEndAt();
+
+        if (state.remainingSec <= 0) {
+          state.remainingSec = 0;
+          var now = nowMs();
+          completeCurrentPhaseOnce(now, now);
+          return;
+        }
+        renderTimeOnly();
+      }
+
+      function renderTimeOnly(){
+        setTimeDisplay(state.remainingSec);
+      }
+
+      function render(){
+        ensureDayKey();
+        if (state.running) syncRemainingFromEndAt();
+
+        var nextSetNumber = state.focusCount + 1;
+        if (state.phase === PHASE_FOCUS) {
+          phaseMain.textContent = "集中";
+          phaseSub.textContent = nextSetNumber + "セット目";
+        } else {
+          phaseMain.textContent = "休憩";
+          phaseSub.textContent = "次は" + nextSetNumber + "セット目";
+        }
+
+        var inCycle = (state.focusCount % LONG_BREAK_EVERY) + 1;
+        var metaText = "セット " + inCycle + " / " + LONG_BREAK_EVERY + "（長休憩まで）";
+        var showMeta = !!state.longBreakEnabled;
+        phaseSub.hidden = false;
+        phaseMeta.hidden = !showMeta;
+        phaseMeta.textContent = showMeta ? metaText : "";
+
+        renderTimeOnly();
+
+        startPauseBtn.textContent = state.running
+          ? "一時停止"
+          : ((state.remainingSec === phaseDurationSec(state.phase)) ? "開始" : "再開");
+
+        var isRest = (state.phase === PHASE_REST || state.phase === PHASE_LONG);
+        skipRestBtn.style.display = isRest ? "inline-flex" : "none";
+
+        hintLine.textContent = isRest
+          ? "休憩はスキップできますが、集中力を保つには短い休憩がおすすめです。軽く体を伸ばすだけでも効果があります。"
+          : "集中が完了するとログに自動記録されます。";
+        hintLine.classList.toggle("is-muted", !isRest);
+
+        longBreakToggle.checked = !!state.longBreakEnabled;
+
+        document.body.classList.toggle("is-running", state.running);
+        setPhaseClass();
+
+        renderRecordBanner();
+        renderGoalChoice();
+        saveState();
+      }
+
+      startPauseBtn.addEventListener("click", function(){
+        armAudio();
+
+        if (state.running) {
+          pause();
+          showToast("一時停止");
+        } else {
+          if (state.goalChoiceActive) {
+            showToast("選択してください");
+            return;
+          }
+          if (state.goalChoiceFinished) {
+            clearGoalChoice();
+          }
+          if (state.phase === PHASE_FOCUS) {
+            finalizeProvisionalOnFocusStart();
+          }
+          state.running = true;
+          if (state.remainingSec <= 0) state.remainingSec = phaseDurationSec(state.phase);
+          state.endAt = nowMs() + state.remainingSec * 1000;
+          if (wakeLockToggle.checked) setWakeLock(true);
+          saveState();
+          render();
+          showToast("開始");
+        }
+      });
+
+      resetBtn.addEventListener("click", function(){
+        resetTimer(true);
+      });
+
+      skipRestBtn.addEventListener("click", function(){
+        if (!(state.phase === PHASE_REST || state.phase === PHASE_LONG)) return;
+        state.phase = PHASE_FOCUS;
+        state.remainingSec = DEFAULT_FOCUS_SEC;
+        if (state.running) {
+          finalizeProvisionalOnFocusStart();
+          state.endAt = nowMs() + state.remainingSec * 1000;
+        }
+        saveState();
+        render();
+        showToast("休憩をスキップ");
+      });
+
+      longBreakToggle.addEventListener("change", function(){
+        state.longBreakEnabled = !!longBreakToggle.checked;
+        saveState();
+        render();
+      });
+
+      wakeLockToggle.addEventListener("change", function(){
+        state.wakeLockEnabled = !!wakeLockToggle.checked;
+        if (!state.wakeLockEnabled) {
+          setWakeLock(false);
+        } else if (state.running) {
+          setWakeLock(true);
+        }
+      });
+
+      Array.prototype.slice.call(document.querySelectorAll(".chip[data-goal]")).forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var prevGoal = state.goalSets;
+          var goal = parseInt(btn.getAttribute("data-goal"), 10) || 0;
+          state.goalSets = goal;
+          Array.prototype.slice.call(document.querySelectorAll(".chip[data-goal]")).forEach(function(b){
+            b.setAttribute("aria-pressed", (b === btn) ? "true" : "false");
+          });
+          if (state.goalChoiceActive && goal > prevGoal) {
+            showToast("目標：" + goal + "セット");
+            startRestAfterGoalChoice();
+            return;
+          }
+          saveState();
+          showToast(goal === 0 ? "目標なし" : ("目標：" + goal + "セット"));
+        });
+      });
+
+      copyLogBtn.addEventListener("click", function(){
+        copyText(buildCopyText());
+      });
+
+      resetLogBtn.addEventListener("click", function(){
+        if (!confirm("これまでの勉強ログをすべて削除します。元に戻せません。")) return;
+        localStorage.removeItem(LS_LOG_KEY);
+        state.lastCanceledAt = 0;
+        saveState();
+        renderLog();
+        showToast("ログをリセットしました");
+      });
+
+      recordBannerAction.addEventListener("click", function(){
+        if (recordBannerAction.disabled) return;
+        var removed = removeLatestProvisional();
+        if (!removed) {
+          state.lastCanceledAt = 0;
+          saveState();
+          renderRecordBanner();
+          showToast("記録が見つかりません");
+          return;
+        }
+        state.lastCanceledAt = removed.recordedAt;
+        saveState();
+        renderLog();
+        render();
+        showToast("記録を取り消しました");
+      });
+
+      goalContinueBtn.addEventListener("click", function(){
+        if (!state.goalChoiceActive) return;
+        state.goalSets += 1;
+        showToast("もう1セット続けます");
+        startRestAfterGoalChoice();
+      });
+
+      goalStopBtn.addEventListener("click", function(){
+        if (!state.goalChoiceActive) return;
+        state.goalChoiceActive = false;
+        state.goalChoiceFinished = true;
+        state.goalChoiceGoal = 0;
+        state.running = false;
+        state.endAt = 0;
+        setWakeLock(false);
+        saveState();
+        render();
+      });
+
+      loadState();
+      ensureDayKey();
+
+      (function(){
+        var goal = state.goalSets || 0;
+        Array.prototype.slice.call(document.querySelectorAll(".chip[data-goal]")).forEach(function(b){
+          var g = parseInt(b.getAttribute("data-goal"), 10) || 0;
+          b.setAttribute("aria-pressed", (g === goal) ? "true" : "false");
+        });
+        longBreakToggle.checked = !!state.longBreakEnabled;
+      })();
+
+      if (!state.running && state.remainingSec <= 0) state.remainingSec = phaseDurationSec(state.phase);
+
+      advanceCurrentPhaseOnceIfOverdue();
+      renderLog();
+      render();
+
+      setInterval(tick, 250);
+    })();
+  </script>
+</body>
+</html>
+<!-- PART 3/3：ここまで -->

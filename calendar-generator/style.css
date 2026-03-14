@@ -1,0 +1,408 @@
+:root {
+  --bg: #f5f7fb;
+  --card-bg: #ffffff;
+  --border: #dde2ee;
+  --text: #333333;
+  --muted-text: #7b8190;
+
+  --calendar-base-rgb: 255, 255, 255;
+  --calendar-border: rgba(0, 0, 0, 0.08);
+  --calendar-muted: rgba(236, 238, 241, 0.9);
+  --calendar-shadow: rgba(0, 0, 0, 0.05);
+  --calendar-bg-image: none;
+  --paper-alpha-frame: 0.92;
+  --paper-alpha-cell: 0.96;
+
+  --primary-cool: #4a90e2;
+  --accent-cool: #e6f2ff;
+
+  --primary-warm: #ff9800;
+  --accent-warm: #fff3e0;
+
+  --sun: #ff6b6b;
+  --sat: #4a90e2;
+}
+
+/* テーマ切替 */
+body.theme-cool {
+  --primary: var(--primary-cool);
+  --accent: var(--accent-cool);
+  --calendar-base-rgb: 255, 255, 255;
+  --calendar-border: rgba(74, 144, 226, 0.2);
+  --calendar-muted: rgba(237, 242, 248, 0.92);
+  --calendar-shadow: rgba(74, 144, 226, 0.12);
+}
+
+body.theme-warm {
+  --primary: var(--primary-warm);
+  --accent: var(--accent-warm);
+  --calendar-base-rgb: 255, 255, 255;
+  --calendar-border: rgba(210, 170, 120, 0.25);
+  --calendar-muted: rgba(244, 238, 228, 0.92);
+  --calendar-shadow: rgba(201, 156, 107, 0.12);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* コンテナ */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.shared-footer {
+  max-width: 900px;
+  margin: 24px auto 32px;
+  padding: 8px 0 0;
+  text-align: center;
+}
+
+.shared-footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.shared-footer a:hover {
+  text-decoration: underline;
+}
+
+/* 見出し */
+h1 {
+  font-size: 1.4rem;
+  margin: 0 0 8px;
+}
+
+.lead {
+  font-size: 0.9rem;
+  color: var(--muted-text);
+  margin: 0 0 16px;
+}
+
+/* カード */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 12px;
+  border-left: 4px solid var(--primary); /* テーマ色のアクセント */
+}
+
+.card h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* カードヘッダー（Step1 見出し＋復元ボタン） */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.restore-btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  background: var(--accent);
+  color: var(--text);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.restore-btn:hover {
+  opacity: 0.85;
+}
+
+/* ラベル・入力 */
+label {
+  display: block;
+  font-size: 0.85rem;
+  margin: 10px 0 4px;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.bg-input-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--primary);
+}
+
+/* ボタン共通 */
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.secondary-btn {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+button.secondary-btn:hover {
+  opacity: 0.9;
+}
+
+/* Step4小見出し */
+.subheading {
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+}
+
+/* ヒントテキスト */
+.hint {
+  font-size: 0.8rem;
+  color: var(--muted-text);
+  margin-top: 8px;
+}
+
+.hint.small {
+  font-size: 0.75rem;
+}
+
+/* 記号設定行 */
+.symbol-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.symbol-char {
+  width: 52px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.symbol-label {
+  flex: 1;
+}
+
+/* Step4の記号ボタン */
+#symbolButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.symbol-btn {
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  background: rgba(var(--calendar-base-rgb), var(--paper-alpha-frame));
+  color: var(--text);
+  border: 1px solid var(--calendar-border);
+}
+
+.symbol-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* カレンダー全体 */
+#calendarImageArea {
+  margin-top: 12px;
+  background-image: linear-gradient(rgba(var(--calendar-base-rgb), var(--paper-alpha-frame)), rgba(var(--calendar-base-rgb), var(--paper-alpha-frame))), var(--calendar-bg-image);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid var(--calendar-border);
+  box-shadow: 0 10px 24px var(--calendar-shadow);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* カレンダータイトル */
+.calendar-main-title {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+  color: var(--primary); /* テーマ色で表示 */
+}
+
+/* 月ブロック */
+.month-block {
+  margin-bottom: 16px;
+}
+
+/* 月タイトル */
+.month-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* 曜日ヘッダー：7列で横並び */
+.weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--calendar-border);
+}
+
+.weekday-header div {
+  text-align: center;
+  padding: 4px 0;
+  font-size: 0.8rem;
+  color: var(--muted-text);
+}
+
+/* カレンダーグリッド */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-left: 1px solid var(--calendar-border);
+  border-bottom: 1px solid var(--calendar-border);
+}
+
+/* 日セル */
+.day-cell {
+  min-height: 48px;
+  border-right: 1px solid var(--calendar-border);
+  border-top: 1px solid var(--calendar-border);
+  padding: 2px 3px;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 0.8rem;
+  background: rgba(var(--calendar-base-rgb), var(--paper-alpha-cell));
+}
+
+/* 日付数字 */
+.day-cell > div:first-child {
+  font-size: 0.8rem;
+}
+
+/* 土日・祝日の色（テーマに追従） */
+.day-cell.sat {
+  background: var(--accent);
+}
+
+.day-cell.sun {
+  background: var(--accent);
+  font-weight: 600;
+}
+
+/* 期間外のグレーアウト */
+.day-cell.day-disabled {
+  background: var(--calendar-muted);
+  color: #8b8f99;
+}
+
+/* 記号部分（2×2グリッド） */
+.symbol {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1.1em;
+  gap: 0;
+  margin-top: 2px;
+  font-size: 0.9rem;
+}
+
+.symbol span {
+  text-align: center;
+  line-height: 1.1em;
+}
+
+/* 凡例エリア */
+#legendArea {
+  margin-top: 8px;
+  font-size: 0.8rem;
+}
+
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--accent); /* テーマに応じて変化 */
+  opacity: 0.7;
+  border: 1px solid var(--calendar-border);
+}
+
+.legend-symbol {
+  font-weight: 600;
+}
+
+/* メモ */
+.memo-block {
+  margin-top: 8px;
+}
+
+.memo-textarea {
+  width: 100%;
+  min-height: 4.5em;
+  font-size: 0.8rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--calendar-border);
+  resize: none;
+  box-sizing: border-box;
+  background: rgba(var(--calendar-base-rgb), var(--paper-alpha-frame));
+}
+
+/* 出力画像 */
+.result-img {
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+/* スマホ向け微調整 */
+@media (max-width: 600px) {
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .day-cell {
+    min-height: 44px;
+  }
+}
