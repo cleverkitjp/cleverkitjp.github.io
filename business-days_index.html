@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>営業日計算ツール｜営業日数・営業日後・営業日前を無料で計算</title>
+  <meta name="description" content="営業日数の計算、○営業日後・○営業日前の日付計算を無料で実行。土日・祝日・独自休日に対応し、結果をカレンダー表示できます。">
+  <link rel="canonical" href="https://cleverkit.jp/business-days/">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="/common.css">
+
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --primary: #1a56a0;
+      --primary-light: #e8f0fb;
+      --primary-dark: #0e3a72;
+      --accent: #e85d26;
+      --success: #2e7d32;
+      --text: #1a1a2e;
+      --text-muted: #6b7280;
+      --border: #d1d5db;
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+      /* Calendar colors */
+      --cal-biz: #ffffff;
+      --cal-day-off: #e5e7eb;  /* 曜日休日：グレー */
+      --cal-holiday: #fee2e2;  /* 祝日：赤 */
+      --cal-other: #fef9c3;    /* その他休業日：黄色 */
+      --cal-target: #1a56a0;
+      --cal-deadline: #e85d26;
+      --cal-range: #eff6ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ===== Header ===== */
+    .site-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 16px 12px;
+    }
+    .site-header a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; }
+    .site-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .site-header p { font-size: 12px; opacity: 0.8; margin-top: 2px; }
+
+    /* ===== Main ===== */
+    main { padding: 12px 12px 40px; max-width: 680px; margin: 0 auto; }
+
+    /* ===== Card ===== */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-title .icon { font-size: 16px; }
+
+    /* ===== Forms ===== */
+    label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 4px; margin-top: 10px; }
+    label:first-of-type { margin-top: 0; }
+    input[type="date"], input[type="number"], input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      color: var(--text);
+      background: #fff;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="number"] { -moz-appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+    input:focus { outline: 2px solid var(--primary); border-color: var(--primary); }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--primary); color: #fff; width: 100%; margin-top: 14px; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 13px;
+      border-radius: 6px;
+    }
+    .btn-outline {
+      background: #fff;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+    }
+    .btn-danger-sm {
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 5px;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ===== Tabs ===== */
+    .tab-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin-bottom: 12px;
+    }
+    .tab-wrap::-webkit-scrollbar { display: none; }
+    .tabs {
+      display: flex;
+      gap: 6px;
+      padding-bottom: 2px;
+      width: max-content;
+    }
+    .tab-btn {
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ===== Result Box ===== */
+    .result-box {
+      background: var(--primary-light);
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .result-item { text-align: center; }
+    .result-num {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .result-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .result-highlight {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      margin-top: 14px;
+    }
+    .result-highlight .date-large {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .result-highlight .date-label { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+    /* ===== Share Box ===== */
+    .share-box {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #166534;
+    }
+    .share-text { font-weight: 600; margin-bottom: 6px; }
+    .share-content { word-break: break-all; }
+    .share-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+
+    /* ===== Holiday Settings ===== */
+    .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .check-item.checked { border-color: var(--primary); background: var(--primary-light); }
+    .check-item input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--primary); }
+    .check-label { font-size: 14px; font-weight: 600; flex: 1; }
+    .check-desc { font-size: 12px; color: var(--text-muted); }
+
+    .custom-holiday-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      align-items: flex-end;
+    }
+    .custom-holiday-form input { flex: 1; }
+    .custom-holiday-list { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .custom-holiday-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: #fef9c3;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    /* ===== Calendar ===== */
+    .calendar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+    }
+    .legend-dot {
+      width: 12px; height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .cal-month { margin-bottom: 20px; }
+    .cal-month-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cal-month-biz { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+    .cal-dow {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 0;
+      color: var(--text-muted);
+    }
+    .cal-dow:first-child { color: #b91c1c; }
+    .cal-dow:last-child { color: #1d4ed8; }
+    .cal-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      border-radius: 5px;
+      position: relative;
+      font-weight: 500;
+    }
+    .cal-cell.empty { background: transparent; }
+    .cal-cell.biz { background: var(--cal-biz); color: var(--text); }
+    .cal-cell.day-off { background: var(--cal-day-off); color: #4b5563; } /* 曜日休日：グレー */
+    .cal-cell.holiday { background: var(--cal-holiday); color: #b91c1c; } /* 祝日：赤 */
+    .cal-cell.other-hol { background: var(--cal-other); color: #92400e; } /* その他休業日：黄色 */
+    .cal-cell.in-range { background: var(--cal-range); }
+    /* 開始日・終了日：背景色に関わらず視認できる枠線リング */
+    .cal-cell.range-start {
+      outline: 2.5px solid #1a56a0;
+      outline-offset: -2px;
+      border-radius: 5px;
+    }
+    .cal-cell.range-end {
+      outline: 2.5px solid #e85d26;
+      outline-offset: -2px;
+      border-radius: 5px;
+    }
+    .cal-cell.target-day {
+      background: var(--cal-target) !important;
+      color: #fff !important;
+      font-weight: 700;
+      border-radius: 50%;
+    }
+    .cal-cell.deadline-day {
+      background: var(--cal-deadline) !important;
+      color: #fff !important;
+      font-weight: 700;
+      border-radius: 50%;
+    }
+
+    /* ===== Annual summary ===== */
+    .annual-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .month-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+    .month-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .month-row:nth-child(odd) { background: var(--bg); }
+    .month-name { font-weight: 600; }
+    .month-biz { color: var(--primary); font-weight: 700; }
+
+    /* ===== FAQ ===== */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 14px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .faq-q .arrow { font-size: 12px; transition: transform 0.2s; flex-shrink: 0; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 0 0 14px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .faq-a.open { display: block; }
+
+    /* ===== Related Tools ===== */
+    .related-list { display: flex; flex-direction: column; gap: 8px; }
+    .related-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      background: var(--bg);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      gap: 10px;
+      transition: background 0.15s;
+    }
+    .related-item:hover { background: var(--primary-light); }
+    .related-item .arrow { margin-left: auto; color: var(--text-muted); }
+
+    /* ===== 起算ルール ===== */
+    .rule-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .rule-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .rule-item input[type="radio"] { accent-color: var(--primary); width: 16px; height: 16px; cursor: pointer; }
+    .rule-item:has(input:checked) { border-color: var(--primary); background: var(--primary-light); }
+
+    /* ===== 曜日チェックグリッド ===== */
+    .dow-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      margin-top: 8px;
+      align-items: start;
+    }
+    .dow-cell {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 6px 2px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      height: 52px;
+      box-sizing: border-box;
+    }
+    .dow-cell input[type="checkbox"] { width: 14px; height: 14px; cursor: pointer; accent-color: var(--primary); pointer-events: none; }
+    .dow-cell.checked { border-color: var(--primary); background: var(--primary-light); }
+    .dow-cell.dow-sun { color: #b91c1c; }
+    .dow-cell.dow-sat { color: #1d4ed8; }
+
+    /* ===== API status badge ===== */
+    .api-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .api-badge.ok { background: #dcfce7; color: #166534; }
+    .api-badge.err { background: #fee2e2; color: #b91c1c; }
+    .api-badge.loading { background: #f3f4f6; color: #6b7280; }
+
+    /* ===== Month nav (annual calendar) ===== */
+    .month-nav-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin-bottom: 12px;
+    }
+    .month-nav-wrap::-webkit-scrollbar { display: none; }
+    .month-nav {
+      display: flex;
+      gap: 5px;
+      width: max-content;
+    }
+    .mnav-btn {
+      padding: 6px 11px;
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mnav-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ===== Select year ===== */
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      color: var(--text);
+      background: #fff;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+    select:focus { outline: 2px solid var(--primary); border-color: var(--primary); }
+
+    /* ===== Utilities ===== */
+    .mt8 { margin-top: 8px; }
+    .mt12 { margin-top: 12px; }
+    .flex-row { display: flex; gap: 8px; }
+    .flex-row > * { flex: 1; }
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-muted); font-size: 13px; }
+    .hidden { display: none !important; }
+
+    /* ===== Spinner ===== */
+    .spinner {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid #e5e7eb;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="site-header">
+  <a href="/">🧰 CleverKit</a>
+  <h1>📅 営業日計算ツール</h1>
+  <p>営業日数・○営業日後・納期を無料で計算</p>
+</header>
+
+<main>
+
+  <!-- ===== 祝日API状態 ===== -->
+  <div class="card" style="padding: 10px 16px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span style="font-size:13px;color:var(--text-muted);">祝日データ</span>
+      <span class="api-badge loading" id="apiStatus">
+        <span class="spinner"></span> 取得中…
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== 休日設定 ===== -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⚙️</span>休日設定</div>
+
+    <!-- 曜日休日 -->
+    <div style="margin-bottom:14px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">曜日休日 <span style="font-size:11px;font-weight:400;color:var(--text-muted);">（グレー表示）</span></div>
+      <div class="dow-grid" id="dowGrid">
+        <div class="dow-cell dow-sun" id="dowWrap0" onclick="clickDowCell(0)"><input type="checkbox" id="chkDow0">日</div>
+        <div class="dow-cell" id="dowWrap1" onclick="clickDowCell(1)"><input type="checkbox" id="chkDow1">月</div>
+        <div class="dow-cell" id="dowWrap2" onclick="clickDowCell(2)"><input type="checkbox" id="chkDow2">火</div>
+        <div class="dow-cell" id="dowWrap3" onclick="clickDowCell(3)"><input type="checkbox" id="chkDow3">水</div>
+        <div class="dow-cell" id="dowWrap4" onclick="clickDowCell(4)"><input type="checkbox" id="chkDow4">木</div>
+        <div class="dow-cell" id="dowWrap5" onclick="clickDowCell(5)"><input type="checkbox" id="chkDow5">金</div>
+        <div class="dow-cell dow-sat" id="dowWrap6" onclick="clickDowCell(6)"><input type="checkbox" id="chkDow6">土</div>
+      </div>
+    </div>
+
+    <!-- 祝日 -->
+    <div style="margin-bottom:14px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">祝日 <span style="font-size:11px;font-weight:400;color:var(--text-muted);">（赤表示）</span></div>
+      <label class="check-item checked" id="chkWrapJpHoliday">
+        <input type="checkbox" id="chkJpHoliday" checked onchange="toggleCheck('chkWrapJpHoliday',this)">
+        <div>
+          <div class="check-label">日本祝日</div>
+          <div class="check-desc">APIから取得した国民の祝日</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- その他休業日 -->
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">その他休業日 <span style="font-size:11px;font-weight:400;color:var(--text-muted);">（黄色表示）</span></div>
+      <div class="checkbox-group">
+        <label class="check-item" id="chkWrapNewyear">
+          <input type="checkbox" id="chkNewyear" onchange="toggleCheck('chkWrapNewyear',this)">
+          <div>
+            <div class="check-label">年末年始</div>
+            <div class="check-desc">12/29〜12/31、1/1〜1/3</div>
+          </div>
+        </label>
+        <label class="check-item" id="chkWrapObon">
+          <input type="checkbox" id="chkObon" onchange="toggleCheck('chkWrapObon',this)">
+          <div>
+            <div class="check-label">お盆</div>
+            <div class="check-desc">8/13〜8/15</div>
+          </div>
+        </label>
+      </div>
+      <div style="margin-top:12px;">
+        <div style="font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">独自休日を追加</div>
+        <div class="custom-holiday-form">
+          <input type="date" id="customHolidayDate">
+          <input type="text" id="customHolidayName" placeholder="名称（任意）" style="flex:1;">
+          <button class="btn btn-primary btn-sm" onclick="addCustomHoliday()" style="width:auto;margin-top:0;flex-shrink:0;">追加</button>
+        </div>
+        <div class="custom-holiday-list" id="customHolidayList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== タブ ===== -->
+  <div class="tab-wrap">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('range',this)">📊 期間営業日</button>
+      <button class="tab-btn" onclick="switchTab('after',this)">➡️ 営業日後</button>
+      <button class="tab-btn" onclick="switchTab('before',this)">⬅️ 営業日前</button>
+      <button class="tab-btn" onclick="switchTab('deadline',this)">📋 納期計算</button>
+      <button class="tab-btn" onclick="switchTab('annual',this)">📆 年間営業日</button>
+    </div>
+  </div>
+
+  <!-- ===== ① 期間営業日 ===== -->
+  <div class="tab-panel active" id="panel-range">
+    <div class="card">
+      <div class="card-title"><span class="icon">📊</span>期間営業日数計算</div>
+      <label>開始日</label>
+      <input type="date" id="rangeStart">
+      <label>終了日</label>
+      <input type="date" id="rangeEnd">
+      <button class="btn btn-primary" onclick="calcRange()">計算する</button>
+    </div>
+    <div class="card hidden" id="rangeResult">
+      <div class="card-title"><span class="icon">📈</span>計算結果</div>
+      <div class="result-grid" id="rangeResultGrid"></div>
+      <div class="share-actions mt12">
+        <button class="btn btn-outline btn-sm" onclick="copyUrl('range')">🔗 URLをコピー</button>
+        <button class="btn btn-outline btn-sm" onclick="copyText('rangeShareText')">📋 文章をコピー</button>
+      </div>
+      <div class="share-box hidden" id="rangeShareText"></div>
+    </div>
+    <div class="card hidden" id="rangeCalendar">
+      <div class="card-title"><span class="icon">📅</span>カレンダー</div>
+      <div class="calendar-legend" id="rangeLegend"></div>
+      <div id="rangeCalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== ② 営業日後 ===== -->
+  <div class="tab-panel" id="panel-after">
+    <div class="card">
+      <div class="card-title"><span class="icon">➡️</span>○営業日後の日付を計算</div>
+      <label>基準日</label>
+      <input type="date" id="afterBase">
+      <label>営業日数</label>
+      <input type="number" id="afterDays" value="5" min="1" max="500">
+      <label>起算ルール</label>
+      <div class="rule-group">
+        <label class="rule-item"><input type="radio" name="afterRule" id="afterRuleExclude" value="exclude" checked onchange="saveSettings()">基準日を含めない</label>
+        <label class="rule-item"><input type="radio" name="afterRule" id="afterRuleInclude" value="include" onchange="saveSettings()">基準日を含める</label>
+      </div>
+      <button class="btn btn-primary" onclick="calcAfter()">計算する</button>
+    </div>
+    <div class="card hidden" id="afterResult">
+      <div class="result-highlight" id="afterResultBox"></div>
+      <div class="share-actions mt12">
+        <button class="btn btn-outline btn-sm" onclick="copyUrl('after')">🔗 URLをコピー</button>
+        <button class="btn btn-outline btn-sm" onclick="copyText('afterShareText')">📋 文章をコピー</button>
+      </div>
+      <div class="share-box hidden" id="afterShareText"></div>
+    </div>
+    <div class="card hidden" id="afterCalendar">
+      <div class="card-title"><span class="icon">📅</span>カレンダー</div>
+      <div class="calendar-legend" id="afterLegend"></div>
+      <div id="afterCalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== ③ 営業日前 ===== -->
+  <div class="tab-panel" id="panel-before">
+    <div class="card">
+      <div class="card-title"><span class="icon">⬅️</span>○営業日前の日付を計算</div>
+      <label>基準日</label>
+      <input type="date" id="beforeBase">
+      <label>営業日数</label>
+      <input type="number" id="beforeDays" value="5" min="1" max="500">
+      <label>起算ルール</label>
+      <div class="rule-group">
+        <label class="rule-item"><input type="radio" name="beforeRule" id="beforeRuleExclude" value="exclude" checked onchange="saveSettings()">基準日を含めない</label>
+        <label class="rule-item"><input type="radio" name="beforeRule" id="beforeRuleInclude" value="include" onchange="saveSettings()">基準日を含める</label>
+      </div>
+      <button class="btn btn-primary" onclick="calcBefore()">計算する</button>
+    </div>
+    <div class="card hidden" id="beforeResult">
+      <div class="result-highlight" id="beforeResultBox"></div>
+      <div class="share-actions mt12">
+        <button class="btn btn-outline btn-sm" onclick="copyUrl('before')">🔗 URLをコピー</button>
+        <button class="btn btn-outline btn-sm" onclick="copyText('beforeShareText')">📋 文章をコピー</button>
+      </div>
+      <div class="share-box hidden" id="beforeShareText"></div>
+    </div>
+    <div class="card hidden" id="beforeCalendar">
+      <div class="card-title"><span class="icon">📅</span>カレンダー</div>
+      <div class="calendar-legend" id="beforeLegend"></div>
+      <div id="beforeCalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== ④ 納期計算 ===== -->
+  <div class="tab-panel" id="panel-deadline">
+    <div class="card">
+      <div class="card-title"><span class="icon">📋</span>納期計算（SLA）</div>
+      <label>受付日</label>
+      <input type="date" id="deadlineBase">
+      <label>SLA営業日数</label>
+      <input type="number" id="deadlineDays" value="5" min="1" max="500">
+      <label>起算ルール</label>
+      <div class="rule-group">
+        <label class="rule-item"><input type="radio" name="deadlineRule" id="deadlineRuleExclude" value="exclude" checked onchange="saveSettings()">受付日を含めない</label>
+        <label class="rule-item"><input type="radio" name="deadlineRule" id="deadlineRuleInclude" value="include" onchange="saveSettings()">受付日を含める</label>
+      </div>
+      <button class="btn btn-primary" onclick="calcDeadline()">計算する</button>
+    </div>
+    <div class="card hidden" id="deadlineResult">
+      <div class="result-highlight" id="deadlineResultBox"></div>
+      <div class="share-box mt12" id="deadlineShareBox" style="display:none;"></div>
+      <div class="share-actions mt12">
+        <button class="btn btn-outline btn-sm" onclick="copyUrl('deadline')">🔗 URLをコピー</button>
+        <button class="btn btn-outline btn-sm" onclick="copyText('deadlineShareText')">📋 共有文例をコピー</button>
+      </div>
+      <div class="share-box hidden" id="deadlineShareText"></div>
+    </div>
+    <div class="card hidden" id="deadlineCalendar">
+      <div class="card-title"><span class="icon">📅</span>カレンダー</div>
+      <div class="calendar-legend" id="deadlineLegend"></div>
+      <div id="deadlineCalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== ⑤ 年間営業日 ===== -->
+  <div class="tab-panel" id="panel-annual">
+    <div class="card">
+      <div class="card-title"><span class="icon">📆</span>年間営業日カレンダー</div>
+      <label>対象年</label>
+      <select id="annualYear"></select>
+      <button class="btn btn-primary" onclick="calcAnnual()">表示する</button>
+    </div>
+    <div class="card hidden" id="annualResult">
+      <div class="card-title"><span class="icon">📊</span>年間集計</div>
+      <div class="annual-summary" id="annualSummary"></div>
+      <div class="card-title" style="font-size:13px;"><span class="icon">📋</span>月別営業日数</div>
+      <div class="month-list" id="monthList"></div>
+    </div>
+    <div class="card hidden" id="annualCalendar">
+      <div class="card-title"><span class="icon">📅</span>年間カレンダー</div>
+      <div class="calendar-legend" id="annualLegend"></div>
+      <div id="annualCalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== SEO説明セクション ===== -->
+  <div class="card">
+    <h2 style="font-size:16px;font-weight:700;color:var(--primary);margin-bottom:10px;">営業日計算ツールについて</h2>
+    <p style="font-size:14px;line-height:1.8;color:var(--text-muted);">
+      営業日とは、土日および国民の祝日を除いた、実際に業務を行う日のことです。このツールでは、指定した期間に含まれる営業日数の計算、○営業日後・○営業日前の日付検索、そして受付日とSLA（対応期限）を元にした納期日の算出に対応しています。土日・日本祝日はもちろん、お盆・年末年始・会社独自の休日もカスタム設定できるため、業種や職場ルールに合わせた正確な計算が可能です。計算結果はカレンダー形式で視覚的に確認でき、URLを共有することで同僚との情報共有にも活用できます。
+    </p>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <div class="card" id="faq">
+    <div class="card-title"><span class="icon">❓</span>よくある質問</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">営業日とは何ですか？<span class="arrow">▼</span></button>
+        <div class="faq-a">営業日とは、土日および法定休日（祝日）を除いた平日のことです。企業や行政機関が実際に業務を行う日を指します。このツールでは土日・祝日のほか、お盆・年末年始・独自休日も休日として設定できます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">「○営業日後」とはどういう意味ですか？<span class="arrow">▼</span></button>
+        <div class="faq-a">基準日の翌日から数えて○日目の営業日を指します。例えば「3/1（月）の3営業日後」は3/2（火）・3/3（水）・3/4（木）と数えて3/4になります。基準日当日は含みません。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">納期計算はどう数えますか？<span class="arrow">▼</span></button>
+        <div class="faq-a">「営業日後」と同じ計算ロジックです。受付日の翌日からカウントし始め、SLAで設定した営業日数目の日が納期となります。受付日が休日であっても計算可能です。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">祝日はどう判定していますか？<span class="arrow">▼</span></button>
+        <div class="faq-a">「holidays-jp.github.io」の祝日APIから日本の国民の祝日データを取得し判定しています。APIの取得に失敗した場合、祝日判定は無効化され、土日のみで計算します。APIステータスはページ上部に表示されます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">独自休日は何に使いますか？<span class="arrow">▼</span></button>
+        <div class="faq-a">会社独自の創立記念日、組合休日、工場点検日など、祝日APIに含まれない休業日を個別に登録できます。登録した日は全計算タブで自動的に休日として扱われます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">年間営業日を確認できますか？<span class="arrow">▼</span></button>
+        <div class="faq-a">「年間営業日」タブから年を選択すると、年間の営業日数・土日数・祝日数のサマリーと月別営業日数一覧、12ヶ月分のカレンダーを確認できます。予算策定や工数計画にご活用ください。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 関連ツール ===== -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span>関連ツール</div>
+    <div class="related-list">
+      <a href="/calendar-generator/" class="related-item">
+        📅 月間カレンダー作成ツール<span class="arrow">›</span>
+      </a>
+      <a href="/holiday-calendar/" class="related-item">
+        🗓️ 祝日・休日カレンダー<span class="arrow">›</span>
+      </a>
+      <a href="/date-calculator/" class="related-item">
+        🔢 日数・期間計算ツール<span class="arrow">›</span>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<div id="ck-footer-container"></div>
+
+<script>
+// ============================================================
+// グローバル状態
+// ============================================================
+let JP_HOLIDAYS = {}; // { 'YYYY-MM-DD': '祝日名' }
+let holidayApiOk = false;
+let customHolidays = []; // [{ date: 'YYYY-MM-DD', name: '' }]
+
+// 曜日休日: getDay()値の配列（デフォルト: 日=0, 土=6）
+let weekdayHolidays = [0, 6];
+
+// その他休業日（年末年始・お盆）: MM-DD形式で保持
+const NEWYEAR_DATES = ['12-29','12-30','12-31','01-01','01-02','01-03'];
+const OBON_DATES    = ['08-13','08-14','08-15'];
+
+// localStorageキー
+const LS_SETTINGS_KEY = 'ck_business_days_settings';
+
+// ============================================================
+// 設定の保存・読み込み（localStorage）
+// ============================================================
+
+/** 現在の設定をlocalStorageに保存 */
+function saveSettings() {
+  try {
+    const settings = {
+      weekdayHolidays: weekdayHolidays.slice(),
+      newyear: document.getElementById('chkNewyear').checked,
+      obon: document.getElementById('chkObon').checked,
+      customHolidays: customHolidays.slice(),
+      afterRule: document.querySelector('input[name="afterRule"]:checked')?.value || 'exclude',
+      beforeRule: document.querySelector('input[name="beforeRule"]:checked')?.value || 'exclude',
+      deadlineRule: document.querySelector('input[name="deadlineRule"]:checked')?.value || 'exclude',
+    };
+    localStorage.setItem(LS_SETTINGS_KEY, JSON.stringify(settings));
+  } catch (e) {
+    // localStorage非対応環境は無視
+  }
+}
+
+/**
+ * localStorageから設定を読み込んでUIに反映する
+ * URLパラメータがある場合は呼ばれない
+ */
+function loadSettings() {
+  try {
+    const raw = localStorage.getItem(LS_SETTINGS_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (!s || typeof s !== 'object') return;
+
+    // 曜日休日
+    if (Array.isArray(s.weekdayHolidays)) {
+      // 全曜日をいったんOFF
+      weekdayHolidays = [];
+      for (let d = 0; d <= 6; d++) {
+        const cb = document.getElementById('chkDow' + d);
+        const wrap = document.getElementById('dowWrap' + d);
+        if (cb) { cb.checked = false; wrap.classList.remove('checked'); }
+      }
+      // 保存値をON
+      s.weekdayHolidays.forEach(d => {
+        const cb = document.getElementById('chkDow' + d);
+        const wrap = document.getElementById('dowWrap' + d);
+        if (cb) {
+          cb.checked = true;
+          wrap.classList.add('checked');
+          weekdayHolidays.push(d);
+        }
+      });
+    }
+
+    // 年末年始
+    if (typeof s.newyear === 'boolean') {
+      document.getElementById('chkNewyear').checked = s.newyear;
+      const wrap = document.getElementById('chkWrapNewyear');
+      if (s.newyear) wrap.classList.add('checked'); else wrap.classList.remove('checked');
+    }
+
+    // お盆
+    if (typeof s.obon === 'boolean') {
+      document.getElementById('chkObon').checked = s.obon;
+      const wrap = document.getElementById('chkWrapObon');
+      if (s.obon) wrap.classList.add('checked'); else wrap.classList.remove('checked');
+    }
+
+    // 独自休日
+    if (Array.isArray(s.customHolidays)) {
+      customHolidays = s.customHolidays.filter(h => h && h.date);
+      renderCustomHolidayList();
+    }
+
+    // 起算ルール
+    if (s.afterRule) {
+      const el = document.querySelector(`input[name="afterRule"][value="${s.afterRule}"]`);
+      if (el) el.checked = true;
+    }
+    if (s.beforeRule) {
+      const el = document.querySelector(`input[name="beforeRule"][value="${s.beforeRule}"]`);
+      if (el) el.checked = true;
+    }
+    if (s.deadlineRule) {
+      const el = document.querySelector(`input[name="deadlineRule"][value="${s.deadlineRule}"]`);
+      if (el) el.checked = true;
+    }
+  } catch (e) {
+    // 読み込み失敗は無視
+  }
+}
+
+// ============================================================
+// ユーティリティ: 日付操作（タイムゾーン安全）
+// ============================================================
+
+/** 'YYYY-MM-DD' → Date（UTC 00:00 で生成してローカル日として扱う） */
+function parseDate(str) {
+  const [y, m, d] = str.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+/** Date → 'YYYY-MM-DD' */
+function formatDate(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+/** Date → '2026/03/15（日）' 形式 */
+function formatDateJa(d) {
+  const dow = ['日','月','火','水','木','金','土'][d.getDay()];
+  return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}（${dow}）`;
+}
+
+/** 今日の 'YYYY-MM-DD' */
+function todayStr() {
+  return formatDate(new Date());
+}
+
+/** n日後の 'YYYY-MM-DD' */
+function dateAfterDays(baseStr, n) {
+  const d = parseDate(baseStr);
+  d.setDate(d.getDate() + n);
+  return formatDate(d);
+}
+
+// ============================================================
+// 休日判定
+// ============================================================
+
+/**
+ * 休日区分を返す
+ *   'day-off'   : 曜日休日
+ *   'holiday'   : 祝日（API）
+ *   'other-hol' : その他休業日（年末年始・お盆・独自休日）
+ *   null        : 営業日
+ */
+function getHolidayType(str) {
+  const d = parseDate(str);
+  const dow = d.getDay();
+  const mmdd = str.slice(5); // MM-DD
+
+  // 1. 曜日休日
+  if (weekdayHolidays.includes(dow)) return 'day-off';
+
+  // 2. 祝日（API）
+  if (document.getElementById('chkJpHoliday').checked && holidayApiOk && JP_HOLIDAYS[str]) {
+    return 'holiday';
+  }
+
+  // 3. 年末年始
+  if (document.getElementById('chkNewyear').checked && NEWYEAR_DATES.includes(mmdd)) {
+    return 'other-hol';
+  }
+
+  // 4. お盆
+  if (document.getElementById('chkObon').checked && OBON_DATES.includes(mmdd)) {
+    return 'other-hol';
+  }
+
+  // 5. 独自休日
+  if (customHolidays.some(h => h.date === str)) {
+    return 'other-hol';
+  }
+
+  return null; // 営業日
+}
+
+/** 休日なら true */
+function isHoliday(str) {
+  return getHolidayType(str) !== null;
+}
+
+// ============================================================
+// 曜日休日チェックボックス
+// ============================================================
+
+function clickDowCell(dow) {
+  const cb = document.getElementById('chkDow' + dow);
+  const wrap = document.getElementById('dowWrap' + dow);
+  cb.checked = !cb.checked;
+  if (cb.checked) {
+    if (!weekdayHolidays.includes(dow)) weekdayHolidays.push(dow);
+    wrap.classList.add('checked');
+  } else {
+    weekdayHolidays = weekdayHolidays.filter(d => d !== dow);
+    wrap.classList.remove('checked');
+  }
+  saveSettings();
+}
+
+function toggleDowCell(dow, cb) {
+  const wrap = document.getElementById('dowWrap' + dow);
+  if (cb.checked) {
+    if (!weekdayHolidays.includes(dow)) weekdayHolidays.push(dow);
+    wrap.classList.add('checked');
+  } else {
+    weekdayHolidays = weekdayHolidays.filter(d => d !== dow);
+    wrap.classList.remove('checked');
+  }
+}
+
+// ============================================================
+// 営業日カウント計算
+// ============================================================
+
+/** 期間の日数・営業日数・内訳を返す */
+function calcPeriodStats(startStr, endStr) {
+  let d = parseDate(startStr);
+  const end = parseDate(endStr);
+  let total = 0, biz = 0, dayoffs = 0, holidays = 0, others = 0;
+
+  while (d <= end) {
+    const str = formatDate(d);
+    const type = getHolidayType(str);
+    total++;
+    if (!type)             biz++;
+    else if (type === 'day-off')   dayoffs++;
+    else if (type === 'holiday')   holidays++;
+    else                           others++; // other-hol
+    d.setDate(d.getDate() + 1);
+  }
+  return { total, biz, dayoffs, holidays, others };
+}
+
+/**
+ * 基準日から n営業日後/前の日付文字列を返す
+ * direction : 1=後, -1=前
+ * includeBase: true=基準日当日をカウント対象に含める
+ */
+function addBusinessDays(baseStr, n, direction = 1, includeBase = false) {
+  let d = parseDate(baseStr);
+  let count = 0;
+
+  if (includeBase && !isHoliday(baseStr)) {
+    // 基準日が営業日なら当日を1日目としてカウント
+    count = 1;
+    if (count >= n) return baseStr;
+  }
+
+  while (count < n) {
+    d.setDate(d.getDate() + direction);
+    if (!isHoliday(formatDate(d))) count++;
+  }
+  return formatDate(d);
+}
+
+// ============================================================
+// 祝日API取得（sessionStorageキャッシュ付き）
+// ============================================================
+
+const HOLIDAY_CACHE_KEY = 'ck_holidays_jp_v1';
+
+async function fetchHolidays() {
+  const badge = document.getElementById('apiStatus');
+
+  // 1. sessionStorageからキャッシュを試みる
+  try {
+    const cached = sessionStorage.getItem(HOLIDAY_CACHE_KEY);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
+        JP_HOLIDAYS = parsed;
+        holidayApiOk = true;
+        badge.className = 'api-badge ok';
+        badge.innerHTML = '✅ キャッシュ利用中';
+        return;
+      }
+    }
+  } catch (e) {
+    // キャッシュ読み取り失敗は無視してfetchへ
+  }
+
+  // 2. キャッシュなし／無効 → APIから取得
+  try {
+    const res = await fetch('https://holidays-jp.github.io/api/v1/date.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    JP_HOLIDAYS = await res.json();
+    holidayApiOk = true;
+    badge.className = 'api-badge ok';
+    badge.innerHTML = '✅ 祝日データ取得済み';
+    // 取得成功時にsessionStorageへ保存
+    try {
+      sessionStorage.setItem(HOLIDAY_CACHE_KEY, JSON.stringify(JP_HOLIDAYS));
+    } catch (e) {
+      // sessionStorage書き込み失敗は無視
+    }
+  } catch (e) {
+    holidayApiOk = false;
+    badge.className = 'api-badge err';
+    badge.innerHTML = '⚠️ 祝日API取得失敗（土日のみ計算）';
+  }
+}
+
+// ============================================================
+// タブ切り替え
+// ============================================================
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ============================================================
+// チェックボックス
+// ============================================================
+
+function toggleCheck(wrapId, cb) {
+  const wrap = document.getElementById(wrapId);
+  if (cb.checked) wrap.classList.add('checked');
+  else wrap.classList.remove('checked');
+  saveSettings();
+}
+
+// ============================================================
+// 独自休日
+// ============================================================
+
+function addCustomHoliday() {
+  const dateVal = document.getElementById('customHolidayDate').value;
+  const nameVal = document.getElementById('customHolidayName').value.trim() || '独自休日';
+  if (!dateVal) return alert('日付を入力してください');
+  if (customHolidays.some(h => h.date === dateVal)) return alert('すでに登録されています');
+  customHolidays.push({ date: dateVal, name: nameVal });
+  customHolidays.sort((a, b) => a.date.localeCompare(b.date));
+  renderCustomHolidayList();
+  document.getElementById('customHolidayDate').value = '';
+  document.getElementById('customHolidayName').value = '';
+  saveSettings();
+}
+
+function removeCustomHoliday(idx) {
+  customHolidays.splice(idx, 1);
+  renderCustomHolidayList();
+  saveSettings();
+}
+
+function renderCustomHolidayList() {
+  const el = document.getElementById('customHolidayList');
+  if (customHolidays.length === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = customHolidays.map((h, i) =>
+    `<div class="custom-holiday-item">
+      <span>📌 ${h.date.replace(/-/g,'/')}　${h.name}</span>
+      <button class="btn-danger-sm" onclick="removeCustomHoliday(${i})">削除</button>
+    </div>`
+  ).join('');
+}
+
+// ============================================================
+// ① 期間営業日計算
+// ============================================================
+
+function calcRange() {
+  const startStr = document.getElementById('rangeStart').value;
+  const endStr = document.getElementById('rangeEnd').value;
+  if (!startStr || !endStr) return alert('開始日と終了日を入力してください');
+  if (startStr > endStr) return alert('開始日は終了日以前にしてください');
+
+  const s = calcPeriodStats(startStr, endStr);
+
+  document.getElementById('rangeResultGrid').innerHTML = `
+    <div class="result-item"><div class="result-num">${s.total}</div><div class="result-label">総日数</div></div>
+    <div class="result-item"><div class="result-num" style="color:var(--success)">${s.biz}</div><div class="result-label">営業日数</div></div>
+    <div class="result-item"><div class="result-num" style="color:#4b5563">${s.dayoffs}</div><div class="result-label">曜日休日数</div></div>
+    <div class="result-item"><div class="result-num" style="color:#b91c1c">${s.holidays}</div><div class="result-label">祝日数</div></div>
+    <div class="result-item"><div class="result-num" style="color:#92400e">${s.others}</div><div class="result-label">その他休業日数</div></div>
+  `;
+
+  const shareText = `${startStr.replace(/-/g,'/')}〜${endStr.replace(/-/g,'/')}の営業日数は${s.biz}日です（全${s.total}日中）`;
+  const shareEl = document.getElementById('rangeShareText');
+  shareEl.textContent = shareText;
+
+  document.getElementById('rangeResult').classList.remove('hidden');
+
+  // カレンダー描画
+  const calEl = document.getElementById('rangeCalBody');
+  calEl.innerHTML = '';
+  const months = getMonthRange(startStr, endStr);
+  months.forEach(ym => {
+    calEl.appendChild(renderMonthCalendar(ym.y, ym.m, {
+      rangeStart: startStr, rangeEnd: endStr
+    }));
+  });
+  renderLegend('rangeLegend', ['biz','day-off','holiday','other-hol','range-start','range-end']);
+  document.getElementById('rangeCalendar').classList.remove('hidden');
+
+  updateUrl({ mode: 'range', start: startStr, end: endStr });
+}
+
+// ============================================================
+// ② 営業日後計算
+// ============================================================
+
+function calcAfter() {
+  const baseStr = document.getElementById('afterBase').value;
+  const days = parseInt(document.getElementById('afterDays').value);
+  if (!baseStr || isNaN(days) || days < 1) return alert('基準日と営業日数を入力してください');
+  const includeBase = document.getElementById('afterRuleInclude').checked;
+
+  const result = addBusinessDays(baseStr, days, 1, includeBase);
+  const resultDate = parseDate(result);
+
+  document.getElementById('afterResultBox').innerHTML = `
+    <div class="date-label">${formatDateJa(parseDate(baseStr))} の ${days}営業日後</div>
+    <div class="date-large">${formatDateJa(resultDate)}</div>
+  `;
+
+  const shareText = `${baseStr.replace(/-/g,'/')}の${days}営業日後は${result.replace(/-/g,'/')}です（土日祝除く）`;
+  const shareEl = document.getElementById('afterShareText');
+  shareEl.textContent = shareText;
+
+  document.getElementById('afterResult').classList.remove('hidden');
+
+  // カレンダー描画
+  const calEl = document.getElementById('afterCalBody');
+  calEl.innerHTML = '';
+  const months = getMonthRange(baseStr, result);
+  months.forEach(ym => {
+    calEl.appendChild(renderMonthCalendar(ym.y, ym.m, {
+      targetDay: result, rangeStart: baseStr, rangeEnd: result
+    }));
+  });
+  renderLegend('afterLegend', ['biz','day-off','holiday','other-hol','target']);
+  document.getElementById('afterCalendar').classList.remove('hidden');
+
+  updateUrl({ mode: 'after', base: baseStr, days });
+}
+
+// ============================================================
+// ③ 営業日前計算
+// ============================================================
+
+function calcBefore() {
+  const baseStr = document.getElementById('beforeBase').value;
+  const days = parseInt(document.getElementById('beforeDays').value);
+  if (!baseStr || isNaN(days) || days < 1) return alert('基準日と営業日数を入力してください');
+  const includeBase = document.getElementById('beforeRuleInclude').checked;
+
+  const result = addBusinessDays(baseStr, days, -1, includeBase);
+  const resultDate = parseDate(result);
+
+  document.getElementById('beforeResultBox').innerHTML = `
+    <div class="date-label">${formatDateJa(parseDate(baseStr))} の ${days}営業日前</div>
+    <div class="date-large">${formatDateJa(resultDate)}</div>
+  `;
+
+  const shareText = `${baseStr.replace(/-/g,'/')}の${days}営業日前は${result.replace(/-/g,'/')}です（土日祝除く）`;
+  const shareEl = document.getElementById('beforeShareText');
+  shareEl.textContent = shareText;
+
+  document.getElementById('beforeResult').classList.remove('hidden');
+
+  // カレンダー描画
+  const calEl = document.getElementById('beforeCalBody');
+  calEl.innerHTML = '';
+  const months = getMonthRange(result, baseStr);
+  months.forEach(ym => {
+    calEl.appendChild(renderMonthCalendar(ym.y, ym.m, {
+      targetDay: result, rangeStart: result, rangeEnd: baseStr
+    }));
+  });
+  renderLegend('beforeLegend', ['biz','day-off','holiday','other-hol','target']);
+  document.getElementById('beforeCalendar').classList.remove('hidden');
+
+  updateUrl({ mode: 'before', base: baseStr, days });
+}
+
+// ============================================================
+// ④ 納期計算
+// ============================================================
+
+function calcDeadline() {
+  const baseStr = document.getElementById('deadlineBase').value;
+  const days = parseInt(document.getElementById('deadlineDays').value);
+  if (!baseStr || isNaN(days) || days < 1) return alert('受付日とSLA営業日数を入力してください');
+  const includeBase = document.getElementById('deadlineRuleInclude').checked;
+
+  const result = addBusinessDays(baseStr, days, 1, includeBase);
+  const resultDate = parseDate(result);
+
+  document.getElementById('deadlineResultBox').innerHTML = `
+    <div class="date-label">📋 受付日: ${formatDateJa(parseDate(baseStr))} / SLA: ${days}営業日以内</div>
+    <div class="date-large">納期: ${formatDateJa(resultDate)}</div>
+  `;
+
+  const shareText = `${baseStr.replace(/-/g,'/')}受付、${days}営業日以内の納期は${result.replace(/-/g,'/')}です（土日祝除く）`;
+  const shareBox = document.getElementById('deadlineShareBox');
+  shareBox.style.display = 'block';
+  shareBox.innerHTML = `<div class="share-text">📋 共有文例</div><div class="share-content">${shareText}</div>`;
+
+  const shareEl = document.getElementById('deadlineShareText');
+  shareEl.textContent = shareText;
+
+  document.getElementById('deadlineResult').classList.remove('hidden');
+
+  // カレンダー描画
+  const calEl = document.getElementById('deadlineCalBody');
+  calEl.innerHTML = '';
+  const months = getMonthRange(baseStr, result);
+  months.forEach(ym => {
+    calEl.appendChild(renderMonthCalendar(ym.y, ym.m, {
+      deadlineDay: result, rangeStart: baseStr, rangeEnd: result
+    }));
+  });
+  renderLegend('deadlineLegend', ['biz','day-off','holiday','other-hol','deadline']);
+  document.getElementById('deadlineCalendar').classList.remove('hidden');
+
+  updateUrl({ mode: 'deadline', base: baseStr, days });
+}
+
+// ============================================================
+// ⑤ 年間営業日
+// ============================================================
+
+function calcAnnual() {
+  const year = parseInt(document.getElementById('annualYear').value);
+
+  let totalBiz = 0, totalDayoff = 0, totalHoliday = 0, totalOther = 0;
+  const monthData = [];
+
+  for (let m = 1; m <= 12; m++) {
+    const startStr = `${year}-${String(m).padStart(2,'0')}-01`;
+    const lastDay = new Date(year, m, 0).getDate();
+    const endStr = `${year}-${String(m).padStart(2,'0')}-${String(lastDay).padStart(2,'0')}`;
+    const s = calcPeriodStats(startStr, endStr);
+    totalBiz += s.biz;
+    totalDayoff += s.dayoffs;
+    totalHoliday += s.holidays;
+    totalOther += s.others;
+    monthData.push({ m, biz: s.biz, total: s.total });
+  }
+
+  document.getElementById('annualSummary').innerHTML = `
+    <div class="result-item"><div class="result-num" style="color:var(--success)">${totalBiz}</div><div class="result-label">年間営業日数</div></div>
+    <div class="result-item"><div class="result-num" style="color:#4b5563">${totalDayoff}</div><div class="result-label">曜日休日数</div></div>
+    <div class="result-item"><div class="result-num" style="color:#b91c1c">${totalHoliday}</div><div class="result-label">年間祝日数</div></div>
+    <div class="result-item"><div class="result-num" style="color:#92400e">${totalOther}</div><div class="result-label">その他休業日数</div></div>
+  `;
+
+  const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  document.getElementById('monthList').innerHTML = monthData.map(d => `
+    <div class="month-row">
+      <span class="month-name">${monthNames[d.m-1]}</span>
+      <span class="month-biz">${d.biz}営業日</span>
+      <span class="text-muted">/ ${d.total}日</span>
+    </div>
+  `).join('');
+
+  document.getElementById('annualResult').classList.remove('hidden');
+
+  // 12ヶ月を縦並びで一括描画
+  const calEl = document.getElementById('annualCalBody');
+  calEl.innerHTML = '';
+  for (let m = 1; m <= 12; m++) {
+    calEl.appendChild(renderMonthCalendar(year, m, {}));
+  }
+  renderLegend('annualLegend', ['biz','day-off','holiday','other-hol']);
+  document.getElementById('annualCalendar').classList.remove('hidden');
+}
+
+// ============================================================
+// カレンダー描画
+// ============================================================
+
+/**
+ * 1ヶ月分のカレンダーDOM要素を返す
+ * options: { rangeStart, rangeEnd, targetDay, deadlineDay }
+ */
+function renderMonthCalendar(year, month, options = {}) {
+  const { rangeStart, rangeEnd, targetDay, deadlineDay } = options;
+  const wrapper = document.createElement('div');
+  wrapper.className = 'cal-month';
+
+  // 月のタイトル + 営業日数
+  const startStr = `${year}-${String(month).padStart(2,'0')}-01`;
+  const lastDay = new Date(year, month, 0).getDate();
+  const endStr = `${year}-${String(month).padStart(2,'0')}-${String(lastDay).padStart(2,'0')}`;
+  const stat = calcPeriodStats(startStr, endStr);
+
+  wrapper.innerHTML = `
+    <div class="cal-month-title">
+      <span>${year}年${month}月</span>
+      <span class="cal-month-biz">営業日 ${stat.biz}日</span>
+    </div>
+  `;
+
+  const grid = document.createElement('div');
+  grid.className = 'cal-grid';
+
+  // 曜日ヘッダー（日〜土）
+  ['日','月','火','水','木','金','土'].forEach(dow => {
+    const cell = document.createElement('div');
+    cell.className = 'cal-dow';
+    cell.textContent = dow;
+    grid.appendChild(cell);
+  });
+
+  // 1日の曜日（0=日）
+  const firstDow = new Date(year, month - 1, 1).getDay();
+  for (let i = 0; i < firstDow; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell empty';
+    grid.appendChild(cell);
+  }
+
+  for (let day = 1; day <= lastDay; day++) {
+    const str = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const htype = getHolidayType(str);
+    const cell = document.createElement('div');
+
+    let classes = 'cal-cell ';
+    let ariaLabel = str + ' ';
+    if (str === targetDay) {
+      classes += 'target-day';
+      ariaLabel += '対象日';
+    } else if (str === deadlineDay) {
+      classes += 'deadline-day';
+      ariaLabel += '納期日';
+    } else if (htype) {
+      classes += htype;
+      // 開始日・終了日の枠線を重ねる
+      if (str === rangeStart) classes += ' range-start';
+      else if (str === rangeEnd) classes += ' range-end';
+      if (htype === 'day-off') ariaLabel += '曜日休日';
+      else if (htype === 'holiday') ariaLabel += (JP_HOLIDAYS[str] ? JP_HOLIDAYS[str] : '祝日');
+      else ariaLabel += 'その他休業日';
+    } else if (rangeStart && rangeEnd && str >= rangeStart && str <= rangeEnd) {
+      if (str === rangeStart) {
+        classes += 'in-range biz range-start';
+        ariaLabel += '開始日';
+      } else if (str === rangeEnd) {
+        classes += 'in-range biz range-end';
+        ariaLabel += '終了日';
+      } else {
+        classes += 'in-range biz';
+        ariaLabel += '計算範囲内';
+      }
+    } else {
+      classes += 'biz';
+      ariaLabel += '営業日';
+    }
+
+    cell.className = classes.trim();
+    cell.textContent = day;
+    cell.setAttribute('aria-label', ariaLabel);
+
+    // 祝日ツールチップ
+    if (htype === 'holiday' && JP_HOLIDAYS[str]) {
+      cell.title = JP_HOLIDAYS[str];
+    }
+
+    grid.appendChild(cell);
+  }
+
+  wrapper.appendChild(grid);
+  return wrapper;
+}
+
+/** 開始〜終了の月一覧 [{y, m}] */
+function getMonthRange(startStr, endStr) {
+  const result = [];
+  let [sy, sm] = startStr.split('-').map(Number);
+  const [ey, em] = endStr.split('-').map(Number);
+  while (sy < ey || (sy === ey && sm <= em)) {
+    result.push({ y: sy, m: sm });
+    sm++;
+    if (sm > 12) { sm = 1; sy++; }
+  }
+  return result;
+}
+
+/** 凡例 */
+function renderLegend(containerId, types) {
+  const defs = {
+    biz:          { color: '#fff', border: '1px solid #d1d5db', label: '営業日' },
+    'day-off':    { color: '#e5e7eb', label: '曜日休日' },
+    holiday:      { color: '#fee2e2', label: '祝日' },
+    'other-hol':  { color: '#fef9c3', label: 'その他休業日' },
+    'range-start':{ color: '#eff6ff', outline: '2.5px solid #1a56a0', label: '開始日' },
+    'range-end':  { color: '#eff6ff', outline: '2.5px solid #e85d26', label: '終了日' },
+    target:       { color: '#1a56a0', label: '対象日' },
+    deadline:     { color: '#e85d26', label: '納期' },
+  };
+  const el = document.getElementById(containerId);
+  el.innerHTML = types.map(t => {
+    const d = defs[t];
+    const outlineStyle = d.outline ? `outline:${d.outline};outline-offset:-2px;` : '';
+    return `<div class="legend-item">
+      <div class="legend-dot" style="background:${d.color};${d.border ? 'border:'+d.border+';' : ''}${outlineStyle}border-radius:3px;"></div>
+      <span>${d.label}</span>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// URL共有
+// ============================================================
+
+function updateUrl(params) {
+  const url = new URL(window.location.href);
+  // 既存パラメータをクリア
+  [...url.searchParams.keys()].forEach(k => url.searchParams.delete(k));
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  history.replaceState(null, '', url.toString());
+}
+
+function copyUrl(mode) {
+  const url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      alert('URLをコピーしました');
+    }).catch(() => {
+      prompt('URLをコピーしてください', url);
+    });
+  } else {
+    prompt('URLをコピーしてください', url);
+  }
+}
+
+function copyText(elementId) {
+  const el = document.getElementById(elementId);
+  el.classList.remove('hidden');
+  const text = el.textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('コピーしました');
+    }).catch(() => {
+      prompt('コピーしてください', text);
+    });
+  } else {
+    prompt('コピーしてください', text);
+  }
+}
+
+// ============================================================
+// URLパラメータから自動計算
+// ============================================================
+
+function applyUrlParams() {
+  const p = new URLSearchParams(window.location.search);
+  const mode = p.get('mode');
+  if (!mode) return;
+
+  // タブ切り替え
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabMap = { range: 0, after: 1, before: 2, deadline: 3, annual: 4 };
+  if (tabMap[mode] !== undefined) {
+    switchTab(mode, tabBtns[tabMap[mode]]);
+  }
+
+  if (mode === 'range') {
+    const start = p.get('start'), end = p.get('end');
+    if (start && end) {
+      document.getElementById('rangeStart').value = start;
+      document.getElementById('rangeEnd').value = end;
+      calcRange();
+    }
+  } else if (mode === 'after') {
+    const base = p.get('base'), days = p.get('days');
+    if (base && days) {
+      document.getElementById('afterBase').value = base;
+      document.getElementById('afterDays').value = days;
+      calcAfter();
+    }
+  } else if (mode === 'before') {
+    const base = p.get('base'), days = p.get('days');
+    if (base && days) {
+      document.getElementById('beforeBase').value = base;
+      document.getElementById('beforeDays').value = days;
+      calcBefore();
+    }
+  } else if (mode === 'deadline') {
+    const base = p.get('base'), days = p.get('days');
+    if (base && days) {
+      document.getElementById('deadlineBase').value = base;
+      document.getElementById('deadlineDays').value = days;
+      calcDeadline();
+    }
+  }
+}
+
+// ============================================================
+// FAQ
+// ============================================================
+
+function toggleFaq(btn) {
+  btn.classList.toggle('open');
+  const a = btn.nextElementSibling;
+  a.classList.toggle('open');
+}
+
+// ============================================================
+// footer読み込み
+// ============================================================
+
+async function loadFooter() {
+  try {
+    const res = await fetch('/footer.html');
+    if (res.ok) {
+      const html = await res.text();
+      document.getElementById('ck-footer-container').innerHTML = html;
+    }
+  } catch (e) {
+    // フッター取得失敗は無視
+  }
+}
+
+// ============================================================
+// 初期化
+// ============================================================
+
+async function init() {
+  // デフォルトの曜日休日チェック状態を反映（日=0, 土=6）
+  weekdayHolidays.forEach(dow => {
+    const cb = document.getElementById('chkDow' + dow);
+    const wrap = document.getElementById('dowWrap' + dow);
+    if (cb) { cb.checked = true; wrap.classList.add('checked'); }
+  });
+
+  // 今日の日付をデフォルト値としてセット
+  const today = todayStr();
+  const plus30 = dateAfterDays(today, 30);
+  const currentYear = new Date().getFullYear();
+
+  document.getElementById('rangeStart').value = today;
+  document.getElementById('rangeEnd').value = plus30;
+  document.getElementById('afterBase').value = today;
+  document.getElementById('beforeBase').value = today;
+  document.getElementById('deadlineBase').value = today;
+
+  // 年間営業日セレクト（前年〜3年後）
+  const yearSelect = document.getElementById('annualYear');
+  for (let y = currentYear - 1; y <= currentYear + 3; y++) {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y + '年';
+    if (y === currentYear) opt.selected = true;
+    yearSelect.appendChild(opt);
+  }
+
+  // 祝日API取得
+  await fetchHolidays();
+
+  // 優先順位: URLパラメータ > localStorage > デフォルト
+  const hasUrlParams = new URLSearchParams(window.location.search).get('mode') !== null;
+  if (!hasUrlParams) {
+    // URLパラメータがない場合のみlocalStorageから設定を復元
+    loadSettings();
+  }
+
+  // フッター読み込み
+  loadFooter();
+
+  // URLパラメータ自動計算（URLがある場合のみ実行）
+  applyUrlParams();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
