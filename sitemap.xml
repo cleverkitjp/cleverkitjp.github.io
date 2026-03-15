@@ -141,6 +141,12 @@
   </url>
 
   <url>
+    <loc>https://cleverkit.jp/business-days/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://cleverkit.jp/holiday/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
