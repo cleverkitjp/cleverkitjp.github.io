@@ -238,6 +238,18 @@
     }
     .share-text { font-weight: 600; margin-bottom: 6px; }
     .share-content { word-break: break-all; }
+
+    /* ===== Tool Guide Link ===== */
+    .tool-guide-link {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+    .tool-guide-link a {
+      color: var(--primary);
+      font-weight: 600;
+    }
     .share-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
 
     /* ===== Holiday Settings ===== */
@@ -800,6 +812,11 @@
     <h2 style="font-size:16px;font-weight:700;color:var(--primary);margin-bottom:10px;">営業日計算ツールについて</h2>
     <p style="font-size:14px;line-height:1.8;color:var(--text-muted);">
       営業日とは、土日および国民の祝日を除いた、実際に業務を行う日のことです。このツールでは、指定した期間に含まれる営業日数の計算、○営業日後・○営業日前の日付検索、そして受付日とSLA（対応期限）を元にした納期日の算出に対応しています。土日・日本祝日はもちろん、お盆・年末年始・会社独自の休日もカスタム設定できるため、業種や職場ルールに合わせた正確な計算が可能です。計算結果はカレンダー形式で視覚的に確認でき、URLを共有することで同僚との情報共有にも活用できます。
+    </p>
+    <p class="tool-guide-link">
+      営業日の意味や数え方を詳しく知りたい場合は
+      <a href="/business-days/about/">営業日とは？数え方と計算方法</a>
+      の解説記事をご覧ください。
     </p>
   </div>
 
