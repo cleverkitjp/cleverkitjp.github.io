@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>営業日とは？数え方・計算方法を解説｜営業日計算ツール | CleverKit</title>
+  <meta name="description" content="営業日の意味・定義から数え方・計算方法まで初心者にもわかりやすく解説。土日祝・年末年始・お盆の扱い、Excelでの計算方法、無料の営業日計算ツールも紹介します。">
+  <link rel="canonical" href="https://cleverkit.jp/business-days/what-is-business-day.html">
+
+  <!-- OGP -->
+  <meta property="og:title" content="営業日とは？数え方・計算方法を解説｜CleverKit">
+  <meta property="og:description" content="営業日の意味・定義から数え方・計算方法まで初心者にもわかりやすく解説。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cleverkit.jp/business-days/what-is-business-day.html">
+  <meta property="og:site_name" content="CleverKit">
+  <meta property="og:image" content="https://cleverkit.jp/ogp.png">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+
+  <!-- Common CSS -->
+  <link rel="stylesheet" href="/common.css">
+
+  <style>
+    /* ===== Article Layout ===== */
+    .article-wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 16px 16px 48px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: #888;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .breadcrumb a {
+      color: #888;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 4px; }
+
+    /* Article header */
+    .article-header {
+      margin-bottom: 28px;
+    }
+    .article-header h1 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #1a1a2e;
+      margin: 0 0 10px;
+    }
+    .article-meta {
+      font-size: 0.78rem;
+      color: #999;
+    }
+
+    /* TOC */
+    .toc {
+      background: #f5f7ff;
+      border-left: 3px solid #4a6cf7;
+      border-radius: 6px;
+      padding: 16px 18px;
+      margin: 24px 0;
+    }
+    .toc-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #4a6cf7;
+      margin: 0 0 10px;
+      letter-spacing: 0.03em;
+    }
+    .toc ol {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .toc li {
+      font-size: 0.85rem;
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+    .toc a {
+      color: #333;
+      text-decoration: none;
+    }
+    .toc a:hover { color: #4a6cf7; text-decoration: underline; }
+
+    /* Article body */
+    .article-body {
+      line-height: 1.85;
+      color: #333;
+      font-size: 0.95rem;
+    }
+    .article-body h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      border-left: 4px solid #4a6cf7;
+      padding: 4px 0 4px 12px;
+      margin: 36px 0 14px;
+      line-height: 1.4;
+    }
+    .article-body h3 {
+      font-size: 1.03rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 24px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed #dde2ff;
+    }
+    .article-body p {
+      margin: 0 0 14px;
+    }
+
+    /* Info box */
+    .info-box {
+      background: #f0f4ff;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+    .info-box strong {
+      color: #4a6cf7;
+    }
+
+    /* Warning box */
+    .warn-box {
+      background: #fff8e1;
+      border-left: 3px solid #f0b429;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+
+    /* Comparison table */
+    .calc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+    .calc-table th {
+      background: #4a6cf7;
+      color: #fff;
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .calc-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #e8eaf6;
+      vertical-align: top;
+    }
+    .calc-table tr:nth-child(even) td {
+      background: #f5f7ff;
+    }
+    .tag-good {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    .tag-bad {
+      display: inline-block;
+      background: #fce4ec;
+      color: #c62828;
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    /* CTA block */
+    .cta-block {
+      background: linear-gradient(135deg, #4a6cf7 0%, #6a3de8 100%);
+      border-radius: 12px;
+      padding: 22px 20px;
+      text-align: center;
+      margin: 28px 0;
+      color: #fff;
+    }
+    .cta-block .cta-label {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+    .cta-block .cta-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .cta-block .cta-desc {
+      font-size: 0.83rem;
+      opacity: 0.9;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: #4a6cf7;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 8px;
+      padding: 11px 28px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    /* FAQ */
+    .faq-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .faq-item {
+      border: 1px solid #dde2ff;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-q {
+      background: #f5f7ff;
+      padding: 13px 16px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #1a1a2e;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .faq-q::before {
+      content: "Q";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      background: #4a6cf7;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .faq-a {
+      padding: 13px 16px;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: #444;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .faq-a::before {
+      content: "A";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      background: #e8eaf6;
+      color: #4a6cf7;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Related tools */
+    .related-tools {
+      margin: 32px 0 0;
+    }
+    .related-tools h2 {
+      font-size: 0.9rem;
+      color: #888;
+      font-weight: 600;
+      margin: 0 0 12px;
+      letter-spacing: 0.04em;
+    }
+    .tool-card-list {
+      display: grid;
+      gap: 10px;
+    }
+    .tool-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f5f7ff;
+      border: 1px solid #dde2ff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: #1a1a2e;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .tool-card:hover {
+      background: #eef1ff;
+      border-color: #4a6cf7;
+    }
+    .tool-card-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .tool-card-text strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+    .tool-card-text span {
+      font-size: 0.78rem;
+      color: #888;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.85rem;
+      color: #4a6cf7;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      .article-header h1 { font-size: 1.25rem; }
+      .article-body h2 { font-size: 1.1rem; }
+      .calc-table { font-size: 0.82rem; }
+      .cta-block { padding: 18px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Site header (common.css / footer.js が読み込むパターンに合わせてシンプルなヘッダーを配置) -->
+<header style="background:#fff;border-bottom:1px solid #e8eaf6;padding:12px 16px;">
+  <a href="https://cleverkit.jp/" style="text-decoration:none;font-weight:700;font-size:1rem;color:#1a1a2e;">🧰 CleverKit</a>
+</header>
+
+<main>
+  <div class="article-wrap">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="パンくず">
+      <a href="https://cleverkit.jp/">CleverKit</a>
+      <span>›</span>
+      <a href="https://cleverkit.jp/business-days/">営業日計算ツール</a>
+      <span>›</span>
+      <span>営業日とは？数え方・計算方法を解説</span>
+    </nav>
+
+    <!-- Article header -->
+    <header class="article-header">
+      <h1>営業日とは？数え方と計算方法｜営業日計算ツール</h1>
+    </header>
+
+    <!-- TOC -->
+    <nav class="toc" aria-label="目次">
+      <div class="toc-title">📋 この記事の目次</div>
+      <ol>
+        <li><a href="#what-is">営業日とは</a></li>
+        <li><a href="#how-to-count">営業日の数え方</a></li>
+        <li><a href="#how-to-calculate">営業日の計算方法（カレンダー・Excel・ツール）</a></li>
+        <li><a href="#tool">営業日計算ツールの使い方</a></li>
+        <li><a href="#faq">よくある疑問（FAQ）</a></li>
+      </ol>
+    </nav>
+
+
+    <article class="article-body">
+
+      <!-- ===== H2: 営業日とは ===== -->
+      <section id="what-is">
+        <h2>営業日とは</h2>
+
+        <p>
+          <strong>営業日</strong>とは、企業や行政機関などが実際に業務を行う日のことです。一般的には
+          <strong>土曜・日曜・国民の祝日を除いた平日</strong>を指します。
+          「ビジネスデー（Business Day）」とも呼ばれます。
+        </p>
+
+        <div class="info-box">
+          <strong>📌 営業日の基本定義</strong><br>
+          営業日 ＝ 暦日（全日程）から「土日・祝日・会社が定める休業日」を除いた日
+        </div>
+
+        <p>
+          日常のビジネスシーンでは「3営業日以内に発送します」「お問い合わせから5営業日でご回答します」
+          のように使われます。土日や祝日は対応ができないため、日数の目安を正確に伝えるために使われる表現です。
+        </p>
+
+        <h3>祝日の扱い</h3>
+        <p>
+          日本の国民の祝日は<strong>祝日法（国民の祝日に関する法律）</strong>で定められており、
+          元日・成人の日・建国記念の日など年間16日があります。
+          祝日は原則として営業日には含まれません。
+          また「振替休日」（祝日が日曜と重なった場合に翌月曜が休日になる制度）も同様に非営業日として扱います。
+        </p>
+
+        <h3>年末年始・お盆の扱い</h3>
+        <p>
+          法律で定められた休日ではありませんが、多くの企業が<strong>年末年始（12月29日〜1月3日ごろ）</strong>と
+          <strong>お盆（8月13日〜15日ごろ）</strong>を休業日としています。
+          この期間は祝日ではなく会社規定の休業日であるため、
+          企業によって扱いが異なる点に注意が必要です。
+          取引先に納期を伝える際は「当社の年末年始休業は〇〇〜〇〇です」と
+          明示することがトラブル防止につながります。
+        </p>
+
+      </section>
+
+
+      <!-- ===== H2: 数え方 ===== -->
+      <section id="how-to-count">
+        <h2>営業日の数え方</h2>
+
+        <p>
+          「3営業日後」を例に、具体的な数え方を確認しましょう。
+          基本的なルールは<strong>「基準日の翌日から数え始め、土日・祝日をカウントしない」</strong>です。
+        </p>
+
+        <h3>具体例：月曜日の3営業日後</h3>
+        <div class="info-box">
+          基準日：3月3日（月）<br>
+          ▶ 3月4日（火）… 1営業日目<br>
+          ▶ 3月5日（水）… 2営業日目<br>
+          ▶ 3月6日（木）… 3営業日目　← <strong>3営業日後</strong><br><br>
+          ※ 3月7日（金）・8日（土）・9日（日）は含まない
+        </div>
+
+        <h3>祝日が途中に入る場合</h3>
+        <p>
+          途中に祝日が含まれる場合、その日はスキップして翌営業日に移ります。
+          例えば基準日の翌日が祝日であれば、その次の平日を1営業日目として数えます。
+          連休をまたぐ場合は大きくズレることがあるため、注意が必要です。
+        </p>
+
+        <h3>「基準日を含める」場合</h3>
+        <p>
+          「当日含む3営業日後」と指定されることもあります。
+          その場合は基準日自体を1営業日目として数えます。
+          契約書や発注書に記載がある場合は、その定義に従いましょう。
+        </p>
+
+        <div class="warn-box">
+          ⚠️ 「営業日」の数え方は、基準日を含めるかどうかで結果が変わります。
+          取引先と認識を合わせておくことが大切です。
+        </div>
+
+      </section>
+
+      <!-- ===== H2: 計算方法 ===== -->
+      <section id="how-to-calculate">
+        <h2>営業日の計算方法</h2>
+
+        <p>
+          営業日を計算する主な方法は、①カレンダーで手動確認、②Excelの関数を使う、③専用の計算ツールを使う、
+          の3つです。
+        </p>
+
+        <table class="calc-table">
+          <thead>
+            <tr>
+              <th>方法</th>
+              <th>手軽さ</th>
+              <th>精度</th>
+              <th>向いている場面</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>カレンダー目視</td>
+              <td><span class="tag-good">簡単</span></td>
+              <td><span class="tag-bad">ミスあり</span></td>
+              <td>数日先を確認するだけのとき</td>
+            </tr>
+            <tr>
+              <td>Excel（WORKDAY関数）</td>
+              <td>中程度</td>
+              <td><span class="tag-good">高い</span></td>
+              <td>大量の日付を一括処理するとき</td>
+            </tr>
+            <tr>
+              <td>専用の計算ツール</td>
+              <td><span class="tag-good">最も簡単</span></td>
+              <td><span class="tag-good">高い</span></td>
+              <td>すぐ確認したいとき・祝日込みで正確に計算したいとき</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Excelでの計算方法</h3>
+        <p>
+          ExcelにはWORKDAY関数（○営業日後）とNETWORKDAYS関数（期間の営業日数）が用意されています。
+          祝日リストをセルに入力し、第3引数に指定することで日本の祝日にも対応できます。
+          ただし祝日リストは毎年手動で更新する必要があり、年末年始・お盆などは別途除外する作業が必要です。
+        </p>
+
+        <div class="info-box">
+          <strong>ExcelのWORKDAY関数の使い方（参考）</strong><br>
+          <code>=WORKDAY(開始日, 日数, 祝日リスト)</code><br><br>
+          例：A1セルに基準日、B1に「3」を入力した場合<br>
+          <code>=WORKDAY(A1, 3, 祝日リスト)</code>
+        </div>
+
+        <h3>専用ツールで手間ゼロ</h3>
+        <p>
+          Excelは柔軟ですが、祝日リストの管理や設定が手間です。
+          <strong>無料の営業日計算ツール</strong>なら、祝日データは自動取得なのでリスト管理は不要。
+          年末年始・お盆の設定もワンクリックでできます。
+          なお、営業日ではなく日数だけを確認したい場合は<a href="https://cleverkit.jp/day-counter/">日数計算ツール</a>も利用できます。
+        </p>
+
+      </section>
+
+      <!-- ===== CTA ===== -->
+      <div class="cta-block">
+        <div class="cta-label">🧰 CleverKit 無料ツール</div>
+        <div class="cta-title">📅 営業日計算ツールを使ってみる</div>
+        <div class="cta-desc">
+          日本の祝日を自動取得。<br>
+          年末年始・お盆も設定済み。〇営業日後・納期計算にも対応。
+        </div>
+        <a class="cta-btn" href="https://cleverkit.jp/business-days/">無料で計算する →</a>
+      </div>
+
+      <!-- ===== H2: ツールの使い方 ===== -->
+      <section id="tool">
+        <h2>営業日計算ツールの使い方</h2>
+
+        <p>
+          CleverKitの<a href="https://cleverkit.jp/business-days/">営業日計算ツール</a>は、
+          次の5つのモードに対応しています。
+        </p>
+
+        <h3>①　期間営業日数の計算</h3>
+        <p>
+          開始日と終了日を指定すると、その期間に含まれる営業日数を計算します。
+          プロジェクトの工期確認や、作業日数の見積もりに活用できます。
+        </p>
+
+        <h3>②　○営業日後の日付を計算</h3>
+        <p>
+          基準日と営業日数を入力すると、○営業日後の日付が即座にわかります。
+          「3営業日以内に発送」のような条件から発送期限を確認するときに便利です。
+        </p>
+
+        <h3>③　○営業日前の日付を計算</h3>
+        <p>
+          締切日から逆算して、何営業日前に作業を開始すべきかを確認できます。
+          提出期限から逆算してスケジュールを組む際に役立ちます。
+        </p>
+
+        <h3>④　納期計算（SLA）</h3>
+        <p>
+          受付日とSLA（対応期限）の日数を入力すると、納期日を計算します。
+          カスタマーサポートや製造業の対応期限管理に活用できます。
+        </p>
+
+        <h3>⑤　年間営業日カレンダー</h3>
+        <p>
+          年を指定すると、年間・月別の営業日数一覧と12か月分のカレンダーを表示します。
+          予算策定や採用計画など、年間工数を見積もる場面で役立ちます。
+        </p>
+
+        <p>
+          年末年始やお盆などの一括設定、会社独自の休日の追加も可能。
+          計算結果はURLでそのまま共有できるため、チームでの確認にも使えます。
+        </p>
+
+        <div class="warn-box">
+          💡 祝日データはAPIで自動取得します。取得に失敗した場合はページ上部に通知が表示されます。
+        </div>
+
+      </section>
+
+
+      <!-- ===== H2: FAQ ===== -->
+      <section id="faq">
+        <h2>営業日のよくある疑問（FAQ）</h2>
+
+        <ul class="faq-list">
+
+          <li class="faq-item">
+            <div class="faq-q">「3営業日以内」と「3営業日後」は同じ意味ですか？</div>
+            <div class="faq-a">
+              意味が異なります。「3営業日以内」は3営業日目当日を含む期限を指します。
+              「3営業日後」は基準日から3日分の営業日が経過した翌日を指すことが多く、
+              文脈によって1日ずれる場合があります。
+              取引先への連絡では、具体的な日付を添えて確認することをおすすめします。
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <div class="faq-q">年末年始・お盆は必ず営業日から除外されますか？</div>
+            <div class="faq-a">
+              法律上の義務はなく、企業ごとの規定によります。
+              官公庁は行政機関の休日として12月29日〜1月3日が休業日と定められていますが、
+              民間企業はそれぞれ就業規則で決めています。
+              お盆（8月13〜15日）は祝日ではないため、休業するかどうかは会社次第です。
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <div class="faq-q">土曜日が祝日の場合、振替休日はありますか？</div>
+            <div class="faq-a">
+              振替休日は「祝日が日曜日と重なった場合」に翌月曜日が振替休日となる制度です。
+              土曜日が祝日と重なった場合、振替休日は発生しません。
+              ただし企業によっては土曜日をもともと休業日としているため、
+              実質的に影響がない場合も多いです。
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <div class="faq-q">「休業日」と「営業日」は違いますか？</div>
+            <div class="faq-a">
+              「休業日」は企業が定めた休みの日（土日・祝日・年末年始など）を指し、
+              「営業日」は休業日を除いた業務を行う日を指します。
+              「非営業日」と「休業日」はほぼ同義で使われることが多いです。
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <div class="faq-q">2つの日付の間の日数（暦日）も計算できますか？</div>
+            <div class="faq-a">
+              営業日ではなく「暦日（土日祝も含む全日程）」で日数を確認したい場合は、
+              <a href="https://cleverkit.jp/day-counter/">日数計算ツール</a>が便利です。
+              2つの日付の間の日数を瞬時に計算できます。
+            </div>
+          </li>
+
+          <li class="faq-item">
+            <div class="faq-q">祝日の一覧をカレンダー形式で確認できますか？</div>
+            <div class="faq-a">
+              <a href="https://cleverkit.jp/holiday/">祝日・連休カレンダー</a>では、
+              日本の国民の祝日と連休をカレンダー形式で一覧表示できます。
+              長期休暇の計画や旅行の日程調整にご活用ください。
+            </div>
+          </li>
+
+        </ul>
+      </section>
+
+    </article>
+
+    <!-- Related tools -->
+    <nav class="related-tools" aria-label="関連ツール">
+      <h2>🔗 関連ツール</h2>
+      <div class="tool-card-list">
+        <a class="tool-card" href="https://cleverkit.jp/business-days/">
+          <div class="tool-card-icon">📅</div>
+          <div class="tool-card-text">
+            <strong>営業日計算ツール</strong>
+            <span>〇営業日後・期間営業日数・納期計算</span>
+          </div>
+        </a>
+        <a class="tool-card" href="https://cleverkit.jp/day-counter/">
+          <div class="tool-card-icon">🔢</div>
+          <div class="tool-card-text">
+            <strong>日数計算ツール</strong>
+            <span>2つの日付の間の日数・暦日を計算</span>
+          </div>
+        </a>
+        <a class="tool-card" href="https://cleverkit.jp/holiday/">
+          <div class="tool-card-icon">🗓️</div>
+          <div class="tool-card-text">
+            <strong>祝日・連休カレンダー</strong>
+            <span>日本の祝日と連休をカレンダーで確認</span>
+          </div>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Back to tool -->
+    <div style="margin-top:32px;">
+      <a class="back-link" href="https://cleverkit.jp/business-days/">← 営業日計算ツールに戻る</a>
+    </div>
+
+  </div><!-- /.article-wrap -->
+</main>
+
+<!-- Footer -->
+<div id="ck-footer-container"></div>
+<script src="/footer.js" defer></script>
+
+<!-- Schema.org: Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "営業日とは？数え方と計算方法｜営業日計算ツール",
+  "description": "営業日の意味・定義から数え方・計算方法まで初心者にもわかりやすく解説。土日祝・年末年始・お盆の扱い、Excelでの計算方法、無料の営業日計算ツールも紹介します。",
+  "url": "https://cleverkit.jp/business-days/what-is-business-day.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "CleverKit",
+    "url": "https://cleverkit.jp/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://cleverkit.jp/business-days/what-is-business-day.html"
+  }
+}
+</script>
+
+<!-- Schema.org: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "「3営業日以内」と「3営業日後」は同じ意味ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "意味が異なります。「3営業日以内」は3営業日目当日を含む期限を指します。「3営業日後」は基準日から3日分の営業日が経過した日を指すことが多く、文脈によって1日ずれる場合があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "年末年始・お盆は必ず営業日から除外されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "法律上の義務はなく、企業ごとの規定によります。官公庁は12月29日〜1月3日が法定休業日ですが、民間企業はそれぞれ就業規則で決めています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "土曜日が祝日の場合、振替休日はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "振替休日は「祝日が日曜日と重なった場合」に翌月曜日が振替休日となる制度です。土曜日が祝日と重なった場合、振替休日は発生しません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "「休業日」と「営業日」は違いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「休業日」は企業が定めた休みの日（土日・祝日・年末年始など）を指し、「営業日」は休業日を除いた業務を行う日を指します。"
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {
+   "@type":"Question",
+   "name":"年末年始は営業日に含まれますか？",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"多くの企業では年末年始は休業日となるため営業日には含まれません。"
+   }
+  },
+  {
+   "@type":"Question",
+   "name":"お盆は営業日ですか？",
+   "acceptedAnswer":{
+    "@type":"Answer",
+    "text":"お盆は法律上の祝日ではありませんが、多くの企業が休業するため営業日として扱わない場合があります。"
+   }
+  }
+ ]
+}
+</script>
+
+</body>
+</html>
