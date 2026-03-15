@@ -99,6 +99,10 @@
     .result-preview-wrap{background:#FFF8F0;border-radius:var(--r-md);padding:10px;border:1px solid var(--border);margin-bottom:16px}.result-preview-wrap img{width:100%;display:block;border-radius:10px}
     .hint-text{font-size:13px;color:var(--sub);line-height:1.7;text-align:center;margin-top:12px}.status-text{font-size:13px;color:var(--sub);line-height:1.7;margin-top:10px;min-height:22px}
     .gallery-list{display:grid;gap:16px}.gallery-item{border:1px solid var(--border);border-radius:16px;padding:14px;background:#fffaf5}.gallery-item h3{font-size:15px;color:var(--orange);margin-bottom:10px}.gallery-item img{width:100%;display:block;border-radius:12px;border:1px solid var(--border)}.gallery-actions{display:flex;gap:10px;margin-top:10px}
+    .related-tools{margin-top:4px;margin-bottom:20px}
+    .related-tools-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--brown);margin-bottom:12px}
+    .related-tools-link{display:block;padding:14px 16px;background:#fff7f1;border:1px solid var(--border);border-radius:var(--r-md);color:var(--orange);font-size:14px;font-weight:700;line-height:1.6;text-decoration:none;transition:background .2s,border-color .2s}
+    .related-tools-link:hover{background:#fff;border-color:rgba(232,116,74,.35)}
     .upload-area:hover{border-color:var(--orange);background:#fffdfa}
     #shiori-canvas-wrap{position:fixed;left:-99999px;top:0;width:1080px;pointer-events:none;opacity:0}
     #shiori-output{width:1080px;background:#FFF8F0}
@@ -249,6 +253,11 @@
         <p class="hint-text">まとめて保存と個別保存の両方に対応しています。LINEで送るときは、必要な日だけ保存して送る使い方がおすすめです。</p>
       </div>
     </div>
+  </div>
+
+  <div class="container related-tools">
+    <div class="related-tools-title">関連ツール</div>
+    <a class="related-tools-link" href="https://cleverkitjp.github.io/travel-packing-checklist/">旅行持ち物チェックリスト｜旅行前の持ち物を自動生成</a>
   </div>
 
   <div id="shiori-canvas-wrap" aria-hidden="true"><div id="shiori-output"></div></div>
