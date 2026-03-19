@@ -29,6 +29,12 @@
   </url>
 
   <url>
+    <loc>https://cleverkit.jp/eigo-pocket/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://cleverkit.jp/eto/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
