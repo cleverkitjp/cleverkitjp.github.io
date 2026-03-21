@@ -1,198 +1,206 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Top -->
-  <url>
-    <loc>https://cleverkit.jp/</loc>
-    <lastmod>2026-03-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+<!-- Top -->
+<url>
+  <loc>https://cleverkit.jp/</loc>
+  <lastmod>2026-03-21</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
+</url>
 
-  <!-- Tools -->
-  <url>
-    <loc>https://cleverkit.jp/age-eto-tool/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<!-- Tools -->
+<url>
+  <loc>https://cleverkit.jp/age-eto-tool/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/decimal-time-converter/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/decimal-time-converter/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/eigo-pocket/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/eigo-pocket/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/eigo-pocket/about/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/eigo-pocket/about/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/eto/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/eto/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/eto/year/</loc>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/eto/year/</loc>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/warikan/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/warikan/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/calendar-generator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/warikan/keisan/</loc>
+  <lastmod>2026-03-21</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/weekday-holiday-checker/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/calendar-generator/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/time-calculator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/weekday-holiday-checker/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/traffic-accident-damages/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/time-calculator/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/taishokukin-souba-tool/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/traffic-accident-damages/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/qr-generator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/taishokukin-souba-tool/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/price-calc/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/qr-generator/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/recipe-scaler/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/price-calc/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/pikotan-typing/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/recipe-scaler/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/life-balance-checker/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/pikotan-typing/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/education-cost-simulator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/life-balance-checker/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/daily-shopping-memo/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/education-cost-simulator/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/countdown-tool/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/daily-shopping-memo/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/calorie-to-exercise/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/countdown-tool/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/print-calendar/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/calorie-to-exercise/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/day-counter/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/print-calendar/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/business-days/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/day-counter/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/business-days/about/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/business-days/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/holiday/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/business-days/about/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/tabinoshiori/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/holiday/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/travel-packing-checklist/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/tabinoshiori/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/portfolio-check/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/travel-packing-checklist/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/study-timer/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/portfolio-check/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
 
-  <url>
-    <loc>https://cleverkit.jp/day-counter/how-to-calculate-days.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+<url>
+  <loc>https://cleverkit.jp/study-timer/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<url>
+  <loc>https://cleverkit.jp/day-counter/how-to-calculate-days.html</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
+
 <!-- age-eto-tool sub pages -->
 <url>
   <loc>https://cleverkit.jp/age-eto-tool/age-table.html</loc>
@@ -211,4 +219,5 @@
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
 </url>
+
 </urlset>
