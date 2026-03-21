@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="canonical" href="https://cleverkit.jp/warikan/" />
+<title>割り勘計算｜合計と人数を入れるだけ・100円単位で自動計算</title>
+<meta name="description" content="合計金額と人数を入力するだけで1人分をすぐ計算。100円・500円・1000円単位の丸めに対応。飲み会・旅行・ランチの割り勘に。無料・スマホ対応。">
+<meta property="og:title" content="割り勘計算｜合計と人数を入れるだけ・100円単位で自動計算">
+<meta property="og:description" content="合計金額と人数を入れるだけ。100円・500円・1000円単位で丸めて割り勘を即計算。">
+<meta property="og:image" content="https://cleverkitjp.github.io/warikan/ogp.png">
+<link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F6517NYNFF');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
+crossorigin="anonymous"></script>
+<style>
+:root {
+color-scheme: light dark;
+--bg: #f5f6f8;
+--panel: #ffffff;
+--text: #0f172a;
+--muted: #475569;
+--accent: #0f4c81;
+--accent-strong: #0b3a63;
+--border: #d6d9de;
+--shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+--toggle: #e2e8f0;
+}
+[data-theme="dark"] {
+--bg: #10131a;
+--panel: #171b24;
+--text: #f8fafc;
+--muted: #cbd5f5;
+--accent: #54a6ff;
+--accent-strong: #3b86d9;
+--border: #2b3242;
+--shadow: 0 16px 35px rgba(0, 0, 0, 0.45);
+--toggle: #252b39;
+}
+* {
+box-sizing: border-box;
+}
+body {
+margin: 0;
+font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", system-ui, sans-serif;
+background: var(--bg);
+color: var(--text);
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 24px;
+gap: 24px;
+}
+.app {
+width: min(560px, 100%);
+background: var(--panel);
+border-radius: 28px;
+padding: 28px;
+box-shadow: var(--shadow);
+display: grid;
+gap: 22px;
+}
+#ck-footer-container {
+width: 100%;
+}
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.title {
+font-size: 20px;
+font-weight: 700;
+letter-spacing: 0.06em;
+}
+.theme-toggle {
+border: 0;
+background: var(--toggle);
+color: var(--text);
+border-radius: 999px;
+padding: 10px 18px;
+font-size: 20px;
+cursor: pointer;
+box-shadow: inset 0 0 0 1px var(--border);
+min-width: 72px;
+}
+.label {
+font-size: 14px;
+font-weight: 600;
+color: var(--muted);
+letter-spacing: 0.05em;
+}
+.rounding {
+display: grid;
+gap: 12px;
+}
+.rounding-buttons {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+}
+.round-btn {
+border: 2px solid var(--border);
+border-radius: 18px;
+padding: 16px 0;
+font-size: 20px;
+font-weight: 700;
+background: transparent;
+color: var(--text);
+cursor: pointer;
+}
+.round-btn.active {
+background: var(--accent);
+border-color: var(--accent-strong);
+color: #fff;
+}
+.result {
+background: var(--bg);
+border-radius: 24px;
+padding: 20px;
+display: grid;
+gap: 12px;
+border: 2px solid var(--border);
+}
+.result-main {
+font-size: clamp(32px, 6vw, 48px);
+font-weight: 800;
+text-align: center;
+}
+.result-sub {
+font-size: clamp(16px, 3vw, 20px);
+text-align: center;
+color: var(--muted);
+font-weight: 600;
+}
+.keypad {
+display: grid;
+gap: 14px;
+}
+.keypad-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+}
+.key {
+border: 0;
+border-radius: 18px;
+padding: 16px 0;
+font-size: 22px;
+font-weight: 700;
+color: var(--text);
+background: color-mix(in srgb, var(--panel) 80%, #000 20%);
+box-shadow: inset 0 0 0 1px var(--border);
+cursor: pointer;
+transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.key:active {
+transform: translateY(1px);
+box-shadow: inset 0 0 0 1px var(--accent);
+}
+.key.action {
+background: #7b1f2d;
+color: #fff;
+box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.key.accent {
+background: var(--accent);
+color: #fff;
+box-shadow: inset 0 0 0 1px var(--accent-strong);
+}
+.key.wide {
+grid-column: span 3;
+font-size: 18px;
+padding: 14px 0;
+letter-spacing: 0.08em;
+}
+.result-inputs {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+}
+.result-field {
+border: 2px solid var(--border);
+border-radius: 18px;
+padding: 12px;
+background: var(--panel);
+color: var(--text);
+text-align: left;
+display: grid;
+gap: 6px;
+cursor: pointer;
+box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08);
+}
+.result-field span {
+font-size: 12px;
+font-weight: 600;
+color: var(--muted);
+letter-spacing: 0.04em;
+}
+.result-field strong {
+font-size: 22px;
+font-weight: 800;
+text-align: right;
+}
+.result-field.active {
+border-color: var(--accent);
+box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+@media (max-width: 480px) {
+body {
+padding: 12px;
+}
+.app {
+padding: 22px;
+border-radius: 22px;
+}
+.round-btn {
+padding: 14px 0;
+font-size: 18px;
+}
+.key {
+padding: 14px 0;
+font-size: 20px;
+}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="header">
+<div class="title">割り勘電卓</div>
+<button class="theme-toggle" type="button" aria-label="テーマ切替">🌙</button>
+</div>
+<div class="result" aria-live="polite">
+<div class="result-main" id="perPerson">0円</div>
+<div class="result-sub" id="difference">人数を入れてください</div>
+</div>
+<div class="rounding">
+<div class="label">丸め単位</div>
+<div class="rounding-buttons" role="group" aria-label="丸め単位">
+<button class="round-btn active" type="button" data-unit="100">100</button>
+<button class="round-btn" type="button" data-unit="500">500</button>
+<button class="round-btn" type="button" data-unit="1000">1000</button>
+</div>
+</div>
+<div class="result-inputs" role="group" aria-label="入力欄">
+<button class="result-field active" type="button" data-target="total">
+<span>合計金額</span>
+<strong id="totalDisplay">0円</strong>
+</button>
+<button class="result-field" type="button" data-target="people">
+<span>人数</span>
+<strong id="peopleDisplay">1人</strong>
+</button>
+</div>
+<div class="keypad" aria-label="数字キーパッド">
+<div class="keypad-grid">
+<button class="key" type="button" data-value="1">1</button>
+<button class="key" type="button" data-value="2">2</button>
+<button class="key" type="button" data-value="3">3</button>
+<button class="key" type="button" data-value="4">4</button>
+<button class="key" type="button" data-value="5">5</button>
+<button class="key" type="button" data-value="6">6</button>
+<button class="key" type="button" data-value="7">7</button>
+<button class="key" type="button" data-value="8">8</button>
+<button class="key" type="button" data-value="9">9</button>
+<button class="key" type="button" data-value="00">00</button>
+<button class="key" type="button" data-value="0">0</button>
+<button class="key accent" type="button" data-action="backspace">⌫</button>
+<button class="key action wide" type="button" data-action="clear">クリア</button>
+</div>
+</div>
+</div>
+<script>
+const totalDisplay = document.getElementById("totalDisplay");
+const peopleDisplay = document.getElementById("peopleDisplay");
+const perPersonEl = document.getElementById("perPerson");
+const differenceEl = document.getElementById("difference");
+const roundButtons = document.querySelectorAll(".round-btn");
+const themeToggle = document.querySelector(".theme-toggle");
+const resultFields = document.querySelectorAll(".result-field");
+const keypadButtons = document.querySelectorAll(".keypad-grid .key");
+const numberFormatter = new Intl.NumberFormat("ja-JP");
+let unit = 100;
+let totalValue = "0";
+let peopleValue = "1";
+let activeTarget = "total";
+
+const getTheme = () => {
+const stored = localStorage.getItem("theme");
+if (stored) return stored;
+return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+const applyTheme = (theme) => {
+document.documentElement.setAttribute("data-theme", theme);
+themeToggle.textContent = theme === "dark" ? "☀" : "🌙";
+};
+const setTheme = (theme) => {
+localStorage.setItem("theme", theme);
+applyTheme(theme);
+};
+const formatYen = (value) => `${numberFormatter.format(Math.abs(value))}円`;
+const updateActiveField = (target) => {
+activeTarget = target;
+resultFields.forEach((field) => {
+field.classList.toggle("active", field.dataset.target === target);
+});
+};
+const setValue = (target, nextValue) => {
+const sanitized = nextValue.replace(/^0+(?=\d)/, "");
+const finalValue = sanitized.length ? sanitized : "0";
+if (target === "total") {
+totalValue = finalValue;
+} else {
+peopleValue = finalValue;
+}
+updateDisplay();
+compute();
+};
+const updateDisplay = () => {
+totalDisplay.textContent = formatYen(Number(totalValue));
+const peopleNumber = Number(peopleValue || 0);
+peopleDisplay.textContent = `${numberFormatter.format(peopleNumber)}人`;
+};
+const appendDigits = (digits) => {
+const current = activeTarget === "total" ? totalValue : peopleValue;
+const next = current === "0" ? digits : `${current}${digits}`;
+setValue(activeTarget, next);
+};
+const backspace = () => {
+const current = activeTarget === "total" ? totalValue : peopleValue;
+const next = current.length <= 1 ? "0" : current.slice(0, -1);
+setValue(activeTarget, next);
+};
+const clearAll = () => {
+totalValue = "0";
+peopleValue = "1";
+updateDisplay();
+compute();
+};
+const compute = () => {
+const total = Math.max(0, Number(totalValue));
+const people = Math.max(1, Number(peopleValue));
+const per = total / people;
+const roundedPer = Math.round(per / unit) * unit;
+const roundedTotal = roundedPer * people;
+const diff = roundedTotal - total;
+perPersonEl.textContent = `${formatYen(roundedPer)} / 人`;
+if (diff === 0) {
+differenceEl.textContent = "ぴったり";
+} else if (diff > 0) {
+differenceEl.textContent = `誰か1人がお釣り ${formatYen(diff)}を受け取る`;
+} else {
+differenceEl.textContent = `誰か1人が ${formatYen(diff)} 多く払う`;
+}
+};
+roundButtons.forEach((button) => {
+button.addEventListener("click", () => {
+roundButtons.forEach((btn) => btn.classList.remove("active"));
+button.classList.add("active");
+unit = Number(button.dataset.unit);
+compute();
+});
+});
+keypadButtons.forEach((button) => {
+button.addEventListener("click", () => {
+if (button.dataset.value) {
+appendDigits(button.dataset.value);
+return;
+}
+if (button.dataset.action === "backspace") {
+backspace();
+} else if (button.dataset.action === "clear") {
+clearAll();
+}
+});
+});
+resultFields.forEach((field) => {
+field.addEventListener("click", () => {
+updateActiveField(field.dataset.target);
+setValue(field.dataset.target, "0");
+});
+});
+themeToggle.addEventListener("click", () => {
+const current = document.documentElement.getAttribute("data-theme") || "light";
+setTheme(current === "dark" ? "light" : "dark");
+});
+applyTheme(getTheme());
+updateActiveField(activeTarget);
+updateDisplay();
+compute();
+</script>
+<div id="ck-footer-container"></div>
+<script>
+(function() {
+var container = document.getElementById('ck-footer-container');
+if (!container) return;
+fetch('/footer.html')
+.then(function(r) { return r.text(); })
+.then(function(html) {
+container.innerHTML = html;
+try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+})
+.catch(function(e) {});
+})();
+</script>
+</body>
+</html>
