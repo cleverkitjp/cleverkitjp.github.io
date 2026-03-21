@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="canonical" href="https://cleverkit.jp/rent-ratio/" />
+<title>家賃負担率チェッカー｜手取りから適正家賃・生活費バランスを確認</title>
+<meta name="description" content="手取り月収と家賃を入力するだけで負担率を即計算。適正判定・推奨家賃の目安・生活費バランスを一画面で確認。逆算モード（この家賃に住むには手取りいくら必要？）にも対応。無料・スマホ対応。">
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="家賃負担率チェッカー｜手取りから適正家賃・生活費バランスを確認">
+<meta property="og:description" content="手取りと家賃を入力するだけで負担率・適正判定・生活費バランスを確認。逆算モードも対応。無料・スマホ対応。">
+<meta property="og:url" content="https://cleverkit.jp/rent-ratio/">
+<meta property="og:site_name" content="CleverKit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="家賃負担率チェッカー｜手取りから適正家賃を確認">
+<meta name="twitter:description" content="手取りと家賃を入力するだけで負担率・適正判定・生活費バランスを確認できる無料ツール。">
+<!-- JSON-LD: WebApplication -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"家賃負担率チェッカー","url":"https://cleverkit.jp/rent-ratio/","description":"手取り月収と家賃を入力するだけで家賃負担率を即計算。適正判定・推奨家賃・生活費バランス・逆算モードに対応。","applicationCategory":"FinanceApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"provider":{"@type":"Organization","name":"CleverKit","url":"https://cleverkit.jp/"}}
+</script>
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://cleverkit.jp/"},{"@type":"ListItem","position":2,"name":"家賃負担率チェッカー","item":"https://cleverkit.jp/rent-ratio/"}]}
+</script>
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"家賃の適正な負担率は何%ですか？","acceptedAnswer":{"@type":"Answer","text":"一般的に手取り月収の30%以内が適正とされています。30〜35%はやや高め、35%を超えると生活費や貯蓄を圧迫する可能性があります。"}},{"@type":"Question","name":"手取り20万円の場合、適正な家賃はいくらですか？","acceptedAnswer":{"@type":"Answer","text":"手取り20万円の場合、30%の目安では月6万円以内が適正家賃となります。"}},{"@type":"Question","name":"家賃から必要な手取りを逆算できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。「家賃から逆算」モードを使うと、住みたい家賃と目標負担率を入力するだけで、必要な手取り月収を即計算できます。"}}]}
+</script>
+<link rel="stylesheet" href="/common.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F6517NYNFF');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg: #f7f5f2;
+  --panel: #ffffff;
+  --text: #1a1a2e;
+  --muted: #6b7280;
+  --accent: #e85d3a;
+  --accent-soft: #fef0ec;
+  --border: #e8e4de;
+  --radius: 20px;
+  --shadow: 0 8px 32px rgba(26,26,46,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 16px 16px 60px;
+}
+.wrap { max-width: 480px; margin: 0 auto; }
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0 20px;
+}
+.site-logo { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 600; }
+.tool-badge {
+  font-size: 11px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+h1 { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; line-height: 1.3; }
+.lead { font-size: 12px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+.mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--border);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+.mode-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mode-btn.active {
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(26,26,46,0.1);
+}
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.input-group { margin-bottom: 14px; }
+.input-group:last-child { margin-bottom: 0; }
+.input-label { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; display: block; }
+.input-row {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.input-row:focus-within { border-color: var(--accent); }
+.input-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 13px 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+}
+.input-unit { padding: 0 14px; font-size: 13px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+.result-card {
+  background: var(--text);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px rgba(26,26,46,0.18);
+}
+.result-label { font-size: 12px; font-weight: 700; opacity: 0.6; letter-spacing: 0.08em; margin-bottom: 6px; }
+.result-value { font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em; }
+.result-value.safe { color: #4ade80; }
+.result-value.warn { color: #fbbf24; }
+.result-value.danger { color: #f87171; }
+.result-judge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.result-judge.safe { background: rgba(74,222,128,0.15); color: #4ade80; }
+.result-judge.warn { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.result-judge.danger { background: rgba(248,113,113,0.15); color: #f87171; }
+.result-sub { font-size: 13px; opacity: 0.7; line-height: 1.6; }
+.result-recommend {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+  opacity: 0.8;
+}
+.result-recommend strong { color: #fff; font-size: 15px; }
+.balance-title { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 12px; }
+.balance-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.balance-item:last-child { border-bottom: none; }
+.balance-bar-wrap { flex: 1; }
+.balance-name { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.balance-bar-bg { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; }
+.balance-bar { height: 100%; border-radius: 999px; transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.balance-amount { font-size: 14px; font-weight: 800; color: var(--text); min-width: 72px; text-align: right; }
+.balance-pct { font-size: 11px; color: var(--muted); text-align: right; min-width: 36px; }
+.empty-state { text-align: center; padding: 32px 20px; color: var(--muted); }
+.empty-icon { font-size: 2.4rem; margin-bottom: 8px; }
+.empty-text { font-size: 13px; line-height: 1.6; }
+.breadcrumb {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.breadcrumb a { color: var(--muted); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb-sep { opacity: 0.5; }
+.seo-note {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.seo-note strong { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site-header">
+    <a href="/" class="site-logo">CleverKit</a>
+    <span class="tool-badge">生活計算</span>
+  </header>
+
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="/">ホーム</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>家賃負担率チェッカー</span>
+  </nav>
+
+  <h1>家賃負担率チェッカー</h1>
+  <p class="lead">手取りと家賃を入力するだけで、負担率・適正判定・生活費バランスを確認できます。</p>
+
+  <div class="mode-toggle" role="tablist">
+    <button class="mode-btn active" id="btnModeNormal" type="button">📊 負担率を計算</button>
+    <button class="mode-btn" id="btnModeReverse" type="button">🔄 家賃から逆算</button>
+  </div>
+
+  <!-- 通常モード -->
+  <div id="panelNormal">
+    <div class="card">
+      <div class="card-title">入力</div>
+      <div class="input-group">
+        <label class="input-label" for="inputTedori">手取り月収</label>
+        <div class="input-row">
+          <input type="number" id="inputTedori" inputmode="numeric" placeholder="例：220000" min="0">
+          <span class="input-unit">円 / 月</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="inputYachin">毎月の家賃</label>
+        <div class="input-row">
+          <input type="number" id="inputYachin" inputmode="numeric" placeholder="例：70000" min="0">
+          <span class="input-unit">円 / 月</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultNormal" class="result-card" style="display:none;">
+      <div class="result-label">家賃負担率</div>
+      <div class="result-value" id="resultPct">—</div>
+      <div class="result-judge" id="resultJudge">—</div>
+      <div class="result-sub" id="resultSub"></div>
+      <div class="result-recommend" id="resultRecommend"></div>
+    </div>
+    <div id="emptyNormal" class="card empty-state">
+      <div class="empty-icon">🏠</div>
+      <div class="empty-text">手取りと家賃を入力すると<br>負担率と適正判定が表示されます</div>
+    </div>
+
+    <div class="card" id="balanceCard" style="display:none;">
+      <div class="balance-title">生活費バランス（推奨目安）</div>
+      <div id="balanceList"></div>
+    </div>
+  </div>
+
+  <!-- 逆算モード -->
+  <div id="panelReverse" style="display:none;">
+    <div class="card">
+      <div class="card-title">入力</div>
+      <div class="input-group">
+        <label class="input-label" for="inputYachinR">住みたい家賃</label>
+        <div class="input-row">
+          <input type="number" id="inputYachinR" inputmode="numeric" placeholder="例：80000" min="0">
+          <span class="input-unit">円 / 月</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="inputRatioR">目標負担率</label>
+        <div class="input-row">
+          <input type="number" id="inputRatioR" inputmode="decimal" placeholder="30" value="30" min="1" max="100">
+          <span class="input-unit">% 以内</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultReverse" class="result-card" style="display:none;">
+      <div class="result-label">必要な手取り月収</div>
+      <div class="result-value safe" id="resultTedoriNeeded">—</div>
+      <div class="result-sub" id="resultReverseSub"></div>
+    </div>
+    <div id="emptyReverse" class="card empty-state">
+      <div class="empty-icon">🔄</div>
+      <div class="empty-text">住みたい家賃を入力すると<br>必要な手取り月収が表示されます</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="wrap">
+  <div class="seo-note">
+    <strong>家賃負担率とは</strong>、手取り月収に占める家賃の割合のことです。一般的に<strong>手取りの30%以内</strong>が適正とされており、これを超えると食費・光熱費・貯蓄を圧迫しやすくなります。手取り20万円なら6万円、手取り25万円なら7.5万円が目安です。引越しや物件選びの際にぜひご活用ください。
+  </div>
+</div>
+
+<div id="ck-footer-container"></div>
+<script>
+(function() {
+  var c = document.getElementById('ck-footer-container');
+  if (!c) return;
+  fetch('/footer.html')
+    .then(function(r){ return r.text(); })
+    .then(function(h){
+      c.innerHTML = h;
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e){}
+    }).catch(function(){});
+})();
+</script>
+<script>
+const fmt = new Intl.NumberFormat('ja-JP');
+
+// Mode toggle
+document.getElementById('btnModeNormal').addEventListener('click', function(){
+  this.classList.add('active');
+  document.getElementById('btnModeReverse').classList.remove('active');
+  document.getElementById('panelNormal').style.display = '';
+  document.getElementById('panelReverse').style.display = 'none';
+});
+document.getElementById('btnModeReverse').addEventListener('click', function(){
+  this.classList.add('active');
+  document.getElementById('btnModeNormal').classList.remove('active');
+  document.getElementById('panelReverse').style.display = '';
+  document.getElementById('panelNormal').style.display = 'none';
+});
+
+function judgeRate(rate) {
+  if (rate <= 30) return { cls:'safe', label:'✅ 適正', msg:'家賃負担率は理想的な水準です。生活費や貯蓄にゆとりが生まれます。' };
+  if (rate <= 35) return { cls:'warn', label:'⚠️ やや高め', msg:'少し余裕が少なめです。食費や交際費など他の支出を見直すと安心です。' };
+  return { cls:'danger', label:'🔴 高すぎ', msg:'家賃負担が重い状態です。貯蓄や生活費を圧迫する可能性があります。' };
+}
+
+const BALANCE = [
+  { name:'家賃', color:'#e85d3a', isYachin:true },
+  { name:'食費', color:'#f59e0b', pct:15 },
+  { name:'光熱費・通信費', color:'#3b82f6', pct:10 },
+  { name:'日用品・衣類', color:'#8b5cf6', pct:8 },
+  { name:'交際費・娯楽', color:'#ec4899', pct:7 },
+  { name:'貯蓄・投資', color:'#2d6a4f', pct:20 },
+  { name:'その他・予備費', color:'#6b7280', isOther:true },
+];
+
+function renderBalance(tedori, yachin) {
+  const card = document.getElementById('balanceCard');
+  if (!tedori || tedori <= 0) { card.style.display = 'none'; return; }
+  card.style.display = '';
+  const yachinPct = yachin / tedori * 100;
+  const fixedPct = BALANCE.slice(1,-1).reduce(function(s,i){ return s+i.pct; }, 0);
+  const otherPct = Math.max(0, 100 - yachinPct - fixedPct);
+
+  document.getElementById('balanceList').innerHTML = BALANCE.map(function(item){
+    var pct = item.isYachin ? yachinPct : item.isOther ? otherPct : item.pct;
+    var amount = item.isYachin ? yachin : tedori * pct / 100;
+    return '<div class="balance-item">'
+      + '<div class="balance-bar-wrap">'
+      + '<div class="balance-name">' + item.name + '</div>'
+      + '<div class="balance-bar-bg"><div class="balance-bar" style="width:' + Math.min(pct,100).toFixed(1) + '%;background:' + item.color + ';"></div></div>'
+      + '</div>'
+      + '<div class="balance-pct">' + pct.toFixed(1) + '%</div>'
+      + '<div class="balance-amount">' + fmt.format(Math.round(amount)) + '円</div>'
+      + '</div>';
+  }).join('');
+}
+
+function computeNormal() {
+  var tedori = parseFloat(document.getElementById('inputTedori').value) || 0;
+  var yachin = parseFloat(document.getElementById('inputYachin').value) || 0;
+  var resultEl = document.getElementById('resultNormal');
+  var emptyEl = document.getElementById('emptyNormal');
+  if (!tedori || !yachin) {
+    resultEl.style.display = 'none';
+    emptyEl.style.display = '';
+    renderBalance(tedori, yachin);
+    return;
+  }
+  var rate = yachin / tedori * 100;
+  var j = judgeRate(rate);
+  var recommend = tedori * 0.3;
+  document.getElementById('resultPct').className = 'result-value ' + j.cls;
+  document.getElementById('resultPct').textContent = rate.toFixed(1) + '%';
+  document.getElementById('resultJudge').className = 'result-judge ' + j.cls;
+  document.getElementById('resultJudge').textContent = j.label;
+  document.getElementById('resultSub').textContent = j.msg;
+  document.getElementById('resultRecommend').innerHTML = '推奨家賃の目安（手取りの30%）：<strong>' + fmt.format(Math.round(recommend)) + '円</strong>';
+  resultEl.style.display = '';
+  emptyEl.style.display = 'none';
+  renderBalance(tedori, yachin);
+}
+
+function computeReverse() {
+  var yachin = parseFloat(document.getElementById('inputYachinR').value) || 0;
+  var ratio = parseFloat(document.getElementById('inputRatioR').value) || 30;
+  var resultEl = document.getElementById('resultReverse');
+  var emptyEl = document.getElementById('emptyReverse');
+  if (!yachin) {
+    resultEl.style.display = 'none';
+    emptyEl.style.display = '';
+    return;
+  }
+  var needed = yachin / (ratio / 100);
+  document.getElementById('resultTedoriNeeded').textContent = fmt.format(Math.round(needed)) + '円';
+  document.getElementById('resultReverseSub').textContent =
+    '家賃' + fmt.format(yachin) + '円を手取りの' + ratio + '%以内に抑えるには、手取り月収が約' + fmt.format(Math.round(needed)) + '円必要です。';
+  resultEl.style.display = '';
+  emptyEl.style.display = 'none';
+}
+
+document.getElementById('inputTedori').addEventListener('input', computeNormal);
+document.getElementById('inputYachin').addEventListener('input', computeNormal);
+document.getElementById('inputYachinR').addEventListener('input', computeReverse);
+document.getElementById('inputRatioR').addEventListener('input', computeReverse);
+</script>
+</body>
+</html>
