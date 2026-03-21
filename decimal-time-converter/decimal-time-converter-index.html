@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="canonical" href="https://cleverkit.jp/decimal-time-converter/" />
+<title>小数時間→何時間何分？｜0.3・6.3時間を分に変換するツール</title>
+<meta name="description" content="0.3時間は何分？6.3時間は何時間何分？小数時間を時間・分にすぐ変換。逆方向（時間・分→小数）にも対応。無料・スマホ対応。" />
+<meta property="og:title" content="小数時間→何時間何分？｜0.3・6.3時間を分に変換するツール" />
+<meta property="og:description" content="小数時間と時間・分をワンタップ切替で即変換。丸め設定と結果コピーに対応。" />
+<meta property="og:type" content="website" />
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F6517NYNFF');
+</script>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866"
+crossorigin="anonymous"></script>
+<!-- common.css -->
+<link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+<style>
+/* common.css を前提に最小限だけ補助 */
+.ck-wrap{max-width:920px;margin:0 auto;padding:16px}
+.ck-title{margin:6px 0 6px;font-size:1.5rem;line-height:1.25}
+.ck-lead{margin:0 0 16px;color:var(--muted,#6b7a8a);font-size:.98rem;line-height:1.55}
+.ck-card{
+background:linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+border:1px solid var(--line,#d7dfea);
+border-radius:24px;
+padding:18px;
+box-shadow:0 18px 30px rgba(15,23,42,.15);
+}
+.ck-card-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap;
+}
+.ck-card-header h2{margin:0;font-size:1.05rem;color:#0f172a}
+.ck-mode-title{
+margin:0;
+font-size:1.12rem;
+font-weight:900;
+color:#0f172a;
+background:#fff3d6;
+border:1px solid #f0d28c;
+padding:6px 14px;
+border-radius:999px;
+box-shadow:inset 0 -1px 0 rgba(15,23,42,.12);
+}
+.ck-card > h2{margin:0 0 10px;font-size:1.05rem;color:#0f172a}
+.ck-example{
+margin:-4px 0 12px;
+color:var(--muted,#6b7a8a);
+font-size:.9rem;
+font-weight:700;
+}
+.ck-row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.ck-field{flex:1;min-width:0}
+.ck-field label{display:block;font-size:.85rem;color:var(--muted,#6b7a8a);margin:0 0 6px}
+.ck-field input, .ck-field select{
+width:100%;
+padding:14px 14px;
+border:1px solid #cbd5e1;
+border-radius:14px;
+font-size:1.05rem;
+background:#fff;
+box-sizing:border-box;
+}
+.ck-input-display{
+width:100%;
+padding:14px 14px;
+border:1px solid #cbd5e1;
+border-radius:14px;
+font-size:1.35rem;
+font-weight:800;
+letter-spacing:.3px;
+background:#fff;
+box-sizing:border-box;
+min-height:56px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:2px;
+}
+.ck-input-display .ck-slot{
+display:inline-flex;
+align-items:center;
+padding:2px 6px;
+border-radius:8px;
+border:1px solid transparent;
+min-width:32px;
+justify-content:center;
+}
+.ck-input-display .ck-slot.active{
+border-color:#1f66c1;
+background:#eef4ff;
+box-shadow:0 0 0 2px rgba(31,102,193,.18);
+}
+.ck-input-display .ck-unit{
+margin:0 6px;
+font-size:1rem;
+color:#475569;
+font-weight:800;
+}
+.ck-field input:focus, .ck-field select:focus{outline:3px solid rgba(31,102,193,.25);outline-offset:2px}
+.ck-output-display{
+width:100%;
+padding:16px 14px;
+border-radius:16px;
+background:#0f172a;
+color:#fff;
+border:1px solid rgba(15,23,42,.7);
+box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
+font-size:1.6rem;
+font-weight:900;
+text-align:center;
+letter-spacing:.4px;
+box-sizing:border-box;
+display:flex;
+align-items:baseline;
+justify-content:center;
+gap:8px;
+}
+.ck-output-display .ck-answer-label{
+font-size:.92rem;
+font-weight:600;
+letter-spacing:.1px;
+opacity:.8;
+}
+.ck-output-display .ck-answer-value{
+font-size:1.6rem;
+font-weight:900;
+}
+.ck-flow{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:12px;
+}
+.ck-switch{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+}
+.ck-arrow{
+font-size:1.4rem;
+font-weight:900;
+color:#1f2937;
+}
+.ck-actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.ck-btn{
+appearance:none;border:0;border-radius:14px;
+padding:10px 14px;font-weight:800;
+background:var(--blue,#1f66c1);color:#fff;
+box-shadow:var(--shadow-press,0 4px 10px rgba(20,40,80,.18));
+}
+.ck-btn:disabled{opacity:.45}
+.ck-btn.secondary{background:#1e293b}
+.ck-err{margin-top:8px;color:#b42318;font-weight:700;font-size:.92rem}
+.ck-keypad{margin-top:16px}
+.ck-keypad-title{font-weight:800;margin:0 0 8px;font-size:.95rem;color:var(--muted,#6b7a8a)}
+.ck-keypad-grid{
+display:grid;
+grid-template-columns:repeat(3, minmax(64px, 1fr));
+gap:10px;
+grid-template-areas:
+"seven eight nine"
+"four five six"
+"one two three"
+"clear zero action"
+"back back back";
+}
+.ck-key{
+border:1px solid #cbd5e1;
+background:#fff;
+border-radius:14px;
+padding:14px 8px;
+font-weight:900;
+font-size:1.1rem;
+box-shadow:inset 0 -2px 0 rgba(15,23,42,.08);
+cursor:pointer;
+}
+.ck-key:disabled{cursor:not-allowed;opacity:.45}
+.ck-key.action{background:#1e293b;color:#fff;border-color:#1e293b}
+.ck-key.next{background:var(--blue,#1f66c1);color:#fff;border-color:var(--blue,#1f66c1)}
+.ck-key.ac{background:#9f3a38;border-color:#9f3a38}
+.ck-key[data-key="7"]{grid-area:seven}
+.ck-key[data-key="8"]{grid-area:eight}
+.ck-key[data-key="9"]{grid-area:nine}
+.ck-key[data-key="back"]{grid-area:back}
+.ck-key[data-key="4"]{grid-area:four}
+.ck-key[data-key="5"]{grid-area:five}
+.ck-key[data-key="6"]{grid-area:six}
+.ck-key[data-key="clear"]{grid-area:clear}
+.ck-key[data-key="1"]{grid-area:one}
+.ck-key[data-key="2"]{grid-area:two}
+.ck-key[data-key="3"]{grid-area:three}
+.ck-key[data-key="0"]{grid-area:zero}
+.ck-key[data-key="."]{grid-area:action}
+.ck-key[data-key="next"]{grid-area:action}
+.ck-seg{display:flex;gap:8px;flex-wrap:wrap}
+.ck-seg input{display:none}
+.ck-seg label{
+border:1px solid #cbd5e1;
+background:#fff;border-radius:10px;
+padding:8px 12px;font-weight:800;font-size:.95rem;
+box-shadow:inset 0 -2px 0 rgba(15,23,42,.08);
+}
+.ck-seg input:checked + label{border-color:#1f66c1;background:#e3efff}
+.ck-toast{
+position:fixed;left:50%;bottom:16px;transform:translateX(-50%);
+background:#111827;color:#fff;
+padding:10px 12px;border-radius:999px;
+font-weight:800;opacity:0;pointer-events:none;
+transition:opacity .18s ease;
+max-width:92vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.ck-toast.show{opacity:.95}
+.ck-faq{
+margin-top:32px;
+color:var(--muted,#6b7a8a);
+font-size:.92rem;
+line-height:1.65;
+}
+.ck-faq h2{
+margin:0 0 8px;
+font-size:1rem;
+font-weight:700;
+color:#475569;
+}
+.ck-faq dl{margin:10px 0 0}
+.ck-faq dt{
+margin-top:14px;
+font-weight:700;
+color:#334155;
+}
+.ck-faq dd{margin:6px 0 0}
+@media (max-width:720px){
+.ck-row{flex-direction:column;align-items:stretch}
+.ck-field{width:100%}
+.ck-keypad-grid{
+grid-template-columns:repeat(3, minmax(56px, 1fr));
+gap:8px;
+grid-template-areas:
+"seven eight nine"
+"four five six"
+"one two three"
+"clear zero action"
+"back back back";
+}
+.ck-key{padding:12px 6px;font-size:1rem}
+}
+</style>
+</head>
+<body>
+<main class="ck-wrap">
+<h1 class="ck-title">6.3時間は何時間何分？</h1>
+<p class="ck-lead">
+<strong>6.3時間は何時間何分かをすぐ確認できる</strong>小数時間の変換ツールです。無料・スマホ対応で使えます。
+</p>
+<div id="panelA">
+<section class="ck-card">
+<div class="ck-flow">
+<div class="ck-input-display" id="decDisplay" aria-label="小数時間の入力">0.0時間</div>
+<div class="ck-switch">
+<span class="ck-arrow" aria-hidden="true">↓</span>
+<button class="ck-btn secondary" id="toggleMode">方向切替</button>
+<button class="ck-btn" id="aCopy" disabled>コピー</button>
+</div>
+<div class="ck-output-display" id="aBig" role="status" aria-live="polite">0時間0分</div>
+</div>
+</section>
+<div class="ck-err" id="aErr" hidden></div>
+<div class="ck-decfmt-slot" id="decFmtSlotA"></div>
+</div>
+<div id="panelB" hidden>
+<section class="ck-card">
+<div class="ck-flow">
+<div class="ck-input-display" id="timeDisplay" aria-label="時間分の入力">0時間0分</div>
+<div class="ck-switch">
+<span class="ck-arrow" aria-hidden="true">↓</span>
+<button class="ck-btn secondary" id="toggleModeB">方向切替</button>
+<button class="ck-btn" id="bCopy" disabled>コピー</button>
+</div>
+<div class="ck-output-display" id="bBig" role="status" aria-live="polite">0.0時間</div>
+</div>
+</section>
+<div class="ck-err" id="bErr" hidden></div>
+<div class="ck-decfmt-slot" id="decFmtSlotB"></div>
+</div>
+<div id="decFmtBlock">
+<div class="ck-row" style="margin-top:12px">
+<div class="ck-field" style="min-width:260px;">
+<label>小数表示</label>
+<div class="ck-seg" role="radiogroup" aria-label="小数表示の桁数">
+<input type="radio" name="decFmt" id="fmtRaw" value="raw" checked>
+<label for="fmtRaw">自動</label>
+<input type="radio" name="decFmt" id="fmt1" value="1">
+<label for="fmt1">1桁</label>
+<input type="radio" name="decFmt" id="fmt2" value="2">
+<label for="fmt2">2桁</label>
+<input type="radio" name="decFmt" id="fmt3" value="3">
+<label for="fmt3">3桁</label>
+</div>
+</div>
+</div>
+</div>
+<div class="ck-keypad" aria-label="数字入力パッド">
+<div class="ck-keypad-title">数字入力</div>
+<div class="ck-keypad-grid">
+<button class="ck-key" data-key="7">7</button>
+<button class="ck-key" data-key="8">8</button>
+<button class="ck-key" data-key="9">9</button>
+<button class="ck-key" data-key="4">4</button>
+<button class="ck-key" data-key="5">5</button>
+<button class="ck-key" data-key="6">6</button>
+<button class="ck-key" data-key="1">1</button>
+<button class="ck-key" data-key="2">2</button>
+<button class="ck-key" data-key="3">3</button>
+<button class="ck-key action ac" data-key="clear">AC</button>
+<button class="ck-key" data-key="0">0</button>
+<button class="ck-key action next" data-key="next" id="bNext">次へ</button>
+<button class="ck-key" data-key="." id="dotKey">.</button>
+<button class="ck-key action" data-key="back">⌫</button>
+</div>
+</div>
+<section class="ck-faq" aria-label="よくある質問">
+<h2>よくある質問（FAQ）</h2>
+<p>小数時間と時間・分の変換で、よくある疑問をまとめました。</p>
+<dl>
+<dt>Q1. 6.3時間は何時間何分ですか？</dt>
+<dd>
+6.3時間は6時間18分です。<br>
+小数部分の0.3時間を分に換算すると、0.3 × 60 = 18分になります。
+</dd>
+<dt>Q2. 0.1時間は何分ですか？</dt>
+<dd>
+0.1時間は6分です。<br>
+小数時間に60を掛けることで、分に換算できます。
+</dd>
+<dt>Q3. 端数はどのように処理されていますか？</dt>
+<dd>
+このツールでは、小数部分 × 60 の結果を四捨五入して分に換算しています。<br>
+例えば 0.016時間（0.96分）は、四捨五入して1分として表示されます。
+</dd>
+<dt>Q4. どんなときに使うツールですか？</dt>
+<dd>
+小数時間を時間・分に直したいときや、時間・分を小数時間に直したいときに使えます。<br>
+勤務時間・作業時間の確認などで、どちらの方向でも変換できるのが特長です。
+</dd>
+</dl>
+</section>
+</main>
+<div class="ck-toast" id="toast">コピーしました</div>
+<div id="ck-footer-container"></div>
+<script>
+(function() {
+var container = document.getElementById('ck-footer-container');
+if (!container) return;
+fetch('/footer.html')
+.then(function(response) { return response.text(); })
+.then(function(html) {
+container.innerHTML = html;
+try {
+(adsbygoogle = window.adsbygoogle || []).push({});
+} catch (e) {
+console.warn('adsbygoogle error', e);
+}
+})
+.catch(function(e) {
+console.warn('footer load error', e);
+});
+})();
+</script>
+<script>
+function $(id){ return document.getElementById(id); }
+function showToast(msg){
+var t = $('toast');
+t.textContent = msg || 'コピーしました';
+t.classList.add('show');
+window.clearTimeout(showToast._tm);
+showToast._tm = window.setTimeout(function(){ t.classList.remove('show'); }, 1100);
+}
+function copyText(text){
+if (!text) return Promise.reject(new Error('empty'));
+if (navigator.clipboard && navigator.clipboard.writeText){
+return navigator.clipboard.writeText(text);
+}
+return new Promise(function(resolve, reject){
+try{
+var ta = document.createElement('textarea');
+ta.value = text;
+ta.setAttribute('readonly', '');
+ta.style.position='fixed';
+ta.style.left='-9999px';
+document.body.appendChild(ta);
+ta.select();
+var ok = document.execCommand('copy');
+document.body.removeChild(ta);
+ok ? resolve() : reject(new Error('copy failed'));
+}catch(e){ reject(e); }
+});
+}
+function trimZeros(numStr){
+if (!numStr.includes('.')) return numStr;
+numStr = numStr.replace(/0+$/,'').replace(/\.$/,'');
+return numStr;
+}
+function getDefaultDecimalText(fmt){
+if (fmt === 'raw') return '0.0';
+var digits = Number(fmt);
+if (!Number.isFinite(digits)) return '0.0';
+return '0.' + '0'.repeat(digits);
+}
+function formatDecimalDisplay(raw, fmt){
+if (!raw) return '—';
+if (raw.endsWith('.')) return raw;
+var x = Number(raw);
+if (!Number.isFinite(x)) return raw;
+if (fmt === 'raw'){
+return trimZeros(x.toFixed(6));
+}
+var digits = Number(fmt);
+if (!Number.isFinite(digits)) return raw;
+return x.toFixed(digits);
+}
+var decDisplay = $('decDisplay');
+var aBig = $('aBig');
+var aErr = $('aErr');
+var aCopy = $('aCopy');
+var panelA = $('panelA');
+var panelB = $('panelB');
+var toggleMode = $('toggleMode');
+var toggleModeB = $('toggleModeB');
+var dotKey = $('dotKey');
+var decFmtBlock = $('decFmtBlock');
+var decFmtSlotA = $('decFmtSlotA');
+var decFmtSlotB = $('decFmtSlotB');
+var timeDisplay = $('timeDisplay');
+var bBig = $('bBig');
+var bErr = $('bErr');
+var bCopy = $('bCopy');
+var bNext = $('bNext');
+var lastAResult = '';
+var decInput = '';
+var mode = 'A';
+var lastBResult = '';
+var bHourInput = '';
+var bMinInput = '';
+var bStep = 'hour';
+function setError(el, msg){
+if (msg){ el.hidden = false; el.textContent = msg; }
+else { el.hidden = true; el.textContent = ''; }
+}
+function setMode(next){
+mode = next;
+var isB = mode === 'B';
+panelA.hidden = isB;
+panelB.hidden = !isB;
+if (dotKey) dotKey.hidden = isB;
+if (bNext) bNext.hidden = !isB;
+if (decFmtBlock){
+if (isB){ decFmtSlotB.appendChild(decFmtBlock); }
+else { decFmtSlotA.appendChild(decFmtBlock); }
+}
+if (isB){ computeB(); } else { computeA(); }
+}
+function setAnswerDisplay(el, text){
+el.innerHTML = '<span class="ck-answer-label">答え：</span><span class="ck-answer-value">' + text + '</span>';
+}
+function computeA(){
+var raw = decInput;
+var fmt = document.querySelector('input[name="decFmt"]:checked')?.value || 'raw';
+var displayValue = raw ? formatDecimalDisplay(raw, fmt) : getDefaultDecimalText(fmt);
+decDisplay.innerHTML = '<span class="ck-slot active">' + displayValue + '</span>' +
+'<span class="ck-unit">時間</span>';
+if (!raw){
+setAnswerDisplay(aBig, '0時間0分');
+setError(aErr, '');
+aCopy.disabled = true;
+lastAResult = '';
+return;
+}
+var x = Number(raw);
+if (!Number.isFinite(x)){
+setAnswerDisplay(aBig, '—');
+setError(aErr, '小数時間を数値で入力してください（例：6.3）。');
+aCopy.disabled = true; lastAResult = ''; return;
+}
+if (x < 0){
+setAnswerDisplay(aBig, '—');
+setError(aErr, '負の小数時間は入力できません。');
+aCopy.disabled = true; lastAResult = ''; return;
+}
+var hours = Math.floor(x);
+var frac = x - hours;
+var rawMinutes = frac * 60;
+rawMinutes = Math.round(rawMinutes * 1e9) / 1e9;
+var minutes = Math.round(rawMinutes);
+if (minutes === 60){ hours += 1; minutes = 0; }
+var out = hours + '時間' + minutes + '分';
+lastAResult = out;
+setAnswerDisplay(aBig, out);
+setError(aErr, '');
+aCopy.disabled = false;
+}
+function updateTimeDisplay(){
+var h = bHourInput || '0';
+var m = bMinInput || '0';
+var hourClass = bStep === 'hour' ? 'ck-slot active' : 'ck-slot';
+var minClass = bStep === 'minute' ? 'ck-slot active' : 'ck-slot';
+timeDisplay.innerHTML = '<span class="' + hourClass + '">' + h + '</span>' +
+'<span class="ck-unit">時間</span>' +
+'<span class="' + minClass + '">' + m + '</span>' +
+'<span class="ck-unit">分</span>';
+}
+function computeB(){
+updateTimeDisplay();
+setError(bErr, '');
+bCopy.disabled = true;
+lastBResult = '';
+var fmt = document.querySelector('input[name="decFmt"]:checked')?.value || 'raw';
+if (!bHourInput && !bMinInput){
+var defaultDec = getDefaultDecimalText(fmt);
+setAnswerDisplay(bBig, defaultDec + '時間');
+return;
+}
+var hours = Number(bHourInput || '0');
+var minutes = Number(bMinInput || '0');
+if (!Number.isFinite(hours) || !Number.isFinite(minutes)){
+setAnswerDisplay(bBig, '—');
+setError(bErr, '時間・分は数値で入力してください。');
+return;
+}
+if (hours < 0 || minutes < 0){
+setAnswerDisplay(bBig, '—');
+setError(bErr, '負の時間・分は入力できません。');
+return;
+}
+if (minutes >= 60){
+setAnswerDisplay(bBig, '—');
+setError(bErr, '分は0〜59の範囲で入力してください。');
+return;
+}
+var dec = hours + minutes / 60;
+var decText = formatDecimalDisplay(String(dec), fmt);
+setAnswerDisplay(bBig, decText + '時間');
+lastBResult = decText + '時間';
+bCopy.disabled = false;
+}
+aCopy.addEventListener('click', function(){
+copyText(lastAResult).then(function(){ showToast('コピーしました'); })
+.catch(function(){ showToast('コピーに失敗しました'); });
+});
+function applyKey(key){
+if (mode === 'B'){
+if (key === 'clear'){ bHourInput = ''; bMinInput = ''; bStep = 'hour'; }
+else if (key === 'back'){
+if (bStep === 'minute'){
+if (bMinInput){ bMinInput = bMinInput.slice(0, -1); }
+else { bStep = 'hour'; }
+} else { bHourInput = bHourInput.slice(0, -1); }
+} else if (key === '.'){ return; }
+else if (key === 'next'){
+if (bStep === 'hour'){ if (!bHourInput) bHourInput = '0'; bStep = 'minute'; }
+else { bStep = 'hour'; }
+} else {
+if (bStep === 'hour'){ bHourInput = bHourInput + key; }
+else { bMinInput = bMinInput + key; }
+}
+computeB();
+} else {
+if (key === 'clear'){ decInput = ''; }
+else if (key === 'back'){ decInput = decInput.slice(0, -1); }
+else if (key === '.'){
+if (decInput.includes('.')) return;
+decInput = decInput ? decInput + key : '0.';
+} else if (key === 'next'){ return; }
+else { decInput = decInput + key; }
+computeA();
+}
+}
+document.querySelectorAll('.ck-keypad [data-key]').forEach(function(btn){
+btn.addEventListener('click', function(){
+var key = btn.getAttribute('data-key');
+applyKey(key);
+});
+});
+document.querySelectorAll('input[name="decFmt"]').forEach(function(radio){
+radio.addEventListener('change', function(){
+if (mode === 'B'){ computeB(); } else { computeA(); }
+});
+});
+toggleMode.addEventListener('click', function(){ setMode('B'); });
+toggleModeB.addEventListener('click', function(){ setMode('A'); });
+bCopy.addEventListener('click', function(){
+copyText(lastBResult).then(function(){ showToast('コピーしました'); })
+.catch(function(){ showToast('コピーに失敗しました'); });
+});
+setMode('A');
+</script>
+</body>
+</html>
