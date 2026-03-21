@@ -1,1054 +1,969 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>CleverKit｜日常と学びをちょっと楽にする無料ミニWebツール集</title>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F6517NYNFF');
-  </script>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="暦や時間・家計などの計算・シミュレーション、カレンダー画像やQRコード・カウントダウン画像の生成、こども向け英語学習やタイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。広告は最小限で、軽く・使いやすく・わかりやすい設計にこだわっています。">
-  <link rel="canonical" href="https://cleverkit.jp/">
-  <link rel="icon" href="favicon.png" type="image/png">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
-  <!-- OGP -->
-  <meta property="og:type" content="webpage">
-  <meta property="og:site_name" content="CleverKit Webツール集">
-  <meta property="og:title" content="CleverKit｜日常と学びをちょっと楽にする無料ミニWebツール集">
-  <meta property="og:description" content="暦や時間・家計などの計算・シミュレーション、カレンダー画像やQRコード・カウントダウン画像の生成、こども向け英語学習やタイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。">
-  <meta property="og:url" content="https://cleverkit.jp/">
-  <meta property="og:image" content="https://cleverkit.jp/ogp.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- schema.org WebSite -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://cleverkit.jp/#website",
-    "name": "CleverKit",
-    "url": "https://cleverkit.jp/",
-    "description": "暦や時間・家計などの計算・シミュレーション、カレンダー画像やQRコード・カウントダウン画像の生成、こども向け英語学習やタイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。",
-    "inLanguage": "ja"
+<meta charset="UTF-8">
+<title>CleverKit｜日常と学びをちょっと楽にする無料ミニWebツール集</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F6517NYNFF');
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="暦や時間・家計などの計算・シミュレーション、カレンダー画像やQRコード・カウントダウン画像の生成、こども向け英語学習やタイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。広告は最小限で、軽く・使いやすく・わかりやすい設計にこだわっています。">
+<link rel="canonical" href="https://cleverkit.jp/">
+<link rel="icon" href="favicon.png" type="image/png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+<!-- OGP -->
+<meta property="og:type" content="webpage">
+<meta property="og:site_name" content="CleverKit Webツール集">
+<meta property="og:title" content="CleverKit｜日常と学びをちょっと楽にする無料ミニWebツール集">
+<meta property="og:description" content="暦や時間・家計などの計算・シミュレーション、カレンダー画像やQRコード・カウントダウン画像の生成、こども向け英語学習やタイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。">
+<meta property="og:url" content="https://cleverkit.jp/">
+<meta property="og:image" content="https://cleverkit.jp/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<!-- schema.org WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://cleverkit.jp/#website",
+  "name": "CleverKit",
+  "url": "https://cleverkit.jp/",
+  "description": "暦や時間・家計などの計算・シミュレーション、カレンダー画像やQRコード・カウントダウン画像の生成、こども向け英語学習やタイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。",
+  "inLanguage": "ja"
+}
+</script>
+<!-- schema.org WebPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "CleverKit 便利ツール集",
+  "url": "https://cleverkit.jp/",
+  "description": "日常生活と学びに役立つ計算・シミュレーション、画像生成ツール、英語学習・タイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。",
+  "isPartOf": { "@id": "https://cleverkit.jp/#website" },
+  "inLanguage": "ja"
+}
+</script>
+<link rel="stylesheet" href="/common.css">
+<style>
+/* ========================================
+トップページ専用スタイル
+common.css の上書きは !important を使用
+======================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/* --- Hero --- */
+.ck-hero {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 60%, #fafcff 100%) !important;
+  padding: 1rem 1.25rem 0.9rem !important;
+  text-align: center !important;
+  border-bottom: 1px solid #d8eaf8 !important;
+}
+.ck-hero-logo {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: #1a6fb8 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 0 0.25rem !important;
+}
+.ck-hero-tagline {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #1a3550 !important;
+  margin: 0 0 0.3rem !important;
+  line-height: 1.4 !important;
+}
+.ck-hero-sub {
+  font-size: 0.82rem !important;
+  color: #5a7888 !important;
+  margin: 0 !important;
+  line-height: 1.55 !important;
+}
+/* --- カテゴリクイックナビ --- */
+.ck-cat-nav {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  padding: 0.7rem 1.25rem !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #ddeef8 !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+.ck-cat-nav a {
+  font-size: 0.78rem !important;
+  color: #2a6093 !important;
+  text-decoration: none !important;
+  background: #eef6ff !important;
+  border: 1px solid #c4dcf0 !important;
+  border-radius: 999px !important;
+  padding: 0.25rem 0.65rem !important;
+  white-space: nowrap !important;
+  line-height: 1.5 !important;
+}
+.ck-cat-nav a:hover,
+.ck-cat-nav a:focus {
+  background: #d8ecfc !important;
+  border-color: #88bce8 !important;
+  text-decoration: none !important;
+}
+/* --- セクション共通 --- */
+.ck-section {
+  padding: 1.5rem 1.25rem !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+.ck-section + .ck-section {
+  padding-top: 0 !important;
+}
+.ck-section-heading {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: #1a3550 !important;
+  margin: 0 0 1rem !important;
+  padding-bottom: 0.45rem !important;
+  border-bottom: 2px solid #cce0f5 !important;
+}
+/* --- 人気ツール: コンパクトカード --- */
+.ck-tool-cards {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.6rem !important;
+}
+.ck-tool-card {
+  display: flex !important;
+  align-items: center !important;
+  background: #ffffff !important;
+  border: 1px solid #d0e6f5 !important;
+  border-radius: 8px !important;
+  padding: 0.7rem 1rem !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease !important;
+  gap: 0.75rem !important;
+}
+.ck-tool-card:hover,
+.ck-tool-card:focus {
+  box-shadow: 0 2px 10px rgba(30, 100, 180, 0.1) !important;
+  border-color: #88bce8 !important;
+  text-decoration: none !important;
+}
+.ck-tool-card-body {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+.ck-tool-card-name {
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  color: #1a5fa8 !important;
+  margin: 0 0 0.15rem !important;
+}
+.ck-tool-card-desc {
+  font-size: 0.78rem !important;
+  color: #4a6070 !important;
+  margin: 0 !important;
+  line-height: 1.45 !important;
+}
+.ck-tool-card-arrow {
+  color: #88bce8 !important;
+  font-size: 1.1rem !important;
+  flex-shrink: 0 !important;
+}
+/* --- カテゴリカード --- */
+.ck-cat-cards {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+.ck-cat-card {
+  background: #ffffff !important;
+  border: 1px solid #d0e6f5 !important;
+  border-left: 3px solid #5fa0d8 !important;
+  border-radius: 8px !important;
+  padding: 1rem 1.1rem !important;
+  color: inherit !important;
+}
+.ck-cat-card--travel { border-left-color: #5fb88a !important; }
+.ck-cat-card--money { border-left-color: #e8a73a !important; }
+.ck-cat-card--life { border-left-color: #e07c5a !important; }
+.ck-cat-card--study { border-left-color: #8b72cc !important; }
+.ck-cat-card-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  margin-bottom: 0.2rem !important;
+}
+.ck-cat-card-icon {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+}
+.ck-cat-card-name {
+  font-size: 0.97rem !important;
+  font-weight: 700 !important;
+  color: #1a3550 !important;
+  margin: 0 !important;
+}
+.ck-cat-card--travel .ck-cat-card-name { color: #1a5038 !important; }
+.ck-cat-card--money .ck-cat-card-name { color: #6a4000 !important; }
+.ck-cat-card--life .ck-cat-card-name { color: #6a2808 !important; }
+.ck-cat-card--study .ck-cat-card-name { color: #3e1a80 !important; }
+.ck-cat-card-desc {
+  font-size: 0.78rem !important;
+  color: #5a7080 !important;
+  margin: 0 0 0.75rem !important;
+  line-height: 1.45 !important;
+}
+/* --- カテゴリ内 小カード --- */
+.ck-mini-cards {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.45rem !important;
+  margin-bottom: 0.65rem !important;
+}
+.ck-mini-card {
+  display: flex !important;
+  align-items: center !important;
+  background: #f7fbff !important;
+  border: 1px solid #daeaf8 !important;
+  border-radius: 6px !important;
+  padding: 0.55rem 0.75rem !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  gap: 0.6rem !important;
+  transition: background 0.12s ease, border-color 0.12s ease !important;
+}
+.ck-mini-card:hover,
+.ck-mini-card:focus {
+  background: #eaf4fd !important;
+  border-color: #88bce8 !important;
+  text-decoration: none !important;
+}
+.ck-mini-card-body {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+.ck-mini-card-name {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #1a5fa8 !important;
+  display: block !important;
+  margin: 0 0 0.1rem !important;
+}
+.ck-mini-card-desc {
+  font-size: 0.74rem !important;
+  color: #5a7080 !important;
+  display: block !important;
+  line-height: 1.4 !important;
+}
+.ck-mini-card-arrow {
+  color: #aacce8 !important;
+  font-size: 0.95rem !important;
+  flex-shrink: 0 !important;
+}
+/* --- 折りたたみ（details/summary） --- */
+.ck-cat-details {
+  margin-bottom: 0 !important;
+}
+.ck-cat-details summary {
+  font-size: 0.8rem !important;
+  color: #2a72b8 !important;
+  cursor: pointer !important;
+  list-style: none !important;
+  padding: 0.4rem 0 !important;
+  border-top: 1px solid #e4eff8 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.3rem !important;
+  user-select: none !important;
+}
+.ck-cat-details summary::-webkit-details-marker {
+  display: none !important;
+}
+.ck-cat-details summary::before {
+  content: "＋" !important;
+  font-size: 0.75rem !important;
+  color: #88bce8 !important;
+}
+.ck-cat-details[open] summary::before {
+  content: "－" !important;
+}
+.ck-cat-details summary:hover {
+  color: #1a5090 !important;
+}
+/* 折りたたみ内の小カード */
+.ck-details-cards {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.45rem !important;
+  padding-top: 0.5rem !important;
+}
+/* --- セクション背景交互 --- */
+.ck-section-alt {
+  background: #f8fbff !important;
+  border-top: 1px solid #e0eff8 !important;
+  border-bottom: 1px solid #e0eff8 !important;
+}
+/* --- すべてのツール --- */
+.ck-all-tools {
+  background: #f8fbff !important;
+  border-top: 1px solid #d8eaf8 !important;
+  border-bottom: 1px solid #d8eaf8 !important;
+}
+.ck-all-cat-block {
+  margin-bottom: 1.4rem !important;
+}
+.ck-all-cat-block:last-child {
+  margin-bottom: 0 !important;
+}
+.ck-all-cat-title {
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: #2a5a80 !important;
+  margin: 0 0 0.45rem !important;
+  padding: 0.2rem 0 !important;
+  border-bottom: 1px solid #cce0f5 !important;
+}
+.ck-all-tool-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.ck-all-tool-list li {
+  padding: 0 !important;
+}
+.ck-all-tool-list li a {
+  display: inline !important;
+  font-size: 0.84rem !important;
+  color: #1a5fa8 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+.ck-all-tool-list li a::before {
+  display: none !important;
+}
+.ck-all-tool-sub {
+  display: block !important;
+  font-size: 0.74rem !important;
+  color: #7a8f9e !important;
+  margin-top: 0.08rem !important;
+  font-weight: 400 !important;
+}
+/* --- CleverKitについて --- */
+.ck-about {
+  background: #eef6ff !important;
+  border-top: 1px solid #cce0f5 !important;
+}
+.ck-about-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.55rem !important;
+  margin-top: 0.65rem !important;
+}
+.ck-about-item {
+  background: #ffffff !important;
+  border: 1px solid #cde3f5 !important;
+  border-radius: 8px !important;
+  padding: 0.65rem 0.85rem !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.45rem !important;
+}
+.ck-about-item-icon {
+  font-size: 1rem !important;
+  line-height: 1.3 !important;
+  flex-shrink: 0 !important;
+}
+.ck-about-item-text {
+  font-size: 0.8rem !important;
+  color: #2a4a60 !important;
+  line-height: 1.45 !important;
+}
+.ck-about-note {
+  font-size: 0.8rem !important;
+  color: #4a6a80 !important;
+  margin: 0.85rem 0 0 !important;
+  line-height: 1.6 !important;
+}
+/* --- H1 非表示（アクセシビリティ） --- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+/* --- すべてのツール グリッドレイアウト --- */
+.tool-row {
+  display: grid !important;
+  grid-template-columns: 10em 1fr !important;
+  gap: 10px !important;
+  padding: 8px 0 !important;
+  border-bottom: 1px solid #eee !important;
+}
+.tool-title a {
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  color: #1a5fa8 !important;
+  text-decoration: none !important;
+}
+.tool-title a:hover {
+  text-decoration: underline !important;
+}
+.tool-desc {
+  font-size: 0.74rem !important;
+  color: #555 !important;
+  line-height: 1.4 !important;
+}
+@media (max-width: 480px) {
+  .tool-row {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
   }
-  </script>
-
-  <!-- schema.org WebPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "CleverKit 便利ツール集",
-    "url": "https://cleverkit.jp/",
-    "description": "日常生活と学びに役立つ計算・シミュレーション、画像生成ツール、英語学習・タイピング練習などをまとめたスマホ向けの無料ミニWebツール集です。",
-    "isPartOf": { "@id": "https://cleverkit.jp/#website" },
-    "inLanguage": "ja"
-  }
-  </script>
-
-  <link rel="stylesheet" href="/common.css">
-
-  <style>
-    /* ========================================
-       トップページ専用スタイル
-       common.css の上書きは !important を使用
-    ======================================== */
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    /* --- Hero --- */
-    .ck-hero {
-      background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 60%, #fafcff 100%) !important;
-      padding: 1rem 1.25rem 0.9rem !important;
-      text-align: center !important;
-      border-bottom: 1px solid #d8eaf8 !important;
-    }
-
-    .ck-hero-logo {
-      font-size: 1.4rem !important;
-      font-weight: 700 !important;
-      color: #1a6fb8 !important;
-      letter-spacing: -0.02em !important;
-      margin: 0 0 0.25rem !important;
-    }
-
-    .ck-hero-tagline {
-      font-size: 0.95rem !important;
-      font-weight: 700 !important;
-      color: #1a3550 !important;
-      margin: 0 0 0.3rem !important;
-      line-height: 1.4 !important;
-    }
-
-    .ck-hero-sub {
-      font-size: 0.82rem !important;
-      color: #5a7888 !important;
-      margin: 0 !important;
-      line-height: 1.55 !important;
-    }
-
-    /* --- カテゴリクイックナビ --- */
-    .ck-cat-nav {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      justify-content: center !important;
-      gap: 0.4rem !important;
-      padding: 0.7rem 1.25rem !important;
-      background: #ffffff !important;
-      border-bottom: 1px solid #ddeef8 !important;
-      max-width: 680px !important;
-      margin: 0 auto !important;
-    }
-
-    .ck-cat-nav a {
-      font-size: 0.78rem !important;
-      color: #2a6093 !important;
-      text-decoration: none !important;
-      background: #eef6ff !important;
-      border: 1px solid #c4dcf0 !important;
-      border-radius: 999px !important;
-      padding: 0.25rem 0.65rem !important;
-      white-space: nowrap !important;
-      line-height: 1.5 !important;
-    }
-
-    .ck-cat-nav a:hover,
-    .ck-cat-nav a:focus {
-      background: #d8ecfc !important;
-      border-color: #88bce8 !important;
-      text-decoration: none !important;
-    }
-
-    /* --- セクション共通 --- */
-    .ck-section {
-      padding: 1.5rem 1.25rem !important;
-      max-width: 680px !important;
-      margin: 0 auto !important;
-    }
-
-    .ck-section + .ck-section {
-      padding-top: 0 !important;
-    }
-
-    .ck-section-heading {
-      font-size: 1.1rem !important;
-      font-weight: 700 !important;
-      color: #1a3550 !important;
-      margin: 0 0 1rem !important;
-      padding-bottom: 0.45rem !important;
-      border-bottom: 2px solid #cce0f5 !important;
-    }
-
-    /* --- 人気ツール: コンパクトカード --- */
-    .ck-tool-cards {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 0.6rem !important;
-    }
-
-    .ck-tool-card {
-      display: flex !important;
-      align-items: center !important;
-      background: #ffffff !important;
-      border: 1px solid #d0e6f5 !important;
-      border-radius: 8px !important;
-      padding: 0.7rem 1rem !important;
-      text-decoration: none !important;
-      color: inherit !important;
-      transition: box-shadow 0.15s ease, border-color 0.15s ease !important;
-      gap: 0.75rem !important;
-    }
-
-    .ck-tool-card:hover,
-    .ck-tool-card:focus {
-      box-shadow: 0 2px 10px rgba(30, 100, 180, 0.1) !important;
-      border-color: #88bce8 !important;
-      text-decoration: none !important;
-    }
-
-    .ck-tool-card-body {
-      flex: 1 !important;
-      min-width: 0 !important;
-    }
-
-    .ck-tool-card-name {
-      font-size: 0.92rem !important;
-      font-weight: 700 !important;
-      color: #1a5fa8 !important;
-      margin: 0 0 0.15rem !important;
-    }
-
-    .ck-tool-card-desc {
-      font-size: 0.78rem !important;
-      color: #4a6070 !important;
-      margin: 0 !important;
-      line-height: 1.45 !important;
-    }
-
-    .ck-tool-card-arrow {
-      color: #88bce8 !important;
-      font-size: 1.1rem !important;
-      flex-shrink: 0 !important;
-    }
-
-    /* --- カテゴリカード --- */
-    .ck-cat-cards {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 1rem !important;
-    }
-
-    .ck-cat-card {
-      background: #ffffff !important;
-      border: 1px solid #d0e6f5 !important;
-      border-left: 3px solid #5fa0d8 !important;
-      border-radius: 8px !important;
-      padding: 1rem 1.1rem !important;
-      color: inherit !important;
-    }
-
-    .ck-cat-card--travel { border-left-color: #5fb88a !important; }
-    .ck-cat-card--money  { border-left-color: #e8a73a !important; }
-    .ck-cat-card--life   { border-left-color: #e07c5a !important; }
-    .ck-cat-card--study  { border-left-color: #8b72cc !important; }
-
-    .ck-cat-card-header {
-      display: flex !important;
-      align-items: center !important;
-      gap: 0.45rem !important;
-      margin-bottom: 0.2rem !important;
-    }
-
-    .ck-cat-card-icon {
-      font-size: 1.1rem !important;
-      line-height: 1 !important;
-    }
-
-    .ck-cat-card-name {
-      font-size: 0.97rem !important;
-      font-weight: 700 !important;
-      color: #1a3550 !important;
-      margin: 0 !important;
-    }
-
-    .ck-cat-card--travel .ck-cat-card-name { color: #1a5038 !important; }
-    .ck-cat-card--money  .ck-cat-card-name { color: #6a4000 !important; }
-    .ck-cat-card--life   .ck-cat-card-name { color: #6a2808 !important; }
-    .ck-cat-card--study  .ck-cat-card-name { color: #3e1a80 !important; }
-
-    .ck-cat-card-desc {
-      font-size: 0.78rem !important;
-      color: #5a7080 !important;
-      margin: 0 0 0.75rem !important;
-      line-height: 1.45 !important;
-    }
-
-    /* --- カテゴリ内 小カード --- */
-    .ck-mini-cards {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 0.45rem !important;
-      margin-bottom: 0.65rem !important;
-    }
-
-    .ck-mini-card {
-      display: flex !important;
-      align-items: center !important;
-      background: #f7fbff !important;
-      border: 1px solid #daeaf8 !important;
-      border-radius: 6px !important;
-      padding: 0.55rem 0.75rem !important;
-      text-decoration: none !important;
-      color: inherit !important;
-      gap: 0.6rem !important;
-      transition: background 0.12s ease, border-color 0.12s ease !important;
-    }
-
-    .ck-mini-card:hover,
-    .ck-mini-card:focus {
-      background: #eaf4fd !important;
-      border-color: #88bce8 !important;
-      text-decoration: none !important;
-    }
-
-    .ck-mini-card-body {
-      flex: 1 !important;
-      min-width: 0 !important;
-    }
-
-    .ck-mini-card-name {
-      font-size: 0.85rem !important;
-      font-weight: 700 !important;
-      color: #1a5fa8 !important;
-      display: block !important;
-      margin: 0 0 0.1rem !important;
-    }
-
-    .ck-mini-card-desc {
-      font-size: 0.74rem !important;
-      color: #5a7080 !important;
-      display: block !important;
-      line-height: 1.4 !important;
-    }
-
-    .ck-mini-card-arrow {
-      color: #aacce8 !important;
-      font-size: 0.95rem !important;
-      flex-shrink: 0 !important;
-    }
-
-    /* --- 折りたたみ（details/summary） --- */
-    .ck-cat-details {
-      margin-bottom: 0 !important;
-    }
-
-    .ck-cat-details summary {
-      font-size: 0.8rem !important;
-      color: #2a72b8 !important;
-      cursor: pointer !important;
-      list-style: none !important;
-      padding: 0.4rem 0 !important;
-      border-top: 1px solid #e4eff8 !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 0.3rem !important;
-      user-select: none !important;
-    }
-
-    .ck-cat-details summary::-webkit-details-marker {
-      display: none !important;
-    }
-
-    .ck-cat-details summary::before {
-      content: "＋" !important;
-      font-size: 0.75rem !important;
-      color: #88bce8 !important;
-    }
-
-    .ck-cat-details[open] summary::before {
-      content: "－" !important;
-    }
-
-    .ck-cat-details summary:hover {
-      color: #1a5090 !important;
-    }
-
-    /* 折りたたみ内の小カード */
-    .ck-details-cards {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 0.45rem !important;
-      padding-top: 0.5rem !important;
-    }
-
-    /* --- セクション背景交互 --- */
-    .ck-section-alt {
-      background: #f8fbff !important;
-      border-top: 1px solid #e0eff8 !important;
-      border-bottom: 1px solid #e0eff8 !important;
-    }
-
-    /* --- すべてのツール --- */
-    .ck-all-tools {
-      background: #f8fbff !important;
-      border-top: 1px solid #d8eaf8 !important;
-      border-bottom: 1px solid #d8eaf8 !important;
-    }
-
-    .ck-all-cat-block {
-      margin-bottom: 1.4rem !important;
-    }
-
-    .ck-all-cat-block:last-child {
-      margin-bottom: 0 !important;
-    }
-
-    .ck-all-cat-title {
-      font-size: 0.88rem !important;
-      font-weight: 700 !important;
-      color: #2a5a80 !important;
-      margin: 0 0 0.45rem !important;
-      padding: 0.2rem 0 !important;
-      border-bottom: 1px solid #cce0f5 !important;
-    }
-
-    .ck-all-tool-list {
-      list-style: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    .ck-all-tool-list li {
-      padding: 0 !important;
-    }
-
-    .ck-all-tool-list li a {
-      display: inline !important;
-      font-size: 0.84rem !important;
-      color: #1a5fa8 !important;
-      padding: 0 !important;
-      gap: 0 !important;
-    }
-
-    .ck-all-tool-list li a::before {
-      display: none !important;
-    }
-
-    .ck-all-tool-sub {
-      display: block !important;
-      font-size: 0.74rem !important;
-      color: #7a8f9e !important;
-      margin-top: 0.08rem !important;
-      font-weight: 400 !important;
-    }
-
-    /* --- CleverKitについて --- */
-    .ck-about {
-      background: #eef6ff !important;
-      border-top: 1px solid #cce0f5 !important;
-    }
-
-    .ck-about-grid {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 0.55rem !important;
-      margin-top: 0.65rem !important;
-    }
-
-    .ck-about-item {
-      background: #ffffff !important;
-      border: 1px solid #cde3f5 !important;
-      border-radius: 8px !important;
-      padding: 0.65rem 0.85rem !important;
-      display: flex !important;
-      align-items: flex-start !important;
-      gap: 0.45rem !important;
-    }
-
-    .ck-about-item-icon {
-      font-size: 1rem !important;
-      line-height: 1.3 !important;
-      flex-shrink: 0 !important;
-    }
-
-    .ck-about-item-text {
-      font-size: 0.8rem !important;
-      color: #2a4a60 !important;
-      line-height: 1.45 !important;
-    }
-
-    .ck-about-note {
-      font-size: 0.8rem !important;
-      color: #4a6a80 !important;
-      margin: 0.85rem 0 0 !important;
-      line-height: 1.6 !important;
-    }
-
-    /* --- H1 非表示（アクセシビリティ） --- */
-    .visually-hidden {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0,0,0,0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
-
-    /* --- すべてのツール グリッドレイアウト --- */
-    .tool-row {
-      display: grid !important;
-      grid-template-columns: 10em 1fr !important;
-      gap: 10px !important;
-      padding: 8px 0 !important;
-      border-bottom: 1px solid #eee !important;
-    }
-
-    .tool-title a {
-      font-size: 0.84rem !important;
-      font-weight: 600 !important;
-      color: #1a5fa8 !important;
-      text-decoration: none !important;
-    }
-
-    .tool-title a:hover {
-      text-decoration: underline !important;
-    }
-
-    .tool-desc {
-      font-size: 0.74rem !important;
-      color: #555 !important;
-      line-height: 1.4 !important;
-    }
-
-    @media (max-width: 480px) {
-      .tool-row {
-        grid-template-columns: 1fr !important;
-        gap: 4px !important;
-      }
-    }
-
-    /* --- プライバシーリンク --- */
-    .ck-privacy-note {
-      font-size: 0.78rem !important;
-      color: #7a9cb8 !important;
-      text-align: center !important;
-      padding: 0.85rem 1.25rem !important;
-      max-width: 680px !important;
-      margin: 0 auto !important;
-    }
-
-    .ck-privacy-note a {
-      color: #4a8abf !important;
-    }
-  </style>
+}
+/* --- プライバシーリンク --- */
+.ck-privacy-note {
+  font-size: 0.78rem !important;
+  color: #7a9cb8 !important;
+  text-align: center !important;
+  padding: 0.85rem 1.25rem !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+}
+.ck-privacy-note a {
+  color: #4a8abf !important;
+}
+</style>
 </head>
-
 <body>
 
-  <!-- H1（SEO用・非表示） -->
-  <h1 class="visually-hidden">CleverKit｜日常と学びをちょっと楽にする無料ミニWebツール集</h1>
+<!-- H1（SEO用・非表示） -->
+<h1 class="visually-hidden">CleverKit｜日常と学びをちょっと楽にする無料ミニWebツール集</h1>
 
-  <!-- ==============================
-       Hero
-  ============================== -->
-  <header class="ck-hero" role="banner">
-    <p class="ck-hero-logo">CleverKit</p>
-    <p class="ck-hero-tagline">無料で使える便利なWebツール集</p>
-    <p class="ck-hero-sub">日付計算・旅行準備・家計計算・学習など<br>スマホですぐ使えるシンプルなツールを公開しています。</p>
-  </header>
+<!-- Hero -->
+<header class="ck-hero" role="banner">
+  <p class="ck-hero-logo">CleverKit</p>
+  <p class="ck-hero-tagline">無料で使える便利なWebツール集</p>
+  <p class="ck-hero-sub">日付計算・旅行準備・家計計算・学習など<br>スマホですぐ使えるシンプルなツールを公開しています。</p>
+</header>
 
-  <!-- カテゴリクイックナビ -->
-  <nav class="ck-cat-nav" aria-label="カテゴリへのクイックリンク">
-    <a href="#all-calendar">📅 カレンダー・日付</a>
-    <a href="#all-travel">✈️ 旅行・イベント</a>
-    <a href="#all-money">💰 家計・お金</a>
-    <a href="#all-life">🏠 暮らし</a>
-    <a href="#all-study">📚 学び</a>
-  </nav>
+<!-- カテゴリクイックナビ -->
+<nav class="ck-cat-nav" aria-label="カテゴリへのクイックリンク">
+  <a href="#all-calendar">📅 カレンダー・日付</a>
+  <a href="#all-travel">✈️ 旅行・イベント</a>
+  <a href="#all-money">💰 家計・お金</a>
+  <a href="#all-life">🏠 暮らし</a>
+  <a href="#all-study">📚 学び</a>
+</nav>
 
-  <main class="site-main">
+<main class="site-main">
 
-    <!-- ==============================
-         人気ツール
-    ============================== -->
-    <section class="ck-section" aria-labelledby="sec-popular">
-      <h2 class="ck-section-heading" id="sec-popular">人気ツール</h2>
-      <div class="ck-tool-cards">
-        <a class="ck-tool-card" href="https://cleverkit.jp/calendar-generator/">
-          <div class="ck-tool-card-body">
-            <p class="ck-tool-card-name">カレンダー画像ジェネレーター</p>
-            <p class="ck-tool-card-desc">予定や営業日を書き込んだカレンダー画像を作成。LINEやSNS共有に便利</p>
-          </div>
-          <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
-        </a>
-        <a class="ck-tool-card" href="https://cleverkit.jp/tabinoshiori/">
-          <div class="ck-tool-card-body">
-            <p class="ck-tool-card-name">旅のしおり</p>
-            <p class="ck-tool-card-desc">旅行のしおりを簡単作成。URLをLINEで送るだけでメンバー全員が確認</p>
-          </div>
-          <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
-        </a>
-        <a class="ck-tool-card" href="https://cleverkit.jp/day-counter/">
-          <div class="ck-tool-card-body">
-            <p class="ck-tool-card-name">日数計算ツール</p>
-            <p class="ck-tool-card-desc">2つの日付の差を日数で計算。締切やイベントまでの残り日数確認に便利</p>
-          </div>
-          <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
-        </a>
+<!-- 人気ツール -->
+<section class="ck-section" aria-labelledby="sec-popular">
+  <h2 class="ck-section-heading" id="sec-popular">人気ツール</h2>
+  <div class="ck-tool-cards">
+    <a class="ck-tool-card" href="https://cleverkit.jp/calendar-generator/">
+      <div class="ck-tool-card-body">
+        <p class="ck-tool-card-name">カレンダー画像ジェネレーター</p>
+        <p class="ck-tool-card-desc">予定や営業日を書き込んだカレンダー画像を作成。LINEやSNS共有に便利</p>
       </div>
-    </section>
-
-    <!-- ==============================
-         カテゴリから探す
-    ============================== -->
-    <section class="ck-section ck-section-alt" aria-labelledby="sec-categories">
-      <h2 class="ck-section-heading" id="sec-categories">カテゴリから探す</h2>
-      <div class="ck-cat-cards">
-
-        <!-- カレンダー・日付 -->
-        <div class="ck-cat-card">
-          <div class="ck-cat-card-header">
-            <span class="ck-cat-card-icon" aria-hidden="true">📅</span>
-            <p class="ck-cat-card-name">カレンダー・日付</p>
-          </div>
-          <p class="ck-cat-card-desc">日付計算、カレンダー作成、祝日確認などのツール</p>
-          <div class="ck-mini-cards">
-            <a class="ck-mini-card" href="https://cleverkit.jp/calendar-generator/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">カレンダー画像ジェネレーター</span>
-                <span class="ck-mini-card-desc">予定や営業日を書き込んだカレンダー画像を作成。LINEやSNS共有に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/business-days/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">営業日計算ツール</span>
-                <span class="ck-mini-card-desc">祝日・土日・任意の曜日を除外して営業日を計算。納期や期間の営業日数確認にも対応。</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/day-counter/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">日数計算ツール</span>
-                <span class="ck-mini-card-desc">2つの日付の差を日数で計算。締切やイベントまでの残り日数確認に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-          <details class="ck-cat-details">
-            <summary>その他のツールを見る</summary>
-            <div class="ck-details-cards">
-              <a class="ck-mini-card" href="https://cleverkit.jp/weekday-holiday-checker/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">曜日・祝日・営業日 判定ツール</span>
-                  <span class="ck-mini-card-desc">指定した日付が祝日・曜日・営業日かを判定。来店予定や業務日程確認に便利</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/holiday/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">祝日・連休カレンダー</span>
-                  <span class="ck-mini-card-desc">指定した年の祝日を一覧表示。連休確認や年間スケジュール作成に便利</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/eto/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">干支・十二支早見表</span>
-                  <span class="ck-mini-card-desc">生まれ年から干支をすぐ確認。家族や会話のネタにも使える早見表</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/age-eto-tool/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">年齢・干支計算ツール</span>
-                  <span class="ck-mini-card-desc">生まれ年から年齢と干支を同時に確認。自己紹介や名簿確認にも便利</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/print-calendar/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">印刷用カレンダー生成ツール</span>
-                  <span class="ck-mini-card-desc">シンプルな月間カレンダーを作成。印刷して予定管理や掲示用にも便利</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-            </div>
-          </details>
-        </div>
-
-        <!-- 旅行・イベント -->
-        <div class="ck-cat-card ck-cat-card--travel">
-          <div class="ck-cat-card-header">
-            <span class="ck-cat-card-icon" aria-hidden="true">✈️</span>
-            <p class="ck-cat-card-name">旅行・イベント</p>
-          </div>
-          <p class="ck-cat-card-desc">旅行準備やイベント前の確認に便利なツール</p>
-          <div class="ck-mini-cards">
-            <a class="ck-mini-card" href="https://cleverkit.jp/tabinoshiori/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">旅行しおり作成ツール</span>
-                <span class="ck-mini-card-desc">旅行のしおりを簡単作成。URLをLINEで送るだけでメンバー全員が確認</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/travel-packing-checklist/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">旅行持ち物チェックリスト</span>
-                <span class="ck-mini-card-desc">旅行の持ち物リストを作成。チェック形式で共有でき忘れ物防止に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/countdown-tool/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">イベントカウントダウン</span>
-                <span class="ck-mini-card-desc">旅行やイベントまでの残り日数を表示。予定管理や目標管理に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- 家計・お金 -->
-        <div class="ck-cat-card ck-cat-card--money">
-          <div class="ck-cat-card-header">
-            <span class="ck-cat-card-icon" aria-hidden="true">💰</span>
-            <p class="ck-cat-card-name">家計・お金</p>
-          </div>
-          <p class="ck-cat-card-desc">割り勘、価格計算、教育費確認などのお金ツール</p>
-          <div class="ck-mini-cards">
-            <a class="ck-mini-card" href="https://cleverkit.jp/warikan/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">割り勘計算ツール</span>
-                <span class="ck-mini-card-desc">人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/price-calc/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">税込・税抜・割引計算ツール</span>
-                <span class="ck-mini-card-desc">税込価格や割引後の金額を計算。買い物や見積確認に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/education-cost-simulator/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">教育費シミュレーター</span>
-                <span class="ck-mini-card-desc">進路別の教育費目安を確認。将来の学費計画や家計管理に役立つ</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-          <details class="ck-cat-details">
-            <summary>その他のツールを見る</summary>
-            <div class="ck-details-cards">
-              <a class="ck-mini-card" href="https://cleverkit.jp/portfolio-check/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">資産ポートフォリオチェック</span>
-                  <span class="ck-mini-card-desc">資産配分の偏りを確認。投資バランス見直しや資産管理の参考に</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/taishokukin-souba-tool/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">退職金相場チェック</span>
-                  <span class="ck-mini-card-desc">企業規模別の退職金相場を確認。転職検討や将来設計の参考に</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/traffic-accident-damages/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">交通事故慰謝料計算ツール</span>
-                  <span class="ck-mini-card-desc">交通事故の慰謝料目安を簡単計算。示談前の概算確認に便利</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-            </div>
-          </details>
-        </div>
-
-        <!-- 暮らし -->
-        <div class="ck-cat-card ck-cat-card--life">
-          <div class="ck-cat-card-header">
-            <span class="ck-cat-card-icon" aria-hidden="true">🏠</span>
-            <p class="ck-cat-card-name">暮らし</p>
-          </div>
-          <p class="ck-cat-card-desc">日常生活で使える便利な計算・確認ツール</p>
-          <div class="ck-mini-cards">
-            <a class="ck-mini-card" href="https://cleverkit.jp/qr-generator/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">QRコード作成ツール</span>
-                <span class="ck-mini-card-desc">URLや文字からQRコードを生成。資料や掲示物での共有に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/daily-shopping-memo/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">買い物メモ</span>
-                <span class="ck-mini-card-desc">買うものをリスト化して整理。スーパーでの買い忘れ防止に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/time-calculator/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">時間計算ツール</span>
-                <span class="ck-mini-card-desc">時間の足し算引き算を簡単計算。勤務時間や作業時間の管理に便利</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-          <details class="ck-cat-details">
-            <summary>その他のツールを見る</summary>
-            <div class="ck-details-cards">
-              <a class="ck-mini-card" href="https://cleverkit.jp/recipe-scaler/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">料理分量計算ツール</span>
-                  <span class="ck-mini-card-desc">人数に合わせてレシピ分量を自動計算。作り置きや大量調理にも便利</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/calorie-to-exercise/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">カロリー運動換算ツール</span>
-                  <span class="ck-mini-card-desc">食べたカロリーを運動量に換算。健康管理やダイエットの目安に</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/decimal-time-converter/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">10進時間変換ツール</span>
-                  <span class="ck-mini-card-desc">時間を10進表記に変換。工数計算や業務集計に使いやすい</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-            </div>
-          </details>
-        </div>
-
-        <!-- 学び -->
-        <div class="ck-cat-card ck-cat-card--study">
-          <div class="ck-cat-card-header">
-            <span class="ck-cat-card-icon" aria-hidden="true">📚</span>
-            <p class="ck-cat-card-name">学び</p>
-          </div>
-          <p class="ck-cat-card-desc">英語学習や勉強をサポートするツール</p>
-          <div class="ck-mini-cards">
-            <a class="ck-mini-card" href="https://cleverkit.jp/eigo-pocket/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">小学生の英単語学習「えいごポケット」</span>
-                <span class="ck-mini-card-desc">小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/pikotan-typing/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">ピコたんタイピング</span>
-                <span class="ck-mini-card-desc">【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-            <a class="ck-mini-card" href="https://cleverkit.jp/study-timer/">
-              <div class="ck-mini-card-body">
-                <span class="ck-mini-card-name">ポモドーロ勉強タイマー</span>
-                <span class="ck-mini-card-desc">25分集中のポモドーロタイマー。勉強や作業の集中力アップに</span>
-              </div>
-              <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-            </a>
-          </div>
-          <details class="ck-cat-details">
-            <summary>その他のツールを見る</summary>
-            <div class="ck-details-cards">
-              <a class="ck-mini-card" href="https://cleverkit.jp/study-timer/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">勉強時間記録ツール</span>
-                  <span class="ck-mini-card-desc">毎日の勉強時間を記録して可視化。学習習慣づくりをサポート</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-              <a class="ck-mini-card" href="https://cleverkit.jp/life-balance-checker/">
-                <div class="ck-mini-card-body">
-                  <span class="ck-mini-card-name">ライフバランス診断</span>
-                  <span class="ck-mini-card-desc">生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ</span>
-                </div>
-                <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-              </a>
-            </div>
-          </details>
-        </div>
-
+      <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
+    </a>
+    <a class="ck-tool-card" href="https://cleverkit.jp/tabinoshiori/">
+      <div class="ck-tool-card-body">
+        <p class="ck-tool-card-name">旅のしおり</p>
+        <p class="ck-tool-card-desc">旅行のしおりを簡単作成。URLをLINEで送るだけでメンバー全員が確認</p>
       </div>
-    </section>
+      <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
+    </a>
+    <a class="ck-tool-card" href="https://cleverkit.jp/day-counter/">
+      <div class="ck-tool-card-body">
+        <p class="ck-tool-card-name">日数計算ツール</p>
+        <p class="ck-tool-card-desc">2つの日付の差を日数で計算。締切やイベントまでの残り日数確認に便利</p>
+      </div>
+      <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
+    </a>
+  </div>
+</section>
 
-    <!-- ==============================
-         今日のおすすめツール
-    ============================== -->
-    <section class="ck-section" aria-labelledby="sec-pickup">
-      <h2 class="ck-section-heading" id="sec-pickup">今日のおすすめツール</h2>
-      <div class="ck-tool-cards" id="js-pickup-cards" aria-live="polite">
-        <!-- JS非対応環境向けフォールバック（JSで上書き） -->
-        <a class="ck-tool-card" href="https://cleverkit.jp/warikan/">
-          <div class="ck-tool-card-body">
-            <p class="ck-tool-card-name">割り勘計算ツール</p>
-            <p class="ck-tool-card-desc">人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに</p>
+<!-- カテゴリから探す -->
+<section class="ck-section ck-section-alt" aria-labelledby="sec-categories">
+  <h2 class="ck-section-heading" id="sec-categories">カテゴリから探す</h2>
+  <div class="ck-cat-cards">
+
+    <!-- カレンダー・日付 -->
+    <div class="ck-cat-card">
+      <div class="ck-cat-card-header">
+        <span class="ck-cat-card-icon" aria-hidden="true">📅</span>
+        <p class="ck-cat-card-name">カレンダー・日付</p>
+      </div>
+      <p class="ck-cat-card-desc">日付計算、カレンダー作成、祝日確認などのツール</p>
+      <div class="ck-mini-cards">
+        <a class="ck-mini-card" href="https://cleverkit.jp/calendar-generator/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">カレンダー画像ジェネレーター</span>
+            <span class="ck-mini-card-desc">予定や営業日を書き込んだカレンダー画像を作成。LINEやSNS共有に便利</span>
           </div>
-          <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/business-days/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">営業日計算ツール</span>
+            <span class="ck-mini-card-desc">祝日・土日・任意の曜日を除外して営業日を計算。納期や期間の営業日数確認にも対応。</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/day-counter/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">日数計算ツール</span>
+            <span class="ck-mini-card-desc">2つの日付の差を日数で計算。締切やイベントまでの残り日数確認に便利</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
         </a>
       </div>
-    </section>
-
-    <!-- ==============================
-         すべてのツール
-    ============================== -->
-    <section class="ck-section ck-all-tools" aria-labelledby="sec-all">
-      <h2 class="ck-section-heading" id="sec-all">すべてのツール</h2>
-
-      <div class="ck-all-cat-block">
-        <h3 class="ck-all-cat-title" id="all-calendar">カレンダー・日付</h3>
-        <ul class="ck-all-tool-list">
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/calendar-generator/">カレンダー画像ジェネレーター</a></div><div class="tool-desc">予定や営業日を書き込んだカレンダー画像を作成。LINEやSNS共有に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/day-counter/">日数計算ツール</a></div><div class="tool-desc">2つの日付の差を日数で計算。締切やイベントまでの残り日数確認に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/business-days/">営業日計算ツール</a></div><div class="tool-desc">祝日・土日・任意の曜日を除外して営業日を計算。納期や期間の営業日数確認にも対応。</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/weekday-holiday-checker/">曜日・祝日・営業日 判定ツール</a></div><div class="tool-desc">指定した日付が祝日・曜日・営業日かを判定。来店予定や業務日程確認に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/holiday/">祝日・連休カレンダー</a></div><div class="tool-desc">指定した年の祝日を一覧表示。連休確認や年間スケジュール作成に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/eto/">干支・十二支早見表</a></div><div class="tool-desc">生まれ年から干支をすぐ確認。家族や会話のネタにも使える早見表</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/eto/year/">西暦から干支を確認｜生まれ年の十二支早見表</a></div><div class="tool-desc">西暦から生まれ年の干支（十二支）を確認できる早見表ページです。</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/age-eto-tool/">年齢・干支計算ツール</a></div><div class="tool-desc">生まれ年から年齢と干支を同時に確認。自己紹介や名簿確認にも便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/print-calendar/">印刷用カレンダー生成ツール</a></div><div class="tool-desc">シンプルな月間カレンダーを作成。印刷して予定管理や掲示用にも便利</div></div></li>
-        </ul>
-      </div>
-
-      <div class="ck-all-cat-block">
-        <h3 class="ck-all-cat-title" id="all-travel">旅行・イベント</h3>
-        <ul class="ck-all-tool-list">
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/tabinoshiori/">旅行しおり作成ツール</a></div><div class="tool-desc">旅行のしおりを簡単作成。URLをLINEで送るだけでメンバー全員が確認</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/travel-packing-checklist/">旅行持ち物チェックリスト</a></div><div class="tool-desc">旅行の持ち物リストを作成。チェック形式で共有でき忘れ物防止に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/countdown-tool/">イベントカウントダウン</a></div><div class="tool-desc">旅行やイベントまでの残り日数を表示。予定管理や目標管理に便利</div></div></li>
-        </ul>
-      </div>
-
-      <div class="ck-all-cat-block">
-        <h3 class="ck-all-cat-title" id="all-money">家計・お金</h3>
-        <ul class="ck-all-tool-list">
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/warikan/">割り勘計算ツール</a></div><div class="tool-desc">人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/price-calc/">税込・税抜・割引計算ツール</a></div><div class="tool-desc">税込価格や割引後の金額を計算。買い物や見積確認に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/education-cost-simulator/">教育費シミュレーター</a></div><div class="tool-desc">進路別の教育費目安を確認。将来の学費計画や家計管理に役立つ</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/portfolio-check/">資産ポートフォリオチェック</a></div><div class="tool-desc">資産配分の偏りを確認。投資バランス見直しや資産管理の参考に</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/taishokukin-souba-tool/">退職金相場チェック</a></div><div class="tool-desc">企業規模別の退職金相場を確認。転職検討や将来設計の参考に</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/traffic-accident-damages/">交通事故慰謝料計算ツール</a></div><div class="tool-desc">交通事故の慰謝料目安を簡単計算。示談前の概算確認に便利</div></div></li>
-        </ul>
-      </div>
-
-      <div class="ck-all-cat-block">
-        <h3 class="ck-all-cat-title" id="all-life">暮らし</h3>
-        <ul class="ck-all-tool-list">
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/recipe-scaler/">料理分量計算ツール</a></div><div class="tool-desc">人数に合わせてレシピ分量を自動計算。作り置きや大量調理にも便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/calorie-to-exercise/">カロリー運動換算ツール</a></div><div class="tool-desc">食べたカロリーを運動量に換算。健康管理やダイエットの目安に</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/daily-shopping-memo/">買い物メモ</a></div><div class="tool-desc">買うものをリスト化して整理。スーパーでの買い忘れ防止に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/time-calculator/">時間計算ツール</a></div><div class="tool-desc">時間の足し算引き算を簡単計算。勤務時間や作業時間の管理に便利</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/decimal-time-converter/">10進時間変換ツール</a></div><div class="tool-desc">時間を10進表記に変換。工数計算や業務集計に使いやすい</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/qr-generator/">QRコード作成ツール</a></div><div class="tool-desc">URLや文字からQRコードを生成。資料や掲示物での共有に便利</div></div></li>
-        </ul>
-      </div>
-
-      <div class="ck-all-cat-block">
-        <h3 class="ck-all-cat-title" id="all-study">学び</h3>
-        <ul class="ck-all-tool-list">
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/eigo-pocket/">小学生の英単語学習「えいごポケット」</a></div><div class="tool-desc">小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/pikotan-typing/">ピコたんタイピング</a></div><div class="tool-desc">【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/study-timer/">勉強時間記録ツール</a></div><div class="tool-desc">毎日の勉強時間を記録して可視化。学習習慣づくりをサポート</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/study-timer/">ポモドーロ勉強タイマー</a></div><div class="tool-desc">25分集中のポモドーロタイマー。勉強や作業の集中力アップに</div></div></li>
-          <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/life-balance-checker/">ライフバランス診断</a></div><div class="tool-desc">生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ</div></div></li>
-        </ul>
-      </div>
-
-    </section>
-
-    <!-- ==============================
-         CleverKitについて
-    ============================== -->
-    <section class="ck-section ck-about" aria-labelledby="sec-about">
-      <h2 class="ck-section-heading" id="sec-about">CleverKitについて</h2>
-      <p style="font-size:0.85rem;color:#2a4a60;margin:0 0 0.65rem;line-height:1.6;">
-        CleverKit は、日常・旅行・家計・学びに役立つ無料のWebツールサイトです。
-      </p>
-      <div class="ck-about-grid">
-        <div class="ck-about-item">
-          <span class="ck-about-item-icon" aria-hidden="true">🔓</span>
-          <span class="ck-about-item-text">登録不要<br>すぐに使える</span>
+      <details class="ck-cat-details">
+        <summary>その他のツールを見る</summary>
+        <div class="ck-details-cards">
+          <a class="ck-mini-card" href="https://cleverkit.jp/weekday-holiday-checker/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">曜日・祝日・営業日 判定ツール</span>
+              <span class="ck-mini-card-desc">指定した日付が祝日・曜日・営業日かを判定。来店予定や業務日程確認に便利</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/holiday/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">祝日・連休カレンダー</span>
+              <span class="ck-mini-card-desc">指定した年の祝日を一覧表示。連休確認や年間スケジュール作成に便利</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/eto/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">干支・十二支早見表</span>
+              <span class="ck-mini-card-desc">生まれ年から干支をすぐ確認。家族や会話のネタにも使える早見表</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/age-eto-tool/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">年齢・干支計算ツール</span>
+              <span class="ck-mini-card-desc">生まれ年から年齢と干支を同時に確認。自己紹介や名簿確認にも便利</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/print-calendar/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">印刷用カレンダー生成ツール</span>
+              <span class="ck-mini-card-desc">シンプルな月間カレンダーを作成。印刷して予定管理や掲示用にも便利</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
         </div>
-        <div class="ck-about-item">
-          <span class="ck-about-item-icon" aria-hidden="true">📱</span>
-          <span class="ck-about-item-text">スマホ対応<br>どこでも使える</span>
-        </div>
-        <div class="ck-about-item">
-          <span class="ck-about-item-icon" aria-hidden="true">⚡</span>
-          <span class="ck-about-item-text">軽量設計<br>すばやく動く</span>
-        </div>
-        <div class="ck-about-item">
-          <span class="ck-about-item-icon" aria-hidden="true">🆓</span>
-          <span class="ck-about-item-text">すべて無料<br>広告は最小限</span>
-        </div>
+      </details>
+    </div>
+
+    <!-- 旅行・イベント -->
+    <div class="ck-cat-card ck-cat-card--travel">
+      <div class="ck-cat-card-header">
+        <span class="ck-cat-card-icon" aria-hidden="true">✈️</span>
+        <p class="ck-cat-card-name">旅行・イベント</p>
       </div>
-      <p class="ck-about-note">
-        入力内容が外部に送信されることはありません。安心してご利用ください。<br>
-        よく使うツールはホーム画面やブックマークへの追加がおすすめです。
-      </p>
-    </section>
+      <p class="ck-cat-card-desc">旅行準備やイベント前の確認に便利なツール</p>
+      <div class="ck-mini-cards">
+        <a class="ck-mini-card" href="https://cleverkit.jp/tabinoshiori/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">旅行しおり作成ツール</span>
+            <span class="ck-mini-card-desc">旅行のしおりを簡単作成。URLをLINEで送るだけでメンバー全員が確認</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/travel-packing-checklist/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">旅行持ち物チェックリスト</span>
+            <span class="ck-mini-card-desc">旅行の持ち物リストを作成。チェック形式で共有でき忘れ物防止に便利</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/countdown-tool/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">イベントカウントダウン</span>
+            <span class="ck-mini-card-desc">旅行やイベントまでの残り日数を表示。予定管理や目標管理に便利</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+      </div>
+    </div>
 
-    <!-- お問い合わせ・感想 -->
-    <section class="ck-section" aria-labelledby="sec-contact" style="padding-top:0 !important;">
-      <h2 class="ck-section-heading" id="sec-contact">お問い合わせ・感想</h2>
-      <p style="font-size:0.85rem;color:#2a4a60;line-height:1.7;margin:0 0 1rem;">
-        ツールの感想や改善アイデア、<br>不具合の報告はXでお気軽にどうぞ。
-      </p>
-      <a class="btn" href="https://x.com/cleverkitjp" target="_blank" rel="noopener noreferrer">Xで連絡する</a>
-    </section>
+    <!-- 家計・お金 -->
+    <div class="ck-cat-card ck-cat-card--money">
+      <div class="ck-cat-card-header">
+        <span class="ck-cat-card-icon" aria-hidden="true">💰</span>
+        <p class="ck-cat-card-name">家計・お金</p>
+      </div>
+      <p class="ck-cat-card-desc">割り勘、価格計算、教育費確認などのお金ツール</p>
+      <div class="ck-mini-cards">
+        <a class="ck-mini-card" href="https://cleverkit.jp/warikan/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">割り勘計算ツール</span>
+            <span class="ck-mini-card-desc">人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/price-calc/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">税込・税抜・割引計算ツール</span>
+            <span class="ck-mini-card-desc">税込価格や割引後の金額を計算。買い物や見積確認に便利</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/rent-ratio/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">家賃負担率チェッカー</span>
+            <span class="ck-mini-card-desc">手取りと家賃から負担率を即計算。生活費バランスと適正判定を確認</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+      </div>
+      <details class="ck-cat-details">
+        <summary>その他のツールを見る</summary>
+        <div class="ck-details-cards">
+          <a class="ck-mini-card" href="https://cleverkit.jp/education-cost-simulator/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">教育費シミュレーター</span>
+              <span class="ck-mini-card-desc">進路別の教育費目安を確認。将来の学費計画や家計管理に役立つ</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/portfolio-check/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">資産ポートフォリオチェック</span>
+              <span class="ck-mini-card-desc">資産配分の偏りを確認。投資バランス見直しや資産管理の参考に</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/taishokukin-souba-tool/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">退職金相場チェック</span>
+              <span class="ck-mini-card-desc">企業規模別の退職金相場を確認。転職検討や将来設計の参考に</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/traffic-accident-damages/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">交通事故慰謝料計算ツール</span>
+              <span class="ck-mini-card-desc">交通事故の慰謝料目安を簡単計算。示談前の概算確認に便利</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </details>
+    </div>
 
-    <!-- プライバシー -->
-    <p class="ck-privacy-note">
-      当サイトでは一部ページで Google AdSense を使用しています。
-      詳しくは <a href="/privacy.html">プライバシーポリシー</a> をご確認ください。
-    </p>
+    <!-- 暮らし -->
+    <div class="ck-cat-card ck-cat-card--life">
+      <div class="ck-cat-card-header">
+        <span class="ck-cat-card-icon" aria-hidden="true">🏠</span>
+        <p class="ck-cat-card-name">暮らし</p>
+      </div>
+      <p class="ck-cat-card-desc">日常生活で使える便利な計算・確認ツール</p>
+      <div class="ck-mini-cards">
+        <a class="ck-mini-card" href="https://cleverkit.jp/qr-generator/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">QRコード作成ツール</span>
+            <span class="ck-mini-card-desc">URLや文字からQRコードを生成。資料や掲示物での共有に便利</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/daily-shopping-memo/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">買い物メモ</span>
+            <span class="ck-mini-card-desc">買うものをリスト化して整理。スーパーでの買い忘れ防止に便利</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/time-calculator/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">時間計算ツール</span>
+            <span class="ck-mini-card-desc">時間の足し算引き算を簡単計算。勤務時間や作業時間の管理に便利</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+      </div>
+      <details class="ck-cat-details">
+        <summary>その他のツールを見る</summary>
+        <div class="ck-details-cards">
+          <a class="ck-mini-card" href="https://cleverkit.jp/recipe-scaler/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">料理分量計算ツール</span>
+              <span class="ck-mini-card-desc">人数に合わせてレシピ分量を自動計算。作り置きや大量調理にも便利</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/calorie-to-exercise/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">カロリー運動換算ツール</span>
+              <span class="ck-mini-card-desc">食べたカロリーを運動量に換算。健康管理やダイエットの目安に</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/decimal-time-converter/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">10進時間変換ツール</span>
+              <span class="ck-mini-card-desc">時間を10進表記に変換。工数計算や業務集計に使いやすい</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </details>
+    </div>
 
-  </main>
+    <!-- 学び -->
+    <div class="ck-cat-card ck-cat-card--study">
+      <div class="ck-cat-card-header">
+        <span class="ck-cat-card-icon" aria-hidden="true">📚</span>
+        <p class="ck-cat-card-name">学び</p>
+      </div>
+      <p class="ck-cat-card-desc">英語学習や勉強をサポートするツール</p>
+      <div class="ck-mini-cards">
+        <a class="ck-mini-card" href="https://cleverkit.jp/eigo-pocket/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">小学生の英単語学習「えいごポケット」</span>
+            <span class="ck-mini-card-desc">小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/pikotan-typing/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">ピコたんタイピング</span>
+            <span class="ck-mini-card-desc">【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+        <a class="ck-mini-card" href="https://cleverkit.jp/study-timer/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">ポモドーロ勉強タイマー</span>
+            <span class="ck-mini-card-desc">25分集中のポモドーロタイマー。勉強や作業の集中力アップに</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
+      </div>
+      <details class="ck-cat-details">
+        <summary>その他のツールを見る</summary>
+        <div class="ck-details-cards">
+          <a class="ck-mini-card" href="https://cleverkit.jp/study-timer/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">勉強時間記録ツール</span>
+              <span class="ck-mini-card-desc">毎日の勉強時間を記録して可視化。学習習慣づくりをサポート</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/life-balance-checker/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">ライフバランス診断</span>
+              <span class="ck-mini-card-desc">生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </details>
+    </div>
 
-  <!-- footer -->
-  <div id="ck-footer-container"></div>
+  </div>
+</section>
 
-  <!-- ピックアップ: 日替わり1件表示 -->
-  <script>
-  (function () {
-    var tools = [
-      { name: '干支・十二支早見表', desc: '生まれ年から干支をすぐ確認。家族や会話のネタにも使える早見表', url: 'https://cleverkit.jp/eto/' },
-      { name: '祝日・連休カレンダー', desc: '指定した年の祝日を一覧表示。連休確認や年間スケジュール作成に便利', url: 'https://cleverkit.jp/holiday/' },
-      { name: '営業日計算ツール', desc: '祝日・土日・任意の曜日を除外して営業日を計算。納期や期間の営業日数確認にも対応。', url: 'https://cleverkit.jp/business-days/' },
-      { name: '曜日・祝日・営業日 判定ツール', desc: '指定した日付が祝日・曜日・営業日かを判定。来店予定や業務日程確認に便利', url: 'https://cleverkit.jp/weekday-holiday-checker/' },
-      { name: '年齢・干支計算ツール', desc: '生まれ年から年齢と干支を同時に確認。自己紹介や名簿確認にも便利', url: 'https://cleverkit.jp/age-eto-tool/' },
-      { name: '印刷用カレンダー生成ツール', desc: 'シンプルな月間カレンダーを作成。印刷して予定管理や掲示用にも便利', url: 'https://cleverkit.jp/print-calendar/' },
-      { name: '旅行持ち物チェックリスト', desc: '旅行の持ち物リストを作成。チェック形式で共有でき忘れ物防止に便利', url: 'https://cleverkit.jp/travel-packing-checklist/' },
-      { name: 'イベントカウントダウン', desc: '旅行やイベントまでの残り日数を表示。予定管理や目標管理に便利', url: 'https://cleverkit.jp/countdown-tool/' },
-      { name: '割り勘計算ツール', desc: '人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに', url: 'https://cleverkit.jp/warikan/' },
-      { name: '税込・税抜・割引計算ツール', desc: '税込価格や割引後の金額を計算。買い物や見積確認に便利', url: 'https://cleverkit.jp/price-calc/' },
-      { name: '教育費シミュレーター', desc: '進路別の教育費目安を確認。将来の学費計画や家計管理に役立つ', url: 'https://cleverkit.jp/education-cost-simulator/' },
-      { name: '資産ポートフォリオチェック', desc: '資産配分の偏りを確認。投資バランス見直しや資産管理の参考に', url: 'https://cleverkit.jp/portfolio-check/' },
-      { name: '退職金相場チェック', desc: '企業規模別の退職金相場を確認。転職検討や将来設計の参考に', url: 'https://cleverkit.jp/taishokukin-souba-tool/' },
-      { name: '交通事故慰謝料計算ツール', desc: '交通事故の慰謝料目安を簡単計算。示談前の概算確認に便利', url: 'https://cleverkit.jp/traffic-accident-damages/' },
-      { name: '料理分量計算ツール', desc: '人数に合わせてレシピ分量を自動計算。作り置きや大量調理にも便利', url: 'https://cleverkit.jp/recipe-scaler/' },
-      { name: 'カロリー運動換算ツール', desc: '食べたカロリーを運動量に換算。健康管理やダイエットの目安に', url: 'https://cleverkit.jp/calorie-to-exercise/' },
-      { name: '買い物メモ', desc: '買うものをリスト化して整理。スーパーでの買い忘れ防止に便利', url: 'https://cleverkit.jp/daily-shopping-memo/' },
-      { name: '時間計算ツール', desc: '時間の足し算引き算を簡単計算。勤務時間や作業時間の管理に便利', url: 'https://cleverkit.jp/time-calculator/' },
-      { name: '10進時間変換ツール', desc: '時間を10進表記に変換。工数計算や業務集計に使いやすい', url: 'https://cleverkit.jp/decimal-time-converter/' },
-      { name: 'QRコード作成ツール', desc: 'URLや文字からQRコードを生成。資料や掲示物での共有に便利', url: 'https://cleverkit.jp/qr-generator/' },
-      { name: '小学生の英単語学習「えいごポケット」', desc: '小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます', url: 'https://cleverkit.jp/eigo-pocket/' },
-      { name: 'ピコたんタイピング', desc: '【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得', url: 'https://cleverkit.jp/pikotan-typing/' },
-      { name: '勉強時間記録ツール', desc: '毎日の勉強時間を記録して可視化。学習習慣づくりをサポート', url: 'https://cleverkit.jp/study-timer/' },
-      { name: 'ポモドーロ勉強タイマー', desc: '25分集中のポモドーロタイマー。勉強や作業の集中力アップに', url: 'https://cleverkit.jp/study-timer/' },
-      { name: 'ライフバランス診断', desc: '生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ', url: 'https://cleverkit.jp/life-balance-checker/' }
-    ];
+<!-- 今日のおすすめツール -->
+<section class="ck-section" aria-labelledby="sec-pickup">
+  <h2 class="ck-section-heading" id="sec-pickup">今日のおすすめツール</h2>
+  <div class="ck-tool-cards" id="js-pickup-cards" aria-live="polite">
+    <a class="ck-tool-card" href="https://cleverkit.jp/warikan/">
+      <div class="ck-tool-card-body">
+        <p class="ck-tool-card-name">割り勘計算ツール</p>
+        <p class="ck-tool-card-desc">人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに</p>
+      </div>
+      <span class="ck-tool-card-arrow" aria-hidden="true">›</span>
+    </a>
+  </div>
+</section>
 
-    var d = new Date();
-    var key = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-    var idx = key % tools.length;
-    var tool = tools[idx];
+<!-- すべてのツール -->
+<section class="ck-section ck-all-tools" aria-labelledby="sec-all">
+  <h2 class="ck-section-heading" id="sec-all">すべてのツール</h2>
 
-    var container = document.getElementById('js-pickup-cards');
-    if (!container) return;
+  <div class="ck-all-cat-block">
+    <h3 class="ck-all-cat-title" id="all-calendar">カレンダー・日付</h3>
+    <ul class="ck-all-tool-list">
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/calendar-generator/">カレンダー画像ジェネレーター</a></div><div class="tool-desc">予定や営業日を書き込んだカレンダー画像を作成。LINEやSNS共有に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/day-counter/">日数計算ツール</a></div><div class="tool-desc">2つの日付の差を日数で計算。締切やイベントまでの残り日数確認に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/business-days/">営業日計算ツール</a></div><div class="tool-desc">祝日・土日・任意の曜日を除外して営業日を計算。納期や期間の営業日数確認にも対応。</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/weekday-holiday-checker/">曜日・祝日・営業日 判定ツール</a></div><div class="tool-desc">指定した日付が祝日・曜日・営業日かを判定。来店予定や業務日程確認に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/holiday/">祝日・連休カレンダー</a></div><div class="tool-desc">指定した年の祝日を一覧表示。連休確認や年間スケジュール作成に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/eto/">干支・十二支早見表</a></div><div class="tool-desc">生まれ年から干支をすぐ確認。家族や会話のネタにも使える早見表</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/eto/year/">西暦から干支を確認｜生まれ年の十二支早見表</a></div><div class="tool-desc">西暦から生まれ年の干支（十二支）を確認できる早見表ページです。</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/age-eto-tool/">年齢・干支計算ツール</a></div><div class="tool-desc">生まれ年から年齢と干支を同時に確認。自己紹介や名簿確認にも便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/print-calendar/">印刷用カレンダー生成ツール</a></div><div class="tool-desc">シンプルな月間カレンダーを作成。印刷して予定管理や掲示用にも便利</div></div></li>
+    </ul>
+  </div>
 
+  <div class="ck-all-cat-block">
+    <h3 class="ck-all-cat-title" id="all-travel">旅行・イベント</h3>
+    <ul class="ck-all-tool-list">
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/tabinoshiori/">旅行しおり作成ツール</a></div><div class="tool-desc">旅行のしおりを簡単作成。URLをLINEで送るだけでメンバー全員が確認</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/travel-packing-checklist/">旅行持ち物チェックリスト</a></div><div class="tool-desc">旅行の持ち物リストを作成。チェック形式で共有でき忘れ物防止に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/countdown-tool/">イベントカウントダウン</a></div><div class="tool-desc">旅行やイベントまでの残り日数を表示。予定管理や目標管理に便利</div></div></li>
+    </ul>
+  </div>
+
+  <div class="ck-all-cat-block">
+    <h3 class="ck-all-cat-title" id="all-money">家計・お金</h3>
+    <ul class="ck-all-tool-list">
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/warikan/">割り勘計算ツール</a></div><div class="tool-desc">人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/price-calc/">税込・税抜・割引計算ツール</a></div><div class="tool-desc">税込価格や割引後の金額を計算。買い物や見積確認に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/rent-ratio/">家賃負担率チェッカー</a></div><div class="tool-desc">手取りと家賃から負担率を即計算。生活費バランスと適正判定を確認</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/education-cost-simulator/">教育費シミュレーター</a></div><div class="tool-desc">進路別の教育費目安を確認。将来の学費計画や家計管理に役立つ</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/portfolio-check/">資産ポートフォリオチェック</a></div><div class="tool-desc">資産配分の偏りを確認。投資バランス見直しや資産管理の参考に</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/taishokukin-souba-tool/">退職金相場チェック</a></div><div class="tool-desc">企業規模別の退職金相場を確認。転職検討や将来設計の参考に</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/traffic-accident-damages/">交通事故慰謝料計算ツール</a></div><div class="tool-desc">交通事故の慰謝料目安を簡単計算。示談前の概算確認に便利</div></div></li>
+    </ul>
+  </div>
+
+  <div class="ck-all-cat-block">
+    <h3 class="ck-all-cat-title" id="all-life">暮らし</h3>
+    <ul class="ck-all-tool-list">
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/recipe-scaler/">料理分量計算ツール</a></div><div class="tool-desc">人数に合わせてレシピ分量を自動計算。作り置きや大量調理にも便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/calorie-to-exercise/">カロリー運動換算ツール</a></div><div class="tool-desc">食べたカロリーを運動量に換算。健康管理やダイエットの目安に</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/daily-shopping-memo/">買い物メモ</a></div><div class="tool-desc">買うものをリスト化して整理。スーパーでの買い忘れ防止に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/time-calculator/">時間計算ツール</a></div><div class="tool-desc">時間の足し算引き算を簡単計算。勤務時間や作業時間の管理に便利</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/decimal-time-converter/">10進時間変換ツール</a></div><div class="tool-desc">時間を10進表記に変換。工数計算や業務集計に使いやすい</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/qr-generator/">QRコード作成ツール</a></div><div class="tool-desc">URLや文字からQRコードを生成。資料や掲示物での共有に便利</div></div></li>
+    </ul>
+  </div>
+
+  <div class="ck-all-cat-block">
+    <h3 class="ck-all-cat-title" id="all-study">学び</h3>
+    <ul class="ck-all-tool-list">
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/eigo-pocket/">小学生の英単語学習「えいごポケット」</a></div><div class="tool-desc">小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/pikotan-typing/">ピコたんタイピング</a></div><div class="tool-desc">【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/study-timer/">勉強時間記録ツール</a></div><div class="tool-desc">毎日の勉強時間を記録して可視化。学習習慣づくりをサポート</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/study-timer/">ポモドーロ勉強タイマー</a></div><div class="tool-desc">25分集中のポモドーロタイマー。勉強や作業の集中力アップに</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/life-balance-checker/">ライフバランス診断</a></div><div class="tool-desc">生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ</div></div></li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- CleverKitについて -->
+<section class="ck-section ck-about" aria-labelledby="sec-about">
+  <h2 class="ck-section-heading" id="sec-about">CleverKitについて</h2>
+  <p style="font-size:0.85rem;color:#2a4a60;margin:0 0 0.65rem;line-height:1.6;">
+    CleverKit は、日常・旅行・家計・学びに役立つ無料のWebツールサイトです。
+  </p>
+  <div class="ck-about-grid">
+    <div class="ck-about-item">
+      <span class="ck-about-item-icon" aria-hidden="true">🔓</span>
+      <span class="ck-about-item-text">登録不要<br>すぐに使える</span>
+    </div>
+    <div class="ck-about-item">
+      <span class="ck-about-item-icon" aria-hidden="true">📱</span>
+      <span class="ck-about-item-text">スマホ対応<br>どこでも使える</span>
+    </div>
+    <div class="ck-about-item">
+      <span class="ck-about-item-icon" aria-hidden="true">⚡</span>
+      <span class="ck-about-item-text">軽量設計<br>すばやく動く</span>
+    </div>
+    <div class="ck-about-item">
+      <span class="ck-about-item-icon" aria-hidden="true">🆓</span>
+      <span class="ck-about-item-text">すべて無料<br>広告は最小限</span>
+    </div>
+  </div>
+  <p class="ck-about-note">
+    入力内容が外部に送信されることはありません。安心してご利用ください。<br>
+    よく使うツールはホーム画面やブックマークへの追加がおすすめです。
+  </p>
+</section>
+
+<!-- お問い合わせ・感想 -->
+<section class="ck-section" aria-labelledby="sec-contact" style="padding-top:0 !important;">
+  <h2 class="ck-section-heading" id="sec-contact">お問い合わせ・感想</h2>
+  <p style="font-size:0.85rem;color:#2a4a60;line-height:1.7;margin:0 0 1rem;">
+    ツールの感想や改善アイデア、<br>不具合の報告はXでお気軽にどうぞ。
+  </p>
+  <a class="btn" href="https://x.com/cleverkitjp" target="_blank" rel="noopener noreferrer">Xで連絡する</a>
+</section>
+
+<!-- プライバシー -->
+<p class="ck-privacy-note">
+  当サイトでは一部ページで Google AdSense を使用しています。
+  詳しくは <a href="/privacy.html">プライバシーポリシー</a> をご確認ください。
+</p>
+
+</main>
+
+<!-- footer -->
+<div id="ck-footer-container"></div>
+
+<!-- ピックアップ: 日替わり1件表示 -->
+<script>
+(function () {
+  var tools = [
+    { name: '干支・十二支早見表', desc: '生まれ年から干支をすぐ確認。家族や会話のネタにも使える早見表', url: 'https://cleverkit.jp/eto/' },
+    { name: '祝日・連休カレンダー', desc: '指定した年の祝日を一覧表示。連休確認や年間スケジュール作成に便利', url: 'https://cleverkit.jp/holiday/' },
+    { name: '営業日計算ツール', desc: '祝日・土日・任意の曜日を除外して営業日を計算。納期や期間の営業日数確認にも対応。', url: 'https://cleverkit.jp/business-days/' },
+    { name: '曜日・祝日・営業日 判定ツール', desc: '指定した日付が祝日・曜日・営業日かを判定。来店予定や業務日程確認に便利', url: 'https://cleverkit.jp/weekday-holiday-checker/' },
+    { name: '年齢・干支計算ツール', desc: '生まれ年から年齢と干支を同時に確認。自己紹介や名簿確認にも便利', url: 'https://cleverkit.jp/age-eto-tool/' },
+    { name: '印刷用カレンダー生成ツール', desc: 'シンプルな月間カレンダーを作成。印刷して予定管理や掲示用にも便利', url: 'https://cleverkit.jp/print-calendar/' },
+    { name: '旅行持ち物チェックリスト', desc: '旅行の持ち物リストを作成。チェック形式で共有でき忘れ物防止に便利', url: 'https://cleverkit.jp/travel-packing-checklist/' },
+    { name: 'イベントカウントダウン', desc: '旅行やイベントまでの残り日数を表示。予定管理や目標管理に便利', url: 'https://cleverkit.jp/countdown-tool/' },
+    { name: '割り勘計算ツール', desc: '人数や端数を考慮して割り勘計算。飲み会や旅行の精算をスムーズに', url: 'https://cleverkit.jp/warikan/' },
+    { name: '家賃負担率チェッカー', desc: '手取りと家賃から負担率を即計算。生活費バランスと適正判定を確認', url: 'https://cleverkit.jp/rent-ratio/' },
+    { name: '税込・税抜・割引計算ツール', desc: '税込価格や割引後の金額を計算。買い物や見積確認に便利', url: 'https://cleverkit.jp/price-calc/' },
+    { name: '教育費シミュレーター', desc: '進路別の教育費目安を確認。将来の学費計画や家計管理に役立つ', url: 'https://cleverkit.jp/education-cost-simulator/' },
+    { name: 'QRコード作成ツール', desc: 'URLや文字からQRコードを生成。資料や掲示物での共有に便利', url: 'https://cleverkit.jp/qr-generator/' },
+    { name: '料理分量計算ツール', desc: '人数に合わせてレシピ分量を自動計算。作り置きや大量調理にも便利', url: 'https://cleverkit.jp/recipe-scaler/' },
+    { name: 'カロリー運動換算ツール', desc: '食べたカロリーを運動量に換算。健康管理やダイエットの目安に', url: 'https://cleverkit.jp/calorie-to-exercise/' },
+    { name: '小学生の英単語学習「えいごポケット」', desc: '小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます', url: 'https://cleverkit.jp/eigo-pocket/' },
+    { name: 'ポモドーロ勉強タイマー', desc: '25分集中のポモドーロタイマー。勉強や作業の集中力アップに', url: 'https://cleverkit.jp/study-timer/' },
+    { name: 'ライフバランス診断', desc: '生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ', url: 'https://cleverkit.jp/life-balance-checker/' }
+  ];
+  var today = new Date();
+  var idx = (today.getFullYear() * 372 + today.getMonth() * 31 + today.getDate()) % tools.length;
+  var t = tools[idx];
+  var container = document.getElementById('js-pickup-cards');
+  if (container) {
     container.innerHTML =
-      '<a class="ck-tool-card" href="' + tool.url + '">'
-      + '<div class="ck-tool-card-body">'
-      + '<p class="ck-tool-card-name">' + tool.name + '</p>'
-      + '<p class="ck-tool-card-desc">' + tool.desc + '</p>'
-      + '</div>'
-      + '<span class="ck-tool-card-arrow" aria-hidden="true">›</span>'
-      + '</a>';
-  })();
-  </script>
+      '<a class="ck-tool-card" href="' + t.url + '">' +
+      '<div class="ck-tool-card-body">' +
+      '<p class="ck-tool-card-name">' + t.name + '</p>' +
+      '<p class="ck-tool-card-desc">' + t.desc + '</p>' +
+      '</div>' +
+      '<span class="ck-tool-card-arrow" aria-hidden="true">›</span>' +
+      '</a>';
+  }
+})();
+</script>
 
-  <!-- footer fetch -->
-  <script>
-  (function () {
-    var container = document.getElementById('ck-footer-container');
-    if (!container) return;
-    fetch('/footer.html')
-      .then(function (r) { return r.text(); })
-      .then(function (html) {
-        container.innerHTML = html;
-        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-      })
-      .catch(function () {});
-  })();
-  </script>
+<script>
+(function() {
+  var container = document.getElementById('ck-footer-container');
+  if (!container) return;
+  fetch('/footer.html')
+    .then(function(r) { return r.text(); })
+    .then(function(html) {
+      container.innerHTML = html;
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+    })
+    .catch(function(e) {});
+})();
+</script>
 
 </body>
 </html>
