@@ -1,388 +1,388 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-   <meta charset="UTF-8">
-  <title>学年早見表｜4月2日〜翌4月1日生まれと学年・大学年次・社会人年数</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="4月2日〜翌年4月1日生まれを1つの学年として、日本の学年ルールにもとづき、現在の学年・大学1〜4年生・社会人1〜10年目までを一覧表示する学年早見表です。">
-  <link rel="canonical" href="https://cleverkitjp.github.io/age-eto-tool/gakunen-table.html">
-  <link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F6517NYNFF');
-  </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
-  <style>
-    :root {
-      --bg: #f5f5f7;
-      --card-bg: #ffffff;
-      --accent: #2563eb;
-      --accent-soft: #dbeafe;
-      --text-main: #111827;
-      --text-sub: #6b7280;
-      --border: #e5e7eb;
-      --radius-lg: 16px;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-    }
-    .app {
-      max-width: 480px;
-      margin: 0 auto;
-      min-height: 100dvh;
-      padding-bottom: calc(72px + env(safe-area-inset-bottom));
-    }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(245,245,247,0.96);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-    .header-inner {
-      max-width: 480px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
-    }
-    .site-title {
-      font-size: 15px;
-      font-weight: 600;
-    }
-    main {
-      padding: 12px;
-    }
-    h1 {
-      font-size: 18px;
-      margin: 8px 0 4px;
-    }
-    .lead {
-      font-size: 13px;
-      color: var(--text-sub);
-      margin-bottom: 12px;
-    }
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      padding: 12px 14px;
-      box-shadow: 0 4px 12px rgba(15,23,42,0.04);
-      border: 1px solid var(--border);
-      margin-bottom: 12px;
-    }
-    label {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 4px;
-    }
-    select {
-      width: 100%;
-      font-size: 14px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #fff;
-    }
-    .info-line {
-      font-size: 11px;
-      color: var(--text-sub);
-      margin-top: 4px;
-    }
-    .cohort-item {
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .cohort-item:last-child {
-      border-bottom: none;
-    }
-    .cohort-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 4px;
-      margin-bottom: 2px;
-    }
-    .cohort-range {
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .cohort-sub {
-      font-size: 11px;
-      color: var(--text-sub);
-      text-align: right;
-    }
-    .cohort-detail-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-top: 2px;
-    }
-    .cohort-detail-label {
-      color: var(--text-sub);
-    }
-    .cohort-detail-value {
-      font-weight: 500;
-    }
-    .footer-links {
-      padding: 12px;
-      font-size: 11px;
-      color: var(--text-sub);
-      text-align: center;
-    }
-    .bottom-nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-top: 1px solid var(--border);
-      background: #fff;
-      z-index: 20;
-    }
-    .bottom-nav-inner {
-      max-width: 480px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .nav-item {
-      padding: 6px 0 4px;
-      font-size: 11px;
-      text-align: center;
-      color: var(--text-sub);
-      text-decoration: none;
-    }
-    .nav-item.active {
-      color: var(--accent);
-      font-weight: 600;
-      border-top: 2px solid var(--accent);
-    }
-    @media (min-width: 768px) {
-      .cohort-item {
-        padding: 6px 0;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>学年早見表｜生まれ年から今の学年・大学年次をすぐ確認</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="生まれ年から現在の学年（小学〜高校・大学・社会人）をすぐ確認できる早見表。4月2日〜翌4月1日の日本式学年ルールに対応。無料・スマホ対応。">
+<link rel="canonical" href="https://cleverkitjp.github.io/age-eto-tool/gakunen-table.html">
+<link rel="stylesheet" href="https://cleverkitjp.github.io/common.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F6517NYNFF');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+<style>
+:root {
+--bg: #f5f5f7;
+--card-bg: #ffffff;
+--accent: #2563eb;
+--accent-soft: #dbeafe;
+--text-main: #111827;
+--text-sub: #6b7280;
+--border: #e5e7eb;
+--radius-lg: 16px;
+}
+* { box-sizing: border-box; }
+body {
+margin: 0;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+background: var(--bg);
+color: var(--text-main);
+}
+.app {
+max-width: 480px;
+margin: 0 auto;
+min-height: 100dvh;
+padding-bottom: calc(72px + env(safe-area-inset-bottom));
+}
+header {
+position: sticky;
+top: 0;
+z-index: 10;
+background: rgba(245,245,247,0.96);
+backdrop-filter: blur(8px);
+border-bottom: 1px solid var(--border);
+}
+.header-inner {
+max-width: 480px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 8px 12px;
+}
+.site-title {
+font-size: 15px;
+font-weight: 600;
+}
+main {
+padding: 12px;
+}
+h1 {
+font-size: 18px;
+margin: 8px 0 4px;
+}
+.lead {
+font-size: 13px;
+color: var(--text-sub);
+margin-bottom: 12px;
+}
+.card {
+background: var(--card-bg);
+border-radius: var(--radius-lg);
+padding: 12px 14px;
+box-shadow: 0 4px 12px rgba(15,23,42,0.04);
+border: 1px solid var(--border);
+margin-bottom: 12px;
+}
+label {
+display: block;
+font-size: 13px;
+margin-bottom: 4px;
+}
+select {
+width: 100%;
+font-size: 14px;
+padding: 8px 10px;
+border-radius: 10px;
+border: 1px solid var(--border);
+background: #fff;
+}
+.info-line {
+font-size: 11px;
+color: var(--text-sub);
+margin-top: 4px;
+}
+.year-badge {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: var(--accent-soft);
+color: var(--accent);
+font-size: 13px;
+font-weight: 700;
+padding: 6px 12px;
+border-radius: 999px;
+margin-bottom: 10px;
+}
+.year-toggle-btn {
+background: var(--accent);
+color: #fff;
+border: none;
+border-radius: 999px;
+font-size: 12px;
+font-weight: 700;
+padding: 4px 10px;
+cursor: pointer;
+}
+.cohort-item {
+padding: 8px 0;
+border-bottom: 1px solid var(--border);
+}
+.cohort-item:last-child {
+border-bottom: none;
+}
+.cohort-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+gap: 4px;
+margin-bottom: 2px;
+}
+.cohort-range {
+font-size: 14px;
+font-weight: 600;
+}
+.cohort-sub {
+font-size: 11px;
+color: var(--text-sub);
+text-align: right;
+}
+.cohort-detail-row {
+display: flex;
+justify-content: space-between;
+font-size: 13px;
+margin-top: 2px;
+}
+.cohort-detail-label {
+color: var(--text-sub);
+}
+.cohort-detail-value {
+font-weight: 500;
+}
+.footer-links {
+padding: 12px;
+font-size: 11px;
+color: var(--text-sub);
+text-align: center;
+}
+.bottom-nav {
+position: fixed;
+left: 0;
+right: 0;
+bottom: 0;
+border-top: 1px solid var(--border);
+background: #fff;
+z-index: 20;
+}
+.bottom-nav-inner {
+max-width: 480px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+}
+.nav-item {
+padding: 6px 0 4px;
+font-size: 11px;
+text-align: center;
+color: var(--text-sub);
+text-decoration: none;
+}
+.nav-item.active {
+color: var(--accent);
+font-weight: 600;
+border-top: 2px solid var(--accent);
+}
+@media (min-width: 768px) {
+.cohort-item {
+padding: 6px 0;
+}
+}
+</style>
 </head>
 <body>
 <div class="app">
-  <header>
-    <div class="header-inner">
-      <div class="site-title">学年早見表</div>
-      <div style="font-size:12px;color:#6b7280;">4/2〜翌4/1で同じ学年</div>
-    </div>
-  </header>
-
-  <main>
-    <section class="card">
-      <h1>学年早見表</h1>
-      <p class="lead">
-        「〇年4月2日〜翌年4月1日生まれ」を1つの学年としてまとめた早見表です。<br>
-        日本の学年ルール（4月2日〜翌年4月1日生まれが同じ学年）に基づき、大学4年生＋社会人10年目までを表示します（浪人・留年なしの前提）。
-      </p>
-      <label for="stageFilter">表示する区分</label>
-      <select id="stageFilter">
-        <option value="all">すべて表示</option>
-        <option value="未就学">未就学</option>
-        <option value="小学生">小学生</option>
-        <option value="中学生">中学生</option>
-        <option value="高校生">高校生</option>
-        <option value="大学生">大学生</option>
-        <option value="社会人">社会人</option>
-      </select>
-      <div class="info-line" id="schoolYearInfo"></div>
-    </section>
-
-    <section class="card">
-      <div id="cohortList">
-        <!-- JSで学年ごとのブロックを生成 -->
-      </div>
-    </section>
-
-      <div class="footer-links">
-        <a href="index.html">一括計算ツールに戻る</a>
-      </div>
-  </main>
+<header>
+<div class="header-inner">
+<div class="site-title">学年早見表</div>
+<div style="font-size:12px;color:#6b7280;">4/2〜翌4/1で同じ学年</div>
+</div>
+</header>
+<main>
+<section class="card">
+<h1>学年早見表</h1>
+<p class="lead">
+「〇年4月2日〜翌年4月1日生まれ」を1つの学年としてまとめた早見表です。<br>
+日本の学年ルール（4月2日〜翌年4月1日生まれが同じ学年）に基づき、大学4年生＋社会人10年目までを表示します（浪人・留年なしの前提）。
+</p>
+<div class="year-badge" id="yearBadge">
+  <span id="yearBadgeText"></span>
+  <button class="year-toggle-btn" id="yearToggleBtn" type="button"></button>
+</div>
+<label for="stageFilter">表示する区分</label>
+<select id="stageFilter">
+<option value="all">すべて表示</option>
+<option value="未就学">未就学</option>
+<option value="小学生">小学生</option>
+<option value="中学生">中学生</option>
+<option value="高校生">高校生</option>
+<option value="大学生">大学生</option>
+<option value="社会人">社会人</option>
+</select>
+<div class="info-line" id="schoolYearInfo"></div>
+</section>
+<section class="card">
+<div id="cohortList">
+<!-- JSで学年ごとのブロックを生成 -->
+</div>
+</section>
+<div class="footer-links">
+<a href="index.html">一括計算ツールに戻る</a>
+</div>
+</main>
 </div>
 <div id="ck-footer-container"></div>
 <script>
-  (function() {
-    var container = document.getElementById('ck-footer-container');
-    if (!container) return;
-
-    fetch('/footer.html')
-      .then(function(r) { return r.text(); })
-      .then(function(html) {
-        container.innerHTML = html;
-        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-      })
-      .catch(function(e) {});
-  })();
+(function() {
+var container = document.getElementById('ck-footer-container');
+if (!container) return;
+fetch('/footer.html')
+.then(function(r) { return r.text(); })
+.then(function(html) {
+container.innerHTML = html;
+try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+})
+.catch(function(e) {});
+})();
 </script>
-
 <nav class="bottom-nav">
-  <div class="bottom-nav-inner">
-    <a href="index.html" class="nav-item">
-      <span>一括計算</span>
-    </a>
-    <a href="age-table.html" class="nav-item">
-      <span>年齢表</span>
-    </a>
-    <a href="gakunen-table.html" class="nav-item active">
-      <span>学年表</span>
-    </a>
-    <a href="calendar-table.html" class="nav-item">
-      <span>暦</span>
-    </a>
-  </div>
+<div class="bottom-nav-inner">
+<a href="index.html" class="nav-item">
+<span>一括計算</span>
+</a>
+<a href="age-table.html" class="nav-item">
+<span>年齢表</span>
+</a>
+<a href="gakunen-table.html" class="nav-item active">
+<span>学年表</span>
+</a>
+<a href="calendar-table.html" class="nav-item">
+<span>暦</span>
+</a>
+</div>
 </nav>
-
 <script>
-  const stageSelect = document.getElementById('stageFilter');
-  const cohortList = document.getElementById('cohortList');
-  const schoolYearInfo = document.getElementById('schoolYearInfo');
+const stageSelect = document.getElementById('stageFilter');
+const cohortList = document.getElementById('cohortList');
+const schoolYearInfo = document.getElementById('schoolYearInfo');
+const yearBadgeText = document.getElementById('yearBadgeText');
+const yearToggleBtn = document.getElementById('yearToggleBtn');
 
-  const today = new Date();
-  const CY = today.getFullYear();
-  const CM = today.getMonth() + 1;
-  // 4月始まりの学年度
-  const SCHOOL_YEAR = CM >= 4 ? CY : CY - 1;
+const today = new Date();
+const CY = today.getFullYear();
+const CM = today.getMonth() + 1;
+const BASE_SCHOOL_YEAR = CM >= 4 ? CY : CY - 1;
 
-  // index = SCHOOL_YEAR - elemEnterYear
-  // elemEnterYear = cohortStartYear + 7
-  // 大4(index=15) → cohortStartYear = SCHOOL_YEAR - 22
-  // 社会人10年目(index=25) → cohortStartYear = SCHOOL_YEAR - 32
-  const MIN_COHORT_START = SCHOOL_YEAR - 32; // 社会人10年目までカバー
-  const MAX_COHORT_START = SCHOOL_YEAR + 1;  // 少し先の未就学層まで
+let viewOffset = 0; // 0=現在年度, 1=次年度
 
-  function toJapaneseEra(year) {
-    if (year >= 2019) return `令和${year - 2018}年`;
-    if (year >= 1989) return `平成${year - 1988}年`;
-    if (year >= 1926) return `昭和${year - 1925}年`;
-    if (year >= 1912) return `大正${year - 1911}年`;
-    if (year >= 1868) return `明治${year - 1867}年`;
-    return '不明（明治以前）';
-  }
+function getSchoolYear() {
+  return BASE_SCHOOL_YEAR + viewOffset;
+}
 
-  // index: 0=小1, 1=小2,...,12=大1,15=大4,16〜25=社会人1〜10年目
-  function classifyByIndex(index) {
-    let stage = '未就学';
-    let grade = '–';
+function updateYearBadge() {
+  const sy = getSchoolYear();
+  const label = viewOffset === 0 ? '現在の年度' : '次年度';
+  const btnLabel = viewOffset === 0 ? '次年度を見る' : '現在の年度に戻る';
+  yearBadgeText.textContent = `${label}：${sy}年度（${sy}年4月〜${sy + 1}年3月）`;
+  yearToggleBtn.textContent = btnLabel;
+}
 
-    if (index < 0) {
-      stage = '未就学';
-      grade = '–';
-    } else if (index <= 5) {
-      stage = '小学生';
-      grade = `${index + 1}年生`;          // 小1〜小6
-    } else if (index <= 8) {
-      stage = '中学生';
-      grade = `${index - 5}年生`;          // 中1〜中3
-    } else if (index <= 11) {
-      stage = '高校生';
-      grade = `${index - 8}年生`;          // 高1〜高3
-    } else if (index <= 15) {
-      stage = '大学生';
-      grade = `大学${index - 11}年生`;    // 大1〜大4
-    } else if (index <= 25) {
-      stage = '社会人';
-      grade = `社会人${index - 15}年目`;  // 社会人1〜10年目
-    } else {
-      stage = '社会人';
-      grade = '社会人11年目以降';
-    }
-    return { stage, grade };
-  }
+yearToggleBtn.addEventListener('click', () => {
+  viewOffset = viewOffset === 0 ? 1 : 0;
+  updateYearBadge();
+  buildInfoLine();
+  renderCohorts();
+});
 
-  function buildInfoLine() {
-    schoolYearInfo.textContent =
-      `※ ${SCHOOL_YEAR}年度（${SCHOOL_YEAR}年4月〜${SCHOOL_YEAR + 1}年3月）の学年を表示しています（大学4年生＋社会人10年目まで・浪人や留年なし）。`;
-  }
+function toJapaneseEra(year) {
+if (year >= 2019) return `令和${year - 2018}年`;
+if (year >= 1989) return `平成${year - 1988}年`;
+if (year >= 1926) return `昭和${year - 1925}年`;
+if (year >= 1912) return `大正${year - 1911}年`;
+if (year >= 1868) return `明治${year - 1867}年`;
+return '不明（明治以前）';
+}
 
-  function renderCohorts() {
-    const filter = stageSelect.value;
-    cohortList.innerHTML = '';
+function classifyByIndex(index) {
+let stage = '未就学';
+let grade = '–';
+if (index < 0) {
+stage = '未就学'; grade = '–';
+} else if (index <= 5) {
+stage = '小学生'; grade = `${index + 1}年生`;
+} else if (index <= 8) {
+stage = '中学生'; grade = `${index - 5}年生`;
+} else if (index <= 11) {
+stage = '高校生'; grade = `${index - 8}年生`;
+} else if (index <= 15) {
+stage = '大学生'; grade = `大学${index - 11}年生`;
+} else if (index <= 25) {
+stage = '社会人'; grade = `社会人${index - 15}年目`;
+} else {
+stage = '社会人'; grade = '社会人11年目以降';
+}
+return { stage, grade };
+}
 
-    // cohortStartYear: 「○年4月2日〜○+1年4月1日生まれ」の○の部分
-    for (let y = MAX_COHORT_START; y >= MIN_COHORT_START; y--) {
-      const birthRangeFrom = `${y}年4月2日`;
-      const birthRangeTo   = `${y + 1}年4月1日`;
+function buildInfoLine() {
+const sy = getSchoolYear();
+schoolYearInfo.textContent =
+`※ アクセス時点（${today.getFullYear()}年${CM}月）をもとに算出しています（大学4年生＋社会人10年目まで・浪人や留年なし）。`;
+}
 
-      // この学年グループの小学校入学年度
-      const elemEnterYear = y + 7;     // 4/2〜翌4/1生まれ → 誕生年+7で小1
-      const highGradYear  = elemEnterYear + 12;
+function renderCohorts() {
+const SCHOOL_YEAR = getSchoolYear();
+const MIN_COHORT_START = SCHOOL_YEAR - 32;
+const MAX_COHORT_START = SCHOOL_YEAR + 1;
+const filter = stageSelect.value;
+cohortList.innerHTML = '';
+for (let y = MAX_COHORT_START; y >= MIN_COHORT_START; y--) {
+const birthRangeFrom = `${y}年4月2日`;
+const birthRangeTo = `${y + 1}年4月1日`;
+const elemEnterYear = y + 7;
+const highGradYear = elemEnterYear + 12;
+const index = SCHOOL_YEAR - elemEnterYear;
+const { stage, grade } = classifyByIndex(index);
+if (filter !== 'all' && stage !== filter) continue;
+const item = document.createElement('div');
+item.className = 'cohort-item';
+const header = document.createElement('div');
+header.className = 'cohort-header';
+const rangeEl = document.createElement('div');
+rangeEl.className = 'cohort-range';
+rangeEl.textContent = `${birthRangeFrom}〜${birthRangeTo} 生まれ`;
+const subEl = document.createElement('div');
+subEl.className = 'cohort-sub';
+subEl.textContent = `小学校入学：${elemEnterYear}年（${toJapaneseEra(elemEnterYear)}）`;
+header.appendChild(rangeEl);
+header.appendChild(subEl);
+const row1 = document.createElement('div');
+row1.className = 'cohort-detail-row';
+row1.innerHTML = `<div class="cohort-detail-label">現在の区分</div><div class="cohort-detail-value">${stage}</div>`;
+const row2 = document.createElement('div');
+row2.className = 'cohort-detail-row';
+row2.innerHTML = `<div class="cohort-detail-label">現在の学年・年次</div><div class="cohort-detail-value">${grade}</div>`;
+const row3 = document.createElement('div');
+row3.className = 'cohort-detail-row';
+row3.innerHTML = `<div class="cohort-detail-label">高校卒業年</div><div class="cohort-detail-value">${highGradYear}年（${toJapaneseEra(highGradYear)}）</div>`;
+item.appendChild(header);
+item.appendChild(row1);
+item.appendChild(row2);
+item.appendChild(row3);
+cohortList.appendChild(item);
+}
+}
 
-      // index=0 が小1
-      const index = SCHOOL_YEAR - elemEnterYear;
-      const { stage, grade } = classifyByIndex(index);
-
-      if (filter !== 'all' && stage !== filter) continue;
-
-      const item = document.createElement('div');
-      item.className = 'cohort-item';
-
-      const header = document.createElement('div');
-      header.className = 'cohort-header';
-
-      const rangeEl = document.createElement('div');
-      rangeEl.className = 'cohort-range';
-      rangeEl.textContent = `${birthRangeFrom}〜${birthRangeTo} 生まれ`;
-
-      const subEl = document.createElement('div');
-      subEl.className = 'cohort-sub';
-      subEl.textContent =
-        `小学校入学：${elemEnterYear}年（${toJapaneseEra(elemEnterYear)}）`;
-
-      header.appendChild(rangeEl);
-      header.appendChild(subEl);
-
-      const row1 = document.createElement('div');
-      row1.className = 'cohort-detail-row';
-      row1.innerHTML = `
-        <div class="cohort-detail-label">現在の区分</div>
-        <div class="cohort-detail-value">${stage}</div>
-      `;
-
-      const row2 = document.createElement('div');
-      row2.className = 'cohort-detail-row';
-      row2.innerHTML = `
-        <div class="cohort-detail-label">現在の学年・年次</div>
-        <div class="cohort-detail-value">${grade}</div>
-      `;
-
-      const row3 = document.createElement('div');
-      row3.className = 'cohort-detail-row';
-      row3.innerHTML = `
-        <div class="cohort-detail-label">高校卒業年</div>
-        <div class="cohort-detail-value">
-          ${highGradYear}年（${toJapaneseEra(highGradYear)}）
-        </div>
-      `;
-
-      item.appendChild(header);
-      item.appendChild(row1);
-      item.appendChild(row2);
-      item.appendChild(row3);
-
-      cohortList.appendChild(item);
-    }
-  }
-
-  stageSelect.addEventListener('change', renderCohorts);
-
-  document.addEventListener('DOMContentLoaded', () => {
-    buildInfoLine();
-    renderCohorts();
-  });
+stageSelect.addEventListener('change', renderCohorts);
+document.addEventListener('DOMContentLoaded', () => {
+updateYearBadge();
+buildInfoLine();
+renderCohorts();
+});
 </script>
-
 </body>
 </html>
