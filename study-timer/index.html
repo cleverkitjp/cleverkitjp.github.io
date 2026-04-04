@@ -496,6 +496,16 @@ details li {
 .ck-breadcrumb a {
   color: #94a3b8;
 }
+/* フェーズ切替時の白フラッシュ演出は維持（25分経過時など） */
+.phase-flash-screen {
+  background: #ffffff;
+}
+.phase-flash-screen.is-flashing {
+  animation: screen-flash 2s ease-in-out;
+}
+.timer-card.flash {
+  animation: phase-flash 2s ease-in-out;
+}
 </style>
 
   <script type="application/ld+json">
