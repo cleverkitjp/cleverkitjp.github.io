@@ -411,6 +411,102 @@
 .ck-breadcrumb span {
   margin: 0 4px;
 }
+
+/* ===== study-timerページ専用: ダーク配色上書き ===== */
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.wrap,
+main {
+  background: transparent;
+}
+
+.card,
+.timer-card,
+details,
+.goal-choice {
+  background: #111827;
+  border-color: #334155;
+  color: #e5e7eb;
+}
+
+details[open] {
+  background: #111827;
+}
+
+.muted,
+.sub2,
+.phase-meta,
+#hintLine,
+#statusHint,
+small,
+.log-list,
+.record-banner,
+.record-action[disabled] {
+  color: #94a3b8;
+}
+
+.btn,
+.chip,
+input,
+select,
+textarea {
+  background: #1f2937;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.time,
+#timeDisplay {
+  color: #f8fafc;
+}
+
+.hero h1,
+h1, h2, h3,
+summary,
+label,
+.record-banner strong,
+.kpi,
+.kpi b {
+  color: #f8fafc;
+}
+
+.log-list li,
+details p,
+details li {
+  color: #e5e7eb;
+}
+
+.phase-pill,
+.record-banner {
+  border-color: #334155;
+  background: #111827;
+}
+
+.ck-breadcrumb {
+  background: transparent;
+  color: #94a3b8;
+}
+.ck-breadcrumb a {
+  color: #94a3b8;
+}
+
+/* フェーズ切替時の白フラッシュ演出は維持（25分経過時など） */
+.phase-flash-screen {
+  background: #ffffff;
+}
+.phase-flash-screen.is-flashing {
+  animation: screen-flash 2s ease-in-out;
+}
+.timer-card.flash {
+  animation: phase-flash 2s ease-in-out;
+}
 </style>
 
   <script type="application/ld+json">
