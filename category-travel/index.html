@@ -34,6 +34,7 @@ gtag('config', 'G-F6517NYNFF');
 <link rel="stylesheet" href="/common.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
+:root { --cat-accent: #5fb88a; }
 body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif; background: #f3fbf7; color: #1a3528; }
 .page-wrap { max-width: 680px; margin: 0 auto; padding: 0 0 48px; }
 .breadcrumb { font-size: 12px; color: #7aac90; padding: 10px 16px; }
@@ -79,6 +80,42 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 .cat-links a { font-size: 0.78rem; color: #2a6093; text-decoration: none; background: #eef6ff; border: 1px solid #c4dcf0; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
 .cat-links a:hover { background: #d8ecfc; }
 .cat-links-label { width: 100%; text-align: center; font-size: 0.78rem; color: #7aac90; margin-bottom: 2px; }
+.recommended-tool {
+  background: #fff;
+  border: 2px solid var(--cat-accent, #5fa0d8);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.recommended-tool-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cat-accent, #5fa0d8);
+  margin-bottom: 8px;
+}
+.recommended-tool-name {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.recommended-tool-desc {
+  font-size: 0.82rem;
+  color: #4a6070;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.recommended-tool-btn {
+  display: block;
+  text-align: center;
+  background: var(--cat-accent, #5fa0d8);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.recommended-tool-btn:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -91,10 +128,18 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
   </nav>
 
   <div class="cat-hero">
-    <div class="cat-hero-icon">✈️</div>
-    <h1>旅行ツール</h1>
-    <p class="cat-hero-desc">旅のしおり作成、持ち物チェックリスト、カウントダウンなど、旅行の準備をサポートする無料ツールをまとめています。</p>
+    <h1>旅行</h1>
+    <p class="cat-hero-desc">旅行の「準備」をまとめてサポートするツールを揃えています。<br><br>グループ旅行で面倒なのが、スケジュールの共有と持ち物の管理。旅のしおり作成ツールなら、行程・集合場所・費用をまとめたしおりをその場で作成でき、URLをLINEで送るだけでメンバー全員がスマホから確認できます。印刷もアプリも不要です。<br><br>持ち物チェックリストでは、旅行の種類に合わせたリストを作成してチェックしながら準備を進められます。カウントダウンツールは、旅行当日までの残り日数を表示。出発前の気分を高めたいときにも使えます。<br><br>登録不要、すべて無料です。</p>
   </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="recommended-tool">
+      <div class="recommended-tool-label">⭐ このカテゴリのおすすめ</div>
+      <p class="recommended-tool-name">旅行しおり作成ツール</p>
+      <p class="recommended-tool-desc">行程・集合場所・費用をまとめたしおりをその場で作成。URLをLINEで送るだけでメンバー全員が確認できます。</p>
+      <a class="recommended-tool-btn" href="/tabinoshiori/">このツールを使う →</a>
+    </div>
+  </section>
 
   <section class="section">
     <h2 class="section-title">ツール一覧</h2>
@@ -146,7 +191,6 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
   </section>
 
   <div class="cta-area">
-    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
     <p class="cat-links-label">他のカテゴリを見る</p>
     <div class="cat-links">
       <a href="/category-calendar/">📅 カレンダー・日付</a>
@@ -154,6 +198,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
       <a href="/category-learn/">📚 学び</a>
       <a href="/category-life/">🏠 暮らし</a>
     </div>
+    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
   </div>
 
 </div>

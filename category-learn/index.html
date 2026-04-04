@@ -34,6 +34,7 @@ gtag('config', 'G-F6517NYNFF');
 <link rel="stylesheet" href="/common.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
+:root { --cat-accent: #8b72cc; }
 body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif; background: #f6f3ff; color: #1e1a30; }
 .page-wrap { max-width: 680px; margin: 0 auto; padding: 0 0 48px; }
 .breadcrumb { font-size: 12px; color: #9880c8; padding: 10px 16px; }
@@ -79,6 +80,42 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 .cat-links a { font-size: 0.78rem; color: #2a6093; text-decoration: none; background: #eef6ff; border: 1px solid #c4dcf0; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
 .cat-links a:hover { background: #d8ecfc; }
 .cat-links-label { width: 100%; text-align: center; font-size: 0.78rem; color: #9880c8; margin-bottom: 2px; }
+.recommended-tool {
+  background: #fff;
+  border: 2px solid var(--cat-accent, #5fa0d8);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.recommended-tool-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cat-accent, #5fa0d8);
+  margin-bottom: 8px;
+}
+.recommended-tool-name {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.recommended-tool-desc {
+  font-size: 0.82rem;
+  color: #4a6070;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.recommended-tool-btn {
+  display: block;
+  text-align: center;
+  background: var(--cat-accent, #5fa0d8);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.recommended-tool-btn:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -92,9 +129,18 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 
   <div class="cat-hero">
     <div class="cat-hero-icon">📚</div>
-    <h1>学びツール</h1>
-    <p class="cat-hero-desc">英語学習・タイピング練習・勉強タイマーなど、学習習慣をサポートする無料ツールをまとめています。</p>
+    <h1>学び</h1>
+    <p class="cat-hero-desc">子どもの学習習慣づくりから、大人の集中力管理まで対応するツールを揃えています。<br><br>えいごポケットは、小学校で学ぶ英単語をゲーム感覚で練習できるツールです。フラッシュカード形式で繰り返し学習でき、毎日少しずつ続けられる設計になっています。親が設定する手間もなく、子どもが自分でスマホから始められます。<br><br>タイピング練習ツール「ピコたんタイピング」はPC向けで、キーボード操作を楽しく習得できます。ポモドーロ勉強タイマーは25分集中・5分休憩のサイクルで作業を管理。「なんとなく勉強している」状態から抜け出したいときに効果的です。<br><br>登録不要、すべて無料です。</p>
   </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="recommended-tool">
+      <div class="recommended-tool-label">⭐ このカテゴリのおすすめ</div>
+      <p class="recommended-tool-name">えいごポケット</p>
+      <p class="recommended-tool-desc">小学校で学ぶ英単語をゲーム感覚で練習。毎日少しずつ続けられる設計で、子どもが自分でスマホから始められます。</p>
+      <a class="recommended-tool-btn" href="/eigo-pocket/">このツールを使う →</a>
+    </div>
+  </section>
 
   <section class="section">
     <h2 class="section-title">ツール一覧</h2>
@@ -154,7 +200,6 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
   </section>
 
   <div class="cta-area">
-    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
     <p class="cat-links-label">他のカテゴリを見る</p>
     <div class="cat-links">
       <a href="/category-calendar/">📅 カレンダー・日付</a>
@@ -162,6 +207,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
       <a href="/category-money/">💰 家計・お金</a>
       <a href="/category-life/">🏠 暮らし</a>
     </div>
+    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
   </div>
 
 </div>
