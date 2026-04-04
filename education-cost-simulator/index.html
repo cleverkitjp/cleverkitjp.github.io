@@ -185,7 +185,24 @@
     .result-name {
       font-weight: 700;
     }
-  </style>
+  .ck-breadcrumb {
+  font-size: 12px;
+  color: #888;
+  padding: 8px 16px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.ck-breadcrumb a {
+  color: #888;
+  text-decoration: none;
+}
+.ck-breadcrumb a:hover {
+  text-decoration: underline;
+}
+.ck-breadcrumb span {
+  margin: 0 4px;
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -199,6 +216,14 @@
 </head>
 
 <body>
+<nav class="ck-breadcrumb" aria-label="パンくずリスト">
+  <a href="/">CleverKit</a>
+  <span>›</span>
+  <a href="/category-money/">家計・お金</a>
+  <span>›</span>
+  教育費シミュレーター
+</nav>
+
   <h1>教育費シミュレーター</h1>
 
   <div class="container">

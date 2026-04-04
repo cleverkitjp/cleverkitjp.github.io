@@ -244,7 +244,24 @@
       color: var(--error);
       min-height: 1em;
     }
-  </style>
+  .ck-breadcrumb {
+  font-size: 12px;
+  color: #888;
+  padding: 8px 16px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.ck-breadcrumb a {
+  color: #888;
+  text-decoration: none;
+}
+.ck-breadcrumb a:hover {
+  text-decoration: underline;
+}
+.ck-breadcrumb span {
+  margin: 0 4px;
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -258,6 +275,14 @@
 </head>
 
 <body>
+<nav class="ck-breadcrumb" aria-label="パンくずリスト">
+  <a href="/">CleverKit</a>
+  <span>›</span>
+  <a href="/category-life/">暮らし</a>
+  <span>›</span>
+  QRコード作成ツール
+</nav>
+
 <div class="page">
 <main class="card">
   <h1>QRコード作成ツール</h1>

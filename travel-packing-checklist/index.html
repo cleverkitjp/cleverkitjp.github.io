@@ -364,7 +364,24 @@
         font-size:34px;
       }
     }
-  </style>
+  .ck-breadcrumb {
+  font-size: 12px;
+  color: #888;
+  padding: 8px 16px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.ck-breadcrumb a {
+  color: #888;
+  text-decoration: none;
+}
+.ck-breadcrumb a:hover {
+  text-decoration: underline;
+}
+.ck-breadcrumb span {
+  margin: 0 4px;
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -377,6 +394,14 @@
 </script>
 </head>
 <body>
+<nav class="ck-breadcrumb" aria-label="パンくずリスト">
+  <a href="/">CleverKit</a>
+  <span>›</span>
+  <a href="/category-travel/">旅行</a>
+  <span>›</span>
+  旅行持ち物チェックリスト
+</nav>
+
   <main class="wrap">
     <section class="hero">
       <div class="hero-badge">無料・登録不要・スマホ対応</div>
