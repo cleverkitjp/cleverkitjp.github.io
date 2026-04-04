@@ -34,6 +34,7 @@ gtag('config', 'G-F6517NYNFF');
 <link rel="stylesheet" href="/common.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
+:root { --cat-accent: #5fa0d8; }
 body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif; background: #f5f9ff; color: #1a3550; }
 .page-wrap { max-width: 680px; margin: 0 auto; padding: 0 0 48px; }
 
@@ -100,6 +101,42 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 }
 .cat-links a:hover { background: #d8ecfc; }
 .cat-links-label { width: 100%; text-align: center; font-size: 0.78rem; color: #7a9cb8; margin-bottom: 2px; }
+.recommended-tool {
+  background: #fff;
+  border: 2px solid var(--cat-accent, #5fa0d8);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.recommended-tool-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cat-accent, #5fa0d8);
+  margin-bottom: 8px;
+}
+.recommended-tool-name {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.recommended-tool-desc {
+  font-size: 0.82rem;
+  color: #4a6070;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.recommended-tool-btn {
+  display: block;
+  text-align: center;
+  background: var(--cat-accent, #5fa0d8);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.recommended-tool-btn:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -115,9 +152,18 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
   <!-- ヒーロー -->
   <div class="cat-hero">
     <div class="cat-hero-icon">📅</div>
-    <h1>カレンダー・日付ツール</h1>
-    <p class="cat-hero-desc">日数計算・営業日計算・カレンダー画像生成・祝日確認など、日付に関する便利なツールをまとめています。スマホですぐ使えます。</p>
+    <h1>カレンダー・日付</h1>
+    <p class="cat-hero-desc">日付にまつわる計算を、まとめてここで解決できます。<br><br>「納期まで何営業日あるか」「あのイベントまで何日か」「この日は祝日か」――日常的に発生するけれど、意外と手間のかかる日付の確認をスマホから素早くできるツールを揃えています。<br><br>特に人気なのがカレンダー画像ジェネレーター。営業日や予定を書き込んだカレンダー画像をその場で作成でき、LINEやSNSにそのまま共有できます。予定を言葉で説明するより、カレンダー画像を送るほうが伝わる場面で重宝されています。<br><br>他にも、祝日を考慮した営業日計算、干支・和暦の確認、印刷用カレンダーの生成など。登録不要、すべて無料でブラウザだけで動きます。</p>
   </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="recommended-tool">
+      <div class="recommended-tool-label">⭐ このカテゴリのおすすめ</div>
+      <p class="recommended-tool-name">カレンダー画像ジェネレーター</p>
+      <p class="recommended-tool-desc">予定や営業日を書き込んだカレンダー画像をその場で作成。LINEやSNSにそのまま共有できます。</p>
+      <a class="recommended-tool-btn" href="/calendar-generator/">このツールを使う →</a>
+    </div>
+  </section>
 
   <!-- ツール一覧 -->
   <section class="section">
@@ -212,7 +258,6 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 
   <!-- CTA -->
   <div class="cta-area">
-    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
     <p class="cat-links-label">他のカテゴリを見る</p>
     <div class="cat-links">
       <a href="/category-travel/">✈️ 旅行</a>
@@ -220,6 +265,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
       <a href="/category-learn/">📚 学び</a>
       <a href="/category-life/">🏠 暮らし</a>
     </div>
+    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
   </div>
 
 </div>

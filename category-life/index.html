@@ -34,6 +34,7 @@ gtag('config', 'G-F6517NYNFF');
 <link rel="stylesheet" href="/common.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
+:root { --cat-accent: #e07c5a; }
 body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif; background: #fdf5f2; color: #2a1a10; }
 .page-wrap { max-width: 680px; margin: 0 auto; padding: 0 0 48px; }
 .breadcrumb { font-size: 12px; color: #c09080; padding: 10px 16px; }
@@ -79,6 +80,42 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 .cat-links a { font-size: 0.78rem; color: #2a6093; text-decoration: none; background: #eef6ff; border: 1px solid #c4dcf0; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
 .cat-links a:hover { background: #d8ecfc; }
 .cat-links-label { width: 100%; text-align: center; font-size: 0.78rem; color: #c09080; margin-bottom: 2px; }
+.recommended-tool {
+  background: #fff;
+  border: 2px solid var(--cat-accent, #5fa0d8);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.recommended-tool-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cat-accent, #5fa0d8);
+  margin-bottom: 8px;
+}
+.recommended-tool-name {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.recommended-tool-desc {
+  font-size: 0.82rem;
+  color: #4a6070;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.recommended-tool-btn {
+  display: block;
+  text-align: center;
+  background: var(--cat-accent, #5fa0d8);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.recommended-tool-btn:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -92,9 +129,18 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 
   <div class="cat-hero">
     <div class="cat-hero-icon">🏠</div>
-    <h1>暮らしツール</h1>
-    <p class="cat-hero-desc">QRコード作成・買い物メモ・時間計算・料理分量計算など、日常生活をちょっと便利にする無料ツールをまとめています。</p>
+    <h1>暮らし</h1>
+    <p class="cat-hero-desc">日常のちょっとした手間を減らすツールを揃えています。<br><br>QRコード作成ツールは、URLや文章を入力するだけでQRコードを即生成。資料への貼り付けや店頭掲示など、スマホで読み取ってもらう場面で活用できます。デザインの知識は不要です。<br><br>他にも、スーパーでの買い忘れを防ぐ買い物メモ、勤務時間の計算に使える時間計算ツール、人数に合わせてレシピ分量を自動計算する料理分量計算ツールなど。毎日の小さな手間を、ブラウザだけで解決できます。<br><br>登録不要、すべて無料、アプリのインストールも不要です。</p>
   </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="recommended-tool">
+      <div class="recommended-tool-label">⭐ このカテゴリのおすすめ</div>
+      <p class="recommended-tool-name">QRコード作成ツール</p>
+      <p class="recommended-tool-desc">URLや文章を入力するだけでQRコードを即生成。資料への貼り付けや店頭掲示など、スマホで読み取ってもらう場面で活用できます。</p>
+      <a class="recommended-tool-btn" href="/qr-generator/">このツールを使う →</a>
+    </div>
+  </section>
 
   <section class="section">
     <h2 class="section-title">ツール一覧</h2>
@@ -148,6 +194,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
         <span class="tool-card-arrow">›</span>
       </a>
 
+      <!-- 年齢・干支系：主カテゴリは category-calendar。ここでは補助掲載 -->
       <a class="tool-card" href="/age-eto-tool/">
         <div class="tool-card-body">
           <p class="tool-card-name">年齢・干支計算ツール</p>
@@ -186,7 +233,6 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
   </section>
 
   <div class="cta-area">
-    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
     <p class="cat-links-label">他のカテゴリを見る</p>
     <div class="cat-links">
       <a href="/category-calendar/">📅 カレンダー・日付</a>
@@ -194,6 +240,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
       <a href="/category-money/">💰 家計・お金</a>
       <a href="/category-learn/">📚 学び</a>
     </div>
+    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
   </div>
 
 </div>

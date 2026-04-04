@@ -34,6 +34,7 @@ gtag('config', 'G-F6517NYNFF');
 <link rel="stylesheet" href="/common.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
+:root { --cat-accent: #e8a73a; }
 body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif; background: #fdf8f0; color: #2a1e0a; }
 .page-wrap { max-width: 680px; margin: 0 auto; padding: 0 0 48px; }
 .breadcrumb { font-size: 12px; color: #b89060; padding: 10px 16px; }
@@ -79,6 +80,42 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 .cat-links a { font-size: 0.78rem; color: #2a6093; text-decoration: none; background: #eef6ff; border: 1px solid #c4dcf0; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
 .cat-links a:hover { background: #d8ecfc; }
 .cat-links-label { width: 100%; text-align: center; font-size: 0.78rem; color: #b89060; margin-bottom: 2px; }
+.recommended-tool {
+  background: #fff;
+  border: 2px solid var(--cat-accent, #5fa0d8);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.recommended-tool-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cat-accent, #5fa0d8);
+  margin-bottom: 8px;
+}
+.recommended-tool-name {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.recommended-tool-desc {
+  font-size: 0.82rem;
+  color: #4a6070;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.recommended-tool-btn {
+  display: block;
+  text-align: center;
+  background: var(--cat-accent, #5fa0d8);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.recommended-tool-btn:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -92,9 +129,18 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
 
   <div class="cat-hero">
     <div class="cat-hero-icon">💰</div>
-    <h1>家計・お金ツール</h1>
-    <p class="cat-hero-desc">割り勘・税計算・教育費・家賃負担率・退職金相場など、お金にまつわる計算を手軽にできる無料ツールをまとめています。</p>
+    <h1>家計・お金</h1>
+    <p class="cat-hero-desc">お金の計算を、その場でサッと片付けられるツールを揃えています。<br><br>飲み会や旅行後の精算で毎回もめる割り勘は、割り勘計算ツールで人数・端数の扱いまで含めて一発で計算できます。「Aさんだけ飲まなかった」「端数はどうする」といった細かい調整にも対応しています。<br><br>他にも、税込・税抜・割引の計算、家賃が収入に対して適切かを確認できる家賃負担率チェッカー、進路別の教育費シミュレーター、退職金相場の確認など。日々の買い物から将来設計まで、幅広いお金の疑問に答えるツールを無料で使えます。<br><br>入力内容はすべてブラウザ内で処理され、外部に送信されることはありません。</p>
   </div>
+
+  <section class="section" style="padding-top:0;">
+    <div class="recommended-tool">
+      <div class="recommended-tool-label">⭐ このカテゴリのおすすめ</div>
+      <p class="recommended-tool-name">割り勘計算ツール</p>
+      <p class="recommended-tool-desc">人数・端数の扱いまで含めて一発で計算。飲み会や旅行後の精算をスムーズに終わらせます。</p>
+      <a class="recommended-tool-btn" href="/warikan/">このツールを使う →</a>
+    </div>
+  </section>
 
   <section class="section">
     <h2 class="section-title">ツール一覧</h2>
@@ -178,7 +224,6 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
   </section>
 
   <div class="cta-area">
-    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
     <p class="cat-links-label">他のカテゴリを見る</p>
     <div class="cat-links">
       <a href="/category-calendar/">📅 カレンダー・日付</a>
@@ -186,6 +231,7 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku
       <a href="/category-learn/">📚 学び</a>
       <a href="/category-life/">🏠 暮らし</a>
     </div>
+    <a class="cta-back" href="/">← CleverKit トップへ戻る</a>
   </div>
 
 </div>
