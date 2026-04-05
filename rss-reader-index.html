@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集 | CleverKit</title>
+<meta name="description" content="官公庁・企業IR・業界ニュースのRSSを一括取得。グループ管理とGemini AI要約で情報収集を効率化。APIキーはブラウザ内のみ管理。無料で使えるRSSリーダーツール。">
+<link rel="stylesheet" href="/common.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F6517NYNFF');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+<style>
+:root {
+  --bg:         #0a0e1a;
+  --bg-card:    #111827;
+  --bg-input:   #0a0e1a;
+  --bg-modal:   #161f30;
+  --border:     #1e2d45;
+  --border2:    #2d3f5e;
+  --accent:     #10b981;
+  --accent-dim: #059669;
+  --accent-bg:  #0a1f1a;
+  --text:       #e8eaf0;
+  --text-sub:   #64748b;
+  --text-muted: #475569;
+  --text-link:  #6ee7b7;
+  --err-bg:     #1a0a0a;
+  --err-border: #7f1d1d;
+  --err-text:   #fca5a5;
+}
+body { background: var(--bg); color: var(--text); }
+
+/* パンくず */
+.ck-breadcrumb { color: var(--text-sub); font-size: 12px; }
+.ck-breadcrumb a { color: var(--text-sub); text-decoration: none; }
+h1.ck-h1 { font-size: 20px; font-weight: 700; color: var(--text); margin: 12px 0 8px; line-height: 1.4; }
+.tool-intro { font-size: 13px; color: var(--text-sub); line-height: 1.7; margin-bottom: 16px; }
+
+/* 設定バー */
+.settings-bar {
+  display: flex; justify-content: flex-end; align-items: center;
+  padding: 8px 16px 0; max-width: 820px; margin: 0 auto;
+}
+.btn-settings {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 7px 14px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  color: var(--text-sub); min-height: 36px;
+}
+.btn-settings:hover, .btn-settings.has-key { border-color: var(--accent); color: var(--accent); }
+.api-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; }
+.api-dot.on { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+
+/* モーダル */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75); z-index: 1000;
+  align-items: flex-end; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+@media (min-width: 600px) { .modal-overlay { align-items: center; } }
+.modal {
+  background: var(--bg-modal); border: 1px solid var(--border);
+  border-radius: 16px 16px 0 0;
+  width: 100%; max-width: 520px; box-sizing: border-box;
+  max-height: 90vh; display: flex; flex-direction: column;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+}
+@media (min-width: 600px) { .modal { border-radius: 16px; width: calc(100% - 32px); } }
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px 0; flex-shrink: 0;
+}
+.modal-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.btn-modal-close {
+  background: transparent; border: none; color: var(--text-sub);
+  font-size: 22px; cursor: pointer; padding: 4px 8px;
+  min-height: 36px; min-width: 36px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-modal-close:hover { color: var(--text); }
+.modal-tabs {
+  display: flex; padding: 12px 20px 0; flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+.modal-tab {
+  background: transparent; border: none;
+  border-bottom: 2px solid transparent;
+  padding: 8px 14px; font-size: 13px; font-weight: 600;
+  color: var(--text-sub); cursor: pointer; margin-bottom: -1px; white-space: nowrap;
+}
+.modal-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.modal-body { flex: 1; overflow-y: auto; padding: 16px 20px 28px; }
+.modal-panel { display: none; }
+.modal-panel.active { display: block; }
+
+/* フォーム */
+input[type="text"], input[type="password"], select {
+  display: block; width: 100%;
+  background: var(--bg-input); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  color: var(--text); font-size: 14px; outline: none;
+  box-sizing: border-box; -webkit-appearance: none;
+  min-width: 0; overflow: hidden; text-overflow: ellipsis;
+}
+input:focus, select:focus { border-color: var(--accent); }
+.m-label { font-size: 11px; color: var(--text-sub); letter-spacing: 0.08em; font-weight: 600; margin-bottom: 8px; }
+.m-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.7; }
+.m-hint a { color: var(--accent); text-decoration: none; }
+.m-saved { font-size: 11px; color: var(--accent); margin-top: 6px; display: none; }
+.m-divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+/* ボタン */
+.btn-primary {
+  display: block; width: 100%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+  color: #fff; border: none; border-radius: 10px;
+  padding: 13px; font-size: 14px; font-weight: 700;
+  cursor: pointer; margin-top: 16px; min-height: 48px;
+}
+.btn-ghost {
+  display: block; width: 100%;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-muted); border-radius: 10px;
+  padding: 11px; font-size: 13px; cursor: pointer;
+  margin-top: 8px; min-height: 44px;
+}
+.btn-ghost:hover { border-color: var(--err-border); color: var(--err-text); }
+.btn-add-row {
+  background: transparent; border: 1px dashed var(--border);
+  border-radius: 8px; padding: 10px; color: var(--text-muted);
+  font-size: 12px; cursor: pointer; width: 100%;
+  margin-top: 6px; min-height: 40px;
+}
+.btn-add-row:hover { border-color: var(--accent); color: var(--accent); }
+.btn-del {
+  background: transparent; border: none; color: var(--text-muted);
+  font-size: 18px; cursor: pointer; padding: 2px 6px;
+  min-width: 30px; min-height: 36px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.btn-del:hover { color: var(--err-text); }
+
+/* フィードアイテム（モーダル） */
+.feed-item {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 12px; margin-bottom: 8px;
+}
+.fi-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; min-width: 0; }
+.fi-row:last-child { margin-bottom: 0; }
+.fi-name { font-size: 13px; min-width: 0; }
+.fi-url  { font-size: 12px; min-width: 0; }
+.fi-select { font-size: 12px; padding: 8px 10px; min-width: 0; }
+
+/* グループアイテム（モーダル） */
+.group-item { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+.group-item input { flex: 1; }
+
+/* プリセット */
+.preset-section { margin-bottom: 12px; }
+.preset-label { font-size: 11px; color: var(--text-sub); font-weight: 600; margin-bottom: 6px; }
+.preset-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.preset-btn {
+  background: #0d1829; border: 1px solid var(--border);
+  border-radius: 20px; padding: 5px 11px;
+  color: var(--text-sub); font-size: 11px; cursor: pointer; white-space: nowrap; min-height: 30px;
+}
+.preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+.preset-btn.added { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+
+/* メイン */
+.main-wrap { max-width: 820px; margin: 0 auto; padding: 12px 16px; }
+
+/* グループタブ */
+.group-tab-row {
+  display: flex; gap: 6px; margin-bottom: 12px;
+  flex-wrap: nowrap; overflow-x: auto;
+  scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 2px;
+}
+.group-tab-row::-webkit-scrollbar { display: none; }
+.group-tab {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 20px; padding: 7px 16px;
+  color: var(--text-sub); font-size: 12px; cursor: pointer;
+  white-space: nowrap; min-height: 34px; flex-shrink: 0;
+}
+.group-tab.active { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+
+/* ステータス */
+.status-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+.status-text { font-size: 12px; color: var(--text-muted); }
+.btn-refresh {
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 12px; color: var(--text-sub);
+  font-size: 12px; cursor: pointer; min-height: 32px;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.btn-refresh:hover { border-color: var(--accent); color: var(--accent); }
+.btn-refresh:disabled { opacity: 0.4; cursor: default; }
+
+/* エラー・ローディング */
+.error-box {
+  background: var(--err-bg); border: 1px solid var(--err-border);
+  border-radius: 8px; padding: 12px 16px;
+  color: var(--err-text); font-size: 13px; margin-bottom: 12px;
+}
+.loading-text { color: var(--text-sub); font-size: 13px; text-align: center; padding: 32px; }
+
+/* 記事 */
+.article {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px; margin-bottom: 10px;
+}
+.article-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+.article-source {
+  font-size: 10px; color: var(--accent); font-weight: 600;
+  background: var(--accent-bg); border: 1px solid #1a4a3a;
+  border-radius: 4px; padding: 2px 7px; white-space: nowrap;
+  max-width: 60%; overflow: hidden; text-overflow: ellipsis;
+}
+.article-date { font-size: 11px; color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
+.article-title {
+  color: var(--text-link); text-decoration: none;
+  font-size: 14px; font-weight: 600; line-height: 1.5;
+  display: block; margin-bottom: 6px;
+}
+.article-title:hover { color: #a7f3d0; }
+.article-desc {
+  font-size: 12px; color: var(--text-sub); line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.summary-box {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #0a1f1a, #0f1f17);
+  border: 1px solid #1a4a3a; border-radius: 8px; padding: 10px 12px;
+}
+.summary-label { font-size: 10px; color: var(--accent); font-weight: 700; margin-bottom: 4px; letter-spacing: 0.1em; }
+.summary-text { font-size: 13px; color: #cbd5e1; line-height: 1.7; }
+.btn-summarize {
+  background: transparent; border: 1px solid var(--border2);
+  color: #34d399; font-size: 11px; font-weight: 600;
+  padding: 6px 12px; border-radius: 6px; cursor: pointer;
+  margin-top: 8px; min-height: 32px;
+}
+.btn-summarize:disabled { color: var(--text-sub); border-color: var(--border); cursor: default; }
+.no-api-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; font-style: italic; }
+
+/* 深掘りプロンプト */
+.dive-box {
+  margin-top: 10px;
+  background: #0d1829;
+  border: 1px solid #2d3f5e;
+  border-radius: 8px; padding: 10px 12px;
+}
+.dive-label {
+  font-size: 10px; color: #60a5fa;
+  font-weight: 700; margin-bottom: 6px; letter-spacing: 0.1em;
+}
+.dive-points { font-size: 12px; color: #94a3b8; line-height: 1.8; margin-bottom: 10px; }
+.dive-prompt-area {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px 12px;
+  font-size: 11px; color: var(--text-muted);
+  line-height: 1.7; white-space: pre-wrap;
+  word-break: break-all; margin-bottom: 8px;
+  max-height: 160px; overflow-y: auto;
+}
+.btn-copy {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #1e3a5f; border: 1px solid #3b82f6;
+  color: #60a5fa; font-size: 12px; font-weight: 600;
+  padding: 7px 14px; border-radius: 6px; cursor: pointer; min-height: 34px;
+}
+.btn-copy:hover { background: #1e40af; }
+.btn-copy.copied { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
+.btn-dive {
+  background: transparent; border: 1px solid #2d3f5e;
+  color: #60a5fa; font-size: 11px; font-weight: 600;
+  padding: 6px 12px; border-radius: 6px; cursor: pointer;
+  margin-top: 6px; margin-left: 6px; min-height: 32px;
+}
+.btn-dive:disabled { color: var(--text-sub); border-color: var(--border); cursor: default; }
+
+/* 広告枠 */
+.ad-slot {
+  margin-bottom: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 100px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.ad-placeholder-label {
+  font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em;
+}
+.ad-slot ins ~ .ad-placeholder-label { display: none; }
+
+/* FAQ */
+.faq-section { margin: 28px 0; }
+.faq-section h2 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.faq-item { margin-bottom: 14px; }
+.faq-q { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 4px; line-height: 1.5; }
+.faq-a { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+
+/* 関連ツール */
+.related-section { margin: 28px 0; }
+.related-section h2 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.related-grid { display: flex; flex-direction: column; gap: 8px; }
+.related-link {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px; color: var(--text-link);
+  text-decoration: none; font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+.related-link:hover { border-color: var(--accent); }
+.related-link span { font-size: 11px; color: var(--text-sub); font-weight: 400; }
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+</style>
+</head>
+<body>
+
+<!-- パンくず -->
+<nav class="ck-breadcrumb" aria-label="パンくず" style="padding:12px 16px 0; max-width:820px; margin:0 auto;">
+  <a href="/">CleverKit</a> &rsaquo;
+  <a href="/category/life/">暮らし</a> &rsaquo;
+  RSS×AIリーダー
+</nav>
+
+<!-- 設定バー -->
+<div class="settings-bar">
+  <button class="btn-settings" id="settingsBtn" onclick="openModal()">
+    <span class="api-dot" id="apiDot"></span>
+    ⚙ <span id="settingsBtnLabel">設定</span>
+  </button>
+</div>
+
+<!-- ========== 設定モーダル ========== -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <span class="modal-title">⚙ 設定</span>
+      <button class="btn-modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchModalTab('feeds')"  id="mtab-feeds">フィード</button>
+      <button class="modal-tab"        onclick="switchModalTab('groups')" id="mtab-groups">グループ</button>
+      <button class="modal-tab"        onclick="switchModalTab('ai')"     id="mtab-ai">AI設定</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- パネル①：フィード管理 -->
+      <div class="modal-panel active" id="panel-feeds">
+        <div class="preset-section">
+          <div class="preset-label">▼ 官公庁プリセット</div>
+          <div class="preset-grid" id="presetGov"></div>
+        </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ 経済・ビジネスプリセット</div>
+          <div class="preset-grid" id="presetBiz"></div>
+        </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ テクノロジー・ITプリセット</div>
+          <div class="preset-grid" id="presetTech"></div>
+        </div>
+        <hr class="m-divider">
+        <div class="m-label">登録フィード</div>
+        <div id="feedItemList"></div>
+        <button class="btn-add-row" onclick="addFeedItem()">＋ フィードを手動追加</button>
+        <button class="btn-primary" onclick="saveAndRefresh()">保存して更新</button>
+      </div>
+
+      <!-- パネル②：グループ管理 -->
+      <div class="modal-panel" id="panel-groups">
+        <div class="m-label">グループ一覧</div>
+        <p class="m-hint" style="margin-bottom:12px;">グループを作成してフィードを割り当てると、メイン画面でタブ切替できます。</p>
+        <div id="groupItemList"></div>
+        <button class="btn-add-row" onclick="addGroupItem()">＋ グループを追加</button>
+        <button class="btn-primary" onclick="saveGroups()">グループを保存</button>
+      </div>
+
+      <!-- パネル③：AI設定 -->
+      <div class="modal-panel" id="panel-ai">
+        <div class="m-label">GEMINI API KEY</div>
+        <input type="password" id="apiKey" placeholder="AIza..." oninput="onApiKeyInput()" />
+        <div class="m-saved" id="apiSaved">✓ 保存済み — AI要約が有効です</div>
+        <p class="m-hint">
+          無料で取得：<a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a>
+          → 「APIキーを作成」→ コピーして貼り付け<br>
+          ※ キーはブラウザのlocalStorageにのみ保存。サーバーには送信されません。
+        </p>
+        <button class="btn-primary" onclick="saveApiKey()">APIキーを保存</button>
+        <button class="btn-ghost"   onclick="clearApiKey()">APIキーを削除する</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========== メイン ========== -->
+<main class="main-wrap">
+  <h1 class="ck-h1">RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集</h1>
+  <p class="tool-intro">
+    官公庁・企業IR・業界ニュースのRSSフィードを登録して最新情報を一括取得できる無料ツールです。
+    グループ管理でカテゴリ別に整理でき、Gemini APIキーを設定するとAI要約が使えます。
+  </p>
+
+  <div class="group-tab-row" id="groupTabRow"></div>
+
+  <div class="status-bar">
+    <span class="status-text" id="statusText">取得中...</span>
+    <button class="btn-refresh" id="refreshBtn" onclick="fetchAllFeeds()">↻ 更新</button>
+  </div>
+
+  <div id="errorBox" class="error-box" style="display:none;"></div>
+  <div id="articlesArea"></div>
+
+  <hr class="section-divider">
+
+  <section class="faq-section">
+    <h2>よくある質問</h2>
+    <div class="faq-item">
+      <p class="faq-q">Q. Gemini APIキーがなくても使えますか？</p>
+      <p class="faq-a">はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. APIキーはどこに保存されますか？セキュリティは大丈夫ですか？</p>
+      <p class="faq-a">APIキーはお使いのブラウザのlocalStorageにのみ保存されます。サーバーへの送信は一切行いません。AI要約リクエストはブラウザから直接Googleのサーバーに送信されます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. グループ機能はどのように使いますか？</p>
+      <p class="faq-a">⚙設定の「グループ」タブでグループ名を作成し、「フィード」タブで各フィードをグループに割り当てます。メイン画面のタブでグループを切り替えて記事を読めます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. フィードが「タイトルなし」と表示される場合は？</p>
+      <p class="faq-a">⚙設定の「フィード」タブで、各フィードに任意の表示名を設定できます。設定した名前がタブや記事のソース表示に使われます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. 登録した設定は次回も保存されますか？</p>
+      <p class="faq-a">はい。フィードURL・グループ設定・APIキーはすべてブラウザのlocalStorageに自動保存されます。次回アクセス時も同じ設定で最新記事を自動取得します。</p>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <h2>関連ツール</h2>
+    <div class="related-grid">
+      <a class="related-link" href="/calendar/">📅 カレンダー生成ツール<span>月間・週間カレンダーを印刷・共有用に生成</span></a>
+      <a class="related-link" href="/date-calc/">🗓 日数計算ツール<span>2つの日付の差・経過日数を計算</span></a>
+      <a class="related-link" href="/warikan/">💴 割り勘計算ツール<span>人数・金額から1人あたりの負担を計算</span></a>
+    </div>
+  </section>
+</main>
+
+<div id="ck-footer-container"></div>
+
+<script>
+const GAS_URL   = "https://script.google.com/macros/s/AKfycbwp-JbzozOfnFlPEOqRcmflOi3ugAwcsN9jOS4WB2RHXITA5o3oI7z-cMywT3Tu3KR0cQ/exec";
+const LS_API    = "rss_gemini_apikey";
+const LS_FEEDS  = "rss_feeds_v2";
+const LS_GROUPS = "rss_groups_v2";
+
+let feeds        = [];
+let groups       = [];
+let allArticles  = [];
+let currentGroup = "all";
+
+const PRESETS = {
+  gov: [
+    { name:"内閣府",                url:"https://www.cao.go.jp/rss/news.rdf",                         group:"官公庁" },
+    { name:"厚生労働省",            url:"https://www.mhlw.go.jp/stf/news.rdf",                        group:"官公庁" },
+    { name:"厚生労働省（緊急）",    url:"https://www.mhlw.go.jp/stf/kinkyu.rdf",                      group:"官公庁" },
+    { name:"消防庁",                url:"https://www.fdma.go.jp/index.xml",                            group:"官公庁" },
+    { name:"消防庁（報道発表）",    url:"https://www.fdma.go.jp/pressrelease/houdou/index.xml",       group:"官公庁" },
+    { name:"消防庁（災害情報）",    url:"https://www.fdma.go.jp/disaster/info/index.xml",              group:"官公庁" },
+    { name:"気象庁",                url:"https://www.jma.go.jp/rss/jma.rdf",                           group:"官公庁" },
+    { name:"観光庁",                url:"https://www.mlit.go.jp/kankocho/news/rss.xml",                group:"官公庁" },
+    { name:"特許庁",                url:"https://www.jpo.go.jp/system/rss/news.xml",                   group:"官公庁" },
+    { name:"国税庁",                url:"https://www.nta.go.jp/publication/rss.xml",                   group:"官公庁" },
+    { name:"中小企業基盤整備機構",  url:"https://www.smrj.go.jp/rss.xml",                              group:"官公庁" },
+    { name:"日本年金機構",          url:"https://www.nenkin.go.jp/rss.xml",                            group:"官公庁" },
+    { name:"労働政策研究・研修機構",url:"https://www.jil.go.jp/rss.xml",                               group:"官公庁" },
+    { name:"日本学生支援機構",      url:"https://www.jasso.go.jp/rss.xml",                             group:"官公庁" },
+  ],
+  biz: [
+    { name:"日本経済新聞",           url:"https://www.nikkei.com/rss/news.rdf",              group:"ビジネス" },
+    { name:"ロイター 経済",          url:"https://feeds.reuters.com/reuters/JPeconomyNews",   group:"ビジネス" },
+    { name:"東洋経済オンライン",     url:"https://toyokeizai.net/list/feed/rss",              group:"ビジネス" },
+    { name:"ダイヤモンドオンライン", url:"https://diamond.jp/list/feed/rss",                 group:"ビジネス" },
+    { name:"PR TIMES",              url:"https://prtimes.jp/rss.xml",                         group:"ビジネス" },
+  ],
+  tech: [
+    { name:"ITmedia NEWS",     url:"https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml",              group:"テック" },
+    { name:"Impress Watch",    url:"https://www.watch.impress.co.jp/data/rss/1.0/headline/news.rdf", group:"テック" },
+    { name:"TechCrunch Japan", url:"https://jp.techcrunch.com/feed/",                                group:"テック" },
+    { name:"CNET Japan",       url:"https://feeds.cnet.com/feed/cnet/news/rss.xml",                  group:"テック" },
+    { name:"Zenn トレンド",    url:"https://zenn.dev/feed",                                          group:"テック" },
+  ]
+};
+const DEFAULT_GROUPS = [
+  { id:"g1", name:"官公庁" },
+  { id:"g2", name:"ビジネス" },
+  { id:"g3", name:"テック" },
+];
+
+/* ===== 初期化 ===== */
+window.onload = function() {
+  const savedKey = localStorage.getItem(LS_API) || "";
+  if (savedKey) {
+    document.getElementById("apiKey").value = savedKey;
+    document.getElementById("apiSaved").style.display = "block";
+  }
+  updateSettingsBtn();
+
+  const sg = localStorage.getItem(LS_GROUPS);
+  groups = sg ? JSON.parse(sg) : [...DEFAULT_GROUPS];
+
+  const sf = localStorage.getItem(LS_FEEDS);
+  feeds = sf ? JSON.parse(sf) : [];
+
+  renderPresetButtons();
+  renderFeedItems();
+  renderGroupItems();
+  renderGroupTabs();
+
+  if (feeds.length > 0) {
+    fetchAllFeeds();
+  } else {
+    setStatus("フィードが未登録です。右上の⚙設定からフィードを追加してください。");
+    document.getElementById("articlesArea").innerHTML = "";
+    openModal();
+  }
+};
+
+/* ===== モーダル ===== */
+function openModal() { document.getElementById("modalOverlay").classList.add("open"); }
+function closeModal() { document.getElementById("modalOverlay").classList.remove("open"); }
+function handleOverlayClick(e) { if (e.target === document.getElementById("modalOverlay")) closeModal(); }
+function switchModalTab(tab) {
+  ["feeds","groups","ai"].forEach(t => {
+    document.getElementById("panel-" + t).classList.toggle("active", t === tab);
+    document.getElementById("mtab-"  + t).classList.toggle("active", t === tab);
+  });
+}
+
+/* ===== AI設定 ===== */
+function onApiKeyInput() {
+  const key = document.getElementById("apiKey").value.trim();
+  document.getElementById("apiSaved").style.display =
+    (key && key === localStorage.getItem(LS_API)) ? "block" : "none";
+}
+function saveApiKey() {
+  const key = document.getElementById("apiKey").value.trim();
+  localStorage.setItem(LS_API, key);
+  document.getElementById("apiSaved").style.display = key ? "block" : "none";
+  updateSettingsBtn();
+  closeModal();
+  if (allArticles.length > 0) renderArticles();
+}
+function clearApiKey() {
+  document.getElementById("apiKey").value = "";
+  localStorage.removeItem(LS_API);
+  document.getElementById("apiSaved").style.display = "none";
+  updateSettingsBtn();
+  closeModal();
+  if (allArticles.length > 0) renderArticles();
+}
+function updateSettingsBtn() {
+  const key = localStorage.getItem(LS_API) || "";
+  document.getElementById("settingsBtn").classList.toggle("has-key", !!key);
+  document.getElementById("apiDot").classList.toggle("on", !!key);
+  document.getElementById("settingsBtnLabel").textContent = key ? "設定済み" : "設定";
+}
+
+/* ===== グループ管理 ===== */
+function renderGroupItems() {
+  const c = document.getElementById("groupItemList");
+  c.innerHTML = "";
+  groups.forEach((g, i) => {
+    const row = document.createElement("div");
+    row.className = "group-item";
+    row.innerHTML = `
+      <input type="text" value="${esc(g.name)}" placeholder="グループ名"
+        oninput="groups[${i}].name=this.value; syncGroupNamesInFeeds(${i}, this.value)" />
+      <button class="btn-del" onclick="removeGroup(${i})">×</button>`;
+    c.appendChild(row);
+  });
+}
+function addGroupItem() {
+  groups.push({ id: "g" + Date.now(), name: "" });
+  renderGroupItems();
+}
+function removeGroup(i) {
+  const oldName = groups[i].name;
+  groups.splice(i, 1);
+  feeds.forEach(f => { if (f.group === oldName) f.group = ""; });
+  renderGroupItems();
+  renderFeedItems();
+}
+function syncGroupNamesInFeeds(groupIdx, newName) {
+  // グループ名変更時にフィードの所属グループ名も追随
+  const oldName = groups[groupIdx]._prevName;
+  if (oldName) feeds.forEach(f => { if (f.group === oldName) f.group = newName; });
+  groups[groupIdx]._prevName = newName;
+}
+function saveGroups() {
+  localStorage.setItem(LS_GROUPS, JSON.stringify(groups));
+  localStorage.setItem(LS_FEEDS,  JSON.stringify(feeds));
+  renderGroupTabs();
+  renderFeedItems();
+  closeModal();
+}
+
+/* ===== フィード管理 ===== */
+function renderFeedItems() {
+  const c = document.getElementById("feedItemList");
+  c.innerHTML = "";
+  if (feeds.length === 0) {
+    c.innerHTML = `<p class="m-hint">フィードが登録されていません。上のプリセットか手動追加で登録してください。</p>`;
+    return;
+  }
+  feeds.forEach((f, i) => {
+    const item = document.createElement("div");
+    item.className = "feed-item";
+    const opts = groups.map(g =>
+      `<option value="${esc(g.name)}" ${f.group===g.name?"selected":""}>${esc(g.name)}</option>`
+    ).join("");
+    item.innerHTML = `
+      <div class="fi-row">
+        <input class="fi-name" type="text" placeholder="表示名（任意）"
+          value="${esc(f.name)}" oninput="feeds[${i}].name=this.value" />
+        <button class="btn-del" onclick="removeFeedItem(${i})">×</button>
+      </div>
+      <div class="fi-row">
+        <input class="fi-url" type="text" placeholder="https://example.com/rss.xml"
+          value="${esc(f.url)}" oninput="feeds[${i}].url=this.value" />
+      </div>
+      <div class="fi-row">
+        <select class="fi-select" onchange="feeds[${i}].group=this.value">
+          <option value="">グループなし</option>
+          ${opts}
+        </select>
+      </div>`;
+    c.appendChild(item);
+  });
+}
+function addFeedItem(preset) {
+  feeds.push(preset || { name:"", url:"", group:"" });
+  renderFeedItems();
+}
+function removeFeedItem(i) {
+  feeds.splice(i, 1);
+  renderFeedItems();
+  renderPresetButtons();
+}
+function saveAndRefresh() {
+  feeds = feeds.filter(f => f.url.trim());
+  localStorage.setItem(LS_FEEDS, JSON.stringify(feeds));
+  renderGroupTabs();
+  closeModal();
+  fetchAllFeeds();
+}
+
+/* ===== プリセット ===== */
+function renderPresetButtons() {
+  [
+    { id:"presetGov",  list:PRESETS.gov  },
+    { id:"presetBiz",  list:PRESETS.biz  },
+    { id:"presetTech", list:PRESETS.tech },
+  ].forEach(({ id, list }) => {
+    const c = document.getElementById(id);
+    c.innerHTML = "";
+    list.forEach(p => {
+      const exists = feeds.some(f => f.url === p.url);
+      const btn = document.createElement("button");
+      btn.className = "preset-btn" + (exists ? " added" : "");
+      btn.textContent = p.name;
+      btn.dataset.url = p.url;
+      btn.onclick = () => togglePreset(btn, p);
+      c.appendChild(btn);
+    });
+  });
+}
+function togglePreset(btn, p) {
+  const idx = feeds.findIndex(f => f.url === p.url);
+  if (idx >= 0) {
+    feeds.splice(idx, 1);
+    btn.classList.remove("added");
+  } else {
+    const gExists = groups.some(g => g.name === p.group);
+    feeds.push({ name: p.name, url: p.url, group: gExists ? p.group : "" });
+    btn.classList.add("added");
+  }
+  renderFeedItems();
+}
+
+/* ===== グループタブ（メイン） ===== */
+function renderGroupTabs() {
+  const row = document.getElementById("groupTabRow");
+  row.innerHTML = "";
+  const tabs = ["all", ...groups.map(g => g.name)];
+  tabs.forEach(gname => {
+    const btn = document.createElement("button");
+    btn.className = "group-tab" + (gname === currentGroup ? " active" : "");
+    btn.textContent = gname === "all" ? "すべて" : gname;
+    btn.onclick = () => switchGroup(gname);
+    row.appendChild(btn);
+  });
+}
+function switchGroup(gname) {
+  currentGroup = gname;
+  renderGroupTabs();
+  renderArticles();
+}
+
+/* ===== RSS取得（並列） ===== */
+async function fetchAllFeeds() {
+  const valid = feeds.filter(f => f.url.trim());
+  if (valid.length === 0) {
+    setStatus("フィードが未登録です。⚙設定からフィードを追加してください。");
+    return;
+  }
+  setStatus("取得中...");
+  document.getElementById("refreshBtn").disabled = true;
+  document.getElementById("errorBox").style.display = "none";
+  document.getElementById("articlesArea").innerHTML = `<div class="loading-text">記事を取得しています...</div>`;
+
+  const results = await Promise.allSettled(valid.map(f => fetchOneFeed(f)));
+
+  allArticles = [];
+  let errCount = 0;
+  results.forEach(r => {
+    if (r.status === "fulfilled" && r.value) allArticles.push(...r.value);
+    else errCount++;
+  });
+
+  allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+  document.getElementById("refreshBtn").disabled = false;
+  setStatus(`${allArticles.length}件の記事${errCount > 0 ? `（${errCount}件取得失敗）` : ""}`);
+  if (allArticles.length === 0 && errCount > 0) showError("フィードの取得に失敗しました。URLをご確認ください。");
+  renderArticles();
+}
+
+async function fetchOneFeed(feedDef) {
+  const res  = await fetch(GAS_URL + "?url=" + encodeURIComponent(feedDef.url));
+  const text = await res.text();
+  const doc  = new DOMParser().parseFromString(text, "application/xml");
+  const channelTitle = doc.querySelector("channel > title")?.textContent?.trim() || "";
+  const displayName  = feedDef.name || channelTitle || feedDef.url;
+  return Array.from(doc.querySelectorAll("item")).slice(0, 10).map(item => ({
+    title:  item.querySelector("title")?.textContent?.trim()                              || "（タイトルなし）",
+    link:   item.querySelector("link")?.textContent?.trim()                               || "",
+    desc:   item.querySelector("description")?.textContent?.replace(/<[^>]+>/g,"").trim()|| "",
+    date:   item.querySelector("pubDate")?.textContent?.trim()                            || "",
+    source: displayName,
+    group:  feedDef.group || "",
+  }));
+}
+
+/* ===== 記事描画 ===== */
+function adSlotHtml() {
+  return `
+    <div class="ad-slot">
+      <!--
+      AdSense承認後：以下のコメントを外してdata-ad-slot=""に広告ユニットIDを入力
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9727255179923866"
+        data-ad-slot="XXXXXXXXXX"
+        data-ad-format="fluid"
+        data-ad-layout-key="-fb+5w+4e-db+86"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+      -->
+      <span class="ad-placeholder-label">AD</span>
+    </div>`;
+}
+
+function renderArticles() {
+  const area     = document.getElementById("articlesArea");
+  const hasKey   = !!localStorage.getItem(LS_API);
+  const filtered = currentGroup === "all"
+    ? allArticles
+    : allArticles.filter(a => a.group === currentGroup);
+
+  if (filtered.length === 0) {
+    area.innerHTML = `<div class="loading-text">表示できる記事がありません</div>`;
+    return;
+  }
+
+  const AD_INTERVAL = 5;
+  let html = "";
+
+  filtered.forEach((a, i) => {
+    // 5件ごとに広告を挿入（最初の記事の前には挿入しない）
+    if (i > 0 && i % AD_INTERVAL === 0) {
+      html += adSlotHtml();
+    }
+    const key = "a" + i;
+    html += `
+      <div class="article" id="art-${key}">
+        <div class="article-meta">
+          <span class="article-source">${esc(a.source)}</span>
+          <span class="article-date">${fmtDate(a.date)}</span>
+        </div>
+        <a class="article-title" href="${esc(a.link)}" target="_blank" rel="noopener">${esc(a.title)}</a>
+        ${a.desc ? `<div class="article-desc" id="desc-${key}">${esc(a.desc)}</div>` : ""}
+        <div id="sum-${key}"></div>
+        ${hasKey
+          ? `<button class="btn-summarize" id="btn-${key}" onclick="summarize(${i},'${key}')">⚡ AI要約</button>`
+          : `<div class="no-api-hint">AI要約は⚙設定でAPIキーを設定すると使えます</div>`
+        }
+      </div>`;
+  });
+
+  area.innerHTML = html;
+}
+
+/* ===== AI要約 ===== */
+async function summarize(idx, key) {
+  const apiKey = localStorage.getItem(LS_API) || "";
+  if (!apiKey) return;
+  const filtered = currentGroup === "all" ? allArticles : allArticles.filter(a => a.group === currentGroup);
+  const a   = filtered[idx];
+  const btn = document.getElementById("btn-" + key);
+  const sumDiv  = document.getElementById("sum-"  + key);
+  const descDiv = document.getElementById("desc-" + key);
+  if (!btn || btn.disabled) return;
+  btn.disabled = true; btn.textContent = "要約中...";
+
+  const prompt = `以下のニュース記事を日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nタイトル: ${a.title}\n本文: ${a.desc}`;
+  try {
+    const res  = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      { method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
+    );
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
+    sumDiv.innerHTML = `
+      <div class="summary-box">
+        <div class="summary-label">AI 要約 — Gemini 2.0 Flash</div>
+        <div class="summary-text" id="sumtext-${key}">${esc(text)}</div>
+      </div>
+      <button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button>
+    `;
+    if (descDiv) descDiv.style.display = "none";
+    btn.style.display = "none";
+  } catch(e) {
+    sumDiv.innerHTML = `<div style="color:var(--err-text);font-size:12px;margin-top:6px;">要約失敗：${esc(e.message)}</div>`;
+    btn.disabled = false; btn.textContent = "⚡ AI要約";
+  }
+}
+
+/* ===== 深掘りプロンプト生成 ===== */
+async function generateDive(idx, key) {
+  const apiKey = localStorage.getItem(LS_API) || "";
+  if (!apiKey) return;
+
+  const filtered = currentGroup === "all" ? allArticles : allArticles.filter(a => a.group === currentGroup);
+  const a        = filtered[idx];
+  const diveBtn  = document.getElementById("dive-" + key);
+  const sumDiv   = document.getElementById("sum-"  + key);
+  const sumText  = document.getElementById("sumtext-" + key)?.textContent || "";
+
+  if (!diveBtn || diveBtn.disabled) return;
+  diveBtn.disabled = true;
+  diveBtn.textContent = "生成中...";
+
+  const prompt = `以下のニュース記事について、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。
+
+タイトル: ${a.title}
+要約: ${sumText}`;
+
+  try {
+    const res  = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      { method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
+    );
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const raw    = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const points = raw.trim();
+
+    // コピー用プロンプトを組み立て
+    const copyPrompt = `以下のニュース記事について教えてください。
+
+【記事タイトル】
+${a.title}
+
+【概要】
+${sumText}
+
+【特に知りたい点】
+${points}`;
+
+    // 深掘りボックスを描画
+    const diveHtml = `
+      <div class="dive-box" id="divebox-${key}">
+        <div class="dive-label">🔗 深掘りプロンプト — Gemini 2.0 Flash</div>
+        <div class="dive-points">${esc(points)}</div>
+        <div class="dive-prompt-area" id="divetext-${key}">${esc(copyPrompt)}</div>
+        <button class="btn-copy" id="copybtn-${key}" onclick="copyPrompt('${key}')">📋 クリップボードにコピー</button>
+      </div>`;
+
+    // 深掘りボタンを差し替え
+    diveBtn.outerHTML = diveHtml;
+
+  } catch(e) {
+    diveBtn.disabled = false;
+    diveBtn.textContent = "🔗 深掘りプロンプトを生成";
+    diveBtn.insertAdjacentHTML("afterend",
+      `<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：${esc(e.message)}</div>`);
+  }
+}
+
+function copyPrompt(key) {
+  const textEl = document.getElementById("divetext-" + key);
+  const copyBtn = document.getElementById("copybtn-" + key);
+  if (!textEl) return;
+
+  // HTMLエンティティをデコードして純テキストにする
+  const decoded = textEl.textContent;
+
+  navigator.clipboard.writeText(decoded).then(() => {
+    copyBtn.textContent = "✓ コピーしました";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 クリップボードにコピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  }).catch(() => {
+    // fallback: execCommand
+    const ta = document.createElement("textarea");
+    ta.value = decoded;
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    copyBtn.textContent = "✓ コピーしました";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 クリップボードにコピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  });
+}
+
+/* ===== ユーティリティ ===== */
+function esc(s) {
+  return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+function fmtDate(s) {
+  if (!s) return "";
+  const d = new Date(s);
+  return isNaN(d) ? "" : d.toLocaleDateString("ja-JP",{month:"short",day:"numeric"});
+}
+function setStatus(msg) { document.getElementById("statusText").textContent = msg; }
+function showError(msg) {
+  const b = document.getElementById("errorBox");
+  b.textContent = "⚠ " + msg; b.style.display = "block";
+}
+</script>
+</body>
+</html>
