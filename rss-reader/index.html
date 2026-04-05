@@ -836,7 +836,7 @@ async function summarize(idx, key) {
   const prompt = `以下のニュース記事を日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nタイトル: ${a.title}\n本文: ${a.desc}`;
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -880,7 +880,7 @@ async function generateDive(idx, key) {
 
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
