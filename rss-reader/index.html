@@ -114,6 +114,16 @@ input:focus, select:focus { border-color: var(--accent); }
 .m-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.7; }
 .m-hint a { color: var(--accent); text-decoration: none; }
 .m-saved { font-size: 11px; color: var(--accent); margin-top: 6px; display: none; }
+.api-input-wrap { position: relative; }
+.api-input-wrap input { padding-right: 44px; }
+.btn-toggle-vis {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  background: transparent; border: none; color: var(--text-muted);
+  font-size: 14px; cursor: pointer; padding: 4px;
+  min-height: 28px; min-width: 28px;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-toggle-vis:hover { color: var(--text); }
 .m-divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
 
 /* ボタン */
@@ -389,7 +399,13 @@ input:focus, select:focus { border-color: var(--accent); }
       <!-- パネル③：AI設定 -->
       <div class="modal-panel" id="panel-ai">
         <div class="m-label">GEMINI API KEY</div>
-        <input type="password" id="apiKey" placeholder="AIza..." oninput="onApiKeyInput()" />
+        <div class="api-input-wrap">
+          <input type="text" id="apiKey" placeholder="AIza..."
+            oninput="onApiKeyInput()"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            style="font-family:monospace;font-size:13px;letter-spacing:0.04em;" />
+          <button class="btn-toggle-vis" onclick="toggleApiVis()" id="apiVisBtn" type="button" title="表示切替">👁</button>
+        </div>
         <div class="m-saved" id="apiSaved">✓ 保存済み — AI要約が有効です</div>
         <p class="m-hint">
           無料で取得：<a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a>
@@ -550,6 +566,19 @@ function switchModalTab(tab) {
 }
 
 /* ===== AI設定 ===== */
+function toggleApiVis() {
+  const input = document.getElementById("apiKey");
+  const btn   = document.getElementById("apiVisBtn");
+  if (input.type === "text") {
+    input.type = "password";
+    btn.textContent = "👁";
+  } else {
+    input.type = "text";
+    btn.textContent = "🙈";
+  }
+  input.focus();
+}
+
 function onApiKeyInput() {
   const key = document.getElementById("apiKey").value.trim();
   document.getElementById("apiSaved").style.display =
