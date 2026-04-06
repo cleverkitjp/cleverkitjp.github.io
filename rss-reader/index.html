@@ -114,15 +114,6 @@ input:focus, select:focus { border-color: var(--accent); }
 .m-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.7; }
 .m-hint a { color: var(--accent); text-decoration: none; }
 .m-saved { font-size: 11px; color: var(--accent); margin-top: 6px; display: none; }
-.api-input-wrap { position: relative; }
-.api-input-wrap input { padding-right: 44px; }
-.btn-toggle-vis {
-  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-  background: transparent; border: none; color: var(--text-muted);
-  font-size: 14px; cursor: pointer; padding: 4px;
-  min-height: 28px; min-width: 28px; display: flex; align-items: center; justify-content: center;
-}
-.btn-toggle-vis:hover { color: var(--text); }
 .m-divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
 
 /* ボタン */
@@ -398,13 +389,7 @@ input:focus, select:focus { border-color: var(--accent); }
       <!-- パネル③：AI設定 -->
       <div class="modal-panel" id="panel-ai">
         <div class="m-label">GEMINI API KEY</div>
-        <div class="api-input-wrap">
-          <input type="text" id="apiKey" placeholder="AIza..."
-            oninput="onApiKeyInput()"
-            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-            style="font-family:monospace;font-size:13px;letter-spacing:0.04em;" />
-          <button class="btn-toggle-vis" onclick="toggleApiVis()" id="apiVisBtn" type="button" title="表示切替">👁</button>
-        </div>
+        <input type="password" id="apiKey" placeholder="AIza..." oninput="onApiKeyInput()" />
         <div class="m-saved" id="apiSaved">✓ 保存済み — AI要約が有効です</div>
         <p class="m-hint">
           無料で取得：<a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a>
@@ -565,20 +550,6 @@ function switchModalTab(tab) {
 }
 
 /* ===== AI設定 ===== */
-function toggleApiVis() {
-  const input = document.getElementById("apiKey");
-  const btn   = document.getElementById("apiVisBtn");
-  if (input.type === "text") {
-    input.type = "password";
-    btn.textContent = "👁";
-  } else {
-    input.type = "text";
-    btn.textContent = "🙈";
-  }
-  // type変更後にfocusを維持
-  input.focus();
-}
-
 function onApiKeyInput() {
   const key = document.getElementById("apiKey").value.trim();
   document.getElementById("apiSaved").style.display =
@@ -734,17 +705,10 @@ function renderGroupTabs() {
   const row = document.getElementById("groupTabRow");
   row.innerHTML = "";
   const tabs = ["all", ...groups.map(g => g.name)];
-
-  // グループ未設定フィードが存在する場合「未分類」タブを追加
-  const hasUngrouped = feeds.some(f => f.url.trim() && !f.group);
-  if (hasUngrouped) tabs.push("__ungrouped__");
-
   tabs.forEach(gname => {
     const btn = document.createElement("button");
     btn.className = "group-tab" + (gname === currentGroup ? " active" : "");
-    btn.textContent = gname === "all" ? "すべて"
-                    : gname === "__ungrouped__" ? "未分類"
-                    : gname;
+    btn.textContent = gname === "all" ? "すべて" : gname;
     btn.onclick = () => switchGroup(gname);
     row.appendChild(btn);
   });
@@ -822,9 +786,7 @@ function renderArticles() {
   const hasKey   = !!localStorage.getItem(LS_API);
   const filtered = currentGroup === "all"
     ? allArticles
-    : currentGroup === "__ungrouped__"
-      ? allArticles.filter(a => !a.group)
-      : allArticles.filter(a => a.group === currentGroup);
+    : allArticles.filter(a => a.group === currentGroup);
 
   if (filtered.length === 0) {
     area.innerHTML = `<div class="loading-text">表示できる記事がありません</div>`;
@@ -874,7 +836,7 @@ async function summarize(idx, key) {
   const prompt = `以下のニュース記事を日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nタイトル: ${a.title}\n本文: ${a.desc}`;
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -883,7 +845,7 @@ async function summarize(idx, key) {
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
     sumDiv.innerHTML = `
       <div class="summary-box">
-        <div class="summary-label">AI 要約 — Gemini 2.0 Flash</div>
+        <div class="summary-label">AI 要約 — Gemini 1.5 Flash</div>
         <div class="summary-text" id="sumtext-${key}">${esc(text)}</div>
       </div>
       <button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button>
@@ -918,7 +880,7 @@ async function generateDive(idx, key) {
 
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -942,7 +904,7 @@ ${points}`;
     // 深掘りボックスを描画
     const diveHtml = `
       <div class="dive-box" id="divebox-${key}">
-        <div class="dive-label">🔗 深掘りプロンプト — Gemini 2.0 Flash</div>
+        <div class="dive-label">🔗 深掘りプロンプト — Gemini 1.5 Flash</div>
         <div class="dive-points">${esc(points)}</div>
         <div class="dive-prompt-area" id="divetext-${key}">${esc(copyPrompt)}</div>
         <button class="btn-copy" id="copybtn-${key}" onclick="copyPrompt('${key}')">📋 クリップボードにコピー</button>
