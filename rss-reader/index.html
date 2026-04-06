@@ -323,6 +323,14 @@ input:focus, select:focus { border-color: var(--accent); }
 .related-link:hover { border-color: var(--accent); }
 .related-link span { font-size: 11px; color: var(--text-sub); font-weight: 400; }
 .section-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+/* フッター：ダークテーマの色上書きをリセット */
+#ck-footer-container {
+  background: #1a2030;
+  color: #94a3b8;
+}
+#ck-footer-container a { color: #94a3b8; }
+#ck-footer-container * { color: inherit; }
 </style>
 </head>
 <body>
@@ -833,10 +841,7 @@ async function summarize(idx, key) {
   if (!btn || btn.disabled) return;
   btn.disabled = true; btn.textContent = "要約中...";
 
-  // URLがある場合は本文読み取り、ない場合はdescriptionにフォールバック
-  const prompt = a.link
-    ? `次のURLの記事を読んで、日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nURL: ${a.link}\nタイトル（参考）: ${a.title}`
-    : `以下のニュース記事を日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nタイトル: ${a.title}\n本文: ${a.desc}`;
+  const prompt = `以下のニュース記事を日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nタイトル: ${a.title}\n本文: ${a.desc}`;
   try {
     const res  = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key=${apiKey}`,
@@ -876,9 +881,10 @@ async function generateDive(idx, key) {
   diveBtn.disabled = true;
   diveBtn.textContent = "生成中...";
 
-  const prompt = a.link
-    ? `次のURLの記事を読んで、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。\n\nURL: ${a.link}\nタイトル（参考）: ${a.title}`
-    : `以下のニュース記事について、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。\n\nタイトル: ${a.title}\n要約: ${sumText}`;
+  const prompt = `以下のニュース記事について、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。
+
+タイトル: ${a.title}
+要約: ${sumText}`;
 
   try {
     const res  = await fetch(
