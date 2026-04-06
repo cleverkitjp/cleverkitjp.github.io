@@ -881,7 +881,7 @@ async function summarize(idx, key) {
     : `以下のニュース記事を日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nタイトル: ${a.title}\n本文: ${a.desc}`;
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -890,7 +890,7 @@ async function summarize(idx, key) {
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
     sumDiv.innerHTML = `
       <div class="summary-box">
-        <div class="summary-label">AI 要約 — Gemini 2.0 Flash</div>
+        <div class="summary-label">AI 要約 — Gemini 2.5 Flash Lite</div>
         <div class="summary-text" id="sumtext-${key}">${esc(text)}</div>
       </div>
       <button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button>
@@ -924,7 +924,7 @@ async function generateDive(idx, key) {
 
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -948,7 +948,7 @@ ${points}`;
     // 深掘りボックスを描画
     const diveHtml = `
       <div class="dive-box" id="divebox-${key}">
-        <div class="dive-label">🔗 深掘りプロンプト — Gemini 2.0 Flash</div>
+        <div class="dive-label">🔗 深掘りプロンプト — Gemini 2.5 Flash Lite</div>
         <div class="dive-points">${esc(points)}</div>
         <div class="dive-prompt-area" id="divetext-${key}">${esc(copyPrompt)}</div>
         <button class="btn-copy" id="copybtn-${key}" onclick="copyPrompt('${key}')">📋 クリップボードにコピー</button>
