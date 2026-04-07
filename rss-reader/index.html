@@ -1105,16 +1105,16 @@ async function generateTweet(idx, key) {
     const isOver   = totalLen > 140;
 
     // tweet intentのURL
-    const intentUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(fullTweet);
+    const intentUrl = "https://x.com/intent/tweet?text=" + encodeURIComponent(fullTweet);
 
     const tweetHtml = `
-      <div class="tweet-box" id="tweetbox-\${key}">
+      <div class="tweet-box" id="tweetbox-${key}">
         <div class="tweet-label">🐦 X投稿</div>
-        <div class="tweet-text" id="tweettext-\${key}">\${esc(tweetBody)}\${a.link ? "\n" + esc(a.link) : ""}</div>
-        <div class="tweet-char-count \${isOver ? 'over' : 'ok'}">\${totalLen}/140文字\${isOver ? ' ⚠ 超過' : ''}</div>
+        <div class="tweet-text" id="tweettext-${key}">${esc(tweetBody)}${a.link ? "\n" + esc(a.link) : ""}</div>
+        <div class="tweet-char-count ${isOver ? 'over' : 'ok'}">${totalLen}/140文字${isOver ? ' ⚠ 超過' : ''}</div>
         <div class="tweet-actions">
-          <a class="btn-tweet-post" href="\${esc(intentUrl)}" target="_blank" rel="noopener">𝕏 Xで投稿する</a>
-          <button class="btn-tweet-copy" id="tweetcopybtn-\${key}" onclick="copyTweet('\${key}')">📋 コピー</button>
+          <a class="btn-tweet-post" href="${esc(intentUrl)}" target="_blank" rel="noopener">X（Twitter）で投稿する</a>
+          <button class="btn-tweet-copy" id="tweetcopybtn-${key}" onclick="copyTweet('${key}')">📋 コピー</button>
         </div>
       </div>`;
 
