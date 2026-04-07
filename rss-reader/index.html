@@ -345,6 +345,13 @@ input:focus, select:focus { border-color: var(--accent); }
 }
 .btn-tweet-copy:hover { border-color: var(--accent); color: var(--accent); }
 .btn-tweet-copy.copied { border-color: var(--accent); color: var(--accent); }
+.btn-tweet-regen {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 14px;
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+}
+.btn-tweet-regen:hover { border-color: var(--accent); color: var(--accent); }
 
 /* 広告枠 */
 .ad-slot {
@@ -1115,6 +1122,7 @@ async function generateTweet(idx, key) {
         <div class="tweet-actions">
           <a class="btn-tweet-post" href="${esc(intentUrl)}" target="_blank" rel="noopener">X（Twitter）で投稿する</a>
           <button class="btn-tweet-copy" id="tweetcopybtn-${key}" onclick="copyTweet('${key}')">📋 コピー</button>
+          <button class="btn-tweet-regen" onclick="regenTweet(${idx},'${key}')" title="再生成">🔄</button>
         </div>
       </div>`;
 
@@ -1127,6 +1135,20 @@ async function generateTweet(idx, key) {
     tweetBtn.insertAdjacentHTML("afterend",
       '<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：' + esc(e.message) + '</div>');
   }
+}
+
+function regenTweet(idx, key) {
+  // 既存のtweetboxを削除してボタンを復元
+  const tweetBox = document.getElementById("tweetbox-" + key);
+  if (!tweetBox) return;
+  const btn = document.createElement("button");
+  btn.className = "btn-tweet";
+  btn.id = "tweetbtn-" + key;
+  btn.textContent = "🐦 X投稿を生成";
+  btn.setAttribute("onclick", "generateTweet(" + idx + ",'" + key + "')");
+  tweetBox.replaceWith(btn);
+  // すぐ再生成
+  generateTweet(idx, key);
 }
 
 function copyTweet(key) {
