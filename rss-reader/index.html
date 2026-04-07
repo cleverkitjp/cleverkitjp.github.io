@@ -1087,7 +1087,7 @@ async function generateTweet(idx, key) {
 
   try {
     const res = await fetch(
-      \`https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=\${apiKey}\`,
+      "https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=" + apiKey,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }] }) }
     );
@@ -1107,7 +1107,7 @@ async function generateTweet(idx, key) {
     // tweet intentのURL
     const intentUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(fullTweet);
 
-    const tweetHtml = \`
+    const tweetHtml = `
       <div class="tweet-box" id="tweetbox-\${key}">
         <div class="tweet-label">🐦 X投稿</div>
         <div class="tweet-text" id="tweettext-\${key}">\${esc(tweetBody)}\${a.link ? "\n" + esc(a.link) : ""}</div>
@@ -1116,7 +1116,7 @@ async function generateTweet(idx, key) {
           <a class="btn-tweet-post" href="\${esc(intentUrl)}" target="_blank" rel="noopener">𝕏 Xで投稿する</a>
           <button class="btn-tweet-copy" id="tweetcopybtn-\${key}" onclick="copyTweet('\${key}')">📋 コピー</button>
         </div>
-      </div>\`;
+      </div>`;
 
     // tweetボタンをtweetboxに差し替え
     tweetBtn.outerHTML = tweetHtml;
@@ -1125,7 +1125,7 @@ async function generateTweet(idx, key) {
     tweetBtn.disabled = false;
     tweetBtn.textContent = "🐦 X投稿を生成";
     tweetBtn.insertAdjacentHTML("afterend",
-      \`<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：\${esc(e.message)}</div>\`);
+      '<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：' + esc(e.message) + '</div>');
   }
 }
 
