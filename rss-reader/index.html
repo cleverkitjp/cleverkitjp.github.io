@@ -299,6 +299,52 @@ input:focus, select:focus { border-color: var(--accent); }
   margin-top: 6px; margin-left: 6px; min-height: 32px;
 }
 .btn-dive:disabled { color: var(--text-sub); border-color: var(--border); cursor: default; }
+.btn-tweet {
+  background: transparent; border: 1px solid #2d3f5e;
+  color: #60a5fa; font-size: 11px; font-weight: 600;
+  padding: 6px 12px; border-radius: 6px; cursor: pointer;
+  margin-top: 6px; margin-left: 6px; min-height: 32px;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.btn-tweet:disabled { color: var(--text-sub); border-color: var(--border); cursor: default; }
+.tweet-box {
+  margin-top: 10px;
+  background: #0a1020;
+  border: 1px solid #2d3f5e;
+  border-radius: 8px; padding: 10px 12px;
+}
+.tweet-label {
+  font-size: 10px; color: #60a5fa;
+  font-weight: 700; margin-bottom: 6px; letter-spacing: 0.1em;
+}
+.tweet-text {
+  font-size: 13px; color: #cbd5e1;
+  line-height: 1.7; margin-bottom: 10px;
+  white-space: pre-wrap; word-break: break-all;
+}
+.tweet-char-count {
+  font-size: 11px; margin-bottom: 8px;
+}
+.tweet-char-count.over { color: var(--err-text); }
+.tweet-char-count.ok   { color: var(--text-muted); }
+.tweet-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-tweet-post {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #000; border: 1px solid #333;
+  color: #fff; font-size: 12px; font-weight: 700;
+  padding: 8px 16px; border-radius: 20px; cursor: pointer;
+  min-height: 36px; text-decoration: none;
+}
+.btn-tweet-post:hover { background: #1a1a1a; }
+.btn-tweet-copy {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: transparent; border: 1px solid var(--border2);
+  color: var(--text-sub); font-size: 12px; font-weight: 600;
+  padding: 8px 14px; border-radius: 20px; cursor: pointer;
+  min-height: 36px;
+}
+.btn-tweet-copy:hover { border-color: var(--accent); color: var(--accent); }
+.btn-tweet-copy.copied { border-color: var(--accent); color: var(--accent); }
 
 /* 広告枠 */
 .ad-slot {
@@ -935,7 +981,10 @@ async function summarize(idx, key) {
         <div class="summary-label">AI 要約</div>
         <div class="summary-text" id="sumtext-${key}">${esc(text)}</div>
       </div>
-      <button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button>
+      <div style="display:flex;flex-wrap:wrap;gap:0;">
+        <button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button>
+        <button class="btn-tweet" id="tweetbtn-${key}" onclick="generateTweet(${idx},'${key}')">🐦 X投稿を生成</button>
+      </div>
     `;
     if (descDiv) descDiv.style.display = "none";
     btn.style.display = "none";
@@ -1004,6 +1053,107 @@ ${points}`;
     diveBtn.insertAdjacentHTML("afterend",
       `<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：${esc(e.message)}</div>`);
   }
+}
+
+/* ===== X投稿生成 ===== */
+async function generateTweet(idx, key) {
+  const apiKey = localStorage.getItem(LS_API) || "";
+  if (!apiKey) return;
+
+  const filtered = currentGroup === "all" ? allArticles : allArticles.filter(a => a.group === currentGroup);
+  const a       = filtered[idx];
+  const tweetBtn = document.getElementById("tweetbtn-" + key);
+  const sumDiv   = document.getElementById("sum-" + key);
+  const sumText  = document.getElementById("sumtext-" + key)?.textContent || "";
+
+  if (!tweetBtn || tweetBtn.disabled) return;
+  tweetBtn.disabled = true;
+  tweetBtn.textContent = "生成中...";
+
+  const prompt = `以下のニュース記事について、X（旧Twitter）に投稿するコメントを日本語で生成してください。
+
+条件：
+・自分がこのニュースを読んで感じたコメントや考察として書く
+・文体は自然な日本語（ですます調でも体言止めでも可）
+・ハッシュタグを1〜2個付ける
+・URLは含めない（別途追加します）
+・本文は70文字以内に収める
+・改行は1〜2回まで
+・「」や()などで引用しない
+・出力は投稿文のみ（説明文不要）
+
+タイトル: ${a.title}
+要約: ${sumText || a.desc}`;
+
+  try {
+    const res = await fetch(
+      \`https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=\${apiKey}\`,
+      { method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }] }) }
+    );
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const tweetBody = (data.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
+
+    // URL込みの全文（X投稿用）
+    const fullTweet = tweetBody + (a.link ? "\n" + a.link : "");
+
+    // 文字数カウント（URLは23文字固定でカウント）
+    const urlLen   = a.link ? 23 : 0;
+    const bodyLen  = tweetBody.length;
+    const totalLen = bodyLen + (a.link ? 1 + urlLen : 0); // 改行1文字+URL
+    const isOver   = totalLen > 140;
+
+    // tweet intentのURL
+    const intentUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(fullTweet);
+
+    const tweetHtml = \`
+      <div class="tweet-box" id="tweetbox-\${key}">
+        <div class="tweet-label">🐦 X投稿</div>
+        <div class="tweet-text" id="tweettext-\${key}">\${esc(tweetBody)}\${a.link ? "\n" + esc(a.link) : ""}</div>
+        <div class="tweet-char-count \${isOver ? 'over' : 'ok'}">\${totalLen}/140文字\${isOver ? ' ⚠ 超過' : ''}</div>
+        <div class="tweet-actions">
+          <a class="btn-tweet-post" href="\${esc(intentUrl)}" target="_blank" rel="noopener">𝕏 Xで投稿する</a>
+          <button class="btn-tweet-copy" id="tweetcopybtn-\${key}" onclick="copyTweet('\${key}')">📋 コピー</button>
+        </div>
+      </div>\`;
+
+    // tweetボタンをtweetboxに差し替え
+    tweetBtn.outerHTML = tweetHtml;
+
+  } catch(e) {
+    tweetBtn.disabled = false;
+    tweetBtn.textContent = "🐦 X投稿を生成";
+    tweetBtn.insertAdjacentHTML("afterend",
+      \`<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：\${esc(e.message)}</div>\`);
+  }
+}
+
+function copyTweet(key) {
+  const textEl  = document.getElementById("tweettext-" + key);
+  const copyBtn = document.getElementById("tweetcopybtn-" + key);
+  if (!textEl) return;
+  const decoded = textEl.textContent;
+  navigator.clipboard.writeText(decoded).then(() => {
+    copyBtn.textContent = "✓ コピー済み";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 コピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  }).catch(() => {
+    const ta = document.createElement("textarea");
+    ta.value = decoded;
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta);
+    copyBtn.textContent = "✓ コピー済み";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 コピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  });
 }
 
 function copyPrompt(key) {
