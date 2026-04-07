@@ -485,7 +485,8 @@ input:focus, select:focus { border-color: var(--accent); }
 <div id="ck-footer-container"></div>
 
 <script>
-const GAS_URL   = "https://script.google.com/macros/s/AKfycbwp-JbzozOfnFlPEOqRcmflOi3ugAwcsN9jOS4WB2RHXITA5o3oI7z-cMywT3Tu3KR0cQ/exec";
+const RSS_URL          = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/rss";
+const FETCH_ARTICLE_URL = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/fetchArticle";
 const LS_API    = "rss_gemini_apikey";
 const LS_FEEDS  = "rss_feeds_v2";
 const LS_GROUPS = "rss_groups_v2";
@@ -789,19 +790,38 @@ async function fetchAllFeeds() {
 }
 
 async function fetchOneFeed(feedDef) {
-  const res  = await fetch(GAS_URL + "?url=" + encodeURIComponent(feedDef.url));
+  const res  = await fetch(RSS_URL + "?url=" + encodeURIComponent(feedDef.url));
   const text = await res.text();
   const doc  = new DOMParser().parseFromString(text, "application/xml");
   const channelTitle = doc.querySelector("channel > title")?.textContent?.trim() || "";
   const displayName  = feedDef.name || channelTitle || feedDef.url;
-  return Array.from(doc.querySelectorAll("item")).slice(0, 10).map(item => ({
-    title:  item.querySelector("title")?.textContent?.trim()                              || "（タイトルなし）",
-    link:   item.querySelector("link")?.textContent?.trim()                               || "",
-    desc:   item.querySelector("description")?.textContent?.replace(/<[^>]+>/g,"").trim()|| "",
-    date:   item.querySelector("pubDate")?.textContent?.trim()                            || "",
-    source: displayName,
-    group:  feedDef.group || "",
-  }));
+  return Array.from(doc.querySelectorAll("item")).slice(0, 10).map(item => {
+    const contentEncoded = item.getElementsByTagNameNS("*", "encoded")?.[0]?.textContent || "";
+    const description    = item.querySelector("description")?.textContent || "";
+    const fullText = (contentEncoded || description).replace(/<[^>]+>/g, "").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").trim();
+    const hasFullText = fullText.length >= 200;
+    return {
+      title:       item.querySelector("title")?.textContent?.trim()  || "（タイトルなし）",
+      link:        item.querySelector("link")?.textContent?.trim()   || "",
+      desc:        fullText.slice(0, 500),
+      hasFullText: hasFullText,
+      date:        item.querySelector("pubDate")?.textContent?.trim()|| "",
+      source:      displayName,
+      group:       feedDef.group || "",
+    };
+  });
+}
+
+// 記事本文をFirebase経由で取得
+async function fetchArticleText(articleUrl) {
+  try {
+    const res  = await fetch(FETCH_ARTICLE_URL + "?url=" + encodeURIComponent(articleUrl));
+    const data = await res.json();
+    if (data.text && data.length >= 200) return data.text;
+    return null;
+  } catch (e) {
+    return null;
+  }
 }
 
 /* ===== 記事描画 ===== */
@@ -876,9 +896,16 @@ async function summarize(idx, key) {
   if (!btn || btn.disabled) return;
   btn.disabled = true; btn.textContent = "要約中...";
 
-  const prompt = a.link
-    ? `次のURLの記事を読んで、日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nURL: ${a.link}\nタイトル（参考）: ${a.title}`
-    : `以下のニュース記事を日本語で2〜3文に要約してください。ビジネスパーソンが素早く内容を把握できるよう、具体的な数字や固有名詞を残してください。\n\nタイトル: ${a.title}\n本文: ${a.desc}`;
+  // 本文取得：RSS本文あり → そのまま使用、なし → Firebase経由で記事本文取得
+  let bodyText = a.hasFullText ? a.desc : null;
+  if (!bodyText && a.link) {
+    btn.textContent = "本文取得中...";
+    bodyText = await fetchArticleText(a.link);
+  }
+
+  const prompt = bodyText
+    ? `以下のニュース記事の本文を日本語で2〜3文に要約してください。具体的な数字・固有名詞・主要な出来事を必ず含めてください。本文に書かれていないことは絶対に追加しないでください。\n\nタイトル: ${a.title}\n本文: ${bodyText}`
+    : `以下はニュース記事のタイトルと短い概要です。記載されている情報だけを使って1〜2文でまとめてください。情報が不足している場合は「詳細は記事本文をご確認ください」と添えてください。想像や推測で補わないでください。\n\nタイトル: ${a.title}\n概要: ${a.desc}`;
   try {
     const res  = await fetch(
       `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
@@ -918,13 +945,11 @@ async function generateDive(idx, key) {
   diveBtn.disabled = true;
   diveBtn.textContent = "生成中...";
 
-  const prompt = a.link
-    ? `次のURLの記事を読んで、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。\n\nURL: ${a.link}\nタイトル（参考）: ${a.title}`
-    : `以下のニュース記事について、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。\n\nタイトル: ${a.title}\n要約: ${sumText}`;
+  const prompt = `以下のニュース記事について、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。記事に書かれていない内容は含めないでください。\n\nタイトル: ${a.title}\n本文・要約: ${sumText || a.desc}`;
 
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -948,7 +973,7 @@ ${points}`;
     // 深掘りボックスを描画
     const diveHtml = `
       <div class="dive-box" id="divebox-${key}">
-        <div class="dive-label">🔗 深掘りプロンプト — Gemini 2.5 Flash Lite</div>
+        <div class="dive-label">🔗 深掘りプロンプト — Gemma 3 27B Lite</div>
         <div class="dive-points">${esc(points)}</div>
         <div class="dive-prompt-area" id="divetext-${key}">${esc(copyPrompt)}</div>
         <button class="btn-copy" id="copybtn-${key}" onclick="copyPrompt('${key}')">📋 クリップボードにコピー</button>
