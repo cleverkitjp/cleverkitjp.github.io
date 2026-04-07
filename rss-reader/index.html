@@ -1077,9 +1077,21 @@ async function generateTweet(idx, key) {
   tweetBtn.disabled = true;
   tweetBtn.textContent = "生成中...";
 
+  // 再生成のたびに異なる切り口を指示
+  const angles = [
+    "驚き・発見の視点で",
+    "ビジネスへの影響を考察する視点で",
+    "課題・問題提起の視点で",
+    "未来への期待・展望の視点で",
+    "身近な生活への影響という視点で",
+    "専門家目線のコメントとして",
+  ];
+  const angle = angles[Math.floor(Math.random() * angles.length)];
+
   const prompt = `以下のニュース記事について、X（旧Twitter）に投稿するコメントを日本語で生成してください。
 
 条件：
+・${angle}書く
 ・自分がこのニュースを読んで感じたコメントや考察として書く
 ・文体は自然な日本語（ですます調でも体言止めでも可）
 ・ハッシュタグを1〜2個付ける
@@ -1096,7 +1108,7 @@ async function generateTweet(idx, key) {
     const res = await fetch(
       "https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=" + apiKey,
       { method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }] }) }
+        body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }], generationConfig: { temperature: 1.5 } }) }
     );
     const data = await res.json();
     if (data.error) throw new Error(data.error.message);
