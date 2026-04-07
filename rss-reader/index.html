@@ -61,18 +61,17 @@ h1.ck-h1 { font-size: 20px; font-weight: 700; color: var(--text); margin: 12px 0
 .modal-overlay {
   display: none; position: fixed; inset: 0;
   background: rgba(0,0,0,0.75); z-index: 1000;
-  align-items: flex-end; justify-content: center;
+  align-items: flex-start; justify-content: center;
+  padding: 16px;
 }
 .modal-overlay.open { display: flex; }
-@media (min-width: 600px) { .modal-overlay { align-items: center; } }
 .modal {
   background: var(--bg-modal); border: 1px solid var(--border);
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
   width: 100%; max-width: 520px; box-sizing: border-box;
-  max-height: 90vh; display: flex; flex-direction: column;
-  box-shadow: 0 -8px 40px rgba(0,0,0,0.5);
+  max-height: calc(100vh - 32px); display: flex; flex-direction: column;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
 }
-@media (min-width: 600px) { .modal { border-radius: 16px; width: calc(100% - 32px); } }
 .modal-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 20px 0; flex-shrink: 0;
@@ -116,6 +115,9 @@ input:focus, select:focus { border-color: var(--accent); }
 .m-saved { font-size: 11px; color: var(--accent); margin-top: 6px; display: none; }
 .api-input-wrap { position: relative; }
 .api-input-wrap input { padding-right: 44px; }
+/* APIキー入力：デフォルトでマスク表示（パスワードマネージャーを回避） */
+#apiKey { -webkit-text-security: disc; text-security: disc; }
+#apiKey.visible { -webkit-text-security: none; text-security: none; }
 .btn-toggle-vis {
   position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
   background: transparent; border: none; color: var(--text-muted);
@@ -143,12 +145,12 @@ input:focus, select:focus { border-color: var(--accent); }
 }
 .btn-ghost:hover { border-color: var(--err-border); color: var(--err-text); }
 .btn-add-row {
-  background: transparent; border: 1px dashed var(--border);
-  border-radius: 8px; padding: 10px; color: var(--text-muted);
-  font-size: 12px; cursor: pointer; width: 100%;
-  margin-top: 6px; min-height: 40px;
+  background: #0d1829; border: 1px solid var(--accent);
+  border-radius: 8px; padding: 10px; color: var(--accent);
+  font-size: 13px; font-weight: 600; cursor: pointer; width: 100%;
+  margin-top: 8px; min-height: 44px;
 }
-.btn-add-row:hover { border-color: var(--accent); color: var(--accent); }
+.btn-add-row:hover { background: var(--accent-bg); }
 .btn-del {
   background: transparent; border: none; color: var(--text-muted);
   font-size: 18px; cursor: pointer; padding: 2px 6px;
@@ -336,11 +338,25 @@ input:focus, select:focus { border-color: var(--accent); }
 
 /* フッター：ダークテーマの色上書きをリセット */
 #ck-footer-container {
-  background: #1a2030;
-  color: #94a3b8;
+  background: #1a2030 !important;
+  color: #94a3b8 !important;
+  border-top: 1px solid #1e2d45;
+  padding: 24px 16px;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.8;
 }
-#ck-footer-container a { color: #94a3b8; }
-#ck-footer-container * { color: inherit; }
+#ck-footer-container * {
+  color: #94a3b8 !important;
+  background: transparent !important;
+}
+#ck-footer-container a {
+  color: #6ee7b7 !important;
+  text-decoration: none;
+}
+#ck-footer-container a:hover {
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -416,9 +432,15 @@ input:focus, select:focus { border-color: var(--accent); }
         </div>
         <div class="m-saved" id="apiSaved">✓ 保存済み — AI要約が有効です</div>
         <p class="m-hint">
-          無料で取得：<a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a>
-          → 「APIキーを作成」→ コピーして貼り付け<br>
-          ※ キーはブラウザのlocalStorageにのみ保存。サーバーには送信されません。
+          <strong style="color:var(--text-sub);">AI要約を使うには、Google製AI「Gemini」のAPIキーが必要です。</strong><br><br>
+          <strong style="color:var(--accent);">① 取得方法（無料・約2分）</strong><br>
+          <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a> を開く
+          → Googleアカウントでログイン
+          → 「APIキーを作成」をクリック
+          → 表示されたキー（AIzaから始まる文字列）をコピー<br><br>
+          <strong style="color:var(--accent);">② 貼り付け方法</strong><br>
+          上の入力欄にペーストして「APIキーを保存」を押すだけです。<br><br>
+          <span style="color:var(--text-muted);font-size:11px;">🔒 キーはこのブラウザの中だけに保存されます。外部サーバーには一切送信されません。AIへのリクエストはブラウザから直接Googleに送られます。</span>
         </p>
         <button class="btn-primary" onclick="saveApiKey()">APIキーを保存</button>
         <button class="btn-ghost"   onclick="clearApiKey()">APIキーを削除する</button>
@@ -578,11 +600,11 @@ function switchModalTab(tab) {
 function toggleApiVis() {
   const input = document.getElementById("apiKey");
   const btn   = document.getElementById("apiVisBtn");
-  if (input.type === "text") {
-    input.type = "password";
+  if (input.classList.contains("visible")) {
+    input.classList.remove("visible");
     btn.textContent = "👁";
   } else {
-    input.type = "text";
+    input.classList.add("visible");
     btn.textContent = "🙈";
   }
   input.focus();
@@ -917,7 +939,7 @@ async function summarize(idx, key) {
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
     sumDiv.innerHTML = `
       <div class="summary-box">
-        <div class="summary-label">AI 要約 — Gemini 2.5 Flash Lite</div>
+        <div class="summary-label">AI 要約</div>
         <div class="summary-text" id="sumtext-${key}">${esc(text)}</div>
       </div>
       <button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button>
@@ -973,8 +995,9 @@ ${points}`;
     // 深掘りボックスを描画
     const diveHtml = `
       <div class="dive-box" id="divebox-${key}">
-        <div class="dive-label">🔗 深掘りプロンプト — Gemma 3 27B Lite</div>
+        <div class="dive-label">🔗 深掘りプロンプト</div>
         <div class="dive-points">${esc(points)}</div>
+        <p style="font-size:11px;color:var(--text-muted);margin:6px 0 8px;line-height:1.6;">下のプロンプトをコピーして、ChatGPT・Gemini・Claudeなどお使いのAIサービスのチャットに貼り付けると、記事の理解が深まります。</p>
         <div class="dive-prompt-area" id="divetext-${key}">${esc(copyPrompt)}</div>
         <button class="btn-copy" id="copybtn-${key}" onclick="copyPrompt('${key}')">📋 クリップボードにコピー</button>
       </div>`;
