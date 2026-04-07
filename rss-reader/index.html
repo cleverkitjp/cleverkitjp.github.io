@@ -505,6 +505,19 @@ input:focus, select:focus { border-color: var(--accent); }
 </main>
 
 <div id="ck-footer-container"></div>
+<script>
+(function() {
+  var container = document.getElementById('ck-footer-container');
+  if (!container) return;
+  fetch('/footer.html')
+    .then(function(r) { return r.text(); })
+    .then(function(html) {
+      container.innerHTML = html;
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    })
+    .catch(function(e) {});
+})();
+</script>
 
 <script>
 const RSS_URL          = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/rss";
