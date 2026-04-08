@@ -437,6 +437,30 @@ input:focus, select:focus { border-color: var(--accent); }
           <div class="preset-label">▼ テクノロジー・ITプリセット</div>
           <div class="preset-grid" id="presetTech"></div>
         </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ 都道府県（北海道・東北）</div>
+          <div class="preset-grid" id="presetPrefHokkaidoTohoku"></div>
+        </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ 都道府県（関東）</div>
+          <div class="preset-grid" id="presetPrefKanto"></div>
+        </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ 都道府県（中部）</div>
+          <div class="preset-grid" id="presetPrefChubu"></div>
+        </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ 都道府県（近畿）</div>
+          <div class="preset-grid" id="presetPrefKinki"></div>
+        </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ 都道府県（中国・四国）</div>
+          <div class="preset-grid" id="presetPrefChugokuShikoku"></div>
+        </div>
+        <div class="preset-section">
+          <div class="preset-label">▼ 都道府県（九州・沖縄）</div>
+          <div class="preset-grid" id="presetPrefKyushuOkinawa"></div>
+        </div>
         <hr class="m-divider">
         <div class="m-label">登録フィード</div>
         <div id="feedItemList"></div>
@@ -594,12 +618,71 @@ const PRESETS = {
     { name:"TechCrunch Japan", url:"https://jp.techcrunch.com/feed/",                                group:"テック" },
     { name:"CNET Japan",       url:"https://feeds.cnet.com/feed/cnet/news/rss.xml",                  group:"テック" },
     { name:"Zenn トレンド",    url:"https://zenn.dev/feed",                                          group:"テック" },
-  ]
+  ],
+  pref_hokkaido_tohoku: [
+    { name:"北海道", url:"https://www.pref.hokkaido.lg.jp/news/rss.xml", group:"都道府県" },
+    { name:"青森県", url:"https://www.pref.aomori.lg.jp/rss/feed.rss", group:"都道府県" },
+    { name:"岩手県", url:"https://www.pref.iwate.jp/news.rss", group:"都道府県" },
+    { name:"宮城県", url:"https://www.pref.miyagi.jp/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"秋田県", url:"https://www.pref.akita.lg.jp/feed/news.xml", group:"都道府県" },
+    { name:"山形県", url:"https://www.pref.yamagata.jp/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"福島県", url:"https://www.pref.fukushima.lg.jp/rss/10/list1.xml", group:"都道府県" },
+  ],
+  pref_kanto: [
+    { name:"茨城県", url:"https://www.pref.ibaraki.jp/shiru/news.xml", group:"都道府県" },
+    { name:"栃木県", url:"https://www.pref.tochigi.lg.jp/c05/kensei/kouhou/hp/shinchaku.xml", group:"都道府県" },
+    { name:"群馬県", url:"https://www.pref.gunma.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"埼玉県", url:"https://www.pref.saitama.lg.jp/news/news.xml", group:"都道府県" },
+    { name:"千葉県", url:"https://www.pref.chiba.lg.jp/homepage/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"東京都", url:"https://www.metro.tokyo.lg.jp/index.html/-/asset_publisher/knkg/rss", group:"都道府県" },
+    { name:"神奈川県", url:"https://www.pref.kanagawa.jp/prs/list.xml", group:"都道府県" },
+  ],
+  pref_chubu: [
+    { name:"新潟県", url:"https://www.pref.niigata.lg.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"富山県", url:"https://www.pref.toyama.jp/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"石川県", url:"https://www.pref.ishikawa.lg.jp/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"福井県", url:"https://www.pref.fukui.lg.jp/news.xml", group:"都道府県" },
+    { name:"山梨県", url:"https://www.pref.yamanashi.jp/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"長野県", url:"https://www.pref.nagano.lg.jp/chumoku/chumoku.xml", group:"都道府県" },
+    { name:"岐阜県", url:"https://www.pref.gifu.lg.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"静岡県", url:"https://www.pref.shizuoka.jp/news.rss", group:"都道府県" },
+    { name:"愛知県", url:"https://www.pref.aichi.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"三重県", url:"https://www.pref.mie.lg.jp/app/rss/new_rss/", group:"都道府県" },
+  ],
+  pref_kinki: [
+    { name:"滋賀県", url:"https://www.pref.shiga.lg.jp/file/rss/kensei_koho_e-shinbun_oshirase_index.rss", group:"都道府県" },
+    { name:"京都府", url:"https://www.pref.kyoto.jp/enjoy/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"大阪府", url:"https://www.pref.osaka.lg.jp/shinchaku/shinchaku.xml", group:"都道府県" },
+    { name:"兵庫県", url:"https://web.pref.hyogo.lg.jp/rss/pref.xml", group:"都道府県" },
+    { name:"奈良県", url:"https://www.pref.nara.lg.jp/press/press.xml", group:"都道府県" },
+    { name:"和歌山県", url:"https://www.pref.wakayama.lg.jp/whatsnew/news.xml", group:"都道府県" },
+  ],
+  pref_chugoku_shikoku: [
+    { name:"鳥取県", url:"https://www.pref.tottori.lg.jp/services/rdf/rss10/58395.ashx", group:"都道府県" },
+    { name:"島根県", url:"https://www.pref.shimane.lg.jp/top_news.rdf", group:"都道府県" },
+    { name:"岡山県", url:"https://www.pref.okayama.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"広島県", url:"https://www.pref.hiroshima.lg.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"山口県", url:"https://www.pref.yamaguchi.lg.jp/rss/10/list10.xml", group:"都道府県" },
+    { name:"徳島県", url:"https://www.pref.tokushima.lg.jp/file/rss/index.rss", group:"都道府県" },
+    { name:"香川県", url:"https://www.pref.kagawa.lg.jp/shinchaku.xml", group:"都道府県" },
+    { name:"愛媛県", url:"https://www.pref.ehime.jp/rss/20/list1.xml", group:"都道府県" },
+    { name:"高知県", url:"https://www.pref.kochi.lg.jp/saiyou/docs/index.rss", group:"都道府県" },
+  ],
+  pref_kyushu_okinawa: [
+    { name:"福岡県", url:"https://www.pref.fukuoka.lg.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"佐賀県", url:"https://www.pref.saga.lg.jp/new_list.xml", group:"都道府県" },
+    { name:"熊本県", url:"https://www.pref.kumamoto.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"大分県", url:"https://www.pref.oita.jp/rss/10/list1.xml", group:"都道府県" },
+    { name:"宮崎県", url:"https://pref.miyazaki.lg.jp/shinchaku/shincyaku.xml", group:"都道府県" },
+    { name:"鹿児島県", url:"https://www.pref.kagoshima.jp/saishin/saishin.xml", group:"都道府県" },
+    { name:"沖縄県", url:"https://www.pref.okinawa.lg.jp/news.rss", group:"都道府県" },
+  ],
 };
 const DEFAULT_GROUPS = [
   { id:"g1", name:"官公庁" },
   { id:"g2", name:"ビジネス" },
   { id:"g3", name:"テック" },
+  { id:"g4", name:"都道府県" },
 ];
 
 /* ===== 初期化 ===== */
@@ -776,9 +859,15 @@ function saveAndRefresh() {
 /* ===== プリセット ===== */
 function renderPresetButtons() {
   [
-    { id:"presetGov",  list:PRESETS.gov  },
-    { id:"presetBiz",  list:PRESETS.biz  },
-    { id:"presetTech", list:PRESETS.tech },
+    { id:"presetGov",                  list:PRESETS.gov                  },
+    { id:"presetBiz",                  list:PRESETS.biz                  },
+    { id:"presetTech",                 list:PRESETS.tech                 },
+    { id:"presetPrefHokkaidoTohoku",   list:PRESETS.pref_hokkaido_tohoku },
+    { id:"presetPrefKanto",            list:PRESETS.pref_kanto           },
+    { id:"presetPrefChubu",            list:PRESETS.pref_chubu           },
+    { id:"presetPrefKinki",            list:PRESETS.pref_kinki           },
+    { id:"presetPrefChugokuShikoku",   list:PRESETS.pref_chugoku_shikoku },
+    { id:"presetPrefKyushuOkinawa",    list:PRESETS.pref_kyushu_okinawa  },
   ].forEach(({ id, list }) => {
     const c = document.getElementById(id);
     c.innerHTML = "";
