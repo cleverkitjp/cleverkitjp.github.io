@@ -1007,17 +1007,31 @@ async function fetchOneFeed(feedDef) {
   const doc  = new DOMParser().parseFromString(text, "application/xml");
   const channelTitle = doc.querySelector("channel > title")?.textContent?.trim() || "";
   const displayName  = feedDef.name || channelTitle || feedDef.url;
+  // チャンネルレベルの日付をフォールバック用に取得
+  const chEl = doc.querySelector("channel");
+  const channelDate  = doc.querySelector("channel > pubDate")?.textContent?.trim()
+    || chEl?.getElementsByTagName("dc:date")?.[0]?.textContent?.trim()
+    || chEl?.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim()
+    || chEl?.getElementsByTagNameNS("*","date")?.[0]?.textContent?.trim()
+    || "";
   return Array.from(doc.querySelectorAll("item")).slice(0, 10).map(item => {
     const contentEncoded = item.getElementsByTagNameNS("*", "encoded")?.[0]?.textContent || "";
     const description    = item.querySelector("description")?.textContent || "";
     const fullText = (contentEncoded || description).replace(/<[^>]+>/g, "").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").trim();
     const hasFullText = fullText.length >= 200;
+    // 記事の日付（優先順：dc:date直接 > pubDate > NS解決 > チャンネル日付）
+    const itemDate = item.getElementsByTagName("dc:date")?.[0]?.textContent?.trim()
+      || item.querySelector("pubDate")?.textContent?.trim()
+      || item.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim()
+      || item.getElementsByTagNameNS("*","date")?.[0]?.textContent?.trim()
+      || item.getElementsByTagNameNS("*","updated")?.[0]?.textContent?.trim()
+      || channelDate;
     return {
       title:       item.querySelector("title")?.textContent?.trim()  || "（タイトルなし）",
       link:        item.querySelector("link")?.textContent?.trim()   || "",
       desc:        fullText.slice(0, 500),
       hasFullText: hasFullText,
-      date:        item.querySelector("pubDate")?.textContent?.trim() || item.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim() || "",
+      date:        itemDate,
       source:      displayName,
       group:       feedDef.group || "",
     };
