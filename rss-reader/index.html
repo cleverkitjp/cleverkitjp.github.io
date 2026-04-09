@@ -991,10 +991,8 @@ async function fetchAllFeeds() {
   });
 
   allArticles.sort((a, b) => {
-    const da = a.date ? new Date(a.date) : null;
-    const db = b.date ? new Date(b.date) : null;
-    const va = da && !isNaN(da) ? da.getTime() : 0;
-    const vb = db && !isNaN(db) ? db.getTime() : 0;
+    const va = normalizeDate(a.date)?.getTime() || 0;
+    const vb = normalizeDate(b.date)?.getTime() || 0;
     return vb - va;
   });
   document.getElementById("refreshBtn").disabled = false;
@@ -1373,10 +1371,16 @@ function copyPrompt(key) {
 function esc(s) {
   return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
+function normalizeDate(s) {
+  if (!s) return null;
+  // "2026-04-09 14:00:00+09:00" → "2026-04-09T14:00:00+09:00" に正規化
+  const normalized = s.trim().replace(/^(\d{4}-\d{2}-\d{2})\s(\d{2}:\d{2})/, '$1T$2');
+  const d = new Date(normalized);
+  return isNaN(d) ? null : d;
+}
 function fmtDate(s) {
-  if (!s) return "";
-  const d = new Date(s);
-  return isNaN(d) ? "" : d.toLocaleDateString("ja-JP",{month:"short",day:"numeric"});
+  const d = normalizeDate(s);
+  return d ? d.toLocaleDateString("ja-JP",{month:"short",day:"numeric"}) : "";
 }
 function setStatus(msg) { document.getElementById("statusText").textContent = msg; }
 function showError(msg) {
