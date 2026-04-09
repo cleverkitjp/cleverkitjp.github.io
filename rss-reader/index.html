@@ -990,7 +990,13 @@ async function fetchAllFeeds() {
     else errCount++;
   });
 
-  allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+  allArticles.sort((a, b) => {
+    const da = a.date ? new Date(a.date) : null;
+    const db = b.date ? new Date(b.date) : null;
+    const va = da && !isNaN(da) ? da.getTime() : 0;
+    const vb = db && !isNaN(db) ? db.getTime() : 0;
+    return vb - va;
+  });
   document.getElementById("refreshBtn").disabled = false;
   setStatus(`${allArticles.length}件の記事${errCount > 0 ? `（${errCount}件取得失敗）` : ""}`);
   if (allArticles.length === 0 && errCount > 0) showError("フィードの取得に失敗しました。URLをご確認ください。");
@@ -1013,7 +1019,7 @@ async function fetchOneFeed(feedDef) {
       link:        item.querySelector("link")?.textContent?.trim()   || "",
       desc:        fullText.slice(0, 500),
       hasFullText: hasFullText,
-      date:        item.querySelector("pubDate")?.textContent?.trim()|| "",
+      date:        item.querySelector("pubDate")?.textContent?.trim() || item.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim() || "",
       source:      displayName,
       group:       feedDef.group || "",
     };
