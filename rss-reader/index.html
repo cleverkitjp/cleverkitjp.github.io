@@ -158,6 +158,14 @@ input:focus, select:focus { border-color: var(--accent); }
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .btn-del:hover { color: var(--err-text); }
+.btn-order {
+  background: transparent; border: none; color: var(--text-muted);
+  font-size: 14px; cursor: pointer; padding: 2px 4px;
+  min-width: 26px; min-height: 36px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.btn-order:hover { color: var(--accent); }
+.btn-order:disabled { color: var(--border); cursor: default; }
 
 /* フィードアイテム（モーダル） */
 .feed-item {
@@ -821,12 +829,21 @@ function renderGroupItems() {
     const row = document.createElement("div");
     row.className = "group-item";
     row.innerHTML = `
+      <button class="btn-order" onclick="moveGroup(${i},-1)" ${i===0?'disabled':''}>↑</button>
+      <button class="btn-order" onclick="moveGroup(${i}, 1)" ${i===groups.length-1?'disabled':''}>↓</button>
       <input type="text" value="${esc(g.name)}" placeholder="グループ名"
         oninput="groups[${i}].name=this.value; syncGroupNamesInFeeds(${i}, this.value)" />
       <button class="btn-del" onclick="removeGroup(${i})">×</button>`;
     c.appendChild(row);
   });
 }
+function moveGroup(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= groups.length) return;
+  [groups[i], groups[j]] = [groups[j], groups[i]];
+  renderGroupItems();
+}
+
 function addGroupItem() {
   groups.push({ id: "g" + Date.now(), name: "" });
   renderGroupItems();
