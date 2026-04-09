@@ -185,6 +185,18 @@ input:focus, select:focus { border-color: var(--accent); }
 }
 .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
 .preset-btn.added { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+.preset-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; padding: 4px 0; margin-bottom: 2px;
+  user-select: none;
+}
+.preset-section-header:hover .preset-label { color: var(--accent); }
+.preset-toggle-icon {
+  font-size: 10px; color: var(--text-muted);
+  transition: transform 0.2s ease; flex-shrink: 0;
+}
+.preset-section.collapsed .preset-toggle-icon { transform: rotate(-90deg); }
+.preset-section.collapsed .preset-grid { display: none; }
 
 /* メイン */
 .main-wrap { max-width: 820px; margin: 0 auto; padding: 12px 16px; }
@@ -425,40 +437,68 @@ input:focus, select:focus { border-color: var(--accent); }
 
       <!-- パネル①：フィード管理 -->
       <div class="modal-panel active" id="panel-feeds">
-        <div class="preset-section">
-          <div class="preset-label">▼ 官公庁プリセット</div>
+        <button class="btn-primary" onclick="saveAndRefresh()" style="margin-top:0;margin-bottom:12px;">保存して更新</button>
+        <div class="preset-section ">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">官公庁プリセット</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetGov"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ 経済・ビジネスプリセット</div>
+        <div class="preset-section ">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">経済・ビジネスプリセット</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetBiz"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ テクノロジー・ITプリセット</div>
+        <div class="preset-section ">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">テクノロジー・ITプリセット</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetTech"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ 都道府県（北海道・東北）</div>
+        <div class="preset-section collapsed">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県（北海道・東北）</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetPrefHokkaidoTohoku"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ 都道府県（関東）</div>
+        <div class="preset-section collapsed">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県（関東）</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetPrefKanto"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ 都道府県（中部）</div>
+        <div class="preset-section collapsed">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県（中部）</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetPrefChubu"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ 都道府県（近畿）</div>
+        <div class="preset-section collapsed">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県（近畿）</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetPrefKinki"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ 都道府県（中国・四国）</div>
+        <div class="preset-section collapsed">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県（中国・四国）</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetPrefChugokuShikoku"></div>
         </div>
-        <div class="preset-section">
-          <div class="preset-label">▼ 都道府県（九州・沖縄）</div>
+        <div class="preset-section collapsed">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県（九州・沖縄）</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
           <div class="preset-grid" id="presetPrefKyushuOkinawa"></div>
         </div>
         <hr class="m-divider">
@@ -696,6 +736,12 @@ window.onload = function() {
 
   const sg = localStorage.getItem(LS_GROUPS);
   groups = sg ? JSON.parse(sg) : [...DEFAULT_GROUPS];
+  // DEFAULT_GROUPSに追加されたグループを既存設定にマージ
+  DEFAULT_GROUPS.forEach(dg => {
+    if (!groups.some(g => g.name === dg.name)) {
+      groups.push({ ...dg });
+    }
+  });
 
   const sf = localStorage.getItem(LS_FEEDS);
   feeds = sf ? JSON.parse(sf) : [];
@@ -857,6 +903,11 @@ function saveAndRefresh() {
 }
 
 /* ===== プリセット ===== */
+function togglePresetSection(header) {
+  const section = header.closest('.preset-section');
+  section.classList.toggle('collapsed');
+}
+
 function renderPresetButtons() {
   [
     { id:"presetGov",                  list:PRESETS.gov                  },
