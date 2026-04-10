@@ -1030,7 +1030,9 @@ async function fetchAllFeeds(forceRefresh = false) {
 
 // フィードごとのキャッシュ付き取得
 async function fetchOneFeedWithCache(feedDef, forceRefresh = false) {
-  const cacheKey = LS_CACHE_PREFIX + btoa(encodeURIComponent(feedDef.url)).slice(0, 40);
+  // URLをシンプルなハッシュ値に変換（btoa非対応文字の問題を回避）
+  const urlHash = feedDef.url.split("").reduce((h, c) => (Math.imul(31, h) + c.charCodeAt(0)) | 0, 0);
+  const cacheKey = LS_CACHE_PREFIX + Math.abs(urlHash).toString(36) + "_" + feedDef.url.length;
 
   // キャッシュチェック
   if (!forceRefresh) {
