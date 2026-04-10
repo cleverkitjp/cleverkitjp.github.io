@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d2137"/>
+      <stop offset="100%" style="stop-color:#0a1f1a"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#6ee7b7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="512" height="512" rx="90" fill="url(#bg)"/>
+
+  <!-- 背景の薄いウェーブ（装飾） -->
+  <path d="M80 460 Q230 460 230 310" stroke="#10b981" stroke-width="6" fill="none" opacity="0.15" stroke-linecap="round"/>
+  <path d="M80 380 Q310 380 310 150" stroke="#10b981" stroke-width="6" fill="none" opacity="0.15" stroke-linecap="round"/>
+  <path d="M80 300 Q390 300 390 10" stroke="#10b981" stroke-width="6" fill="none" opacity="0.15" stroke-linecap="round"/>
+
+  <!-- メインRSSウェーブ（グロー付き） -->
+  <circle cx="100" cy="400" r="42" fill="url(#wave)" filter="url(#glow)"/>
+  <path d="M100 300 Q210 300 210 400" stroke="url(#wave)" stroke-width="38" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M100 200 Q320 200 320 400" stroke="url(#wave)" stroke-width="38" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M100 100 Q430 100 430 400" stroke="url(#wave)" stroke-width="38" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- AIバッジ（右上） -->
+  <rect x="310" y="48" width="148" height="72" rx="22" fill="#10b981" opacity="0.18"/>
+  <rect x="314" y="52" width="140" height="64" rx="20" fill="none" stroke="#6ee7b7" stroke-width="2" opacity="0.6"/>
+  <text x="384" y="100" font-family="Arial,sans-serif" font-weight="bold" font-size="46" fill="#6ee7b7" text-anchor="middle" filter="url(#glow)">AI</text>
+</svg>
