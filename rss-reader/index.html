@@ -1048,7 +1048,20 @@ async function fetchOneFeedWithCache(feedDef, forceRefresh = false) {
   }
 
   // Firebaseから取得
-  const articles = await fetchOneFeed(feedDef);
+  let articles;
+  try {
+    articles = await fetchOneFeed(feedDef);
+  } catch(e) {
+    // Firebase取得失敗時：期限切れキャッシュがあれば使う（フォールバック）
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const { articles: cachedArticles } = JSON.parse(cached);
+        if (cachedArticles?.length > 0) return cachedArticles;
+      }
+    } catch(e2) {}
+    throw e; // キャッシュもなければエラーをthrow
+  }
 
   // キャッシュ保存
   try {
@@ -1057,7 +1070,6 @@ async function fetchOneFeedWithCache(feedDef, forceRefresh = false) {
       articles,
     }));
   } catch(e) {
-    // localStorage容量超過時は古いキャッシュを削除して再試行
     clearOldCaches();
     try { localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), articles })); } catch(e2) {}
   }
@@ -1080,6 +1092,7 @@ function clearOldCaches() {
 
 async function fetchOneFeed(feedDef) {
   const res  = await fetch(RSS_URL + "?url=" + encodeURIComponent(feedDef.url));
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const text = await res.text();
   const doc  = new DOMParser().parseFromString(text, "application/xml");
   const channelTitle = doc.querySelector("channel > title")?.textContent?.trim() || "";
