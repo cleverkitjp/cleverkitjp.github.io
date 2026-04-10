@@ -1158,8 +1158,8 @@ async function summarize(idx, key) {
     : `あなたは日本語専門のニュース要約アシスタントです。必ず日本語のみで回答してください。思考過程は出力しないでください。\n\n以下はニュース記事のタイトルと短い概要です。記載されている情報だけを使って1〜2文でまとめてください。情報が不足している場合は「詳細は記事本文をご確認ください」と添えてください。想像や推測で補わないでください。\n\nタイトル: ${a.title}\n概要: ${a.desc}`;
   try {
     const data = await fetchGemini(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-      { contents:[{ parts:[{ text:prompt }] }] }
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`,
+      { contents:[{ parts:[{ text:prompt }] }], generationConfig: { thinkingConfig: { thinkingLevel: "minimal" } } }
     );
     const rawText0 = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
     const text = rawText0.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim() || rawText0.trim();
@@ -1200,8 +1200,8 @@ async function generateDive(idx, key) {
 
   try {
     const data = await fetchGemini(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-      { contents:[{ parts:[{ text:prompt }] }] }
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`,
+      { contents:[{ parts:[{ text:prompt }] }], generationConfig: { thinkingConfig: { thinkingLevel: "minimal" } } }
     );
     const rawDive = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
     const points = rawDive.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
@@ -1283,8 +1283,8 @@ async function generateTweet(idx, key) {
 
   try {
     const data = await fetchGemini(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-      { contents:[{ parts:[{ text: prompt }] }], generationConfig: { temperature: 1.5 } }
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`,
+      { contents:[{ parts:[{ text: prompt }] }], generationConfig: { temperature: 1.5, thinkingConfig: { thinkingLevel: "minimal" } } }
     );
     const rawTweet = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
     const tweetBody = rawTweet.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
