@@ -1154,17 +1154,16 @@ async function summarize(idx, key) {
   }
 
   const prompt = bodyText
-    ? `以下のニュース記事の本文を日本語で2〜3文に要約してください。具体的な数字・固有名詞・主要な出来事を必ず含めてください。本文に書かれていないことは絶対に追加しないでください。\n\nタイトル: ${a.title}\n本文: ${bodyText}`
-    : `以下はニュース記事のタイトルと短い概要です。記載されている情報だけを使って1〜2文でまとめてください。情報が不足している場合は「詳細は記事本文をご確認ください」と添えてください。想像や推測で補わないでください。\n\nタイトル: ${a.title}\n概要: ${a.desc}`;
+    ? `あなたは日本語専門のニュース要約アシスタントです。必ず日本語のみで回答してください。思考過程は出力しないでください。\n\n以下のニュース記事の本文を日本語で2〜3文に要約してください。具体的な数字・固有名詞・主要な出来事を必ず含めてください。本文に書かれていないことは絶対に追加しないでください。\n\nタイトル: ${a.title}\n本文: ${bodyText}`
+    : `あなたは日本語専門のニュース要約アシスタントです。必ず日本語のみで回答してください。思考過程は出力しないでください。\n\n以下はニュース記事のタイトルと短い概要です。記載されている情報だけを使って1〜2文でまとめてください。情報が不足している場合は「詳細は記事本文をご確認ください」と添えてください。想像や推測で補わないでください。\n\nタイトル: ${a.title}\n概要: ${a.desc}`;
   try {
-    const res  = await fetch(
+    const data = await fetchGemini(
       `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${apiKey}`,
-      { method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
+      { contents:[{ parts:[{ text:prompt }] }],
+        generationConfig: { thinkingConfig: { thinkingBudget: 0 } } }
     );
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
+    const rawText0 = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
+    const text = rawText0.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim() || rawText0.trim();
     sumDiv.innerHTML = `
       <div class="summary-box">
         <div class="summary-label">AI 要約</div>
@@ -1201,15 +1200,13 @@ async function generateDive(idx, key) {
   const prompt = `以下のニュース記事について、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。記事に書かれていない内容は含めないでください。\n\nタイトル: ${a.title}\n本文・要約: ${sumText || a.desc}`;
 
   try {
-    const res  = await fetch(
+    const data = await fetchGemini(
       `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${apiKey}`,
-      { method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
+      { contents:[{ parts:[{ text:prompt }] }],
+        generationConfig: { thinkingConfig: { thinkingBudget: 0 } } }
     );
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const raw    = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    const points = raw.trim();
+    const rawDive = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const points = rawDive.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
 
     // コピー用プロンプトを組み立て
     const copyPrompt = `以下のニュース記事について教えてください。
@@ -1287,14 +1284,13 @@ async function generateTweet(idx, key) {
 要約: ${sumText || a.desc}`;
 
   try {
-    const res = await fetch(
+    const data = await fetchGemini(
       `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${apiKey}`,
-      { method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }], generationConfig: { temperature: 1.5 } }) }
+      { contents:[{ parts:[{ text: prompt }] }],
+        generationConfig: { temperature: 1.5, thinkingConfig: { thinkingBudget: 0 } } }
     );
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const tweetBody = (data.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
+    const rawTweet = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const tweetBody = rawTweet.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
 
     // URL込みの全文（X投稿用）
     const fullTweet = tweetBody + (a.link ? "\n" + a.link : "");
