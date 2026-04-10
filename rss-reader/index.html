@@ -634,9 +634,11 @@ input:focus, select:focus { border-color: var(--accent); }
 <script>
 const RSS_URL          = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/rss";
 const FETCH_ARTICLE_URL = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/fetchArticle";
-const LS_API    = "rss_gemini_apikey";
-const LS_FEEDS  = "rss_feeds_v2";
-const LS_GROUPS = "rss_groups_v2";
+const LS_API         = "rss_gemini_apikey";
+const LS_FEEDS       = "rss_feeds_v2";
+const LS_GROUPS      = "rss_groups_v2";
+const LS_CACHE_PREFIX = "rss_cache_v1_";
+const CACHE_TTL      = 30 * 60 * 1000;
 
 let feeds        = [];
 let groups       = [];
