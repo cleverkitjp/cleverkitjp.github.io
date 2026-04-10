@@ -1207,10 +1207,17 @@ async function generateDive(idx, key) {
     const points = rawDive.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
 
     // コピー用プロンプトを組み立て
+    const pubDate = a.date ? normalizeDate(a.date)?.toLocaleDateString("ja-JP", {year:"numeric",month:"long",day:"numeric"}) || a.date : "";
     const copyPrompt = `以下のニュース記事について教えてください。
 
 【記事タイトル】
 ${a.title}
+
+【出典URL】
+${a.link || "（URLなし）"}
+
+【掲載日】
+${pubDate || "（日付不明）"}
 
 【概要】
 ${sumText}
