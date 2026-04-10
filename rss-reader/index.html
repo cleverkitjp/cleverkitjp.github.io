@@ -1158,7 +1158,7 @@ async function summarize(idx, key) {
     : `以下はニュース記事のタイトルと短い概要です。記載されている情報だけを使って1〜2文でまとめてください。情報が不足している場合は「詳細は記事本文をご確認ください」と添えてください。想像や推測で補わないでください。\n\nタイトル: ${a.title}\n概要: ${a.desc}`;
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-27b-it:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -1202,7 +1202,7 @@ async function generateDive(idx, key) {
 
   try {
     const res  = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-27b-it:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) }
     );
@@ -1288,7 +1288,7 @@ async function generateTweet(idx, key) {
 
   try {
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-27b-it:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26b-a4b-it:generateContent?key=${apiKey}`,
       { method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }], generationConfig: { temperature: 1.5 } }) }
     );
