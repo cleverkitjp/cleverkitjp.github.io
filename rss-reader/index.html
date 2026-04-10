@@ -574,7 +574,7 @@ input:focus, select:focus { border-color: var(--accent); }
 
   <div class="status-bar">
     <span class="status-text" id="statusText">取得中...</span>
-    <button class="btn-refresh" id="refreshBtn" onclick="fetchAllFeeds()">↻ 更新</button>
+    <button class="btn-refresh" id="refreshBtn" onclick="fetchAllFeeds(true)">↻ 更新</button>
   </div>
 
   <div id="errorBox" class="error-box" style="display:none;"></div>
@@ -923,7 +923,7 @@ function saveAndRefresh() {
   localStorage.setItem(LS_FEEDS, JSON.stringify(feeds));
   renderGroupTabs();
   closeModal();
-  fetchAllFeeds();
+  fetchAllFeeds(true); // フィード変更時はキャッシュ無視
 }
 
 /* ===== プリセット ===== */
@@ -994,18 +994,20 @@ function switchGroup(gname) {
 }
 
 /* ===== RSS取得（並列） ===== */
-async function fetchAllFeeds() {
+async function fetchAllFeeds(forceRefresh = false) {
   const valid = feeds.filter(f => f.url.trim());
   if (valid.length === 0) {
     setStatus("フィードが未登録です。⚙設定からフィードを追加してください。");
     return;
   }
+
   setStatus("取得中...");
   document.getElementById("refreshBtn").disabled = true;
   document.getElementById("errorBox").style.display = "none";
   document.getElementById("articlesArea").innerHTML = `<div class="loading-text">記事を取得しています...</div>`;
 
-  const results = await Promise.allSettled(valid.map(f => fetchOneFeed(f)));
+  // フィードごとにキャッシュチェックして取得
+  const results = await Promise.allSettled(valid.map(f => fetchOneFeedWithCache(f, forceRefresh)));
 
   allArticles = [];
   let errCount = 0;
@@ -1019,10 +1021,59 @@ async function fetchAllFeeds() {
     const vb = normalizeDate(b.date)?.getTime() || 0;
     return vb - va;
   });
+
   document.getElementById("refreshBtn").disabled = false;
   setStatus(`${allArticles.length}件の記事${errCount > 0 ? `（${errCount}件取得失敗）` : ""}`);
   if (allArticles.length === 0 && errCount > 0) showError("フィードの取得に失敗しました。URLをご確認ください。");
   renderArticles();
+}
+
+// フィードごとのキャッシュ付き取得
+async function fetchOneFeedWithCache(feedDef, forceRefresh = false) {
+  const cacheKey = LS_CACHE_PREFIX + btoa(encodeURIComponent(feedDef.url)).slice(0, 40);
+
+  // キャッシュチェック
+  if (!forceRefresh) {
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const { timestamp, articles } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_TTL && articles?.length > 0) {
+          return articles;
+        }
+      }
+    } catch(e) {}
+  }
+
+  // Firebaseから取得
+  const articles = await fetchOneFeed(feedDef);
+
+  // キャッシュ保存
+  try {
+    localStorage.setItem(cacheKey, JSON.stringify({
+      timestamp: Date.now(),
+      articles,
+    }));
+  } catch(e) {
+    // localStorage容量超過時は古いキャッシュを削除して再試行
+    clearOldCaches();
+    try { localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), articles })); } catch(e2) {}
+  }
+
+  return articles;
+}
+
+// 期限切れキャッシュを削除
+function clearOldCaches() {
+  const keys = Object.keys(localStorage).filter(k => k.startsWith(LS_CACHE_PREFIX));
+  keys.forEach(k => {
+    try {
+      const { timestamp } = JSON.parse(localStorage.getItem(k) || "{}");
+      if (!timestamp || Date.now() - timestamp > CACHE_TTL) {
+        localStorage.removeItem(k);
+      }
+    } catch(e) { localStorage.removeItem(k); }
+  });
 }
 
 async function fetchOneFeed(feedDef) {
