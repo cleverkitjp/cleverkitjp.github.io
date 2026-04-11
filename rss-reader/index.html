@@ -1319,7 +1319,12 @@ function renderArticles() {
         ${a.desc ? `<div class="article-desc" id="desc-${key}">${esc(a.desc)}</div>` : ""}
         <div id="sum-${key}"></div>
         ${hasKey
-          ? `<button class="btn-summarize" id="btn-${key}" onclick="summarize(${i},'${key}')">⚡ AI要約</button>`
+          ? (a.desc && a.desc.length >= 200
+            ? `<div style="display:flex;flex-wrap:wrap;gap:0;">
+                <button class="btn-dive" id="dive-${key}" onclick="generateDive(${i},'${key}')">🔗 深掘りプロンプトを生成</button>
+                <button class="btn-tweet" id="tweetbtn-${key}" onclick="generateTweet(${i},'${key}')">🐦 X投稿を生成</button>
+               </div>`
+            : `<button class="btn-summarize" id="btn-${key}" onclick="summarize(${i},'${key}')">⚡ AI要約</button>`)
           : `<div class="no-api-hint">AI要約は⚙設定でAPIキーを設定すると使えます</div>`
         }
       </div>`;
