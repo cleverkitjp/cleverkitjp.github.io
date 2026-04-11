@@ -1238,7 +1238,15 @@ async function fetchOneFeed(feedDef) {
       || channelDate;
     return {
       title:       item.querySelector("title")?.textContent?.trim()  || "（タイトルなし）",
-      link:        item.querySelector("link")?.textContent?.trim()   || "",
+      link: (() => {
+        const raw = item.querySelector("link")?.textContent?.trim() || "";
+        if (!raw) return "";
+        // 相対パスを絶対URLに変換
+        if (raw.startsWith("http://") || raw.startsWith("https://")) return raw;
+        try {
+          return new URL(raw, feedDef.url).href;
+        } catch(e) { return raw; }
+      })(),
       desc:        fullText.slice(0, 2000),
       hasFullText: hasFullText,
       date:        itemDate,
