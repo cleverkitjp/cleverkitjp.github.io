@@ -1,6 +1,6 @@
 {
-  "name": "RSS×AIリーダー",
-  "short_name": "RSSリーダー",
+  "name": "Aifeed（アイフィード）",
+  "short_name": "Aifeed",
   "description": "官公庁・企業IR・業界ニュースをAI要約で効率収集",
   "start_url": "/rss-reader/",
   "scope": "/rss-reader/",
