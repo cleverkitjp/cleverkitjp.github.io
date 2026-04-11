@@ -480,47 +480,55 @@ input:focus, select:focus { border-color: var(--accent); }
           </div>
           <div class="preset-grid" id="presetMedia"></div>
         </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（北海道・東北）</div>
+        <div class="preset-section collapsed" id="prefParentSection">
+          <div class="preset-section-header" onclick="togglePrefParent(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
-          <div class="preset-grid" id="presetPrefHokkaidoTohoku"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（関東）</div>
-            <span class="preset-toggle-icon">▼</span>
+          <div class="preset-children" id="prefChildren" style="display:none;">
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">北海道・東北</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefHokkaidoTohoku"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">関東</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefKanto"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">中部</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefChubu"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">近畿</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefKinki"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">中国・四国</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefChugokuShikoku"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">九州・沖縄</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefKyushuOkinawa"></div>
+            </div>
           </div>
-          <div class="preset-grid" id="presetPrefKanto"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（中部）</div>
-            <span class="preset-toggle-icon">▼</span>
-          </div>
-          <div class="preset-grid" id="presetPrefChubu"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（近畿）</div>
-            <span class="preset-toggle-icon">▼</span>
-          </div>
-          <div class="preset-grid" id="presetPrefKinki"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（中国・四国）</div>
-            <span class="preset-toggle-icon">▼</span>
-          </div>
-          <div class="preset-grid" id="presetPrefChugokuShikoku"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（九州・沖縄）</div>
-            <span class="preset-toggle-icon">▼</span>
-          </div>
-          <div class="preset-grid" id="presetPrefKyushuOkinawa"></div>
         </div>
         <hr class="m-divider">
         <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
@@ -949,6 +957,22 @@ function saveAndRefresh() {
 }
 
 /* ===== プリセット ===== */
+function togglePrefParent(header) {
+  const section = header.parentElement;
+  const children = document.getElementById("prefChildren");
+  const icon = header.querySelector(".preset-toggle-icon");
+  const isCollapsed = section.classList.contains("collapsed");
+  if (isCollapsed) {
+    section.classList.remove("collapsed");
+    children.style.display = "block";
+    if (icon) icon.textContent = "▲";
+  } else {
+    section.classList.add("collapsed");
+    children.style.display = "none";
+    if (icon) icon.textContent = "▼";
+  }
+}
+
 function togglePresetSection(header) {
   const section = header.closest('.preset-section');
   section.classList.toggle('collapsed');
