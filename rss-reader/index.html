@@ -452,7 +452,6 @@ input:focus, select:focus { border-color: var(--accent); }
 
       <!-- パネル①：フィード管理 -->
       <div class="modal-panel active" id="panel-feeds">
-        <button class="btn-primary" onclick="saveAndRefresh()" style="margin-top:0;margin-bottom:12px;">保存して更新</button>
         <div class="preset-section ">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
             <div class="preset-label" style="margin-bottom:0;">官公庁プリセット</div>
@@ -517,9 +516,10 @@ input:focus, select:focus { border-color: var(--accent); }
           <div class="preset-grid" id="presetPrefKyushuOkinawa"></div>
         </div>
         <hr class="m-divider">
-        <div class="m-label">登録フィード</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
+          <button class="btn-add-row" onclick="addFeedItem()" style="margin-top:0;flex:1;">＋ フィードを手動追加</button>
+        </div>
         <div id="feedItemList"></div>
-        <button class="btn-add-row" onclick="addFeedItem()">＋ フィードを手動追加</button>
         <button class="btn-primary" onclick="saveAndRefresh()">保存して更新</button>
       </div>
 
@@ -886,7 +886,10 @@ function renderFeedItems() {
     c.innerHTML = `<p class="m-hint">フィードが登録されていません。上のプリセットか手動追加で登録してください。</p>`;
     return;
   }
-  feeds.forEach((f, i) => {
+  // 新しいものを上に表示（逆順）
+  const indices = [...Array(feeds.length).keys()].reverse();
+  indices.forEach(i => {
+    const f = feeds[i];
     const item = document.createElement("div");
     item.className = "feed-item";
     const opts = groups.map(g =>
