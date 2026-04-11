@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e1a"/>
+      <stop offset="100%" style="stop-color:#0f1e35"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- グリッドライン（装飾） -->
+  <line x1="0" y1="315" x2="1200" y2="315" stroke="#1e2d45" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="630" stroke="#1e2d45" stroke-width="1"/>
+
+  <!-- 左上アクセントライン -->
+  <rect x="80" y="80" width="4" height="80" fill="url(#accent)" rx="2"/>
+
+  <!-- ロゴ・ブランド -->
+  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#10b981" letter-spacing="2">CleverKit</text>
+
+  <!-- メインタイトル -->
+  <text x="100" y="260" font-family="'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="800" fill="#e8eaf0" letter-spacing="-1">RSS×AIリーダー</text>
+
+  <!-- サブコピー -->
+  <text x="100" y="330" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="400" fill="#6ee7b7">官公庁・企業IR・業界ニュースを AI 要約で効率収集</text>
+
+  <!-- 区切りライン -->
+  <rect x="100" y="370" width="600" height="3" fill="url(#accent)" rx="2"/>
+
+  <!-- 機能タグ -->
+  <!-- タグ1 -->
+  <rect x="100" y="400" width="180" height="44" rx="22" fill="#0a1f1a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="190" y="427" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#10b981" text-anchor="middle">⚡ AI 要約</text>
+
+  <!-- タグ2 -->
+  <rect x="296" y="400" width="200" height="44" rx="22" fill="#0a1f1a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="396" y="427" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#10b981" text-anchor="middle">🔗 深掘りプロンプト</text>
+
+  <!-- タグ3 -->
+  <rect x="512" y="400" width="180" height="44" rx="22" fill="#0a1f1a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="602" y="427" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" fill="#10b981" text-anchor="middle">𝕏 投稿生成</text>
+
+  <!-- 右側装飾：RSSカードイメージ -->
+  <rect x="820" y="100" width="300" height="180" rx="12" fill="#111827" stroke="#1e2d45" stroke-width="1.5"/>
+  <rect x="840" y="120" width="80" height="20" rx="10" fill="#10b981" opacity="0.8"/>
+  <text x="880" y="135" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#0a0e1a" text-anchor="middle">官公庁</text>
+  <rect x="840" y="152" width="260" height="12" rx="6" fill="#1e2d45"/>
+  <rect x="840" y="172" width="220" height="10" rx="5" fill="#1e2d45" opacity="0.6"/>
+  <rect x="840" y="190" width="240" height="10" rx="5" fill="#1e2d45" opacity="0.4"/>
+  <rect x="840" y="232" width="100" height="32" rx="16" fill="#0a1f1a" stroke="#10b981" stroke-width="1"/>
+  <text x="890" y="252" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#10b981" text-anchor="middle">⚡ AI要約</text>
+
+  <rect x="820" y="300" width="300" height="180" rx="12" fill="#111827" stroke="#1e2d45" stroke-width="1.5"/>
+  <rect x="840" y="320" width="80" height="20" rx="10" fill="#2d3f5e" opacity="0.8"/>
+  <text x="880" y="335" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="700" fill="#6ee7b7" text-anchor="middle">テック</text>
+  <rect x="840" y="352" width="260" height="12" rx="6" fill="#1e2d45"/>
+  <rect x="840" y="372" width="200" height="10" rx="5" fill="#1e2d45" opacity="0.6"/>
+  <rect x="840" y="392" width="230" height="10" rx="5" fill="#1e2d45" opacity="0.4"/>
+  <rect x="840" y="432" width="100" height="32" rx="16" fill="#0a1f1a" stroke="#10b981" stroke-width="1"/>
+  <text x="890" y="452" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#10b981" text-anchor="middle">⚡ AI要約</text>
+
+  <!-- 右側グロー効果 -->
+  <circle cx="970" cy="315" r="180" fill="#10b981" opacity="0.03"/>
+
+  <!-- URL -->
+  <text x="100" y="580" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="400" fill="#64748b">cleverkit.jp/rss-reader/</text>
+
+  <!-- 下部ライン -->
+  <rect x="0" y="610" width="1200" height="3" fill="url(#accent)"/>
+</svg>

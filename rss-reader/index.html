@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集 | CleverKit</title>
 <meta name="description" content="官公庁・企業IR・業界ニュースのRSSを一括取得。グループ管理とGemini AI要約で情報収集を効率化。APIキーはブラウザ内のみ管理。無料で使えるRSSリーダーツール。">
+<meta property="og:title" content="RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集">
+<meta property="og:description" content="官公庁・都道府県・企業IRのRSSを一括取得。AI要約・深掘りプロンプト・X投稿生成まで。無料で使えるRSSリーダー。">
+<meta property="og:image" content="https://cleverkit.jp/rss-reader/ogp.svg">
+<meta property="og:url" content="https://cleverkit.jp/rss-reader/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CleverKit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集">
+<meta name="twitter:description" content="官公庁・都道府県・企業IRのRSSを一括取得。AI要約・深掘りプロンプト・X投稿生成まで。無料で使えるRSSリーダー。">
+<meta name="twitter:image" content="https://cleverkit.jp/rss-reader/ogp.svg">
 <link rel="manifest" href="/rss-reader/manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -534,6 +544,7 @@ input:focus, select:focus { border-color: var(--accent); }
         <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
           <button class="btn-add-row" onclick="addFeedItem()" style="margin-top:0;flex:1;">＋ フィードを手動追加</button>
         </div>
+        <button class="btn-primary" onclick="saveAndRefresh()" style="margin-bottom:12px;">保存して更新</button>
         <div id="feedItemList"></div>
         <button class="btn-primary" onclick="saveAndRefresh()">保存して更新</button>
       </div>
