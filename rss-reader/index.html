@@ -428,6 +428,54 @@ input:focus, select:focus { border-color: var(--accent); }
 
 
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Gemini APIキーがなくても使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。Gemini APIは無料のGoogleアカウントで利用可能です。なお、1分間・1日あたりの利用回数に上限があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "APIキーはどこに保存されますか？セキュリティは大丈夫ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "APIキーはお使いの端末にのみ保存されます。Google GeminiのAPIへのリクエストを除き、外部サーバ等への送信は一切行いません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "グループ機能はどのように使いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "設定の「グループ」タブでグループ名を作成し、「フィード」タブで各フィードをグループに割り当てます。メイン画面のタブでグループを切り替えて記事を読めます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "登録した設定は次回も保存されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。フィードURL・グループ設定・APIキーはすべてブラウザのlocalStorageに自動保存されます。次回アクセス時も同じ設定で最新記事を自動取得します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "このサービスの名称は？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aifeed（アイフィード）です。"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -435,7 +483,7 @@ input:focus, select:focus { border-color: var(--accent); }
 <nav class="ck-breadcrumb" aria-label="パンくず" style="padding:12px 16px 0; max-width:820px; margin:0 auto;">
   <a href="/">CleverKit</a> &rsaquo;
   <a href="/category-life/">暮らし</a> &rsaquo;
-  RSS×AIリーダー
+  RSS×AIリーダー <span style="color:var(--text-muted);font-size:11px;">Aifeed〔アイフィード〕</span>
 </nav>
 
 <!-- 設定バー -->
@@ -612,11 +660,11 @@ input:focus, select:focus { border-color: var(--accent); }
     <h2>よくある質問</h2>
     <div class="faq-item">
       <p class="faq-q">Q. Gemini APIキーがなくても使えますか？</p>
-      <p class="faq-a">はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。</p>
+      <p class="faq-a">はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。Gemini APIは無料のGoogleアカウントで利用可能です。なお、1分間・1日あたりの利用回数に上限があります。</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Q. APIキーはどこに保存されますか？セキュリティは大丈夫ですか？</p>
-      <p class="faq-a">APIキーはお使いのブラウザのlocalStorageにのみ保存されます。サーバーへの送信は一切行いません。AI要約リクエストはブラウザから直接Googleのサーバーに送信されます。</p>
+      <p class="faq-a">APIキーはお使いの端末にのみ保存されます。Google GeminiのAPIへのリクエストを除き、外部サーバ等への送信は一切行いません。</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Q. グループ機能はどのように使いますか？</p>
@@ -629,6 +677,10 @@ input:focus, select:focus { border-color: var(--accent); }
     <div class="faq-item">
       <p class="faq-q">Q. 登録した設定は次回も保存されますか？</p>
       <p class="faq-a">はい。フィードURL・グループ設定・APIキーはすべてブラウザのlocalStorageに自動保存されます。次回アクセス時も同じ設定で最新記事を自動取得します。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. このサービスの名称は？</p>
+      <p class="faq-a">Aifeed（アイフィード）です。</p>
     </div>
   </section>
 
