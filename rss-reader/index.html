@@ -1296,6 +1296,16 @@ function renderArticles() {
       ? allArticles.filter(a => !a.group)
       : allArticles.filter(a => a.group === currentGroup);
 
+  // グループ別件数をステータスに反映
+  const errMatch = document.getElementById("statusText").textContent.match(/（.+）$/);
+  const errSuffix = errMatch ? errMatch[0] : "";
+  if (currentGroup === "all") {
+    document.getElementById("statusText").textContent = `${allArticles.length}件の記事${errSuffix}`;
+  } else {
+    const groupName = currentGroup === "__ungrouped__" ? "未分類" : currentGroup;
+    document.getElementById("statusText").textContent = `${filtered.length}件の記事（${groupName}）${errSuffix}`;
+  }
+
   if (filtered.length === 0) {
     area.innerHTML = `<div class="loading-text">表示できる記事がありません</div>`;
     return;
