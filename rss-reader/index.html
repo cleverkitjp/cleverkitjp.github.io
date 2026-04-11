@@ -452,26 +452,33 @@ input:focus, select:focus { border-color: var(--accent); }
 
       <!-- パネル①：フィード管理 -->
       <div class="modal-panel active" id="panel-feeds">
-        <div class="preset-section ">
+        <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
             <div class="preset-label" style="margin-bottom:0;">官公庁プリセット</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
           <div class="preset-grid" id="presetGov"></div>
         </div>
-        <div class="preset-section ">
+        <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
             <div class="preset-label" style="margin-bottom:0;">経済・ビジネスプリセット</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
           <div class="preset-grid" id="presetBiz"></div>
         </div>
-        <div class="preset-section ">
+        <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
             <div class="preset-label" style="margin-bottom:0;">テクノロジー・ITプリセット</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
           <div class="preset-grid" id="presetTech"></div>
+        </div>
+        <div class="preset-section collapsed">
+          <div class="preset-section-header" onclick="togglePresetSection(this)">
+            <div class="preset-label" style="margin-bottom:0;">メディア・新聞</div>
+            <span class="preset-toggle-icon">▼</span>
+          </div>
+          <div class="preset-grid" id="presetMedia"></div>
         </div>
         <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
@@ -661,6 +668,8 @@ const PRESETS = {
     { name:"日本年金機構",          url:"https://www.nenkin.go.jp/rss.xml",                            group:"官公庁" },
     { name:"労働政策研究・研修機構",url:"https://www.jil.go.jp/rss.xml",                               group:"官公庁" },
     { name:"日本学生支援機構",      url:"https://www.jasso.go.jp/rss.xml",                             group:"官公庁" },
+    { name:"日本銀行",           url:"https://www.boj.or.jp/rss/whatsnew.xml",          group:"官公庁" },
+    { name:"金融庁",             url:"https://www.fsa.go.jp/fsaNewsListAll_rss2.xml",   group:"官公庁" },
   ],
   biz: [
     { name:"日本経済新聞",           url:"https://www.nikkei.com/rss/news.rdf",              group:"ビジネス" },
@@ -734,12 +743,20 @@ const PRESETS = {
     { name:"鹿児島県", url:"https://www.pref.kagoshima.jp/saishin/saishin.xml", group:"都道府県" },
     { name:"沖縄県", url:"https://www.pref.okinawa.lg.jp/news.rss", group:"都道府県" },
   ],
+  media: [
+    { name:"NHK ニュース",     url:"https://news.web.nhk/n-data/conf/na/rss/cat0.xml",         group:"メディア" },
+    { name:"朝日新聞",         url:"https://www.asahi.com/rss/asahi/newsheadlines.rdf",        group:"メディア" },
+    { name:"毎日新聞",         url:"https://mainichi.jp/rss/etc/mainichi-flash.rss",           group:"メディア" },
+    { name:"北海道新聞",       url:"https://www.hokkaido-np.co.jp/output/7/free/index.ad.xml", group:"メディア" },
+    { name:"河北新報（東北）", url:"https://kahoku.news/rss/general/%E6%9D%B1%E5%8C%97%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%EF%BC%88%E5%9C%B0%E5%9F%9F%E5%88%A5%EF%BC%89", group:"メディア" },
+  ],
 };
 const DEFAULT_GROUPS = [
   { id:"g1", name:"官公庁" },
   { id:"g2", name:"ビジネス" },
   { id:"g3", name:"テック" },
   { id:"g4", name:"都道府県" },
+  { id:"g5", name:"メディア" },
 ];
 
 /* ===== 初期化 ===== */
@@ -942,6 +959,7 @@ function renderPresetButtons() {
     { id:"presetGov",                  list:PRESETS.gov                  },
     { id:"presetBiz",                  list:PRESETS.biz                  },
     { id:"presetTech",                 list:PRESETS.tech                 },
+    { id:"presetMedia",                 list:PRESETS.media                 },
     { id:"presetPrefHokkaidoTohoku",   list:PRESETS.pref_hokkaido_tohoku },
     { id:"presetPrefKanto",            list:PRESETS.pref_kanto           },
     { id:"presetPrefChubu",            list:PRESETS.pref_chubu           },
