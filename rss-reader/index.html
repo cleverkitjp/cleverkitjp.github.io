@@ -282,8 +282,7 @@ input:focus, select:focus { border-color: var(--accent); }
 .article-title:hover { color: #a7f3d0; }
 .article-desc {
   font-size: 12px; color: var(--text-sub); line-height: 1.6;
-  display: -webkit-box; -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
+  display: block;
 }
 .summary-box {
   margin-top: 10px;
@@ -1240,7 +1239,7 @@ async function fetchOneFeed(feedDef) {
     return {
       title:       item.querySelector("title")?.textContent?.trim()  || "（タイトルなし）",
       link:        item.querySelector("link")?.textContent?.trim()   || "",
-      desc:        fullText.slice(0, 500),
+      desc:        fullText.slice(0, 2000),
       hasFullText: hasFullText,
       date:        itemDate,
       source:      displayName,
