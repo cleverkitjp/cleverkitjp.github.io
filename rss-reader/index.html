@@ -1082,9 +1082,13 @@ async function fetchAllFeeds(forceRefresh = false) {
 
   allArticles = [];
   let errCount = 0;
-  results.forEach(r => {
+  const failedFeeds = [];
+  results.forEach((r, i) => {
     if (r.status === "fulfilled" && r.value) allArticles.push(...r.value);
-    else errCount++;
+    else {
+      errCount++;
+      failedFeeds.push(valid[i].name || valid[i].url);
+    }
   });
 
   allArticles.sort((a, b) => {
@@ -1095,7 +1099,9 @@ async function fetchAllFeeds(forceRefresh = false) {
 
   document.getElementById("refreshBtn").disabled = false;
   setStatus(`${allArticles.length}件の記事${errCount > 0 ? `（${errCount}件取得失敗）` : ""}`);
-  if (allArticles.length === 0 && errCount > 0) showError("フィードの取得に失敗しました。URLをご確認ください。");
+  if (errCount > 0) {
+    showError(`以下のフィードの取得に失敗しました：\n${failedFeeds.map(f => `・${f}`).join("\n")}`);
+  }
   renderArticles();
 }
 
