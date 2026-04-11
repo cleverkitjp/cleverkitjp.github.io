@@ -1297,14 +1297,11 @@ function renderArticles() {
       : allArticles.filter(a => a.group === currentGroup);
 
   // グループ別件数をステータスに反映
-  const errMatch = document.getElementById("statusText").textContent.match(/（.+）$/);
+  const countEl = document.getElementById("statusText");
+  const errMatch = countEl.textContent.match(/（[^）]*取得失敗[^）]*）/);
   const errSuffix = errMatch ? errMatch[0] : "";
-  if (currentGroup === "all") {
-    document.getElementById("statusText").textContent = `${allArticles.length}件の記事${errSuffix}`;
-  } else {
-    const groupName = currentGroup === "__ungrouped__" ? "未分類" : currentGroup;
-    document.getElementById("statusText").textContent = `${filtered.length}件の記事（${groupName}）${errSuffix}`;
-  }
+  const dispCount = currentGroup === "all" ? allArticles.length : filtered.length;
+  countEl.textContent = `${dispCount}件の記事${errSuffix}`;
 
   if (filtered.length === 0) {
     area.innerHTML = `<div class="loading-text">表示できる記事がありません</div>`;
