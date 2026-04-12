@@ -766,6 +766,7 @@ const PRESETS = {
     { name:"金融庁",             url:"https://www.fsa.go.jp/fsaNewsListAll_rss2.xml",        group:"官公庁" },
     { name:"宮内庁",             url:"https://www.kunaicho.go.jp/rss/kunaicho.rdf",          group:"官公庁" },
     { name:"警察庁",             url:"https://www.npa.go.jp/newlyarrived/rss20.xml",         group:"官公庁" },
+    { name:"経済産業省",         url:"https://www.meti.go.jp/ml_index_release_atom.xml",    group:"官公庁" },
     { name:"総務省",             url:"https://www.soumu.go.jp/news.rdf",                       group:"官公庁" },
     { name:"デジタル庁",         url:"https://www.digital.go.jp/rss/news.xml",                 group:"官公庁" },
     { name:"文部科学省",         url:"https://www.mext.go.jp/b_menu/news/index.rdf",           group:"官公庁" },
@@ -1281,38 +1282,54 @@ async function fetchOneFeed(feedDef) {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const text = await res.text();
   const doc  = new DOMParser().parseFromString(text, "application/xml");
-  const channelTitle = doc.querySelector("channel > title")?.textContent?.trim() || "";
+  // RSS(item) と ATOM(entry) の両方に対応
+  const isAtom = doc.querySelector("feed") !== null;
+  const channelTitle = isAtom
+    ? doc.querySelector("feed > title")?.textContent?.trim()
+    : doc.querySelector("channel > title")?.textContent?.trim() || "";
   const displayName  = feedDef.name || channelTitle || feedDef.url;
   // チャンネルレベルの日付をフォールバック用に取得
-  const chEl = doc.querySelector("channel");
-  const channelDate  = doc.querySelector("channel > pubDate")?.textContent?.trim()
+  const chEl = isAtom ? doc.querySelector("feed") : doc.querySelector("channel");
+  const channelDate  = chEl?.querySelector("pubDate")?.textContent?.trim()
+    || chEl?.querySelector("updated")?.textContent?.trim()
     || chEl?.getElementsByTagName("dc:date")?.[0]?.textContent?.trim()
     || chEl?.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim()
-    || chEl?.getElementsByTagNameNS("*","date")?.[0]?.textContent?.trim()
     || "";
-  return Array.from(doc.querySelectorAll("item")).slice(0, 10).map(item => {
+  const entries = isAtom
+    ? Array.from(doc.querySelectorAll("entry")).slice(0, 10)
+    : Array.from(doc.querySelectorAll("item")).slice(0, 10);
+  return entries.map(item => {
+    // ATOM: summary/content、RSS: content:encoded/description
     const contentEncoded = item.getElementsByTagNameNS("*", "encoded")?.[0]?.textContent || "";
-    const description    = item.querySelector("description")?.textContent || "";
+    const description    = item.querySelector("description")?.textContent
+      || item.querySelector("summary")?.textContent
+      || item.querySelector("content")?.textContent || "";
     const fullText = (contentEncoded || description).replace(/<[^>]+>/g, "").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").trim();
     const hasFullText = fullText.length >= 200;
-    // 記事の日付（優先順：dc:date直接 > pubDate > NS解決 > チャンネル日付）
+    // 記事の日付
     const itemDate = item.getElementsByTagName("dc:date")?.[0]?.textContent?.trim()
       || item.querySelector("pubDate")?.textContent?.trim()
+      || item.querySelector("updated")?.textContent?.trim()
+      || item.querySelector("published")?.textContent?.trim()
       || item.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim()
       || item.getElementsByTagNameNS("*","date")?.[0]?.textContent?.trim()
-      || item.getElementsByTagNameNS("*","updated")?.[0]?.textContent?.trim()
       || channelDate;
+    // リンク取得（ATOM: <link href="..."> or <link>text</link>、RSS: <link>text</link>）
+    const rawLink = (() => {
+      if (isAtom) {
+        const linkEl = item.querySelector("link[href]");
+        if (linkEl) return linkEl.getAttribute("href") || "";
+      }
+      return item.querySelector("link")?.textContent?.trim() || "";
+    })();
+    const link = (() => {
+      if (!rawLink) return "";
+      if (rawLink.startsWith("http://") || rawLink.startsWith("https://")) return rawLink;
+      try { return new URL(rawLink, feedDef.url).href; } catch(e) { return rawLink; }
+    })();
     return {
-      title:       item.querySelector("title")?.textContent?.trim()  || "（タイトルなし）",
-      link: (() => {
-        const raw = item.querySelector("link")?.textContent?.trim() || "";
-        if (!raw) return "";
-        // 相対パスを絶対URLに変換
-        if (raw.startsWith("http://") || raw.startsWith("https://")) return raw;
-        try {
-          return new URL(raw, feedDef.url).href;
-        } catch(e) { return raw; }
-      })(),
+      title:       item.querySelector("title")?.textContent?.trim() || "（タイトルなし）",
+      link,
       desc:        fullText.slice(0, 2000),
       hasFullText: hasFullText,
       date:        itemDate,
