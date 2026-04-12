@@ -1035,6 +1035,19 @@ function saveAndRefresh() {
 }
 
 /* ===== プリセット ===== */
+// UTMパラメータを除去してクリーンなURLを返す
+function cleanUrl(url) {
+  if (!url) return url;
+  try {
+    const u = new URL(url);
+    if (!u.search) return url;
+    const UTM_KEYS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","utm_id"];
+    UTM_KEYS.forEach(k => u.searchParams.delete(k));
+    // パラメータが全て消えた場合は?ごと除去
+    return u.searchParams.toString() ? u.toString() : u.origin + u.pathname + u.hash;
+  } catch(e) { return url; }
+}
+
 function togglePrefParent(header) {
   const section = header.parentElement;
   const children = document.getElementById("prefChildren");
@@ -1431,7 +1444,7 @@ async function generateDive(idx, key) {
 ${a.title}
 
 【出典URL】
-${a.link || "（URLなし）"}
+${a.link ? cleanUrl(a.link) : "（URLなし）"}
 
 【掲載日】
 ${pubDate || "（日付不明）"}
@@ -1514,10 +1527,10 @@ async function generateTweet(idx, key) {
     const tweetBody = rawTweet.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
 
     // URL込みの全文（X投稿用）
-    const fullTweet = tweetBody + (a.link ? "\n" + a.link : "");
+    const fullTweet = tweetBody + (a.link ? "\n" + cleanUrl(a.link) : "");
 
     // 文字数カウント（URLは23文字固定でカウント）
-    const urlLen   = a.link ? 23 : 0;
+    const urlLen   = a.link ? 23 : 0; // Xは全URLを23文字換算
     const bodyLen  = tweetBody.length;
     const totalLen = bodyLen + (a.link ? 1 + urlLen : 0); // 改行1文字+URL
     const isOver   = totalLen > 140;
@@ -1528,7 +1541,7 @@ async function generateTweet(idx, key) {
     const tweetHtml = `
       <div class="tweet-box" id="tweetbox-${key}">
         <div class="tweet-label">🐦 X投稿</div>
-        <div class="tweet-text" id="tweettext-${key}">${esc(tweetBody)}${a.link ? "\n" + esc(a.link) : ""}</div>
+        <div class="tweet-text" id="tweettext-${key}">${esc(tweetBody)}${a.link ? "\n" + esc(cleanUrl(a.link)) : ""}</div>
         <div class="tweet-char-count ${isOver ? 'over' : 'ok'}">${totalLen}/140文字${isOver ? ' ⚠ 超過' : ''}</div>
         <div class="tweet-actions">
           <a class="btn-tweet-post" href="${esc(intentUrl)}" target="_blank" rel="noopener"><span style="font-size:16px;line-height:1;">𝕏</span> 投稿する</a>
