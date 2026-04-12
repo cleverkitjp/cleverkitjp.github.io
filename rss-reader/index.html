@@ -637,6 +637,25 @@ input:focus, select:focus { border-color: var(--accent); }
         </p>
         <button class="btn-primary" onclick="saveApiKey()">APIキーを保存</button>
         <button class="btn-ghost"   onclick="clearApiKey()">APIキーを削除する</button>
+
+        <hr class="m-divider" style="margin:20px 0;">
+        <div class="m-label">X 投稿スタイル</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-sub);cursor:pointer;">
+            <input type="radio" name="tweetStyle" value="random" id="styleRandom" onchange="saveTweetStyle()"> ランダム（毎回異なる切り口）
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-sub);cursor:pointer;">
+            <input type="radio" name="tweetStyle" value="fixed" id="styleFixed" onchange="saveTweetStyle()"> 固定する
+          </label>
+          <select id="tweetStyleSelect" onchange="saveTweetStyle()" style="margin-left:20px;display:none;">
+            <option value="0">驚き・発見の視点で</option>
+            <option value="1">ビジネスへの影響を考察する視点で</option>
+            <option value="2">課題・問題提起の視点で</option>
+            <option value="3">未来への期待・展望の視点で</option>
+            <option value="4">身近な生活への影響という視点で</option>
+            <option value="5">専門家目線のコメントとして</option>
+          </select>
+        </div>
       </div>
 
     </div>
@@ -723,6 +742,7 @@ input:focus, select:focus { border-color: var(--accent); }
 const RSS_URL          = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/rss";
 const FETCH_ARTICLE_URL = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/fetchArticle";
 const LS_API         = "rss_gemini_apikey";
+const LS_TWEET_STYLE = "rss_tweet_style"; // "random" or 切り口インデックス
 const LS_FEEDS       = "rss_feeds_v2";
 const LS_GROUPS      = "rss_groups_v2";
 const LS_CACHE_PREFIX = "rss_cache_v1_";
@@ -881,7 +901,8 @@ window.onload = function() {
 };
 
 /* ===== モーダル ===== */
-function openModal() { document.getElementById("modalOverlay").classList.add("open"); }
+function openModal() {
+  loadTweetStyle(); document.getElementById("modalOverlay").classList.add("open"); }
 function closeModal() { document.getElementById("modalOverlay").classList.remove("open"); }
 function handleOverlayClick(e) { if (e.target === document.getElementById("modalOverlay")) closeModal(); }
 function switchModalTab(tab) {
@@ -910,6 +931,27 @@ function onApiKeyInput() {
   document.getElementById("apiSaved").style.display =
     (key && key === localStorage.getItem(LS_API)) ? "block" : "none";
 }
+function saveTweetStyle() {
+  const isFixed = document.getElementById("styleFixed").checked;
+  const sel = document.getElementById("tweetStyleSelect");
+  sel.style.display = isFixed ? "block" : "none";
+  const val = isFixed ? sel.value : "random";
+  localStorage.setItem(LS_TWEET_STYLE, val);
+}
+
+function loadTweetStyle() {
+  const saved = localStorage.getItem(LS_TWEET_STYLE) || "random";
+  const sel = document.getElementById("tweetStyleSelect");
+  if (saved === "random") {
+    document.getElementById("styleRandom").checked = true;
+    sel.style.display = "none";
+  } else {
+    document.getElementById("styleFixed").checked = true;
+    sel.style.display = "block";
+    sel.value = saved;
+  }
+}
+
 function saveApiKey() {
   const key = document.getElementById("apiKey").value.trim();
   localStorage.setItem(LS_API, key);
@@ -1500,7 +1542,10 @@ async function generateTweet(idx, key) {
     "身近な生活への影響という視点で",
     "専門家目線のコメントとして",
   ];
-  const angle = angles[Math.floor(Math.random() * angles.length)];
+  const savedStyle = localStorage.getItem(LS_TWEET_STYLE) || "random";
+  const angle = savedStyle === "random"
+    ? angles[Math.floor(Math.random() * angles.length)]
+    : angles[parseInt(savedStyle)] || angles[0];
 
   const prompt = `以下のニュース記事について、X（旧Twitter）に投稿するコメントを日本語で生成してください。
 
