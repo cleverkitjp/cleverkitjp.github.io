@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>修養ノート</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=DM+Mono:wght@300;400&display=swap');
+
+  :root {
+    --ink: #1a1510;
+    --paper: #f5f0e8;
+    --paper2: #ede8dc;
+    --accent: #8b4513;
+    --accent2: #c17f3a;
+    --light: #b8a890;
+    --success: #4a7c59;
+    --line: rgba(26,21,16,0.12);
+    --shadow: 0 2px 16px rgba(26,21,16,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif JP', serif;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  /* ヘッダー */
+  .app-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px 20px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .app-header h1 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+  }
+  .app-header .date-str {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--light);
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* タブ */
+  .tabs {
+    display: flex;
+    background: var(--paper2);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .tab {
+    flex: 1;
+    padding: 12px 4px;
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--light);
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: 'Noto Serif JP', serif;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ページ */
+  .page { display: none; padding: 20px 16px; }
+  .page.active { display: block; }
+
+  /* 今日の状況バナー */
+  .today-banner {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+  }
+  .today-banner .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--light);
+    margin-bottom: 6px;
+  }
+  .today-banner .count-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .count-badge {
+    text-align: center;
+  }
+  .count-badge .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--accent2);
+  }
+  .count-badge .lbl {
+    font-size: 0.65rem;
+    color: var(--light);
+    margin-top: 2px;
+    letter-spacing: 0.08em;
+  }
+  .divider-v {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* セクションタイトル */
+  .section-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* 記録カード */
+  .record-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .record-type-badge {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .badge-praise { background: #fef3e2; color: #c17f3a; }
+  .badge-thanks { background: #e8f3ee; color: #4a7c59; }
+  .badge-self   { background: #e8eef8; color: #3a5c8b; }
+
+  .record-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--ink);
+    flex: 1;
+  }
+  .record-target {
+    font-size: 0.72rem;
+    color: var(--light);
+    margin-top: 3px;
+  }
+  .record-delete {
+    background: none;
+    border: none;
+    color: var(--light);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+
+  /* 入力フォーム */
+  .input-section {
+    background: var(--paper2);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+  }
+  .input-type-selector {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .type-btn {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--light);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .type-btn.selected-praise { background: #fef3e2; color: #c17f3a; border-color: #c17f3a; }
+  .type-btn.selected-thanks { background: #e8f3ee; color: #4a7c59; border-color: #4a7c59; }
+  .type-btn.selected-self   { background: #e8eef8; color: #3a5c8b; border-color: #3a5c8b; }
+
+  .input-hint {
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .input-name, .input-content {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    background: #fff;
+    color: var(--ink);
+    margin-bottom: 8px;
+    -webkit-appearance: none;
+  }
+  .input-content {
+    min-height: 72px;
+    resize: vertical;
+  }
+  .input-name:focus, .input-content:focus {
+    outline: none;
+    border-color: var(--accent2);
+  }
+  .add-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .add-btn:hover { background: var(--accent); }
+
+  /* 空状態 */
+  .empty-state {
+    text-align: center;
+    color: var(--light);
+    font-size: 0.82rem;
+    padding: 28px 0;
+    line-height: 1.8;
+    letter-spacing: 0.06em;
+  }
+
+  /* 週次レビュー */
+  .week-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .week-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  .week-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .week-score {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--light);
+  }
+
+  /* グラフ */
+  .graph-area {
+    margin: 12px 0;
+  }
+  .graph-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .graph-day {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--light);
+    width: 24px;
+    flex-shrink: 0;
+  }
+  .graph-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: var(--paper2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .graph-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--accent2);
+    transition: width 0.4s ease;
+  }
+  .graph-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--light);
+    width: 16px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* 週次スコアバッジ */
+  .score-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .score-badge {
+    flex: 1;
+    text-align: center;
+    background: var(--paper2);
+    border-radius: 6px;
+    padding: 8px 4px;
+  }
+  .score-badge .s-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--accent2);
+  }
+  .score-badge .s-lbl {
+    font-size: 0.6rem;
+    color: var(--light);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  /* 気づきメモ */
+  .kibuki-area {
+    margin-top: 12px;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
+  .kibuki-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .kibuki-textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    background: var(--paper);
+    color: var(--ink);
+    resize: vertical;
+    -webkit-appearance: none;
+  }
+  .kibuki-save-btn {
+    margin-top: 6px;
+    padding: 8px 16px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 5px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+  }
+
+  /* 週履歴の記録一覧トグル */
+  .week-records { display: none; margin-top: 8px; }
+  .week-records.open { display: block; }
+  .week-record-item {
+    font-size: 0.8rem;
+    border-left: 2px solid var(--line);
+    padding: 4px 8px;
+    margin-bottom: 4px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* リマインダーバナー */
+  .reminder-banner {
+    background: linear-gradient(135deg, #c17f3a 0%, #8b4513 100%);
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .reminder-banner.show { display: block; }
+  .reminder-banner .r-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .reminder-banner .r-body {
+    font-size: 0.78rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+  .reminder-banner .r-close {
+    float: right;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: -4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <h1>修　養　ノ　ー　ト</h1>
+  <div class="date-str" id="headerDate"></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showPage('today')">今日の記録</button>
+  <button class="tab" onclick="showPage('review')">週次レビュー</button>
+</div>
+
+<!-- 今日の記録ページ -->
+<div class="page active" id="page-today">
+
+  <div class="reminder-banner" id="reminderBanner">
+    <button class="r-close" onclick="closeReminder()">✕</button>
+    <div class="r-title">今日の修養を始めましょう</div>
+    <div class="r-body">称賛3〜5件・感謝1〜2件・自己評価1件。<br>具体的な行為を書くことが「技術」への道です。</div>
+  </div>
+
+  <div class="today-banner">
+    <div class="label">TODAY'S PROGRESS</div>
+    <div class="count-row">
+      <div class="count-badge">
+        <div class="num" id="countPraise">0</div>
+        <div class="lbl">称　賛</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="count-badge">
+        <div class="num" id="countThanks">0</div>
+        <div class="lbl">感　謝</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="count-badge">
+        <div class="num" id="countSelf">0</div>
+        <div class="lbl">自己評価</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">本日の記録</div>
+  <div id="todayList"></div>
+
+  <div class="input-section">
+    <div class="input-type-selector">
+      <button class="type-btn selected-praise" id="btn-praise" onclick="selectType('praise')">称賛</button>
+      <button class="type-btn" id="btn-thanks" onclick="selectType('thanks')">感謝</button>
+      <button class="type-btn" id="btn-self" onclick="selectType('self')">自己評価</button>
+    </div>
+    <div class="input-hint" id="inputHint">誰の、どんな行為をほめましたか？具体的に。</div>
+    <input class="input-name" id="inputName" type="text" placeholder="相手の名前（感謝・称賛の場合）">
+    <textarea class="input-content" id="inputContent" placeholder="具体的な行為・性質を書く"></textarea>
+    <button class="add-btn" onclick="addRecord()">記　録　す　る</button>
+  </div>
+</div>
+
+<!-- 週次レビューページ -->
+<div class="page" id="page-review">
+  <div class="section-title">週次レビュー</div>
+  <div id="reviewList"></div>
+</div>
+
+<script>
+const STORAGE_KEY = 'shuyo_records_v1';
+const MEMO_KEY    = 'shuyo_memo_v1';
+let selectedType  = 'praise';
+
+const hints = {
+  praise: '誰の、どんな行為をほめましたか？具体的に。',
+  thanks: '誰に、何を感謝しましたか？名前を添えて。',
+  self:   '自分が誇りを持てた行動・振る舞いは何ですか？'
+};
+
+function todayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function loadAll() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+}
+function saveAll(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+function loadMemos() {
+  try { return JSON.parse(localStorage.getItem(MEMO_KEY) || '{}'); } catch { return {}; }
+}
+function saveMemos(m) {
+  localStorage.setItem(MEMO_KEY, JSON.stringify(m));
+}
+
+function selectType(t) {
+  selectedType = t;
+  ['praise','thanks','self'].forEach(x => {
+    document.getElementById('btn-'+x).className = 'type-btn';
+  });
+  document.getElementById('btn-'+t).className = `type-btn selected-${t}`;
+  document.getElementById('inputHint').textContent = hints[t];
+  const nameInput = document.getElementById('inputName');
+  nameInput.style.display = t === 'self' ? 'none' : 'block';
+}
+
+function addRecord() {
+  const name    = document.getElementById('inputName').value.trim();
+  const content = document.getElementById('inputContent').value.trim();
+  if (!content) { alert('内容を入力してください'); return; }
+
+  const all = loadAll();
+  const key = todayKey();
+  if (!all[key]) all[key] = [];
+  all[key].push({ type: selectedType, name, content, id: Date.now() });
+  saveAll(all);
+
+  document.getElementById('inputName').value = '';
+  document.getElementById('inputContent').value = '';
+  renderToday();
+}
+
+function deleteRecord(dateKey, id) {
+  const all = loadAll();
+  if (all[dateKey]) {
+    all[dateKey] = all[dateKey].filter(r => r.id !== id);
+    saveAll(all);
+  }
+  renderToday();
+}
+
+function typeMeta(t) {
+  if (t === 'praise') return { label: '称 賛', cls: 'badge-praise' };
+  if (t === 'thanks') return { label: '感 謝', cls: 'badge-thanks' };
+  return { label: '自己評価', cls: 'badge-self' };
+}
+
+function renderToday() {
+  const all  = loadAll();
+  const key  = todayKey();
+  const recs = all[key] || [];
+
+  const cp = recs.filter(r => r.type === 'praise').length;
+  const ct = recs.filter(r => r.type === 'thanks').length;
+  const cs = recs.filter(r => r.type === 'self').length;
+  document.getElementById('countPraise').textContent = cp;
+  document.getElementById('countThanks').textContent = ct;
+  document.getElementById('countSelf').textContent   = cs;
+
+  const list = document.getElementById('todayList');
+  if (recs.length === 0) {
+    list.innerHTML = '<div class="empty-state">まだ記録がありません。<br>今日の最初の一件を書きましょう。</div>';
+    return;
+  }
+  list.innerHTML = recs.map(r => {
+    const m = typeMeta(r.type);
+    return `<div class="record-card">
+      <span class="record-type-badge ${m.cls}">${m.label}</span>
+      <div style="flex:1">
+        <div class="record-text">${escHtml(r.content)}</div>
+        ${r.name ? `<div class="record-target">${escHtml(r.name)}</div>` : ''}
+      </div>
+      <button class="record-delete" onclick="deleteRecord('${key}', ${r.id})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ── 週次レビュー ── */
+function getWeeks() {
+  const all   = loadAll();
+  const dates = Object.keys(all).sort();
+  if (dates.length === 0) return [];
+
+  const weeks = [];
+  let wStart = null, wDates = [];
+
+  function mondayOf(dateStr) {
+    const d = new Date(dateStr);
+    const day = d.getDay();
+    const diff = (day === 0) ? -6 : 1 - day;
+    d.setDate(d.getDate() + diff);
+    return d.toISOString().slice(0,10);
+  }
+
+  dates.forEach(dt => {
+    const mon = mondayOf(dt);
+    if (mon !== wStart) {
+      if (wStart) weeks.push({ weekStart: wStart, dates: wDates });
+      wStart = mon; wDates = [];
+    }
+    wDates.push(dt);
+  });
+  if (wStart) weeks.push({ weekStart: wStart, dates: wDates });
+  return weeks.reverse();
+}
+
+function renderReview() {
+  const all   = loadAll();
+  const memos = loadMemos();
+  const weeks = getWeeks();
+  const el    = document.getElementById('reviewList');
+
+  if (weeks.length === 0) {
+    el.innerHTML = '<div class="empty-state">記録がまだありません。</div>';
+    return;
+  }
+
+  const dayLabels = ['月','火','水','木','金','土','日'];
+
+  el.innerHTML = weeks.map((w, wi) => {
+    const allRecs = w.dates.flatMap(d => all[d] || []);
+    const totalPraise = allRecs.filter(r => r.type === 'praise').length;
+    const totalThanks = allRecs.filter(r => r.type === 'thanks').length;
+    const totalSelf   = allRecs.filter(r => r.type === 'self').length;
+    const total = allRecs.length;
+
+    // 曜日別バー（月〜日）
+    const weekDays = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(w.weekStart);
+      d.setDate(d.getDate() + i);
+      weekDays.push(d.toISOString().slice(0,10));
+    }
+    const maxDay = Math.max(...weekDays.map(d => (all[d]||[]).length), 1);
+    const barRows = weekDays.map((d, i) => {
+      const cnt = (all[d] || []).length;
+      const pct = Math.round(cnt / maxDay * 100);
+      return `<div class="graph-bar-row">
+        <span class="graph-day">${dayLabels[i]}</span>
+        <div class="graph-bar-bg"><div class="graph-bar-fill" style="width:${pct}%"></div></div>
+        <span class="graph-num">${cnt}</span>
+      </div>`;
+    }).join('');
+
+    const memoVal = (memos[w.weekStart] || '');
+    const weekEndD = new Date(w.weekStart); weekEndD.setDate(weekEndD.getDate()+6);
+    const weekLabel = `${w.weekStart.slice(5)} 〜 ${weekEndD.toISOString().slice(5,10)}`;
+
+    // 記録一覧
+    const recListHtml = allRecs.map(r => {
+      const m = typeMeta(r.type);
+      return `<div class="week-record-item"><span class="record-type-badge ${m.cls}" style="font-size:0.58rem;padding:2px 6px">${m.label}</span> ${r.name ? escHtml(r.name)+'：' : ''}${escHtml(r.content)}</div>`;
+    }).join('');
+
+    return `<div class="week-card">
+      <div class="week-header" onclick="toggleWeekRecords('wr${wi}')">
+        <span class="week-label">${weekLabel}</span>
+        <span class="week-score">${total} 件 ▾</span>
+      </div>
+      <div class="score-badges">
+        <div class="score-badge"><div class="s-num">${totalPraise}</div><div class="s-lbl">称賛</div></div>
+        <div class="score-badge"><div class="s-num">${totalThanks}</div><div class="s-lbl">感謝</div></div>
+        <div class="score-badge"><div class="s-num">${totalSelf}</div><div class="s-lbl">自己評価</div></div>
+      </div>
+      <div class="graph-area">${barRows}</div>
+      <div class="week-records" id="wr${wi}">${recListHtml || '<div class="empty-state" style="padding:8px 0;font-size:0.78rem">記録なし</div>'}</div>
+      <div class="kibuki-area">
+        <div class="kibuki-label">気づきメモ ─ この週の自分の変化</div>
+        <textarea class="kibuki-textarea" id="memo-${w.weekStart}" placeholder="どんな変化を感じましたか？">${escHtml(memoVal)}</textarea>
+        <br><button class="kibuki-save-btn" onclick="saveMemo('${w.weekStart}')">保　存</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleWeekRecords(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+function saveMemo(weekStart) {
+  const val   = document.getElementById('memo-'+weekStart).value;
+  const memos = loadMemos();
+  memos[weekStart] = val;
+  saveMemos(memos);
+  alert('保存しました');
+}
+
+/* ── ページ切替 ── */
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  event.target.classList.add('active');
+  if (p === 'review') renderReview();
+}
+
+/* ── リマインダー ── */
+function closeReminder() {
+  document.getElementById('reminderBanner').classList.remove('show');
+}
+function checkReminder() {
+  const all  = loadAll();
+  const key  = todayKey();
+  const recs = all[key] || [];
+  if (recs.length === 0) {
+    document.getElementById('reminderBanner').classList.add('show');
+  }
+}
+
+/* ── 日付表示 ── */
+function setHeaderDate() {
+  const d = new Date();
+  const days = ['日','月','火','水','木','金','土'];
+  document.getElementById('headerDate').textContent =
+    `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} （${days[d.getDay()]}）`;
+}
+
+/* ── 初期化 ── */
+selectType('praise');
+setHeaderDate();
+renderToday();
+checkReminder();
+</script>
+</body>
+</html>
