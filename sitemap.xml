@@ -4,7 +4,7 @@
 <!-- Top -->
 <url>
   <loc>https://cleverkit.jp/</loc>
-  <lastmod>2026-03-21</lastmod>
+  <lastmod>2026-04-19</lastmod>
   <changefreq>weekly</changefreq>
   <priority>1.0</priority>
 </url>
@@ -69,6 +69,13 @@
   <lastmod>2026-03-21</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://cleverkit.jp/rss-reader/</loc>
+  <lastmod>2026-04-19</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
 </url>
 
 <url>
