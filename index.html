@@ -458,11 +458,11 @@ common.css の上書きは !important を使用
 
 <!-- カテゴリクイックナビ -->
 <nav class="ck-cat-nav" aria-label="カテゴリへのクイックリンク">
-  <a href="/category-calendar/">📅 カレンダー・日付</a>
-  <a href="/category-travel/">✈️ 旅行</a>
-  <a href="/category-money/">💰 家計・お金</a>
-  <a href="/category-life/">🏠 暮らし</a>
-  <a href="/category-learn/">📚 学び</a>
+  <a href="#all-calendar">📅 カレンダー・日付</a>
+  <a href="#all-travel">✈️ 旅行・イベント</a>
+  <a href="#all-money">💰 家計・お金</a>
+  <a href="#all-life">🏠 暮らし</a>
+  <a href="#all-study">📚 学び</a>
 </nav>
 
 <main class="site-main">
@@ -735,17 +735,17 @@ common.css の上書きは !important を使用
       </div>
       <p class="ck-cat-card-desc">英語学習や勉強をサポートするツール</p>
       <div class="ck-mini-cards">
+        <a class="ck-mini-card" href="https://cleverkit.jp/rss-reader/">
+          <div class="ck-mini-card-body">
+            <span class="ck-mini-card-name">アイフィード｜RSS×AIリーダー</span>
+            <span class="ck-mini-card-desc">官公庁・経済・テックニュースをRSSで一括収集。AI要約で効率的に情報収集</span>
+          </div>
+          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+        </a>
         <a class="ck-mini-card" href="https://cleverkit.jp/eigo-pocket/">
           <div class="ck-mini-card-body">
             <span class="ck-mini-card-name">小学生の英単語学習「えいごポケット」</span>
             <span class="ck-mini-card-desc">小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます</span>
-          </div>
-          <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
-        </a>
-        <a class="ck-mini-card" href="https://cleverkit.jp/pikotan-typing/">
-          <div class="ck-mini-card-body">
-            <span class="ck-mini-card-name">ピコたんタイピング</span>
-            <span class="ck-mini-card-desc">【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得</span>
           </div>
           <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
         </a>
@@ -760,6 +760,20 @@ common.css の上書きは !important を使用
       <details class="ck-cat-details">
         <summary>その他のツールを見る</summary>
         <div class="ck-details-cards">
+          <a class="ck-mini-card" href="https://cleverkit.jp/pikotan-typing/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">ピコたんタイピング</span>
+              <span class="ck-mini-card-desc">【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="ck-mini-card" href="https://cleverkit.jp/study-timer/">
+            <div class="ck-mini-card-body">
+              <span class="ck-mini-card-name">勉強時間記録ツール</span>
+              <span class="ck-mini-card-desc">毎日の勉強時間を記録して可視化。学習習慣づくりをサポート</span>
+            </div>
+            <span class="ck-mini-card-arrow" aria-hidden="true">›</span>
+          </a>
           <a class="ck-mini-card" href="https://cleverkit.jp/life-balance-checker/">
             <div class="ck-mini-card-body">
               <span class="ck-mini-card-name">ライフバランス診断</span>
@@ -846,8 +860,10 @@ common.css の上書きは !important を使用
     <ul class="ck-all-tool-list">
       <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/eigo-pocket/">小学生の英単語学習「えいごポケット」</a></div><div class="tool-desc">小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます</div></div></li>
       <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/pikotan-typing/">ピコたんタイピング</a></div><div class="tool-desc">【PC向け】子ども向けタイピング練習ツール。楽しくタイピング基礎を習得</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/study-timer/">勉強時間記録ツール</a></div><div class="tool-desc">毎日の勉強時間を記録して可視化。学習習慣づくりをサポート</div></div></li>
       <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/study-timer/">ポモドーロ勉強タイマー</a></div><div class="tool-desc">25分集中のポモドーロタイマー。勉強や作業の集中力アップに</div></div></li>
       <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/life-balance-checker/">ライフバランス診断</a></div><div class="tool-desc">生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ</div></div></li>
+      <li><div class="tool-row"><div class="tool-title"><a href="https://cleverkit.jp/rss-reader/">アイフィード｜RSS×AIリーダー</a></div><div class="tool-desc">官公庁・経済・テックニュースをRSSで一括収集。AI要約で効率的に情報収集</div></div></li>
     </ul>
   </div>
 
@@ -924,7 +940,8 @@ common.css の上書きは !important を使用
     { name: 'カロリー運動換算ツール', desc: '食べたカロリーを運動量に換算。健康管理やダイエットの目安に', url: 'https://cleverkit.jp/calorie-to-exercise/' },
     { name: '小学生の英単語学習「えいごポケット」', desc: '小学校で学ぶ英単語を手軽に学習。ゲーム感覚で継続できます', url: 'https://cleverkit.jp/eigo-pocket/' },
     { name: 'ポモドーロ勉強タイマー', desc: '25分集中のポモドーロタイマー。勉強や作業の集中力アップに', url: 'https://cleverkit.jp/study-timer/' },
-    { name: 'ライフバランス診断', desc: '生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ', url: 'https://cleverkit.jp/life-balance-checker/' }
+    { name: 'ライフバランス診断', desc: '生活バランスを簡単チェック。学習や生活習慣の見直しに役立つ', url: 'https://cleverkit.jp/life-balance-checker/' },
+    { name: 'アイフィード｜RSS×AIリーダー', desc: '官公庁・経済・テックニュースをRSSで一括収集。AI要約で効率的に情報収集', url: 'https://cleverkit.jp/rss-reader/' }
   ];
   var today = new Date();
   var idx = (today.getFullYear() * 372 + today.getMonth() * 31 + today.getDate()) % tools.length;
