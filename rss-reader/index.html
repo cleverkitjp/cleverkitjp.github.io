@@ -3,9 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集 | CleverKit</title>
+<title>RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集 - Aifeed〔アイフィード〕</title>
 <meta name="description" content="官公庁・企業IR・業界ニュースのRSSを一括取得。グループ管理とGemini AI要約で情報収集を効率化。APIキーはブラウザ内のみ管理。無料で使えるRSSリーダーツール。">
+<meta property="og:title" content="RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集 - Aifeed〔アイフィード〕">
+<meta property="og:description" content="官公庁・都道府県・企業IRのRSSを一括取得。AI要約・深掘りプロンプト・X投稿生成まで。無料で使えるRSSリーダー。">
+<meta property="og:image" content="https://cleverkit.jp/rss-reader/ogp.png">
+<meta property="og:url" content="https://cleverkit.jp/rss-reader/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CleverKit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集 - Aifeed〔アイフィード〕">
+<meta name="twitter:description" content="官公庁・都道府県・企業IRのRSSを一括取得。AI要約・深掘りプロンプト・X投稿生成まで。無料で使えるRSSリーダー。">
+<meta name="twitter:image" content="https://cleverkit.jp/rss-reader/ogp.png">
 <link rel="canonical" href="https://cleverkit.jp/rss-reader/">
+<link rel="manifest" href="/rss-reader/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RSSリーダー">
+<meta name="theme-color" content="#10b981">
+<link rel="apple-touch-icon" href="/rss-reader/icon-192.svg">
 <link rel="stylesheet" href="/common.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
 <script>
@@ -15,69 +32,6 @@
   gtag('config', 'G-F6517NYNFF');
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "アイフィード｜RSS×AIリーダー",
-  "url": "https://cleverkit.jp/rss-reader/",
-  "applicationCategory": "Utility",
-  "operatingSystem": "All",
-  "description": "官公庁・企業IR・業界ニュースのRSSを一括取得。Gemini AIによる要約で情報収集を効率化。無料で使えるRSSリーダーツール。",
-  "isPartOf": { "@id": "https://cleverkit.jp/#website" }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "CleverKit", "item": "https://cleverkit.jp/" },
-    { "@type": "ListItem", "position": 2, "name": "学び", "item": "https://cleverkit.jp/category-learn/" },
-    { "@type": "ListItem", "position": 3, "name": "RSS×AIリーダー", "item": "https://cleverkit.jp/rss-reader/" }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Gemini APIキーがなくても使えますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "APIキーはどこに保存されますか？セキュリティは大丈夫ですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "APIキーはお使いのブラウザのlocalStorageにのみ保存されます。サーバーへの送信は一切行いません。AI要約リクエストはブラウザから直接Googleのサーバーに送信されます。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "グループ機能はどのように使いますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "⚙設定の「グループ」タブでグループ名を作成し、「フィード」タブで各フィードをグループに割り当てます。メイン画面のタブでグループを切り替えて記事を読めます。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "登録した設定は次回も保存されますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "はい。フィードURL・グループ設定・APIキーはすべてブラウザのlocalStorageに自動保存されます。次回アクセス時も同じ設定で最新記事を自動取得します。"
-      }
-    }
-  ]
-}
-</script>
 <style>
 :root {
   --bg:         #0a0e1a;
@@ -179,6 +133,7 @@ input:focus, select:focus { border-color: var(--accent); }
 .m-saved { font-size: 11px; color: var(--accent); margin-top: 6px; display: none; }
 .api-input-wrap { position: relative; }
 .api-input-wrap input { padding-right: 44px; }
+/* APIキー入力：デフォルトでマスク表示（パスワードマネージャーを回避） */
 #apiKey { -webkit-text-security: disc; text-security: disc; }
 #apiKey.visible { -webkit-text-security: none; text-security: none; }
 .btn-toggle-vis {
@@ -221,6 +176,14 @@ input:focus, select:focus { border-color: var(--accent); }
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .btn-del:hover { color: var(--err-text); }
+.btn-order {
+  background: transparent; border: none; color: var(--text-muted);
+  font-size: 14px; cursor: pointer; padding: 2px 4px;
+  min-width: 26px; min-height: 36px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.btn-order:hover { color: var(--accent); }
+.btn-order:disabled { color: var(--border); cursor: default; }
 
 /* フィードアイテム（モーダル） */
 .feed-item {
@@ -319,9 +282,8 @@ input:focus, select:focus { border-color: var(--accent); }
 }
 .article-title:hover { color: #a7f3d0; }
 .article-desc {
-  font-size: 12px; color: var(--text-sub); line-height: 1.6;
-  display: -webkit-box; -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 12px; color: var(--text); line-height: 1.6;
+  display: block; opacity: 0.75;
 }
 .summary-box {
   margin-top: 10px;
@@ -341,10 +303,15 @@ input:focus, select:focus { border-color: var(--accent); }
 
 /* 深掘りプロンプト */
 .dive-box {
-  margin-top: 10px; background: #0d1829;
-  border: 1px solid #2d3f5e; border-radius: 8px; padding: 10px 12px;
+  margin-top: 10px;
+  background: #0d1829;
+  border: 1px solid #2d3f5e;
+  border-radius: 8px; padding: 10px 12px;
 }
-.dive-label { font-size: 10px; color: #60a5fa; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.1em; }
+.dive-label {
+  font-size: 10px; color: #60a5fa;
+  font-weight: 700; margin-bottom: 6px; letter-spacing: 0.1em;
+}
 .dive-points { font-size: 12px; color: #94a3b8; line-height: 1.8; margin-bottom: 10px; }
 .dive-prompt-area {
   background: var(--bg); border: 1px solid var(--border);
@@ -378,47 +345,64 @@ input:focus, select:focus { border-color: var(--accent); }
 }
 .btn-tweet:disabled { color: var(--text-sub); border-color: var(--border); cursor: default; }
 .tweet-box {
-  margin-top: 10px; background: #0a1020;
-  border: 1px solid #2d3f5e; border-radius: 8px; padding: 10px 12px;
+  margin-top: 10px;
+  background: #0a1020;
+  border: 1px solid #2d3f5e;
+  border-radius: 8px; padding: 10px 12px;
 }
-.tweet-label { font-size: 10px; color: #60a5fa; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.1em; }
-.tweet-text { font-size: 13px; color: #cbd5e1; line-height: 1.7; margin-bottom: 10px; white-space: pre-wrap; word-break: break-all; }
-.tweet-char-count { font-size: 11px; margin-bottom: 8px; }
+.tweet-label {
+  font-size: 10px; color: #60a5fa;
+  font-weight: 700; margin-bottom: 6px; letter-spacing: 0.1em;
+}
+.tweet-text {
+  font-size: 13px; color: #cbd5e1;
+  line-height: 1.7; margin-bottom: 10px;
+  white-space: pre-wrap; word-break: break-all;
+}
+.tweet-char-count {
+  font-size: 11px; margin-bottom: 8px;
+}
 .tweet-char-count.over { color: var(--err-text); }
 .tweet-char-count.ok   { color: var(--text-muted); }
-.tweet-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.tweet-actions { display: flex; gap: 8px; flex-wrap: nowrap; align-items: center; }
 .btn-tweet-post {
-  display: inline-flex; align-items: center; gap: 5px;
+  display: inline-flex; align-items: center; justify-content: center;
   background: #000; border: 1px solid #333;
   color: #fff; font-size: 12px; font-weight: 700;
-  padding: 8px 16px; border-radius: 20px; cursor: pointer;
-  min-height: 36px; text-decoration: none;
+  padding: 0 8px; border-radius: 10px; cursor: pointer;
+  height: 44px; text-decoration: none; flex: 1;
 }
 .btn-tweet-post:hover { background: #1a1a1a; }
 .btn-tweet-copy {
-  display: inline-flex; align-items: center; gap: 5px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
   background: transparent; border: 1px solid var(--border2);
   color: var(--text-sub); font-size: 12px; font-weight: 600;
-  padding: 8px 14px; border-radius: 20px; cursor: pointer; min-height: 36px;
+  padding: 0 8px; border-radius: 10px; cursor: pointer;
+  height: 44px; flex: 1;
 }
 .btn-tweet-copy:hover { border-color: var(--accent); color: var(--accent); }
 .btn-tweet-copy.copied { border-color: var(--accent); color: var(--accent); }
 .btn-tweet-regen {
   display: inline-flex; align-items: center; justify-content: center;
-  background: transparent; border: 1px solid var(--border);
-  color: var(--text-muted); font-size: 14px;
-  width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+  background: transparent; border: 1px solid var(--border2);
+  color: var(--text-muted); font-size: 12px; font-weight: 600;
+  height: 44px; border-radius: 10px; cursor: pointer; flex: 1;
 }
 .btn-tweet-regen:hover { border-color: var(--accent); color: var(--accent); }
 
 /* 広告枠 */
 .ad-slot {
-  margin-bottom: 10px; border-radius: 12px; overflow: hidden;
-  min-height: 100px; background: var(--bg-card);
+  margin-bottom: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 100px;
+  background: var(--bg-card);
   border: 1px dashed var(--border);
   display: flex; align-items: center; justify-content: center;
 }
-.ad-placeholder-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; }
+.ad-placeholder-label {
+  font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em;
+}
 .ad-slot ins ~ .ad-placeholder-label { display: none; }
 
 /* FAQ */
@@ -441,7 +425,107 @@ input:focus, select:focus { border-color: var(--accent); }
 .related-link:hover { border-color: var(--accent); }
 .related-link span { font-size: 11px; color: var(--text-sub); font-weight: 400; }
 .section-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Aifeed（アイフィード）｜RSS×AIリーダー",
+  "url": "https://cleverkit.jp/rss-reader/",
+  "description": "官公庁・企業IR・業界ニュースのRSSを一括取得。AI要約・深掘りプロンプト・X投稿生成まで対応した無料RSSリーダー。",
+  "applicationCategory": "NewsApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "CleverKit",
+      "item": "https://cleverkit.jp/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "学び",
+      "item": "https://cleverkit.jp/category-learn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "RSS×AIリーダー（Aifeed）",
+      "item": "https://cleverkit.jp/rss-reader/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Gemini APIキーがなくても使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。Gemini APIは無料のGoogleアカウントで利用可能です。なお、1分間・1日あたりの利用回数に上限があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "APIキーはどこに保存されますか？セキュリティは大丈夫ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "APIキーはお使いの端末にのみ保存されます。Google GeminiのAPIへのリクエストを除き、外部サーバ等への送信は一切行いません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "グループ機能はどのように使いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "設定の「グループ」タブでグループ名を作成し、「フィード」タブで各フィードをグループに割り当てます。メイン画面のタブでグループを切り替えて記事を読めます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "登録した設定は次回も保存されますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。フィードURL・グループ設定・APIキーはすべてブラウザのlocalStorageに自動保存されます。次回アクセス時も同じ設定で最新記事を自動取得します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "このサービスの名称は？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aifeed（アイフィード）です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ブラウザのキャッシュをクリアすると設定が消えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "フィード設定・グループ設定・APIキーはブラウザのlocalStorageに保存されているため、キャッシュクリアや端末の初期化を行うと消えてしまいます。設定のバックアップ・復元機能（近日対応予定）をご利用ください。"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -449,7 +533,7 @@ input:focus, select:focus { border-color: var(--accent); }
 <nav class="ck-breadcrumb" aria-label="パンくず" style="padding:12px 16px 0; max-width:820px; margin:0 auto;">
   <a href="/">CleverKit</a> &rsaquo;
   <a href="/category-learn/">学び</a> &rsaquo;
-  RSS×AIリーダー
+  RSS×AIリーダー <span style="color:var(--text-muted);font-size:11px;">Aifeed〔アイフィード〕</span>
 </nav>
 
 <!-- 設定バー -->
@@ -473,24 +557,24 @@ input:focus, select:focus { border-color: var(--accent); }
       <button class="modal-tab"        onclick="switchModalTab('ai')"     id="mtab-ai">AI設定</button>
     </div>
     <div class="modal-body">
+
       <!-- パネル①：フィード管理 -->
       <div class="modal-panel active" id="panel-feeds">
-        <button class="btn-primary" onclick="saveAndRefresh()" style="margin-top:0;margin-bottom:12px;">保存して更新</button>
-        <div class="preset-section ">
+        <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
             <div class="preset-label" style="margin-bottom:0;">官公庁プリセット</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
           <div class="preset-grid" id="presetGov"></div>
         </div>
-        <div class="preset-section ">
+        <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
             <div class="preset-label" style="margin-bottom:0;">経済・ビジネスプリセット</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
           <div class="preset-grid" id="presetBiz"></div>
         </div>
-        <div class="preset-section ">
+        <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
             <div class="preset-label" style="margin-bottom:0;">テクノロジー・ITプリセット</div>
             <span class="preset-toggle-icon">▼</span>
@@ -499,50 +583,67 @@ input:focus, select:focus { border-color: var(--accent); }
         </div>
         <div class="preset-section collapsed">
           <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（北海道・東北）</div>
+            <div class="preset-label" style="margin-bottom:0;">メディア・新聞</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
-          <div class="preset-grid" id="presetPrefHokkaidoTohoku"></div>
+          <div class="preset-grid" id="presetMedia"></div>
         </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（関東）</div>
+        <div class="preset-section collapsed" id="prefParentSection">
+          <div class="preset-section-header" onclick="togglePrefParent(this)">
+            <div class="preset-label" style="margin-bottom:0;">都道府県</div>
             <span class="preset-toggle-icon">▼</span>
           </div>
-          <div class="preset-grid" id="presetPrefKanto"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（中部）</div>
-            <span class="preset-toggle-icon">▼</span>
+          <div class="preset-children" id="prefChildren" style="display:none;">
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">北海道・東北</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefHokkaidoTohoku"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">関東</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefKanto"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">中部</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefChubu"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">近畿</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefKinki"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">中国・四国</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefChugokuShikoku"></div>
+            </div>
+            <div class="preset-section collapsed" style="margin-left:12px;">
+              <div class="preset-section-header" onclick="togglePresetSection(this)">
+                <div class="preset-label" style="margin-bottom:0;font-size:13px;">九州・沖縄</div>
+                <span class="preset-toggle-icon">▼</span>
+              </div>
+              <div class="preset-grid" id="presetPrefKyushuOkinawa"></div>
+            </div>
           </div>
-          <div class="preset-grid" id="presetPrefChubu"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（近畿）</div>
-            <span class="preset-toggle-icon">▼</span>
-          </div>
-          <div class="preset-grid" id="presetPrefKinki"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（中国・四国）</div>
-            <span class="preset-toggle-icon">▼</span>
-          </div>
-          <div class="preset-grid" id="presetPrefChugokuShikoku"></div>
-        </div>
-        <div class="preset-section collapsed">
-          <div class="preset-section-header" onclick="togglePresetSection(this)">
-            <div class="preset-label" style="margin-bottom:0;">都道府県（九州・沖縄）</div>
-            <span class="preset-toggle-icon">▼</span>
-          </div>
-          <div class="preset-grid" id="presetPrefKyushuOkinawa"></div>
         </div>
         <hr class="m-divider">
-        <div class="m-label">登録フィード</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;">
+          <button class="btn-add-row" onclick="addFeedItem()" style="margin-top:0;flex:1;">＋ フィードを手動追加</button>
+        </div>
+        <button class="btn-primary" onclick="saveAndRefresh()" style="margin-bottom:12px;">保存して更新</button>
         <div id="feedItemList"></div>
-        <button class="btn-add-row" onclick="addFeedItem()">＋ フィードを手動追加</button>
         <button class="btn-primary" onclick="saveAndRefresh()">保存して更新</button>
       </div>
 
@@ -579,7 +680,27 @@ input:focus, select:focus { border-color: var(--accent); }
         </p>
         <button class="btn-primary" onclick="saveApiKey()">APIキーを保存</button>
         <button class="btn-ghost"   onclick="clearApiKey()">APIキーを削除する</button>
+
+        <hr class="m-divider" style="margin:20px 0;">
+        <div class="m-label">X 投稿スタイル</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-sub);cursor:pointer;">
+            <input type="radio" name="tweetStyle" value="random" id="styleRandom" onchange="saveTweetStyle()"> ランダム（毎回異なる切り口）
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-sub);cursor:pointer;">
+            <input type="radio" name="tweetStyle" value="fixed" id="styleFixed" onchange="saveTweetStyle()"> 固定する
+          </label>
+          <select id="tweetStyleSelect" onchange="saveTweetStyle()" style="margin-left:20px;display:none;">
+            <option value="0">驚き・発見の視点で</option>
+            <option value="1">ビジネスへの影響を考察する視点で</option>
+            <option value="2">課題・問題提起の視点で</option>
+            <option value="3">未来への期待・展望の視点で</option>
+            <option value="4">身近な生活への影響という視点で</option>
+            <option value="5">専門家目線のコメントとして</option>
+          </select>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -588,15 +709,14 @@ input:focus, select:focus { border-color: var(--accent); }
 <main class="main-wrap">
   <h1 class="ck-h1">RSS×AIリーダー｜官公庁・企業IR・業界ニュースをAI要約で効率収集</h1>
   <p class="tool-intro">
-    官公庁・企業IR・業界ニュースのRSSフィードを登録して最新情報を一括取得できる無料ツールです。
-    グループ管理でカテゴリ別に整理でき、Gemini APIキーを設定するとAI要約が使えます。
+    SNSでは知らず知らずのうちに偏った情報に触れてしまいます。RSSはアルゴリズムに左右されず、自分で選んだ信頼できる情報源から直接ニュースを取得できる手段です。官公庁・企業IR・業界ニュースをグループ管理で整理し、AI要約で内容を素早く把握。記事に関するSNS投稿文の作成もサポートします。
   </p>
 
   <div class="group-tab-row" id="groupTabRow"></div>
 
   <div class="status-bar">
     <span class="status-text" id="statusText">取得中...</span>
-    <button class="btn-refresh" id="refreshBtn" onclick="fetchAllFeeds()">↻ 更新</button>
+    <button class="btn-refresh" id="refreshBtn" onclick="fetchAllFeeds(true)">↻ 更新</button>
   </div>
 
   <div id="errorBox" class="error-box" style="display:none;"></div>
@@ -608,11 +728,11 @@ input:focus, select:focus { border-color: var(--accent); }
     <h2>よくある質問</h2>
     <div class="faq-item">
       <p class="faq-q">Q. Gemini APIキーがなくても使えますか？</p>
-      <p class="faq-a">はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。</p>
+      <p class="faq-a">はい。APIキーなしでもRSSフィードの取得・閲覧は無料でご利用いただけます。AIによる要約機能を使う場合のみ、GeminiのAPIキーが必要です。Gemini APIは無料のGoogleアカウントで利用可能です。なお、1分間・1日あたりの利用回数に上限があります。</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Q. APIキーはどこに保存されますか？セキュリティは大丈夫ですか？</p>
-      <p class="faq-a">APIキーはお使いのブラウザのlocalStorageにのみ保存されます。サーバーへの送信は一切行いません。AI要約リクエストはブラウザから直接Googleのサーバーに送信されます。</p>
+      <p class="faq-a">APIキーはお使いの端末にのみ保存されます。Google GeminiのAPIへのリクエストを除き、外部サーバ等への送信は一切行いません。</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Q. グループ機能はどのように使いますか？</p>
@@ -626,12 +746,20 @@ input:focus, select:focus { border-color: var(--accent); }
       <p class="faq-q">Q. 登録した設定は次回も保存されますか？</p>
       <p class="faq-a">はい。フィードURL・グループ設定・APIキーはすべてブラウザのlocalStorageに自動保存されます。次回アクセス時も同じ設定で最新記事を自動取得します。</p>
     </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. このサービスの名称は？</p>
+      <p class="faq-a">Aifeed（アイフィード）です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Q. ブラウザのキャッシュをクリアすると設定が消えますか？</p>
+      <p class="faq-a">フィード設定・グループ設定・APIキーはブラウザのlocalStorageに保存されているため、キャッシュクリアや端末の初期化を行うと消えてしまいます。設定のバックアップ・復元機能（近日対応予定）をご利用ください。</p>
+    </div>
   </section>
 
   <section class="related-section">
     <h2>関連ツール</h2>
     <div class="related-grid">
-      <a class="related-link" href="/calendar-generator/">📅 カレンダー画像ジェネレーター<span>予定や営業日を書き込んだカレンダー画像を作成</span></a>
+      <a class="related-link" href="/calendar-generator/">📅 カレンダー画像ジェネレーター<span>月間・週間カレンダーを印刷・共有用に生成</span></a>
       <a class="related-link" href="/day-counter/">🗓 日数計算ツール<span>2つの日付の差・経過日数を計算</span></a>
       <a class="related-link" href="/warikan/">💴 割り勘計算ツール<span>人数・金額から1人あたりの負担を計算</span></a>
     </div>
@@ -656,9 +784,12 @@ input:focus, select:focus { border-color: var(--accent); }
 <script>
 const RSS_URL          = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/rss";
 const FETCH_ARTICLE_URL = "https://asia-northeast1-cleverkit-rss.cloudfunctions.net/fetchArticle";
-const LS_API    = "rss_gemini_apikey";
-const LS_FEEDS  = "rss_feeds_v2";
-const LS_GROUPS = "rss_groups_v2";
+const LS_API         = "rss_gemini_apikey";
+const LS_TWEET_STYLE = "rss_tweet_style"; // "random" or 切り口インデックス
+const LS_FEEDS       = "rss_feeds_v2";
+const LS_GROUPS      = "rss_groups_v2";
+const LS_CACHE_PREFIX = "rss_cache_v1_";
+const CACHE_TTL      = 30 * 60 * 1000;
 
 let feeds        = [];
 let groups       = [];
@@ -673,27 +804,35 @@ const PRESETS = {
     { name:"消防庁",                url:"https://www.fdma.go.jp/index.xml",                            group:"官公庁" },
     { name:"消防庁（報道発表）",    url:"https://www.fdma.go.jp/pressrelease/houdou/index.xml",       group:"官公庁" },
     { name:"消防庁（災害情報）",    url:"https://www.fdma.go.jp/disaster/info/index.xml",              group:"官公庁" },
-    { name:"気象庁",                url:"https://www.jma.go.jp/rss/jma.rdf",                           group:"官公庁" },
-    { name:"観光庁",                url:"https://www.mlit.go.jp/kankocho/news/rss.xml",                group:"官公庁" },
-    { name:"特許庁",                url:"https://www.jpo.go.jp/system/rss/news.xml",                   group:"官公庁" },
     { name:"国税庁",                url:"https://www.nta.go.jp/publication/rss.xml",                   group:"官公庁" },
-    { name:"中小企業基盤整備機構",  url:"https://www.smrj.go.jp/rss.xml",                              group:"官公庁" },
-    { name:"日本年金機構",          url:"https://www.nenkin.go.jp/rss.xml",                            group:"官公庁" },
-    { name:"労働政策研究・研修機構",url:"https://www.jil.go.jp/rss.xml",                               group:"官公庁" },
-    { name:"日本学生支援機構",      url:"https://www.jasso.go.jp/rss.xml",                             group:"官公庁" },
+    { name:"日本銀行",           url:"https://www.boj.or.jp/rss/whatsnew.xml",          group:"官公庁" },
+    { name:"金融庁",             url:"https://www.fsa.go.jp/fsaNewsListAll_rss2.xml",        group:"官公庁" },
+    { name:"宮内庁",             url:"https://www.kunaicho.go.jp/rss/kunaicho.rdf",          group:"官公庁" },
+    { name:"警察庁",             url:"https://www.npa.go.jp/newlyarrived/rss20.xml",         group:"官公庁" },
+    { name:"経済産業省",         url:"https://www.meti.go.jp/ml_index_release_atom.xml",    group:"官公庁" },
+    { name:"総務省",             url:"https://www.soumu.go.jp/news.rdf",                       group:"官公庁" },
+    { name:"デジタル庁",         url:"https://www.digital.go.jp/rss/news.xml",                 group:"官公庁" },
+    { name:"文部科学省",         url:"https://www.mext.go.jp/b_menu/news/index.rdf",           group:"官公庁" },
+    { name:"政府広報オンライン", url:"https://www.gov-online.go.jp/rss/index.rdf",             group:"官公庁" },
+    { name:"消費者庁",           url:"https://www.caa.go.jp/news.rss",                         group:"官公庁" },
+    { name:"東京都",             url:"https://www.metro.tokyo.lg.jp/index.html/-/asset_publisher/knkg/rss", group:"官公庁" },
+    { name:"首相官邸",           url:"https://www.kantei.go.jp/index-jnews.rdf",               group:"官公庁" },
+    { name:"防衛省",             url:"https://www.mod.go.jp/j/rss/news.xml",                   group:"官公庁" },
+    { name:"財務省",             url:"https://www.mof.go.jp/news.rss",                         group:"官公庁" },
+    { name:"e-Gov パブリックコメント", url:"https://public-comment.e-gov.go.jp/rss/pcm_list.xml", group:"官公庁" },
   ],
   biz: [
-    { name:"日本経済新聞",           url:"https://www.nikkei.com/rss/news.rdf",              group:"ビジネス" },
-    { name:"ロイター 経済",          url:"https://feeds.reuters.com/reuters/JPeconomyNews",   group:"ビジネス" },
     { name:"東洋経済オンライン",     url:"https://toyokeizai.net/list/feed/rss",              group:"ビジネス" },
-    { name:"ダイヤモンドオンライン", url:"https://diamond.jp/list/feed/rss",                 group:"ビジネス" },
-    { name:"PR TIMES",              url:"https://prtimes.jp/rss.xml",                         group:"ビジネス" },
+    { name:"ダイヤモンドオンライン", url:"https://diamond.jp/list/feed/rss/dol",             group:"ビジネス" },
+    { name:"PR TIMES",              url:"https://prtimes.jp/index.rdf",                       group:"ビジネス" },
+    { name:"大和総研",           url:"https://www.dir.co.jp/feed/release.atom",               group:"ビジネス" },
+    { name:"NTTグループ",        url:"https://group.ntt/jp/newsrelease/rss/release.rdf",      group:"ビジネス" },
+    { name:"KDDI",               url:"https://newsroom.kddi.com/news/newsrelease.xml",         group:"ビジネス" },
   ],
   tech: [
     { name:"ITmedia NEWS",     url:"https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml",              group:"テック" },
-    { name:"Impress Watch",    url:"https://www.watch.impress.co.jp/data/rss/1.0/headline/news.rdf", group:"テック" },
-    { name:"TechCrunch Japan", url:"https://jp.techcrunch.com/feed/",                                group:"テック" },
-    { name:"CNET Japan",       url:"https://feeds.cnet.com/feed/cnet/news/rss.xml",                  group:"テック" },
+    { name:"Impress Watch",    url:"https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",      group:"テック" },
+    { name:"CNET Japan",       url:"https://feeds.japan.cnet.com/rss/cnet/all.rdf",                  group:"テック" },
     { name:"Zenn トレンド",    url:"https://zenn.dev/feed",                                          group:"テック" },
   ],
   pref_hokkaido_tohoku: [
@@ -754,14 +893,23 @@ const PRESETS = {
     { name:"鹿児島県", url:"https://www.pref.kagoshima.jp/saishin/saishin.xml", group:"都道府県" },
     { name:"沖縄県", url:"https://www.pref.okinawa.lg.jp/news.rss", group:"都道府県" },
   ],
+  media: [
+    { name:"NHK ニュース",     url:"https://news.web.nhk/n-data/conf/na/rss/cat0.xml",         group:"メディア" },
+    { name:"朝日新聞",         url:"https://www.asahi.com/rss/asahi/newsheadlines.rdf",        group:"メディア" },
+    { name:"毎日新聞",         url:"https://mainichi.jp/rss/etc/mainichi-flash.rss",           group:"メディア" },
+    { name:"北海道新聞",       url:"https://www.hokkaido-np.co.jp/output/7/free/index.ad.xml", group:"メディア" },
+    { name:"河北新報（東北）", url:"https://kahoku.news/rss/general/%E6%9D%B1%E5%8C%97%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%EF%BC%88%E5%9C%B0%E5%9F%9F%E5%88%A5%EF%BC%89", group:"メディア" },
+  ],
 };
 const DEFAULT_GROUPS = [
   { id:"g1", name:"官公庁" },
   { id:"g2", name:"ビジネス" },
   { id:"g3", name:"テック" },
   { id:"g4", name:"都道府県" },
+  { id:"g5", name:"メディア" },
 ];
 
+/* ===== 初期化 ===== */
 window.onload = function() {
   const savedKey = localStorage.getItem(LS_API) || "";
   if (savedKey) {
@@ -769,17 +917,24 @@ window.onload = function() {
     document.getElementById("apiSaved").style.display = "block";
   }
   updateSettingsBtn();
+
   const sg = localStorage.getItem(LS_GROUPS);
   groups = sg ? JSON.parse(sg) : [...DEFAULT_GROUPS];
+  // DEFAULT_GROUPSに追加されたグループを既存設定にマージ
   DEFAULT_GROUPS.forEach(dg => {
-    if (!groups.some(g => g.name === dg.name)) groups.push({ ...dg });
+    if (!groups.some(g => g.name === dg.name)) {
+      groups.push({ ...dg });
+    }
   });
+
   const sf = localStorage.getItem(LS_FEEDS);
   feeds = sf ? JSON.parse(sf) : [];
+
   renderPresetButtons();
   renderFeedItems();
   renderGroupItems();
   renderGroupTabs();
+
   if (feeds.length > 0) {
     fetchAllFeeds();
   } else {
@@ -789,7 +944,9 @@ window.onload = function() {
   }
 };
 
-function openModal() { document.getElementById("modalOverlay").classList.add("open"); }
+/* ===== モーダル ===== */
+function openModal() {
+  loadTweetStyle(); document.getElementById("modalOverlay").classList.add("open"); }
 function closeModal() { document.getElementById("modalOverlay").classList.remove("open"); }
 function handleOverlayClick(e) { if (e.target === document.getElementById("modalOverlay")) closeModal(); }
 function switchModalTab(tab) {
@@ -798,29 +955,61 @@ function switchModalTab(tab) {
     document.getElementById("mtab-"  + t).classList.toggle("active", t === tab);
   });
 }
+
+/* ===== AI設定 ===== */
 function toggleApiVis() {
   const input = document.getElementById("apiKey");
   const btn   = document.getElementById("apiVisBtn");
-  if (input.classList.contains("visible")) { input.classList.remove("visible"); btn.textContent = "👁"; }
-  else { input.classList.add("visible"); btn.textContent = "🙈"; }
+  if (input.classList.contains("visible")) {
+    input.classList.remove("visible");
+    btn.textContent = "👁";
+  } else {
+    input.classList.add("visible");
+    btn.textContent = "🙈";
+  }
   input.focus();
 }
+
 function onApiKeyInput() {
   const key = document.getElementById("apiKey").value.trim();
-  document.getElementById("apiSaved").style.display = (key && key === localStorage.getItem(LS_API)) ? "block" : "none";
+  document.getElementById("apiSaved").style.display =
+    (key && key === localStorage.getItem(LS_API)) ? "block" : "none";
 }
+function saveTweetStyle() {
+  const isFixed = document.getElementById("styleFixed").checked;
+  const sel = document.getElementById("tweetStyleSelect");
+  sel.style.display = isFixed ? "block" : "none";
+  const val = isFixed ? sel.value : "random";
+  localStorage.setItem(LS_TWEET_STYLE, val);
+}
+
+function loadTweetStyle() {
+  const saved = localStorage.getItem(LS_TWEET_STYLE) || "random";
+  const sel = document.getElementById("tweetStyleSelect");
+  if (saved === "random") {
+    document.getElementById("styleRandom").checked = true;
+    sel.style.display = "none";
+  } else {
+    document.getElementById("styleFixed").checked = true;
+    sel.style.display = "block";
+    sel.value = saved;
+  }
+}
+
 function saveApiKey() {
   const key = document.getElementById("apiKey").value.trim();
   localStorage.setItem(LS_API, key);
   document.getElementById("apiSaved").style.display = key ? "block" : "none";
-  updateSettingsBtn(); closeModal();
+  updateSettingsBtn();
+  closeModal();
   if (allArticles.length > 0) renderArticles();
 }
 function clearApiKey() {
   document.getElementById("apiKey").value = "";
   localStorage.removeItem(LS_API);
   document.getElementById("apiSaved").style.display = "none";
-  updateSettingsBtn(); closeModal();
+  updateSettingsBtn();
+  closeModal();
   if (allArticles.length > 0) renderArticles();
 }
 function updateSettingsBtn() {
@@ -829,21 +1018,43 @@ function updateSettingsBtn() {
   document.getElementById("apiDot").classList.toggle("on", !!key);
   document.getElementById("settingsBtnLabel").textContent = key ? "設定済み" : "設定";
 }
+
+/* ===== グループ管理 ===== */
 function renderGroupItems() {
-  const c = document.getElementById("groupItemList"); c.innerHTML = "";
+  const c = document.getElementById("groupItemList");
+  c.innerHTML = "";
   groups.forEach((g, i) => {
-    const row = document.createElement("div"); row.className = "group-item";
-    row.innerHTML = `<input type="text" value="${esc(g.name)}" placeholder="グループ名" oninput="groups[${i}].name=this.value; syncGroupNamesInFeeds(${i}, this.value)" /><button class="btn-del" onclick="removeGroup(${i})">×</button>`;
+    const row = document.createElement("div");
+    row.className = "group-item";
+    row.innerHTML = `
+      <button class="btn-order" onclick="moveGroup(${i},-1)" ${i===0?'disabled':''}>↑</button>
+      <button class="btn-order" onclick="moveGroup(${i}, 1)" ${i===groups.length-1?'disabled':''}>↓</button>
+      <input type="text" value="${esc(g.name)}" placeholder="グループ名"
+        oninput="groups[${i}].name=this.value; syncGroupNamesInFeeds(${i}, this.value)" />
+      <button class="btn-del" onclick="removeGroup(${i})">×</button>`;
     c.appendChild(row);
   });
 }
-function addGroupItem() { groups.push({ id: "g" + Date.now(), name: "" }); renderGroupItems(); }
+function moveGroup(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= groups.length) return;
+  [groups[i], groups[j]] = [groups[j], groups[i]];
+  renderGroupItems();
+}
+
+function addGroupItem() {
+  groups.push({ id: "g" + Date.now(), name: "" });
+  renderGroupItems();
+}
 function removeGroup(i) {
-  const oldName = groups[i].name; groups.splice(i, 1);
+  const oldName = groups[i].name;
+  groups.splice(i, 1);
   feeds.forEach(f => { if (f.group === oldName) f.group = ""; });
-  renderGroupItems(); renderFeedItems();
+  renderGroupItems();
+  renderFeedItems();
 }
 function syncGroupNamesInFeeds(groupIdx, newName) {
+  // グループ名変更時にフィードの所属グループ名も追随
   const oldName = groups[groupIdx]._prevName;
   if (oldName) feeds.forEach(f => { if (f.group === oldName) f.group = newName; });
   groups[groupIdx]._prevName = newName;
@@ -851,31 +1062,105 @@ function syncGroupNamesInFeeds(groupIdx, newName) {
 function saveGroups() {
   localStorage.setItem(LS_GROUPS, JSON.stringify(groups));
   localStorage.setItem(LS_FEEDS,  JSON.stringify(feeds));
-  renderGroupTabs(); renderFeedItems(); closeModal();
+  renderGroupTabs();
+  renderFeedItems();
+  closeModal();
 }
+
+/* ===== フィード管理 ===== */
 function renderFeedItems() {
-  const c = document.getElementById("feedItemList"); c.innerHTML = "";
-  if (feeds.length === 0) { c.innerHTML = `<p class="m-hint">フィードが登録されていません。上のプリセットか手動追加で登録してください。</p>`; return; }
-  feeds.forEach((f, i) => {
-    const item = document.createElement("div"); item.className = "feed-item";
-    const opts = groups.map(g => `<option value="${esc(g.name)}" ${f.group===g.name?"selected":""}>${esc(g.name)}</option>`).join("");
-    item.innerHTML = `<div class="fi-row"><input class="fi-name" type="text" placeholder="表示名（任意）" value="${esc(f.name)}" oninput="feeds[${i}].name=this.value" /><button class="btn-del" onclick="removeFeedItem(${i})">×</button></div><div class="fi-row"><input class="fi-url" type="text" placeholder="https://example.com/rss.xml" value="${esc(f.url)}" oninput="feeds[${i}].url=this.value" /></div><div class="fi-row"><select class="fi-select" onchange="feeds[${i}].group=this.value"><option value="">グループなし</option>${opts}</select></div>`;
+  const c = document.getElementById("feedItemList");
+  c.innerHTML = "";
+  if (feeds.length === 0) {
+    c.innerHTML = `<p class="m-hint">フィードが登録されていません。上のプリセットか手動追加で登録してください。</p>`;
+    return;
+  }
+  // 新しいものを上に表示（逆順）
+  const indices = [...Array(feeds.length).keys()].reverse();
+  indices.forEach(i => {
+    const f = feeds[i];
+    const item = document.createElement("div");
+    item.className = "feed-item";
+    const opts = groups.map(g =>
+      `<option value="${esc(g.name)}" ${f.group===g.name?"selected":""}>${esc(g.name)}</option>`
+    ).join("");
+    item.innerHTML = `
+      <div class="fi-row">
+        <input class="fi-name" type="text" placeholder="表示名（任意）"
+          value="${esc(f.name)}" oninput="feeds[${i}].name=this.value" />
+        <button class="btn-del" onclick="removeFeedItem(${i})">×</button>
+      </div>
+      <div class="fi-row">
+        <input class="fi-url" type="text" placeholder="https://example.com/rss.xml"
+          value="${esc(f.url)}" oninput="feeds[${i}].url=this.value" />
+      </div>
+      <div class="fi-row">
+        <select class="fi-select" onchange="feeds[${i}].group=this.value">
+          <option value="">グループなし</option>
+          ${opts}
+        </select>
+      </div>`;
     c.appendChild(item);
   });
 }
-function addFeedItem(preset) { feeds.push(preset || { name:"", url:"", group:"" }); renderFeedItems(); }
-function removeFeedItem(i) { feeds.splice(i, 1); renderFeedItems(); renderPresetButtons(); }
+function addFeedItem(preset) {
+  feeds.push(preset || { name:"", url:"", group:"" });
+  renderFeedItems();
+}
+function removeFeedItem(i) {
+  feeds.splice(i, 1);
+  renderFeedItems();
+  renderPresetButtons();
+}
 function saveAndRefresh() {
   feeds = feeds.filter(f => f.url.trim());
   localStorage.setItem(LS_FEEDS, JSON.stringify(feeds));
-  renderGroupTabs(); closeModal(); fetchAllFeeds();
+  renderGroupTabs();
+  closeModal();
+  fetchAllFeeds(true); // フィード変更時はキャッシュ無視
 }
-function togglePresetSection(header) { header.closest('.preset-section').classList.toggle('collapsed'); }
+
+/* ===== プリセット ===== */
+// UTMパラメータを除去してクリーンなURLを返す
+function cleanUrl(url) {
+  if (!url) return url;
+  try {
+    const u = new URL(url);
+    if (!u.search) return url;
+    const UTM_KEYS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","utm_id"];
+    UTM_KEYS.forEach(k => u.searchParams.delete(k));
+    // パラメータが全て消えた場合は?ごと除去
+    return u.searchParams.toString() ? u.toString() : u.origin + u.pathname + u.hash;
+  } catch(e) { return url; }
+}
+
+function togglePrefParent(header) {
+  const section = header.parentElement;
+  const children = document.getElementById("prefChildren");
+  const icon = header.querySelector(".preset-toggle-icon");
+  const isCollapsed = section.classList.contains("collapsed");
+  if (isCollapsed) {
+    section.classList.remove("collapsed");
+    children.style.display = "block";
+    if (icon) icon.textContent = "▲";
+  } else {
+    section.classList.add("collapsed");
+    children.style.display = "none";
+    if (icon) icon.textContent = "▼";
+  }
+}
+
+function togglePresetSection(header) {
+  const section = header.closest('.preset-section');
+  section.classList.toggle('collapsed');
+}
+
 function renderPresetButtons() {
   [
     { id:"presetGov",                  list:PRESETS.gov                  },
     { id:"presetBiz",                  list:PRESETS.biz                  },
     { id:"presetTech",                 list:PRESETS.tech                 },
+    { id:"presetMedia",                 list:PRESETS.media                 },
     { id:"presetPrefHokkaidoTohoku",   list:PRESETS.pref_hokkaido_tohoku },
     { id:"presetPrefKanto",            list:PRESETS.pref_kanto           },
     { id:"presetPrefChubu",            list:PRESETS.pref_chubu           },
@@ -883,183 +1168,641 @@ function renderPresetButtons() {
     { id:"presetPrefChugokuShikoku",   list:PRESETS.pref_chugoku_shikoku },
     { id:"presetPrefKyushuOkinawa",    list:PRESETS.pref_kyushu_okinawa  },
   ].forEach(({ id, list }) => {
-    const c = document.getElementById(id); c.innerHTML = "";
+    const c = document.getElementById(id);
+    c.innerHTML = "";
     list.forEach(p => {
       const exists = feeds.some(f => f.url === p.url);
       const btn = document.createElement("button");
       btn.className = "preset-btn" + (exists ? " added" : "");
-      btn.textContent = p.name; btn.dataset.url = p.url;
-      btn.onclick = () => togglePreset(btn, p); c.appendChild(btn);
+      btn.textContent = p.name;
+      btn.dataset.url = p.url;
+      btn.onclick = () => togglePreset(btn, p);
+      c.appendChild(btn);
     });
   });
 }
 function togglePreset(btn, p) {
   const idx = feeds.findIndex(f => f.url === p.url);
-  if (idx >= 0) { feeds.splice(idx, 1); btn.classList.remove("added"); }
-  else { const gExists = groups.some(g => g.name === p.group); feeds.push({ name: p.name, url: p.url, group: gExists ? p.group : "" }); btn.classList.add("added"); }
+  if (idx >= 0) {
+    feeds.splice(idx, 1);
+    btn.classList.remove("added");
+  } else {
+    const gExists = groups.some(g => g.name === p.group);
+    feeds.push({ name: p.name, url: p.url, group: gExists ? p.group : "" });
+    btn.classList.add("added");
+  }
   renderFeedItems();
 }
+
+/* ===== グループタブ（メイン） ===== */
 function renderGroupTabs() {
-  const row = document.getElementById("groupTabRow"); row.innerHTML = "";
+  const row = document.getElementById("groupTabRow");
+  row.innerHTML = "";
   const tabs = ["all", ...groups.map(g => g.name)];
   const hasUngrouped = feeds.some(f => f.url.trim() && !f.group);
   if (hasUngrouped) tabs.push("__ungrouped__");
   tabs.forEach(gname => {
     const btn = document.createElement("button");
     btn.className = "group-tab" + (gname === currentGroup ? " active" : "");
-    btn.textContent = gname === "all" ? "すべて" : gname === "__ungrouped__" ? "未分類" : gname;
-    btn.onclick = () => switchGroup(gname); row.appendChild(btn);
+    btn.textContent = gname === "all" ? "すべて"
+                    : gname === "__ungrouped__" ? "未分類"
+                    : gname;
+    btn.onclick = () => switchGroup(gname);
+    row.appendChild(btn);
   });
 }
-function switchGroup(gname) { currentGroup = gname; renderGroupTabs(); renderArticles(); }
-async function fetchAllFeeds() {
-  const valid = feeds.filter(f => f.url.trim());
-  if (valid.length === 0) { setStatus("フィードが未登録です。⚙設定からフィードを追加してください。"); return; }
-  setStatus("取得中..."); document.getElementById("refreshBtn").disabled = true;
-  document.getElementById("errorBox").style.display = "none";
-  document.getElementById("articlesArea").innerHTML = `<div class="loading-text">記事を取得しています...</div>`;
-  const results = await Promise.allSettled(valid.map(f => fetchOneFeed(f)));
-  allArticles = []; let errCount = 0;
-  results.forEach(r => { if (r.status === "fulfilled" && r.value) allArticles.push(...r.value); else errCount++; });
-  allArticles.sort((a, b) => {
-    const da = a.date ? new Date(a.date) : null; const db = b.date ? new Date(b.date) : null;
-    const va = da && !isNaN(da) ? da.getTime() : 0; const vb = db && !isNaN(db) ? db.getTime() : 0;
-    return vb - va;
-  });
-  document.getElementById("refreshBtn").disabled = false;
-  setStatus(`${allArticles.length}件の記事${errCount > 0 ? `（${errCount}件取得失敗）` : ""}`);
-  if (allArticles.length === 0 && errCount > 0) showError("フィードの取得に失敗しました。URLをご確認ください。");
+function switchGroup(gname) {
+  currentGroup = gname;
+  renderGroupTabs();
   renderArticles();
 }
+
+/* ===== RSS取得（並列） ===== */
+async function fetchAllFeeds(forceRefresh = false) {
+  const valid = feeds.filter(f => f.url.trim());
+  if (valid.length === 0) {
+    setStatus("フィードが未登録です。⚙設定からフィードを追加してください。");
+    return;
+  }
+
+  setStatus("取得中...");
+  document.getElementById("refreshBtn").disabled = true;
+  document.getElementById("errorBox").style.display = "none";
+  document.getElementById("articlesArea").innerHTML = `<div class="loading-text">記事を取得しています...</div>`;
+
+  // フィードごとにキャッシュチェックして取得
+  const results = await Promise.allSettled(valid.map(f => fetchOneFeedWithCache(f, forceRefresh)));
+
+  allArticles = [];
+  let errCount = 0;
+  const failedFeeds = [];
+  results.forEach((r, i) => {
+    if (r.status === "fulfilled" && r.value) allArticles.push(...r.value);
+    else {
+      errCount++;
+      failedFeeds.push(valid[i].name || valid[i].url);
+    }
+  });
+
+  allArticles.sort((a, b) => {
+    const va = normalizeDate(a.date)?.getTime() || 0;
+    const vb = normalizeDate(b.date)?.getTime() || 0;
+    return vb - va;
+  });
+
+  document.getElementById("refreshBtn").disabled = false;
+  setStatus(`${allArticles.length}件の記事${errCount > 0 ? `（${errCount}件取得失敗）` : ""}`);
+  if (errCount > 0) {
+    showError(`以下のフィードの取得に失敗しました：\n${failedFeeds.map(f => `・${f}`).join("\n")}`);
+  }
+  renderArticles();
+}
+
+// フィードごとのキャッシュ付き取得
+async function fetchOneFeedWithCache(feedDef, forceRefresh = false) {
+  // URLをシンプルなハッシュ値に変換（btoa非対応文字の問題を回避）
+  const urlHash = feedDef.url.split("").reduce((h, c) => (Math.imul(31, h) + c.charCodeAt(0)) | 0, 0);
+  const cacheKey = LS_CACHE_PREFIX + Math.abs(urlHash).toString(36) + "_" + feedDef.url.length;
+
+  // キャッシュチェック
+  if (!forceRefresh) {
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const { timestamp, articles } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_TTL && articles?.length > 0) {
+          return articles;
+        }
+      }
+    } catch(e) {}
+  }
+
+  // Firebaseから取得
+  let articles;
+  try {
+    articles = await fetchOneFeed(feedDef);
+  } catch(e) {
+    // Firebase取得失敗時：期限切れキャッシュがあれば使う（フォールバック）
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const { articles: cachedArticles } = JSON.parse(cached);
+        if (cachedArticles?.length > 0) return cachedArticles;
+      }
+    } catch(e2) {}
+    throw e; // キャッシュもなければエラーをthrow
+  }
+
+  // キャッシュ保存
+  try {
+    localStorage.setItem(cacheKey, JSON.stringify({
+      timestamp: Date.now(),
+      articles,
+    }));
+  } catch(e) {
+    clearOldCaches();
+    try { localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), articles })); } catch(e2) {}
+  }
+
+  return articles;
+}
+
+// 期限切れキャッシュを削除
+function clearOldCaches() {
+  const keys = Object.keys(localStorage).filter(k => k.startsWith(LS_CACHE_PREFIX));
+  keys.forEach(k => {
+    try {
+      const { timestamp } = JSON.parse(localStorage.getItem(k) || "{}");
+      if (!timestamp || Date.now() - timestamp > CACHE_TTL) {
+        localStorage.removeItem(k);
+      }
+    } catch(e) { localStorage.removeItem(k); }
+  });
+}
+
 async function fetchOneFeed(feedDef) {
   const res  = await fetch(RSS_URL + "?url=" + encodeURIComponent(feedDef.url));
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const text = await res.text();
   const doc  = new DOMParser().parseFromString(text, "application/xml");
-  const channelTitle = doc.querySelector("channel > title")?.textContent?.trim() || "";
+  // RSS(item) と ATOM(entry) の両方に対応
+  const isAtom = doc.querySelector("feed") !== null || doc.documentElement.tagName === "feed" || doc.documentElement.localName === "feed";
+  const channelTitle = isAtom
+    ? doc.querySelector("feed > title")?.textContent?.trim()
+    : doc.querySelector("channel > title")?.textContent?.trim() || "";
   const displayName  = feedDef.name || channelTitle || feedDef.url;
-  return Array.from(doc.querySelectorAll("item")).slice(0, 10).map(item => {
+  // チャンネルレベルの日付をフォールバック用に取得
+  const chEl = isAtom ? doc.querySelector("feed") : doc.querySelector("channel");
+  const channelDate  = chEl?.querySelector("pubDate")?.textContent?.trim()
+    || chEl?.querySelector("updated")?.textContent?.trim()
+    || chEl?.getElementsByTagName("dc:date")?.[0]?.textContent?.trim()
+    || chEl?.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim()
+    || "";
+  const entries = isAtom
+    ? Array.from(doc.querySelectorAll("entry")).slice(0, 10)
+    : Array.from(doc.querySelectorAll("item")).slice(0, 10);
+  return entries.map(item => {
+    // ATOM: summary/content、RSS: content:encoded/description
     const contentEncoded = item.getElementsByTagNameNS("*", "encoded")?.[0]?.textContent || "";
-    const description    = item.querySelector("description")?.textContent || "";
+    const description    = item.querySelector("description")?.textContent
+      || item.querySelector("summary")?.textContent
+      || item.querySelector("content")?.textContent || "";
     const fullText = (contentEncoded || description).replace(/<[^>]+>/g, "").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").trim();
+    const hasFullText = fullText.length >= 200;
+    // 記事の日付
+    const itemDate = item.getElementsByTagName("dc:date")?.[0]?.textContent?.trim()
+      || item.querySelector("pubDate")?.textContent?.trim()
+      || item.querySelector("updated")?.textContent?.trim()
+      || item.querySelector("published")?.textContent?.trim()
+      || item.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim()
+      || item.getElementsByTagNameNS("*","date")?.[0]?.textContent?.trim()
+      || channelDate;
+    // リンク取得（ATOM: <link href="...">、RSS: <link>text</link>）
+    const rawLink = (() => {
+      if (isAtom) {
+        // rel="alternate"を優先、なければ最初のhref付きlinkを使用
+        const altLink = item.querySelector('link[rel="alternate"]')
+          || item.querySelector("link[href]");
+        if (altLink) return altLink.getAttribute("href") || "";
+        return item.querySelector("link")?.textContent?.trim() || "";
+      }
+      return item.querySelector("link")?.textContent?.trim() || "";
+    })();
+    const link = (() => {
+      if (!rawLink) return "";
+      if (rawLink.startsWith("http://") || rawLink.startsWith("https://")) return rawLink;
+      try { return new URL(rawLink, feedDef.url).href; } catch(e) { return rawLink; }
+    })();
     return {
-      title:       item.querySelector("title")?.textContent?.trim()  || "（タイトルなし）",
-      link:        item.querySelector("link")?.textContent?.trim()   || "",
-      desc:        fullText.slice(0, 500),
-      hasFullText: fullText.length >= 200,
-      date:        item.querySelector("pubDate")?.textContent?.trim() || item.getElementsByTagNameNS("http://purl.org/dc/elements/1.1/","date")?.[0]?.textContent?.trim() || "",
+      title:       item.querySelector("title")?.textContent?.trim() || "（タイトルなし）",
+      link,
+      desc:        fullText.slice(0, 2000),
+      hasFullText: hasFullText,
+      date:        itemDate,
       source:      displayName,
       group:       feedDef.group || "",
     };
   });
 }
+
+// 記事本文をFirebase経由で取得
 async function fetchArticleText(articleUrl) {
   try {
     const res  = await fetch(FETCH_ARTICLE_URL + "?url=" + encodeURIComponent(articleUrl));
     const data = await res.json();
     if (data.text && data.length >= 200) return data.text;
     return null;
-  } catch (e) { return null; }
+  } catch (e) {
+    return null;
+  }
 }
+
+/* ===== 記事描画 ===== */
 function adSlotHtml() {
-  return `<div class="ad-slot"><span class="ad-placeholder-label">AD</span></div>`;
+  return `
+    <div class="ad-slot">
+      <!--
+      AdSense承認後：以下のコメントを外してdata-ad-slot=""に広告ユニットIDを入力
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9727255179923866"
+        data-ad-slot="XXXXXXXXXX"
+        data-ad-format="fluid"
+        data-ad-layout-key="-fb+5w+4e-db+86"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+      -->
+      <span class="ad-placeholder-label">AD</span>
+    </div>`;
 }
+
 function renderArticles() {
   const area     = document.getElementById("articlesArea");
   const hasKey   = !!localStorage.getItem(LS_API);
-  const filtered = currentGroup === "all" ? allArticles : currentGroup === "__ungrouped__" ? allArticles.filter(a => !a.group) : allArticles.filter(a => a.group === currentGroup);
-  if (filtered.length === 0) { area.innerHTML = `<div class="loading-text">表示できる記事がありません</div>`; return; }
-  const AD_INTERVAL = 5; let html = "";
+  const filtered = currentGroup === "all"
+    ? allArticles
+    : currentGroup === "__ungrouped__"
+      ? allArticles.filter(a => !a.group)
+      : allArticles.filter(a => a.group === currentGroup);
+
+  // グループ別件数をステータスに反映
+  const countEl = document.getElementById("statusText");
+  const errMatch = countEl.textContent.match(/（[^）]*取得失敗[^）]*）/);
+  const errSuffix = errMatch ? errMatch[0] : "";
+  const dispCount = currentGroup === "all" ? allArticles.length : filtered.length;
+  countEl.textContent = `${dispCount}件の記事${errSuffix}`;
+
+  if (filtered.length === 0) {
+    area.innerHTML = `<div class="loading-text">表示できる記事がありません</div>`;
+    return;
+  }
+
+  const AD_INTERVAL = 5;
+  let html = "";
+
   filtered.forEach((a, i) => {
-    if (i > 0 && i % AD_INTERVAL === 0) html += adSlotHtml();
+    // 5件ごとに広告を挿入（最初の記事の前には挿入しない）
+    if (i > 0 && i % AD_INTERVAL === 0) {
+      html += adSlotHtml();
+    }
     const key = "a" + i;
-    html += `<div class="article" id="art-${key}"><div class="article-meta"><span class="article-source">${esc(a.source)}</span><span class="article-date">${fmtDate(a.date)}</span></div><a class="article-title" href="${esc(a.link)}" target="_blank" rel="noopener">${esc(a.title)}</a>${a.desc ? `<div class="article-desc" id="desc-${key}">${esc(a.desc)}</div>` : ""}<div id="sum-${key}"></div>${hasKey ? `<button class="btn-summarize" id="btn-${key}" onclick="summarize(${i},'${key}')">⚡ AI要約</button>` : `<div class="no-api-hint">AI要約は⚙設定でAPIキーを設定すると使えます</div>`}</div>`;
+    html += `
+      <div class="article" id="art-${key}">
+        <div class="article-meta">
+          <span class="article-source">${esc(a.source)}</span>
+          <span class="article-date">${fmtDate(a.date)}</span>
+        </div>
+        <a class="article-title" href="${esc(a.link)}" target="_blank" rel="noopener">${esc(a.title)}</a>
+        ${a.desc ? `<div class="article-desc" id="desc-${key}">${esc(a.desc)}</div>` : ""}
+        <div id="sum-${key}"></div>
+        ${hasKey
+          ? (a.desc && a.desc.length >= 200
+            ? `<div style="display:flex;flex-wrap:wrap;gap:0;">
+                <button class="btn-dive" id="dive-${key}" onclick="generateDive(${i},'${key}')">🔗 深掘りプロンプトを生成</button>
+                <button class="btn-tweet" id="tweetbtn-${key}" onclick="generateTweet(${i},'${key}')">🐦 X投稿を生成</button>
+               </div>`
+            : `<button class="btn-summarize" id="btn-${key}" onclick="summarize(${i},'${key}')">⚡ AI要約</button>`)
+          : `<div class="no-api-hint">AI要約は⚙設定でAPIキーを設定すると使えます</div>`
+        }
+      </div>`;
   });
+
   area.innerHTML = html;
 }
+
+/* ===== AI要約 ===== */
 async function summarize(idx, key) {
-  const apiKey = localStorage.getItem(LS_API) || ""; if (!apiKey) return;
+  const apiKey = localStorage.getItem(LS_API) || "";
+  if (!apiKey) return;
   const filtered = currentGroup === "all" ? allArticles : allArticles.filter(a => a.group === currentGroup);
-  const a = filtered[idx]; const btn = document.getElementById("btn-" + key); const sumDiv = document.getElementById("sum-" + key); const descDiv = document.getElementById("desc-" + key);
-  if (!btn || btn.disabled) return; btn.disabled = true; btn.textContent = "要約中...";
+  const a   = filtered[idx];
+  const btn = document.getElementById("btn-" + key);
+  const sumDiv  = document.getElementById("sum-"  + key);
+  const descDiv = document.getElementById("desc-" + key);
+  if (!btn || btn.disabled) return;
+  btn.disabled = true; btn.textContent = "要約中...";
+
+  // 本文取得：RSS本文あり → そのまま使用、なし → Firebase経由で記事本文取得
   let bodyText = a.hasFullText ? a.desc : null;
-  if (!bodyText && a.link) { btn.textContent = "本文取得中..."; bodyText = await fetchArticleText(a.link); }
+  if (!bodyText && a.link) {
+    btn.textContent = "本文取得中...";
+    bodyText = await fetchArticleText(a.link);
+  }
+
   const prompt = bodyText
-    ? `以下のニュース記事の本文を日本語で2〜3文に要約してください。具体的な数字・固有名詞・主要な出来事を必ず含めてください。本文に書かれていないことは絶対に追加しないでください。\n\nタイトル: ${a.title}\n本文: ${bodyText}`
-    : `以下はニュース記事のタイトルと短い概要です。記載されている情報だけを使って1〜2文でまとめてください。情報が不足している場合は「詳細は記事本文をご確認ください」と添えてください。想像や推測で補わないでください。\n\nタイトル: ${a.title}\n概要: ${a.desc}`;
+    ? `あなたは日本語専門のニュース要約アシスタントです。必ず日本語のみで回答してください。思考過程は出力しないでください。\n\n以下のニュース記事の本文を日本語で2〜3文に要約してください。具体的な数字・固有名詞・主要な出来事を必ず含めてください。本文に書かれていないことは絶対に追加しないでください。\n\nタイトル: ${a.title}\n本文: ${bodyText}`
+    : `あなたは日本語専門のニュース要約アシスタントです。必ず日本語のみで回答してください。思考過程は出力しないでください。\n\n以下はニュース記事のタイトルと短い概要です。記載されている情報だけを使って1〜2文でまとめてください。情報が不足している場合は「詳細は記事本文をご確認ください」と添えてください。想像や推測で補わないでください。\n\nタイトル: ${a.title}\n概要: ${a.desc}`;
   try {
-    const res  = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${apiKey}`, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) });
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
-    sumDiv.innerHTML = `<div class="summary-box"><div class="summary-label">AI 要約</div><div class="summary-text" id="sumtext-${key}">${esc(text)}</div></div><div style="display:flex;flex-wrap:wrap;gap:0;"><button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button><button class="btn-tweet" id="tweetbtn-${key}" onclick="generateTweet(${idx},'${key}')">🐦 X投稿を生成</button></div>`;
-    if (descDiv) descDiv.style.display = "none"; btn.style.display = "none";
+    const data = await fetchGemini(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`,
+      { contents:[{ parts:[{ text:prompt }] }], generationConfig: { thinkingConfig: { thinkingLevel: "minimal" } } }
+    );
+    const rawText0 = data.candidates?.[0]?.content?.parts?.[0]?.text || "要約を取得できませんでした。";
+    const text = rawText0.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim() || rawText0.trim();
+    sumDiv.innerHTML = `
+      <div class="summary-box">
+        <div class="summary-label">AI 要約</div>
+        <div class="summary-text" id="sumtext-${key}">${esc(text)}</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:0;">
+        <button class="btn-dive" id="dive-${key}" onclick="generateDive(${idx},'${key}')">🔗 深掘りプロンプトを生成</button>
+        <button class="btn-tweet" id="tweetbtn-${key}" onclick="generateTweet(${idx},'${key}')">🐦 X投稿を生成</button>
+      </div>
+    `;
+    if (descDiv) descDiv.style.display = "none";
+    btn.style.display = "none";
   } catch(e) {
-    sumDiv.innerHTML = `<div style="color:var(--err-text);font-size:12px;margin-top:6px;">要約失敗：${esc(e.message)}</div>`;
+    sumDiv.innerHTML = `<div style="color:var(--err-text);font-size:12px;margin-top:6px;">⚠ ${esc(e.message)}</div>`;
     btn.disabled = false; btn.textContent = "⚡ AI要約";
   }
 }
+
+/* ===== 深掘りプロンプト生成 ===== */
 async function generateDive(idx, key) {
-  const apiKey = localStorage.getItem(LS_API) || ""; if (!apiKey) return;
+  const apiKey = localStorage.getItem(LS_API) || "";
+  if (!apiKey) return;
+
   const filtered = currentGroup === "all" ? allArticles : allArticles.filter(a => a.group === currentGroup);
-  const a = filtered[idx]; const diveBtn = document.getElementById("dive-" + key); const sumText = document.getElementById("sumtext-" + key)?.textContent || "";
-  if (!diveBtn || diveBtn.disabled) return; diveBtn.disabled = true; diveBtn.textContent = "生成中...";
-  const prompt = `以下のニュース記事について、読者がAIチャットで深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。記事に書かれていない内容は含めないでください。\n\nタイトル: ${a.title}\n本文・要約: ${sumText || a.desc}`;
+  const a        = filtered[idx];
+  const diveBtn  = document.getElementById("dive-" + key);
+  const sumDiv   = document.getElementById("sum-"  + key);
+  const sumText  = document.getElementById("sumtext-" + key)?.textContent || "";
+
+  if (!diveBtn || diveBtn.disabled) return;
+  diveBtn.disabled = true;
+  diveBtn.textContent = "生成中...";
+
+  const prompt = `以下のニュース記事について、読者がAIチャット（ChatGPT・Gemini・Claudeなど）で深掘り調査する際に有効な論点を3つ、箇条書きで日本語で出力してください。各論点は「〜について」という形式で20字以内にしてください。余分な説明は不要です。記事に書かれていない内容は含めないでください。\n\nタイトル: ${a.title}\n本文・要約: ${sumText || a.desc}`;
+
   try {
-    const res  = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=${apiKey}`, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ contents:[{ parts:[{ text:prompt }] }] }) });
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || ""; const points = raw.trim();
-    const copyPrompt = `以下のニュース記事について教えてください。\n\n【記事タイトル】\n${a.title}\n\n【概要】\n${sumText}\n\n【特に知りたい点】\n${points}`;
-    const diveHtml = `<div class="dive-box" id="divebox-${key}"><div class="dive-label">🔗 深掘りプロンプト</div><div class="dive-points">${esc(points)}</div><p style="font-size:11px;color:var(--text-muted);margin:6px 0 8px;line-height:1.6;">下のプロンプトをコピーして、ChatGPT・Gemini・Claudeなどに貼り付けると記事の理解が深まります。</p><div class="dive-prompt-area" id="divetext-${key}">${esc(copyPrompt)}</div><button class="btn-copy" id="copybtn-${key}" onclick="copyPrompt('${key}')">📋 クリップボードにコピー</button></div>`;
+    const data = await fetchGemini(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`,
+      { contents:[{ parts:[{ text:prompt }] }], generationConfig: { thinkingConfig: { thinkingLevel: "minimal" } } }
+    );
+    const rawDive = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const points = rawDive.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
+
+    // コピー用プロンプトを組み立て
+    const pubDate = a.date ? normalizeDate(a.date)?.toLocaleDateString("ja-JP", {year:"numeric",month:"long",day:"numeric"}) || a.date : "";
+    const copyPrompt = `以下のニュース記事について教えてください。
+
+【記事タイトル】
+${a.title}
+
+【出典URL】
+${a.link ? cleanUrl(a.link) : "（URLなし）"}
+
+【掲載日】
+${pubDate || "（日付不明）"}
+
+【概要】
+${sumText}
+
+【特に知りたい点】
+${points}`;
+
+    // 深掘りボックスを描画
+    const diveHtml = `
+      <div class="dive-box" id="divebox-${key}">
+        <div class="dive-label">🔗 深掘りプロンプト</div>
+        <div class="dive-points">${esc(points)}</div>
+        <p style="font-size:11px;color:var(--text-muted);margin:6px 0 8px;line-height:1.6;">下のプロンプトをコピーして、ChatGPT・Gemini・Claudeなどお使いのAIサービスのチャットに貼り付けると、記事の理解が深まります。</p>
+        <div class="dive-prompt-area" id="divetext-${key}">${esc(copyPrompt)}</div>
+        <button class="btn-copy" id="copybtn-${key}" onclick="copyPrompt('${key}')">📋 クリップボードにコピー</button>
+      </div>`;
+
+    // 深掘りボタンを差し替え
     diveBtn.outerHTML = diveHtml;
+
   } catch(e) {
-    diveBtn.disabled = false; diveBtn.textContent = "🔗 深掘りプロンプトを生成";
-    diveBtn.insertAdjacentHTML("afterend", `<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：${esc(e.message)}</div>`);
+    diveBtn.disabled = false;
+    diveBtn.textContent = "🔗 深掘りプロンプトを生成";
+    diveBtn.insertAdjacentHTML("afterend",
+      `<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：${esc(e.message)}</div>`);
   }
 }
+
+/* ===== X投稿生成 ===== */
 async function generateTweet(idx, key) {
-  const apiKey = localStorage.getItem(LS_API) || ""; if (!apiKey) return;
+  const apiKey = localStorage.getItem(LS_API) || "";
+  if (!apiKey) return;
+
   const filtered = currentGroup === "all" ? allArticles : allArticles.filter(a => a.group === currentGroup);
-  const a = filtered[idx]; const tweetBtn = document.getElementById("tweetbtn-" + key); const sumText = document.getElementById("sumtext-" + key)?.textContent || "";
-  if (!tweetBtn || tweetBtn.disabled) return; tweetBtn.disabled = true; tweetBtn.textContent = "生成中...";
-  const angles = ["驚き・発見の視点で","ビジネスへの影響を考察する視点で","課題・問題提起の視点で","未来への期待・展望の視点で","身近な生活への影響という視点で","専門家目線のコメントとして"];
-  const angle = angles[Math.floor(Math.random() * angles.length)];
-  const prompt = `以下のニュース記事について、X（旧Twitter）に投稿するコメントを日本語で生成してください。\n\n条件：\n・${angle}書く\n・自分がこのニュースを読んで感じたコメントや考察として書く\n・文体は自然な日本語\n・ハッシュタグを1〜2個付ける\n・URLは含めない\n・本文は70文字以内\n・出力は投稿文のみ\n\nタイトル: ${a.title}\n要約: ${sumText || a.desc}`;
+  const a       = filtered[idx];
+  const tweetBtn = document.getElementById("tweetbtn-" + key);
+  const sumDiv   = document.getElementById("sum-" + key);
+  const sumText  = document.getElementById("sumtext-" + key)?.textContent || "";
+
+  if (!tweetBtn || tweetBtn.disabled) return;
+  tweetBtn.disabled = true;
+  tweetBtn.textContent = "生成中...";
+
+  // 再生成のたびに異なる切り口を指示
+  const angles = [
+    "驚き・発見の視点で",
+    "ビジネスへの影響を考察する視点で",
+    "課題・問題提起の視点で",
+    "未来への期待・展望の視点で",
+    "身近な生活への影響という視点で",
+    "専門家目線のコメントとして",
+  ];
+  const savedStyle = localStorage.getItem(LS_TWEET_STYLE) || "random";
+  const angle = savedStyle === "random"
+    ? angles[Math.floor(Math.random() * angles.length)]
+    : angles[parseInt(savedStyle)] || angles[0];
+
+  const prompt = `以下のニュース記事について、X（旧Twitter）に投稿するコメントを日本語で生成してください。
+
+条件：
+・${angle}書く
+・自分がこのニュースを読んで感じたコメントや考察として書く
+・文体は自然な日本語（ですます調でも体言止めでも可）
+・ハッシュタグを1〜2個付ける
+・URLは含めない（別途追加します）
+・本文は70文字以内に収める
+・改行は1〜2回まで
+・「」や()などで引用しない
+・出力は投稿文のみ（説明文不要）
+
+タイトル: ${a.title}
+要約: ${sumText || a.desc}`;
+
   try {
-    const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent?key=" + apiKey, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ contents:[{ parts:[{ text: prompt }] }], generationConfig: { temperature: 1.5 } }) });
-    const data = await res.json();
-    if (data.error) throw new Error(data.error.message);
-    const tweetBody = (data.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
-    const fullTweet = tweetBody + (a.link ? "\n" + a.link : "");
-    const urlLen = a.link ? 23 : 0; const bodyLen = tweetBody.length; const totalLen = bodyLen + (a.link ? 1 + urlLen : 0); const isOver = totalLen > 140;
+    const data = await fetchGemini(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`,
+      { contents:[{ parts:[{ text: prompt }] }], generationConfig: { temperature: 1.5, thinkingConfig: { thinkingLevel: "minimal" } } }
+    );
+    const rawTweet = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    const tweetBody = rawTweet.replace(/<\|think\|>[\s\S]*?<\/\|think\|>/g,"").trim();
+
+    // URL込みの全文（X投稿用）
+    const fullTweet = tweetBody + (a.link ? "\n" + cleanUrl(a.link) : "");
+
+    // 文字数カウント（URLは23文字固定でカウント）
+    const urlLen   = a.link ? 23 : 0; // Xは全URLを23文字換算
+    const bodyLen  = tweetBody.length;
+    const totalLen = bodyLen + (a.link ? 1 + urlLen : 0); // 改行1文字+URL
+    const isOver   = totalLen > 140;
+
+    // tweet intentのURL
     const intentUrl = "https://x.com/intent/tweet?text=" + encodeURIComponent(fullTweet);
-    const tweetHtml = `<div class="tweet-box" id="tweetbox-${key}"><div class="tweet-label">🐦 X投稿</div><div class="tweet-text" id="tweettext-${key}">${esc(tweetBody)}${a.link ? "\n" + esc(a.link) : ""}</div><div class="tweet-char-count ${isOver ? 'over' : 'ok'}">${totalLen}/140文字${isOver ? ' ⚠ 超過' : ''}</div><div class="tweet-actions"><a class="btn-tweet-post" href="${esc(intentUrl)}" target="_blank" rel="noopener">X（Twitter）で投稿する</a><button class="btn-tweet-copy" id="tweetcopybtn-${key}" onclick="copyTweet('${key}')">📋 コピー</button><button class="btn-tweet-regen" onclick="regenTweet(${idx},'${key}')" title="再生成">🔄</button></div></div>`;
+
+    const tweetHtml = `
+      <div class="tweet-box" id="tweetbox-${key}">
+        <div class="tweet-label">🐦 X投稿</div>
+        <div class="tweet-text" id="tweettext-${key}">${esc(tweetBody)}${a.link ? "\n" + esc(cleanUrl(a.link)) : ""}</div>
+        <div class="tweet-char-count ${isOver ? 'over' : 'ok'}">${totalLen}/140文字${isOver ? ' ⚠ 超過' : ''}</div>
+        <div class="tweet-actions">
+          <a class="btn-tweet-post" href="${esc(intentUrl)}" target="_blank" rel="noopener"><span style="font-size:16px;line-height:1;">𝕏</span> 投稿する</a>
+          <button class="btn-tweet-copy" id="tweetcopybtn-${key}" onclick="copyTweet('${key}')">📋 コピー</button>
+          <button class="btn-tweet-regen" onclick="regenTweet(${idx},'${key}')">🔄 作り直す</button>
+        </div>
+        <!-- AdSense: X投稿ボタン下バナー（承認後に有効化）
+        <div style="margin-top:12px;">
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-9727255179923866"
+            data-ad-slot="XXXXXXXXXX"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        -->
+      </div>`;
+
+    // tweetボタンをtweetboxに差し替え
     tweetBtn.outerHTML = tweetHtml;
+
   } catch(e) {
-    tweetBtn.disabled = false; tweetBtn.textContent = "🐦 X投稿を生成";
-    tweetBtn.insertAdjacentHTML("afterend", '<div style="color:var(--err-text);font-size:11px;margin-top:4px;">生成失敗：' + esc(e.message) + '</div>');
+    tweetBtn.disabled = false;
+    tweetBtn.textContent = "🐦 X投稿を生成";
+    tweetBtn.insertAdjacentHTML("afterend",
+      '<div style="color:var(--err-text);font-size:11px;margin-top:4px;">⚠ ' + esc(e.message) + '</div>');
   }
 }
+
 function regenTweet(idx, key) {
-  const tweetBox = document.getElementById("tweetbox-" + key); if (!tweetBox) return;
-  const btn = document.createElement("button"); btn.className = "btn-tweet"; btn.id = "tweetbtn-" + key;
-  btn.textContent = "🐦 X投稿を生成"; btn.setAttribute("onclick", "generateTweet(" + idx + ",'" + key + "')");
-  tweetBox.replaceWith(btn); generateTweet(idx, key);
+  // 既存のtweetboxを削除してボタンを復元
+  const tweetBox = document.getElementById("tweetbox-" + key);
+  if (!tweetBox) return;
+  const btn = document.createElement("button");
+  btn.className = "btn-tweet";
+  btn.id = "tweetbtn-" + key;
+  btn.textContent = "🐦 X投稿を生成";
+  btn.setAttribute("onclick", "generateTweet(" + idx + ",'" + key + "')");
+  tweetBox.replaceWith(btn);
+  // すぐ再生成
+  generateTweet(idx, key);
 }
+
 function copyTweet(key) {
-  const textEl = document.getElementById("tweettext-" + key); const copyBtn = document.getElementById("tweetcopybtn-" + key); if (!textEl) return;
+  const textEl  = document.getElementById("tweettext-" + key);
+  const copyBtn = document.getElementById("tweetcopybtn-" + key);
+  if (!textEl) return;
   const decoded = textEl.textContent;
-  navigator.clipboard.writeText(decoded).then(() => { copyBtn.textContent = "✓ コピー済み"; copyBtn.classList.add("copied"); setTimeout(() => { copyBtn.textContent = "📋 コピー"; copyBtn.classList.remove("copied"); }, 2000); }).catch(() => { const ta = document.createElement("textarea"); ta.value = decoded; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); copyBtn.textContent = "✓ コピー済み"; copyBtn.classList.add("copied"); setTimeout(() => { copyBtn.textContent = "📋 コピー"; copyBtn.classList.remove("copied"); }, 2000); });
+  navigator.clipboard.writeText(decoded).then(() => {
+    copyBtn.textContent = "✓ コピー済み";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 コピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  }).catch(() => {
+    const ta = document.createElement("textarea");
+    ta.value = decoded;
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta);
+    copyBtn.textContent = "✓ コピー済み";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 コピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  });
 }
+
 function copyPrompt(key) {
-  const textEl = document.getElementById("divetext-" + key); const copyBtn = document.getElementById("copybtn-" + key); if (!textEl) return;
+  const textEl = document.getElementById("divetext-" + key);
+  const copyBtn = document.getElementById("copybtn-" + key);
+  if (!textEl) return;
+
+  // HTMLエンティティをデコードして純テキストにする
   const decoded = textEl.textContent;
-  navigator.clipboard.writeText(decoded).then(() => { copyBtn.textContent = "✓ コピーしました"; copyBtn.classList.add("copied"); setTimeout(() => { copyBtn.textContent = "📋 クリップボードにコピー"; copyBtn.classList.remove("copied"); }, 2000); }).catch(() => { const ta = document.createElement("textarea"); ta.value = decoded; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); copyBtn.textContent = "✓ コピーしました"; copyBtn.classList.add("copied"); setTimeout(() => { copyBtn.textContent = "📋 クリップボードにコピー"; copyBtn.classList.remove("copied"); }, 2000); });
+
+  navigator.clipboard.writeText(decoded).then(() => {
+    copyBtn.textContent = "✓ コピーしました";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 クリップボードにコピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  }).catch(() => {
+    // fallback: execCommand
+    const ta = document.createElement("textarea");
+    ta.value = decoded;
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    copyBtn.textContent = "✓ コピーしました";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = "📋 クリップボードにコピー";
+      copyBtn.classList.remove("copied");
+    }, 2000);
+  });
 }
-function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
-function fmtDate(s) { if (!s) return ""; const d = new Date(s); return isNaN(d) ? "" : d.toLocaleDateString("ja-JP",{month:"short",day:"numeric"}); }
+
+/* ===== ユーティリティ ===== */
+function esc(s) {
+  return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+// Gemini APIリトライ付きfetch（最大2回、3秒待機）
+async function fetchGemini(url, body) {
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const res  = await fetch(url, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body) });
+    const data = await res.json();
+    if (!data.error) return data;
+    const msg = data.error.message || "";
+    // high demand / overloaded → リトライ
+    if (attempt < 2 && (msg.includes("high demand") || msg.includes("overloaded") || msg.includes("503"))) {
+      await new Promise(r => setTimeout(r, 3000));
+      continue;
+    }
+    throw new Error(geminiErrorMsg(msg));
+  }
+}
+
+// ===== ④ エラーメッセージを日本語化 =====
+function geminiErrorMsg(msg) {
+  if (msg.includes("high demand") || msg.includes("overloaded"))
+    return "AIサーバーが混雑しています。しばらく待ってから再度お試しください。";
+  if (msg.includes("quota") || msg.includes("RESOURCE_EXHAUSTED"))
+    return "本日のAPI利用上限に達しました。明日またお試しください。";
+  if (msg.includes("API key expired") || msg.includes("API_KEY_INVALID"))
+    return "APIキーが無効です。⚙設定から新しいキーを登録してください。";
+  if (msg.includes("API key not valid"))
+    return "APIキーが正しくありません。⚙設定で確認してください。";
+  return "エラーが発生しました：" + msg;
+}
+
+function normalizeDate(s) {
+  if (!s) return null;
+  // "2026-04-09 14:00:00+09:00" → "2026-04-09T14:00:00+09:00" に正規化
+  const normalized = s.trim().replace(/^(\d{4}-\d{2}-\d{2})\s(\d{2}:\d{2})/, '$1T$2');
+  const d = new Date(normalized);
+  return isNaN(d) ? null : d;
+}
+function fmtDate(s) {
+  const d = normalizeDate(s);
+  return d ? d.toLocaleDateString("ja-JP",{month:"short",day:"numeric"}) : "";
+}
 function setStatus(msg) { document.getElementById("statusText").textContent = msg; }
-function showError(msg) { const b = document.getElementById("errorBox"); b.textContent = "⚠ " + msg; b.style.display = "block"; }
+function showError(msg) {
+  const b = document.getElementById("errorBox");
+  b.textContent = "⚠ " + msg; b.style.display = "block";
+}
 </script>
 </body>
 </html>
