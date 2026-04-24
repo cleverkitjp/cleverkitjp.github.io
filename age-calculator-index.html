@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年齢カリキュレーター｜満年齢・誕生日まで何日を計算</title>
+  <meta name="description" content="生年月日を入力するだけで満年齢（年・月・日）、次の誕生日までの日数、生まれてから何日・何時間・何分・何秒かをリアルタイム表示。人生の残り時間も計算。スマホ対応・無料。">
+  <link rel="stylesheet" href="/common.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #f7f8fa;
+      color: #1a1a2e;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* パンくず */
+    .breadcrumb {
+      font-size: 12px;
+      color: #888;
+      padding: 12px 0 8px;
+    }
+    .breadcrumb a { color: #888; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 4px; }
+
+    /* H1 */
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 8px 0 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .intro {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    /* 入力カード */
+    .input-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    .input-group input[type="date"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #e0e0e8;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #1a1a2e;
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .input-group input[type="date"]:focus {
+      border-color: #5b6af0;
+      background: #fff;
+    }
+
+    /* 性別トグル */
+    .gender-toggle {
+      display: flex;
+      gap: 10px;
+    }
+    .gender-toggle input[type="radio"] { display: none; }
+    .gender-toggle label {
+      flex: 1;
+      text-align: center;
+      padding: 11px;
+      border: 1.5px solid #e0e0e8;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fafafa;
+    }
+    .gender-toggle input[type="radio"]:checked + label {
+      border-color: #5b6af0;
+      background: #5b6af0;
+      color: #fff;
+    }
+
+    /* 計算ボタン */
+    .calc-btn {
+      width: 100%;
+      padding: 15px;
+      background: #5b6af0;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+    .calc-btn:active { transform: scale(0.98); background: #4a58d8; }
+
+    /* 結果エリア */
+    .results { display: none; }
+    .results.show { display: block; }
+
+    .result-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      margin-bottom: 14px;
+    }
+
+    .result-card .label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .result-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      letter-spacing: -0.5px;
+    }
+
+    .result-card .value span.unit {
+      font-size: 16px;
+      font-weight: 500;
+      color: #666;
+      margin-left: 2px;
+    }
+
+    .result-card.birthday {
+      border-left: 4px solid #f0a500;
+    }
+    .result-card.birthday .value { color: #c47f00; }
+
+    .birthday-today {
+      font-size: 20px;
+      font-weight: 700;
+      color: #e05a00;
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    /* タブ */
+    .tab-section {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .tab-header {
+      display: flex;
+      border-bottom: 1.5px solid #f0f0f5;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 14px 8px;
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #aaa;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1.5px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: #5b6af0;
+      border-bottom-color: #5b6af0;
+    }
+
+    .tab-content { display: none; padding: 22px 20px; }
+    .tab-content.active { display: block; }
+
+    /* リアルタイムカウンター */
+    .counter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .counter-item {
+      text-align: center;
+    }
+
+    .counter-item .c-label {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .counter-item .c-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a2e;
+      font-variant-numeric: tabular-nums;
+      font-family: 'SF Mono', 'Courier New', monospace;
+      letter-spacing: -0.5px;
+    }
+
+    .counter-item.seconds .c-value {
+      color: #5b6af0;
+      font-size: 30px;
+    }
+
+    .counter-item.days {
+      grid-column: span 2;
+    }
+    .counter-item.days .c-value {
+      font-size: 34px;
+    }
+
+    /* 残り時間タブ */
+    .remaining-note {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .countdown-label {
+      font-size: 13px;
+      color: #e05a00;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .counter-item.remaining-sec .c-value {
+      color: #e05a00;
+    }
+
+    /* FAQ */
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 28px 0 14px;
+    }
+
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .faq-q {
+      font-size: 14px;
+      font-weight: 700;
+      color: #5b6af0;
+      margin-bottom: 6px;
+    }
+    .faq-a {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    /* 関連ツール */
+    .related-tools {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .related-tool-link {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1a1a2e;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: box-shadow 0.2s;
+    }
+    .related-tool-link:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+    .related-tool-link::after {
+      content: '›';
+      margin-left: auto;
+      color: #aaa;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- パンくず -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="/">CleverKit</a>
+    <span>›</span>
+    <a href="/category-calendar/">日付・カレンダー</a>
+    <span>›</span>
+    年齢カリキュレーター
+  </nav>
+
+  <h1>年齢カリキュレーター</h1>
+  <p class="intro">生年月日を入力するだけで、満年齢・誕生日カウントダウン・生きてきた時間・人生の残り時間をリアルタイムで表示します。</p>
+
+  <!-- 入力カード -->
+  <div class="input-card">
+    <div class="input-group">
+      <label for="birthdate">生年月日</label>
+      <input type="date" id="birthdate" max="">
+    </div>
+    <div class="input-group">
+      <label>性別（平均余命の算出に使用）</label>
+      <div class="gender-toggle">
+        <input type="radio" name="gender" id="male" value="male" checked>
+        <label for="male">男性</label>
+        <input type="radio" name="gender" id="female" value="female">
+        <label for="female">女性</label>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">計算する</button>
+  </div>
+
+  <!-- 結果エリア -->
+  <div class="results" id="results">
+
+    <!-- 満年齢 -->
+    <div class="result-card">
+      <div class="label">🎂 あなたの年齢</div>
+      <div class="value" id="age-display">--</div>
+    </div>
+
+    <!-- 誕生日カウントダウン -->
+    <div class="result-card birthday" id="birthday-card">
+      <div class="label">🎉 次の誕生日まで</div>
+      <div id="birthday-display"></div>
+    </div>
+
+    <!-- タブセクション -->
+    <div class="tab-section">
+      <div class="tab-header">
+        <button class="tab-btn active" onclick="switchTab('lived')" id="tab-lived">生きてきた時間</button>
+        <button class="tab-btn" onclick="switchTab('remaining')" id="tab-remaining">残りの時間</button>
+      </div>
+
+      <!-- タブA：生きてきた時間 -->
+      <div class="tab-content active" id="content-lived">
+        <div class="counter-grid">
+          <div class="counter-item days">
+            <div class="c-label">日数</div>
+            <div class="c-value" id="lived-days">--</div>
+          </div>
+          <div class="counter-item">
+            <div class="c-label">時間</div>
+            <div class="c-value" id="lived-hours">--</div>
+          </div>
+          <div class="counter-item">
+            <div class="c-label">分</div>
+            <div class="c-value" id="lived-minutes">--</div>
+          </div>
+          <div class="counter-item seconds" style="grid-column: span 2;">
+            <div class="c-label">秒</div>
+            <div class="c-value" id="lived-seconds">--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- タブB：残りの時間 -->
+      <div class="tab-content" id="content-remaining">
+        <div class="countdown-label">平均余命まであと（日本人平均・性別別）</div>
+        <div class="counter-grid">
+          <div class="counter-item days">
+            <div class="c-label">残り日数</div>
+            <div class="c-value" id="remaining-days">--</div>
+            <div id="remaining-years" style="font-size:13px;color:#aaa;margin-top:4px;"></div>
+          </div>
+          <div class="counter-item">
+            <div class="c-label">時間</div>
+            <div class="c-value" id="remaining-hours">--</div>
+          </div>
+          <div class="counter-item">
+            <div class="c-label">分</div>
+            <div class="c-value" id="remaining-minutes">--</div>
+          </div>
+          <div class="counter-item seconds remaining-sec" style="grid-column: span 2;">
+            <div class="c-label">秒</div>
+            <div class="c-value" id="remaining-seconds">--</div>
+          </div>
+        </div>
+        <p class="remaining-note">※厚生労働省「令和5年簡易生命表」の平均余命をもとに算出。個人差があります。</p>
+      </div>
+    </div>
+
+  </div><!-- /results -->
+
+  <!-- FAQ -->
+  <h2 class="section-title">よくある質問</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Q. 満年齢とは何ですか？</div>
+    <div class="faq-a">誕生日を迎えるたびに1歳加算する、日本で一般的な年齢の数え方です。誕生日当日に加算されます。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q. 人生の残り時間はどう計算していますか？</div>
+    <div class="faq-a">厚生労働省「令和5年簡易生命表」の平均余命データをもとに、現在の年齢から残り期間を算出しています。あくまで統計上の目安です。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q. 生年月日のデータはどこかに送られますか？</div>
+    <div class="faq-a">すべての計算はブラウザ内のみで行われます。入力した情報が外部に送信されることはありません。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q. 秒が動いているのはなぜですか？</div>
+    <div class="faq-a">意図的な演出です。時間が止まらず積み重なっていること、そして残り時間が確実に減っていくことを、秒単位のリアルタイム表示で体感してもらうために設計しています。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q. 平均余命とは何ですか？</div>
+    <div class="faq-a">平均余命とは「その年齢まで生きた人が、平均的にあと何年生きられるか」を示す統計値です。平均寿命（0歳時点の平均余命）とは異なり、年齢ごとに異なる値が算出されます。本ツールは厚生労働省「令和5年簡易生命表」の値を使用しています。</div>
+  </div>
+
+  <!-- 関連ツール -->
+  <h2 class="section-title">関連ツール</h2>
+  <div class="related-tools">
+    <a href="/day-counter/" class="related-tool-link">📅 日数計算ツール</a>
+    <a href="/eto/" class="related-tool-link">🐉 干支・和暦計算ツール</a>
+    <a href="/calendar-generator/" class="related-tool-link">🗓️ カレンダー生成ツール</a>
+  </div>
+
+</div><!-- /container -->
+
+<!-- フッター -->
+<div id="ck-footer-container"></div>
+<script>
+(function() {
+  var container = document.getElementById('ck-footer-container');
+  if (!container) return;
+  fetch('/footer.html')
+    .then(function(r) { return r.text(); })
+    .then(function(html) {
+      container.innerHTML = html;
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    })
+    .catch(function(e) {});
+})();
+</script>
+
+<script>
+  // 平均余命テーブル（厚労省 令和5年簡易生命表より）
+  // 各年齢における残り平均余命（年）
+  const lifeExpectancy = {
+    male: {
+      0:81.09,1:80.42,2:79.43,3:78.44,4:77.45,5:76.46,6:75.47,7:74.48,8:73.48,9:72.49,
+      10:71.50,11:70.51,12:69.52,13:68.53,14:67.54,15:66.55,16:65.57,17:64.59,18:63.61,19:62.64,
+      20:61.67,21:60.71,22:59.75,23:58.79,24:57.83,25:56.87,26:55.91,27:54.95,28:53.99,29:53.03,
+      30:52.07,31:51.11,32:50.15,33:49.19,34:48.24,35:47.28,36:46.33,37:45.37,38:44.42,39:43.47,
+      40:42.52,41:41.57,42:40.63,43:39.68,44:38.74,45:37.80,46:36.86,47:35.92,48:34.99,49:34.06,
+      50:33.14,51:32.22,52:31.31,53:30.41,54:29.51,55:28.62,56:27.73,57:26.85,58:25.98,59:25.12,
+      60:24.26,61:23.41,62:22.57,63:21.73,64:20.90,65:20.08,66:19.27,67:18.46,68:17.67,69:16.88,
+      70:16.10,71:15.33,72:14.57,73:13.82,74:13.08,75:12.35,76:11.63,77:10.92,78:10.23,79:9.55,
+      80:8.89,81:8.24,82:7.61,83:7.00,84:6.40,85:5.83,86:5.28,87:4.76,88:4.27,89:3.81,
+      90:3.38,91:2.99,92:2.63,93:2.31,94:2.02,95:1.77,96:1.55,97:1.36,98:1.20,99:1.06,100:0.94
+    },
+    female: {
+      0:87.14,1:86.45,2:85.46,3:84.47,4:83.47,5:82.48,6:81.48,7:80.49,8:79.49,9:78.50,
+      10:77.50,11:76.51,12:75.51,13:74.52,14:73.53,15:72.54,16:71.55,17:70.56,18:69.57,19:68.59,
+      20:67.60,21:66.62,22:65.63,23:64.65,24:63.66,25:62.68,26:61.69,27:60.71,28:59.72,29:58.74,
+      30:57.76,31:56.78,32:55.80,33:54.82,34:53.84,35:52.86,36:51.89,37:50.91,38:49.94,39:48.96,
+      40:47.99,41:47.02,42:46.05,43:45.08,44:44.12,45:43.15,46:42.19,47:41.23,48:40.27,49:39.32,
+      50:38.36,51:37.41,52:36.46,53:35.52,54:34.57,55:33.63,56:32.70,57:31.76,58:30.83,59:29.91,
+      60:28.98,61:28.06,62:27.15,63:26.24,64:25.33,65:24.43,66:23.53,67:22.64,68:21.75,69:20.87,
+      70:19.99,71:19.12,72:18.26,73:17.41,74:16.56,75:15.73,76:14.90,77:14.08,78:13.28,79:12.48,
+      80:11.70,81:10.93,82:10.18,83:9.45,84:8.73,85:8.04,86:7.37,87:6.73,88:6.12,89:5.54,
+      90:4.99,91:4.48,92:4.01,93:3.57,94:3.17,95:2.81,96:2.48,97:2.19,98:1.93,99:1.70,100:1.50
+    }
+  };
+
+  let timerInterval = null;
+  let birthTimestamp = null;
+  let lifeEndTimestamp = null;
+
+  // input[type=date] の max を今日に設定
+  document.getElementById('birthdate').max = new Date().toISOString().split('T')[0];
+
+  function calculate() {
+    const birthdateVal = document.getElementById('birthdate').value;
+    if (!birthdateVal) {
+      alert('生年月日を入力してください');
+      return;
+    }
+
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const [y, m, d] = birthdateVal.split('-').map(Number);
+    const birth = new Date(y, m - 1, d);
+    const today = new Date();
+
+    if (birth > today) {
+      alert('生年月日は今日以前を入力してください');
+      return;
+    }
+
+    // 満年齢計算
+    let ageY = today.getFullYear() - birth.getFullYear();
+    let ageM = today.getMonth() - birth.getMonth();
+    let ageD = today.getDate() - birth.getDate();
+
+    if (ageD < 0) {
+      ageM--;
+      const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+      ageD += prevMonth.getDate();
+    }
+    if (ageM < 0) {
+      ageY--;
+      ageM += 12;
+    }
+
+    document.getElementById('age-display').innerHTML =
+      `${ageY}<span class="unit">歳</span> ${ageM}<span class="unit">ヶ月</span> ${ageD}<span class="unit">日</span>`;
+
+    // 次の誕生日
+    let nextBirthday = new Date(today.getFullYear(), m - 1, d);
+    if (nextBirthday <= today) {
+      nextBirthday = new Date(today.getFullYear() + 1, m - 1, d);
+    }
+    const diffBirthday = Math.ceil((nextBirthday - today) / (1000 * 60 * 60 * 24));
+    const bdayEl = document.getElementById('birthday-display');
+
+    if (today.getMonth() === m - 1 && today.getDate() === d) {
+      bdayEl.innerHTML = `<div class="birthday-today">🎉 今日は誕生日です！おめでとうございます！</div>`;
+    } else {
+      bdayEl.innerHTML = `<div class="value">${diffBirthday}<span class="unit">日</span></div>`;
+    }
+
+    // 平均余命から人生終了時刻を計算
+    const currentAge = ageY;
+    const tableAge = Math.min(currentAge, 100);
+    const expectancyYears = (lifeExpectancy[gender][tableAge] || 1);
+    const lifeEndMs = today.getTime() + expectancyYears * 365.25 * 24 * 60 * 60 * 1000;
+    lifeEndTimestamp = lifeEndMs;
+    birthTimestamp = birth.getTime();
+
+    // 結果表示
+    document.getElementById('results').classList.add('show');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // タイマー開始
+    if (timerInterval) clearInterval(timerInterval);
+    updateCounters();
+    timerInterval = setInterval(updateCounters, 1000);
+  }
+
+  function updateCounters() {
+    const now = Date.now();
+
+    // 生きてきた時間
+    const livedMs = now - birthTimestamp;
+    const livedTotalSec = Math.floor(livedMs / 1000);
+    const livedDays = Math.floor(livedTotalSec / 86400);
+    const livedHours = Math.floor((livedTotalSec % 86400) / 3600);
+    const livedMinutes = Math.floor((livedTotalSec % 3600) / 60);
+    const livedSeconds = livedTotalSec % 60;
+
+    document.getElementById('lived-days').textContent = livedDays.toLocaleString();
+    document.getElementById('lived-hours').textContent = String(livedHours).padStart(2, '0');
+    document.getElementById('lived-minutes').textContent = String(livedMinutes).padStart(2, '0');
+    document.getElementById('lived-seconds').textContent = String(livedSeconds).padStart(2, '0');
+
+    // 残りの時間
+    const remainingMs = lifeEndTimestamp - now;
+    if (remainingMs > 0) {
+      const remainingTotalSec = Math.floor(remainingMs / 1000);
+      const remainingDays = Math.floor(remainingTotalSec / 86400);
+      const remainingHours = Math.floor((remainingTotalSec % 86400) / 3600);
+      const remainingMinutes = Math.floor((remainingTotalSec % 3600) / 60);
+      const remainingSeconds = remainingTotalSec % 60;
+
+      document.getElementById('remaining-days').textContent = remainingDays.toLocaleString();
+      document.getElementById('remaining-years').textContent = '約 ' + (remainingDays / 365.25).toFixed(1) + ' 年';
+      document.getElementById('remaining-hours').textContent = String(remainingHours).padStart(2, '0');
+      document.getElementById('remaining-minutes').textContent = String(remainingMinutes).padStart(2, '0');
+      document.getElementById('remaining-seconds').textContent = String(remainingSeconds).padStart(2, '0');
+    } else {
+      document.getElementById('remaining-days').textContent = '0';
+      document.getElementById('remaining-hours').textContent = '00';
+      document.getElementById('remaining-minutes').textContent = '00';
+      document.getElementById('remaining-seconds').textContent = '00';
+    }
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('content-' + tab).classList.add('active');
+  }
+</script>
+
+</body>
+</html>

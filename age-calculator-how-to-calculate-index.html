@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>満年齢の計算方法｜生まれてから何日・誕生日まで何日の求め方</title>
+  <meta name="description" content="満年齢の正しい計算方法をわかりやすく解説。生まれてから何日・何時間経ったか、次の誕生日まで何日かの求め方も紹介。自動計算ツールもすぐ使えます。">
+  <link rel="canonical" href="https://cleverkit.jp/age-calculator/how-to-calculate/">
+  <link rel="stylesheet" href="/common.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+
+  <!-- schema.org Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "満年齢の計算方法｜生まれてから何日・誕生日まで何日の求め方",
+    "description": "満年齢の正しい計算方法をわかりやすく解説。生まれてから何日・何時間経ったか、次の誕生日まで何日かの求め方も紹介。",
+    "url": "https://cleverkit.jp/age-calculator/how-to-calculate/",
+    "isPartOf": { "@id": "https://cleverkit.jp/#website" },
+    "inLanguage": "ja"
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #f7f8fa;
+      color: #1a1a2e;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 56px;
+    }
+
+    /* パンくず */
+    .breadcrumb {
+      font-size: 12px;
+      color: #888;
+      padding: 12px 0 8px;
+    }
+    .breadcrumb a { color: #888; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 4px; }
+
+    /* 見出し */
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 8px 0 10px;
+      line-height: 1.4;
+      letter-spacing: -0.3px;
+    }
+
+    .article-meta {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 36px 0 14px;
+      padding-left: 12px;
+      border-left: 4px solid #5b6af0;
+      line-height: 1.4;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin: 24px 0 10px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    /* リード文 */
+    .lead {
+      font-size: 15px;
+      color: #444;
+      background: #f0f2ff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      line-height: 1.75;
+    }
+
+    /* CTA ボックス */
+    .cta-box {
+      background: #5b6af0;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin: 28px 0;
+    }
+    .cta-box p {
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: #5b6af0;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 13px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.9; }
+
+    /* 計算式ボックス */
+    .formula-box {
+      background: #fff;
+      border: 1.5px solid #e0e0f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 16px 0 20px;
+      font-size: 15px;
+    }
+    .formula-box .formula {
+      font-size: 17px;
+      font-weight: 700;
+      color: #5b6af0;
+      margin-bottom: 8px;
+    }
+    .formula-box .example {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ステップ */
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 20px;
+    }
+    .steps li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .step-num {
+      background: #5b6af0;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-body {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.7;
+    }
+    .step-body strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    /* テーブル */
+    .scroll-table {
+      overflow-x: auto;
+      margin: 16px 0 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      min-width: 300px;
+    }
+    th {
+      background: #f0f2ff;
+      color: #333;
+      font-weight: 700;
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid #d0d4f8;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      color: #444;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* ポイントボックス */
+    .point-box {
+      background: #fff8e8;
+      border-left: 4px solid #f0a500;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 16px;
+      margin: 16px 0 20px;
+      font-size: 14px;
+      color: #5a3e00;
+      line-height: 1.7;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .faq-q {
+      font-size: 14px;
+      font-weight: 700;
+      color: #5b6af0;
+      margin-bottom: 6px;
+    }
+    .faq-a {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* 関連ツール */
+    .related-tools {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .related-tool-link {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #1a1a2e;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: box-shadow 0.2s;
+    }
+    .related-tool-link:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+    .related-tool-link::after {
+      content: '›';
+      margin-left: auto;
+      color: #aaa;
+      font-size: 18px;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 36px 0 14px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- パンくず -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="/">CleverKit</a>
+    <span>›</span>
+    <a href="/category-calendar/">日付・カレンダー</a>
+    <span>›</span>
+    <a href="/age-calculator/">年齢カリキュレーター</a>
+    <span>›</span>
+    満年齢の計算方法
+  </nav>
+
+  <h1>満年齢の計算方法｜生まれてから何日・誕生日まで何日の求め方</h1>
+  <p class="article-meta">監修：CleverKit編集部</p>
+
+  <p class="lead">「自分は正確に何歳何ヶ月何日なのか」「生まれてから何日経ったのか」を知りたいとき、どう計算すればよいでしょうか。本記事では満年齢の計算ルール、生まれてからの日数・時間の求め方、誕生日カウントダウンの方法をわかりやすく解説します。</p>
+
+  <!-- ツールCTA（上部） -->
+  <div class="cta-box">
+    <p>計算が面倒なときは自動ツールが便利です</p>
+    <a href="/age-calculator/" class="cta-btn">年齢カリキュレーターを使う →</a>
+  </div>
+
+  <!-- 目次 -->
+  <h2>この記事の内容</h2>
+  <ol style="padding-left:20px;font-size:15px;color:#444;line-height:2;">
+    <li><a href="#about-age" style="color:#5b6af0;text-decoration:none;">満年齢とは何か</a></li>
+    <li><a href="#how-to-calc" style="color:#5b6af0;text-decoration:none;">満年齢の計算方法（年・月・日）</a></li>
+    <li><a href="#days-since-birth" style="color:#5b6af0;text-decoration:none;">生まれてから何日・何時間かの求め方</a></li>
+    <li><a href="#birthday-countdown" style="color:#5b6af0;text-decoration:none;">次の誕生日まで何日かの求め方</a></li>
+    <li><a href="#life-expectancy" style="color:#5b6af0;text-decoration:none;">平均余命とは何か</a></li>
+    <li><a href="#faq" style="color:#5b6af0;text-decoration:none;">よくある質問</a></li>
+  </ol>
+
+  <!-- セクション1 -->
+  <h2 id="about-age">満年齢とは何か</h2>
+  <p>満年齢とは、<strong>誕生日を迎えるたびに1歳ずつ加算する</strong>年齢の数え方です。日本では1902年（明治35年）に法律で定められ、現在の公的書類や日常会話で使われる「年齢」は原則この満年齢を指します。</p>
+
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr><th>数え方</th><th>ルール</th><th>主な用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>満年齢</td><td>誕生日当日に1歳加算</td><td>公的書類・日常会話</td></tr>
+        <tr><td>数え年</td><td>生まれた年を1歳、元日に加算</td><td>冠婚葬祭・厄年など</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="point-box">
+    ⚠️ 法律上は「誕生日の前日の終了時点」で加算されます。そのため誕生日が4月1日の人は3月31日に学年が上がります。ただし日常的な年齢確認では「誕生日当日に1歳加算」と考えて問題ありません。
+  </div>
+
+  <!-- セクション2 -->
+  <h2 id="how-to-calc">満年齢の計算方法（年・月・日）</h2>
+  <p>満年齢を年・月・日の単位で正確に求めるには、以下のステップで計算します。</p>
+
+  <ul class="steps">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>年数を求める</strong>
+        今年の誕生日をまだ迎えていなければ「今年 − 生まれ年 − 1」、迎えていれば「今年 − 生まれ年」
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>月数を求める</strong>
+        今月 − 生まれ月。マイナスになる場合は年数から1引いて12を足す
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>日数を求める</strong>
+        今日 − 生まれ日。マイナスになる場合は月数から1引いて前月の日数を足す
+      </div>
+    </li>
+  </ul>
+
+  <div class="formula-box">
+    <div class="formula">例：1990年6月15日生まれ → 2025年4月25日時点</div>
+    <div class="example">
+      年：2025 − 1990 = 35歳（6月15日未到達のため −1 → 34歳）<br>
+      月：4 − 6 = −2 → 12 − 2 = 10ヶ月<br>
+      日：25 − 15 = 10日<br>
+      <strong>→ 34歳10ヶ月10日</strong>
+    </div>
+  </div>
+
+  <p>手計算は月末や閏年で複雑になるため、自動計算ツールの利用が便利です。</p>
+
+  <!-- セクション3 -->
+  <h2 id="days-since-birth">生まれてから何日・何時間かの求め方</h2>
+  <p>生まれてからの経過日数は、<strong>今日の日付 − 生年月日</strong>で求められます。</p>
+
+  <div class="formula-box">
+    <div class="formula">経過日数 ＝ 今日 − 生年月日（日付差）</div>
+    <div class="example">
+      例：1990年6月15日生まれ → 2025年4月25日時点<br>
+      経過日数：約12,732日<br>
+      経過時間：約305,574時間<br>
+      ※うるう年を含むため単純計算とは若干異なります
+    </div>
+  </div>
+
+  <p>経過時間・分・秒はリアルタイムで変化し続けます。<a href="/age-calculator/" style="color:#5b6af0;">年齢カリキュレーター</a>では秒単位でカウントアップする表示を実装しており、「いま自分が生きている」という感覚をリアルに体感できます。</p>
+
+  <!-- セクション4 -->
+  <h2 id="birthday-countdown">次の誕生日まで何日かの求め方</h2>
+  <p>次の誕生日までの日数は、以下の手順で計算します。</p>
+
+  <ul class="steps">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>今年の誕生日を求める</strong>
+        今年の年 + 生まれ月 + 生まれ日で日付を作る
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>今日と比較する</strong>
+        今年の誕生日が今日より後であればその差が残り日数。すでに過ぎていれば来年の誕生日との差を計算する
+      </div>
+    </li>
+  </ul>
+
+  <div class="formula-box">
+    <div class="formula">例：6月15日生まれ → 4月25日時点</div>
+    <div class="example">
+      今年の誕生日（6月15日）はまだ先<br>
+      6月15日 − 4月25日 ＝ 51日<br>
+      <strong>→ 次の誕生日まで51日</strong>
+    </div>
+  </div>
+
+  <!-- セクション5 -->
+  <h2 id="life-expectancy">平均余命とは何か</h2>
+  <p>平均余命とは、<strong>「その年齢まで生きた人が、平均的にあと何年生きられるか」</strong>を示す統計値です。よく混同される「平均寿命」は0歳時点の平均余命のことで、年齢が上がるにつれて平均余命の値は変化します。</p>
+
+  <div class="scroll-table">
+    <table>
+      <thead>
+        <tr><th>年齢</th><th>男性の平均余命</th><th>女性の平均余命</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0歳</td><td>81.09年</td><td>87.14年</td></tr>
+        <tr><td>30歳</td><td>52.07年</td><td>57.76年</td></tr>
+        <tr><td>50歳</td><td>33.14年</td><td>38.36年</td></tr>
+        <tr><td>65歳</td><td>20.08年</td><td>24.43年</td></tr>
+        <tr><td>80歳</td><td>8.89年</td><td>11.70年</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:#aaa;margin-top:-12px;">出典：厚生労働省「令和5年簡易生命表」</p>
+
+  <p>年齢カリキュレーターの「残りの時間」タブでは、この平均余命テーブルをもとに残り日数・時間・分・秒をリアルタイムで表示します。統計上の目安ですが、残り時間が秒単位で減っていく表示は、今この瞬間を大切にするきっかけになるかもしれません。</p>
+
+  <!-- ツールCTA（下部） -->
+  <div class="cta-box" style="margin-top:32px;">
+    <p>生年月日を入れるだけで全部まとめて計算できます</p>
+    <a href="/age-calculator/" class="cta-btn">年齢カリキュレーターを使う →</a>
+  </div>
+
+  <!-- FAQ -->
+  <h2 id="faq">よくある質問</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">Q. 満年齢と数え年はどう違いますか？</div>
+    <div class="faq-a">満年齢は誕生日ごとに1歳加算する現代の一般的な数え方です。数え年は生まれた年を1歳とし、元日に加算する伝統的な方法で、主に冠婚葬祭や厄年の確認に使われます。同じ人でも数え年は満年齢より1〜2歳多くなります。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q. 生まれてからの日数に閏年は影響しますか？</div>
+    <div class="faq-a">影響します。2月29日を含む年は1年が366日になるため、正確な経過日数は閏年を考慮した計算が必要です。年齢カリキュレーターは自動で閏年を考慮した計算を行います。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q. 平均余命を超えて生きることはありますか？</div>
+    <div class="faq-a">あります。平均余命はあくまで統計上の平均値であり、個人の健康状態・生活習慣・医療環境によって大きく異なります。平均より長く生きる方も多くいます。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Q. 入力した生年月日はどこかに保存されますか？</div>
+    <div class="faq-a">保存されません。年齢カリキュレーターはすべての計算をブラウザ内のみで行います。入力情報が外部サーバーに送信されることはありません。</div>
+  </div>
+
+  <!-- 関連ツール -->
+  <h2 class="section-title" style="border-left:none;padding-left:0;">関連ツール</h2>
+  <div class="related-tools">
+    <a href="/age-calculator/" class="related-tool-link">🎂 年齢カリキュレーター（自動計算）</a>
+    <a href="/day-counter/" class="related-tool-link">📅 日数計算ツール</a>
+    <a href="/eto/" class="related-tool-link">🐉 干支・和暦計算ツール</a>
+  </div>
+
+</div><!-- /container -->
+
+<!-- フッター -->
+<div id="ck-footer-container"></div>
+<script>
+(function() {
+  var container = document.getElementById('ck-footer-container');
+  if (!container) return;
+  fetch('/footer.html')
+    .then(function(r) { return r.text(); })
+    .then(function(html) {
+      container.innerHTML = html;
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    })
+    .catch(function(e) {});
+})();
+</script>
+
+</body>
+</html>
