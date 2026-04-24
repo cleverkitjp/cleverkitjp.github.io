@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>週番号とは？数え方・第1週の決まり方をわかりやすく解説 | CleverKit</title>
+  <meta name="description" content="週番号の意味・ISO 8601の定義・第1週の決まり方・1月始まりと4月始まりの違いをわかりやすく解説。週番号を使う場面や確認方法もあわせて紹介します。">
+  <link rel="canonical" href="https://cleverkit.jp/week-number/about/">
+
+  <!-- schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "週番号とは？数え方・第1週の決まり方をわかりやすく解説",
+    "url": "https://cleverkit.jp/week-number/about/",
+    "description": "週番号の意味・ISO 8601の定義・第1週の決まり方・1月始まりと4月始まりの違いをわかりやすく解説。",
+    "inLanguage": "ja",
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": "https://cleverkit.jp/#website"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="/common.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6517NYNFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F6517NYNFF');
+  </script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9727255179923866" crossorigin="anonymous"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 56px;
+    }
+
+    .breadcrumb {
+      font-size: 12px;
+      color: #888;
+      padding: 12px 0 8px;
+    }
+    .breadcrumb a { color: #888; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 4px; }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 8px 0 8px;
+      line-height: 1.4;
+    }
+
+    .lead {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    /* ツールCTA */
+    .tool-cta {
+      background: #f0f7ff;
+      border: 1px solid #c4dcf0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 28px;
+      font-size: 14px;
+      color: #1a3550;
+    }
+    .tool-cta a {
+      color: #1a73e8;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .tool-cta a:hover { text-decoration: underline; }
+
+    /* 目次 */
+    .toc {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 32px;
+    }
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .toc ol {
+      padding-left: 20px;
+      margin: 0;
+    }
+    .toc li {
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .toc a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .toc a:hover { text-decoration: underline; }
+
+    /* 本文 */
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 36px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #e8e8e8;
+    }
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 24px 0 8px;
+      color: #1a1a1a;
+    }
+    p {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 16px;
+      line-height: 1.85;
+    }
+
+    /* テーブル */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      min-width: 280px;
+    }
+    thead th {
+      background: #f5f5f5;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      font-size: 13px;
+      border-bottom: 1px solid #eee;
+    }
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+
+    /* ポイントボックス */
+    .point-box {
+      background: #fffde7;
+      border-left: 3px solid #f9a825;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* FAQ */
+    .faq-section { margin-bottom: 32px; }
+    .faq-section h2 { margin-bottom: 16px; }
+    .faq-item { margin-bottom: 20px; }
+    .faq-q {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+    .faq-q::before { content: "Q. "; color: #1a73e8; }
+    .faq-a {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.8;
+    }
+    .faq-a::before { content: "A. "; color: #888; }
+
+    /* 関連ツール */
+    .related-section { margin-bottom: 32px; }
+    .related-section h2 { font-size: 16px; font-weight: 700; margin-bottom: 12px; border: none; }
+    .related-list { display: flex; flex-direction: column; gap: 8px; }
+    .related-link {
+      display: block;
+      padding: 12px 14px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .related-link:hover { background: #eee; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 28px 0;
+    }
+
+    /* ツールCTA bottom */
+    .cta-bottom {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 10px;
+      padding: 18px 20px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .cta-bottom p {
+      color: #ccc;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .cta-bottom a {
+      display: inline-block;
+      background: #fff;
+      color: #1a1a1a;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 10px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .cta-bottom a:hover { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- パンくず -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="/">CleverKit</a>
+    <span>›</span>
+    <a href="/category-calendar/">カレンダー・日付</a>
+    <span>›</span>
+    <a href="/week-number/">週番号チェッカー</a>
+    <span>›</span>
+    週番号とは
+  </nav>
+
+  <h1>週番号とは？数え方・第1週の決まり方をわかりやすく解説</h1>
+  <p class="lead">週番号の意味・ISO 8601の定義・第1週の決まり方・1月始まりと4月始まりの違いをまとめて解説します。</p>
+
+  <!-- ツールCTA（上部） -->
+  <div class="tool-cta">
+    📅 今日の週番号をすぐ確認したい方は → <a href="/week-number/">週番号チェッカーを使う</a>
+  </div>
+
+  <!-- 目次 -->
+  <nav class="toc" aria-label="目次">
+    <div class="toc-title">目次</div>
+    <ol>
+      <li><a href="#what">週番号とは</a></li>
+      <li><a href="#iso">ISO 8601とは</a></li>
+      <li><a href="#first-week">第1週はどう決まるか</a></li>
+      <li><a href="#april">4月始まりの週番号</a></li>
+      <li><a href="#usecase">週番号が使われる場面</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+    </ol>
+  </nav>
+
+  <!-- 本文 -->
+  <h2 id="what">週番号とは</h2>
+  <p>週番号とは、1年間の各週に順番につけた番号のことです。「第17週」のように表し、1年を52〜53週に分けて管理します。</p>
+  <p>日付や月の代わりに週単位でスケジュールを管理したいとき、プロジェクトの進捗を週単位で共有したいとき、生産・製造の工程管理をするときなどに使われます。</p>
+
+  <div class="point-box">
+    週番号を使うと「○月○日〜○日の週」を「第○週」の一言で表せるため、スケジュール管理がシンプルになります。
+  </div>
+
+  <h2 id="iso">ISO 8601とは</h2>
+  <p>週番号の定義として国際標準となっているのが <strong>ISO 8601</strong> です。国際標準化機構（ISO）が定めた日付・時刻の表記ルールで、週番号もこの規格で定義されています。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>ISO 8601の定義</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>週の始まり</td>
+          <td>月曜日</td>
+        </tr>
+        <tr>
+          <td>週の終わり</td>
+          <td>日曜日</td>
+        </tr>
+        <tr>
+          <td>第1週の定義</td>
+          <td>その年の最初の木曜日を含む週</td>
+        </tr>
+        <tr>
+          <td>1年の週数</td>
+          <td>52週または53週</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Googleカレンダーや各種業務システムの多くはこのISO 8601に準拠しています。</p>
+
+  <h2 id="first-week">第1週はどう決まるか</h2>
+  <p>ISO 8601では、「その年の最初の木曜日を含む週」が第1週です。週の始まりが月曜日なので、第1週の月曜日は年によって前年12月にさかのぼる場合があります。</p>
+
+  <h3>具体例：2026年の第1週</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>週番号</th>
+          <th>開始（月）</th>
+          <th>終了（日）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>第1週</td>
+          <td>2025年12月29日</td>
+          <td>2026年1月4日</td>
+        </tr>
+        <tr>
+          <td>第2週</td>
+          <td>2026年1月5日</td>
+          <td>2026年1月11日</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>2026年1月1日（木）は第1週に含まれます。そのため第1週の月曜日は前年12月29日になります。</p>
+
+  <div class="point-box">
+    12月末〜1月初旬は週が年をまたぐことがあります。これはISO 8601の正しい動作です。
+  </div>
+
+  <h3>53週になる年</h3>
+  <p>ISO 8601では、1月1日が木曜日の年、またはうるう年で1月1日が水曜日の年に第53週が発生します。53週がある年は、その年の最後の週番号が53になります。</p>
+
+  <h2 id="april">4月始まりの週番号</h2>
+  <p>日本では4月始まりの年度を使う場面が多くあります。学校行事、会計年度、プロジェクト管理などでは「4月から数えて何週目か」を知りたい場合があります。</p>
+  <p>4月始まりの週番号では、4月1日を含む週を第1週として数えます。この場合、週の区切りはISO 8601と同じく月曜〜日曜ですが、起算点が4月になります。</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>モード</th>
+          <th>第1週の基準</th>
+          <th>主な用途</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1月始まり（ISO 8601）</td>
+          <td>最初の木曜を含む週</td>
+          <td>国際的な業務・システム</td>
+        </tr>
+        <tr>
+          <td>4月始まり</td>
+          <td>4月1日を含む週</td>
+          <td>日本の年度管理・学校・官公庁</td>
+        </tr>
+        <tr>
+          <td>任意月始まり</td>
+          <td>指定月1日を含む週</td>
+          <td>独自の会計年度・プロジェクト管理</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="usecase">週番号が使われる場面</h2>
+  <p>週番号は以下のような場面でよく使われます。</p>
+  <ul style="font-size:15px;color:#333;padding-left:20px;margin-bottom:16px;line-height:2;">
+    <li>製造業・物流の生産計画・出荷管理</li>
+    <li>プロジェクト管理のスプリント・マイルストーン設定</li>
+    <li>会計・経理の週次締め作業</li>
+    <li>学校の週ごとの時間割・行事管理</li>
+    <li>ExcelやGoogleスプレッドシートでの週集計</li>
+  </ul>
+  <p>特に製造業や物流では「WW（Work Week）」と呼ばれ、「WW17」のように表記することが一般的です。</p>
+
+  <!-- ツールCTA（中部） -->
+  <div class="cta-bottom" style="margin:32px 0;">
+    <p>今日の週番号・年間週カレンダーをすぐ確認</p>
+    <a href="/week-number/">週番号チェッカーを開く</a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2 id="faq">よくある質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">週番号はExcelでも計算できますか？</div>
+      <div class="faq-a">はい。ExcelのWEEKNUM関数で計算できます。ISO 8601準拠にするには第2引数に21を指定します（例：=WEEKNUM(A1,21)）。ただし関数の知識が必要なため、ツールを使う方が手軽です。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">1年は必ず52週ですか？</div>
+      <div class="faq-a">いいえ。ISO 8601では52週の年と53週の年があります。1月1日の曜日によって変わり、第53週が発生する年があります。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">4月始まりと1月始まりで週番号は何が違いますか？</div>
+      <div class="faq-a">起算点が異なります。1月始まりは国際標準（ISO 8601）で1月の第1木曜を含む週が第1週です。4月始まりは4月1日を含む週を第1週として数えます。同じ日付でも両者の週番号は異なります。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">12月末が翌年の第1週になることがありますか？</div>
+      <div class="faq-a">あります。ISO 8601では12月末の数日が翌年の第1週に含まれる場合があります。これは規格上の正しい動作です。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 関連ツール -->
+  <div class="related-section">
+    <h2>関連ツール</h2>
+    <div class="related-list">
+      <a href="/week-number/" class="related-link">📅 週番号チェッカー</a>
+      <a href="/day-counter/" class="related-link">📅 日数計算ツール</a>
+      <a href="/business-days/" class="related-link">🗓️ 営業日計算ツール</a>
+      <a href="/calendar-generator/" class="related-link">📆 カレンダー画像ジェネレーター</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- フッター -->
+<div id="ck-footer-container"></div>
+
+<script>
+(function() {
+  var container = document.getElementById('ck-footer-container');
+  if (!container) return;
+  fetch('/footer.html')
+    .then(function(r) { return r.text(); })
+    .then(function(html) {
+      container.innerHTML = html;
+      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    })
+    .catch(function(e) {});
+})();
+</script>
+
+</body>
+</html>
