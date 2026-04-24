@@ -17,6 +17,18 @@
 </url>
 
 <url>
+  <loc>https://cleverkit.jp/age-calculator/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://cleverkit.jp/age-calculator/how-to-calculate/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<url>
   <loc>https://cleverkit.jp/decimal-time-converter/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.6</priority>
